@@ -39,6 +39,18 @@
     
 
 
+    <!-- http://projekt-provider.de/ontology/LogisticsSector -->
+
+    <owl:Class rdf:about="http://projekt-provider.de/ontology/LogisticsSector">
+        <rdfs:subClassOf rdf:resource="http://projekt-provider.de/ontology/Sector"/>
+        <rdfs:comment xml:lang="en">A sector covering the transportation, storage, coordination, and distribution of goods, materials, or resources.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Ein Sektor, der den Transport, die Lagerung, die Koordination und den Vertrieb von Gütern, Materialien oder Ressourcen umfasst.</rdfs:comment>
+        <rdfs:label xml:lang="en">Logistics sector</rdfs:label>
+        <rdfs:label xml:lang="de">Logistiksektor</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://projekt-provider.de/ontology/Sector -->
 
     <owl:Class rdf:about="http://projekt-provider.de/ontology/Sector">
