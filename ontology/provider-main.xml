@@ -60,6 +60,18 @@
         <rdfs:label xml:lang="en">Sector</rdfs:label>
         <rdfs:label xml:lang="de">Sektor</rdfs:label>
     </owl:Class>
+    
+
+
+    <!-- http://projekt-provider.de/ontology/TradeSector -->
+
+    <owl:Class rdf:about="http://projekt-provider.de/ontology/TradeSector">
+        <rdfs:subClassOf rdf:resource="http://projekt-provider.de/ontology/Sector"/>
+        <rdfs:comment xml:lang="en">A sector that realizes the exchange, distribution, purchase, or sale of goods or services.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Ein Sektor, der den Austausch, den Vertrieb, den Kauf oder den Verkauf von Waren oder Dienstleistungen realisiert.</rdfs:comment>
+        <rdfs:label xml:lang="de">Handelssektor</rdfs:label>
+        <rdfs:label xml:lang="en">Trade sector</rdfs:label>
+    </owl:Class>
 </rdf:RDF>
 
 
