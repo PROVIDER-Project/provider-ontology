@@ -13,6 +13,28 @@
     <owl:Ontology rdf:about="http://projekt-provider.de/ontology/">
         <owl:imports rdf:resource="https://w3id.org/semanticarts/ontology/gistBFO"/>
     </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+    
+
+
+    <!-- http://projekt-provider.de/ontology/Sector -->
+
+    <owl:Class rdf:about="http://projekt-provider.de/ontology/Sector">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000141"/>
+        <rdfs:comment xml:lang="en">A socially constructed immaterial entity aggregating agents, infrastructure and recurrent processes that collectively realize a characteristic economic, industrial, administrative, or societal function.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Eine sozial konstruierte immaterielle Entität, die Akteure, Infrastruktur und wiederkehrende Prozesse zusammenfasst, welche gemeinsam eine charakteristische ökonomische, industrielle, administrative oder gesellschaftliche Funktion umsetzen.</rdfs:comment>
+        <rdfs:label xml:lang="en">Sector</rdfs:label>
+        <rdfs:label xml:lang="de">Sektor</rdfs:label>
+    </owl:Class>
 </rdf:RDF>
 
 
