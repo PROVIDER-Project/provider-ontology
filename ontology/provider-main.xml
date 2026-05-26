@@ -138,6 +138,18 @@
         <rdfs:label xml:lang="de">Handelssektor</rdfs:label>
         <rdfs:label xml:lang="en">Trade sector</rdfs:label>
     </owl:Class>
+    
+
+
+    <!-- http://projekt-provider.de/ontology/Wholesaler -->
+
+    <owl:Class rdf:about="http://projekt-provider.de/ontology/Wholesaler">
+        <rdfs:subClassOf rdf:resource="http://projekt-provider.de/ontology/CommercialOrganisation"/>
+        <rdfs:comment xml:lang="en">A commercial organisation that primarily engages in the purchase and resale of goods in relatively large quantities to retailers, commercial organizations, or other institutional consumers rather than directly to end consumers.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Eine Handelsbetrieb, der sich hauptsächlich mit dem Kauf und Weiterverkauf von Waren in relativ großen Mengen an Einzelhändler, Handelsorganisationen oder andere institutionelle Abnehmer und nicht direkt an Endverbraucher befasst.</rdfs:comment>
+        <rdfs:label xml:lang="de">Großhändler</rdfs:label>
+        <rdfs:label xml:lang="en">Wholesaler</rdfs:label>
+    </owl:Class>
 </rdf:RDF>
 
 
