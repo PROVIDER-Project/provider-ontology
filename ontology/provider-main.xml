@@ -63,6 +63,18 @@
     
 
 
+    <!-- http://projekt-provider.de/ontology/Organisation -->
+
+    <owl:Class rdf:about="http://projekt-provider.de/ontology/Organisation">
+        <rdfs:subClassOf rdf:resource="http://projekt-provider.de/ontology/Agent"/>
+        <rdfs:comment xml:lang="en">An agent that is socially or legally defined and might comprise parts that are itself agents</rdfs:comment>
+        <rdfs:comment xml:lang="de">Ein Agent, der sozial oder rechtlich definiert ist und aus Teilen bestehen kann, die selbst Agenten sind</rdfs:comment>
+        <rdfs:label xml:lang="de">Organisation</rdfs:label>
+        <rdfs:label xml:lang="en">Organisation</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://projekt-provider.de/ontology/Sector -->
 
     <owl:Class rdf:about="http://projekt-provider.de/ontology/Sector">
