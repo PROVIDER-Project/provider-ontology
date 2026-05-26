@@ -135,6 +135,18 @@
     
 
 
+    <!-- http://projekt-provider.de/ontology/Person -->
+
+    <owl:Class rdf:about="http://projekt-provider.de/ontology/Person">
+        <rdfs:subClassOf rdf:resource="http://projekt-provider.de/ontology/Agent"/>
+        <rdfs:comment xml:lang="en">An agent that is a human being</rdfs:comment>
+        <rdfs:comment xml:lang="de">Ein Agent der ein Mensch ist</rdfs:comment>
+        <rdfs:label xml:lang="de">Person</rdfs:label>
+        <rdfs:label xml:lang="en">Person</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://projekt-provider.de/ontology/Sector -->
 
     <owl:Class rdf:about="http://projekt-provider.de/ontology/Sector">
