@@ -93,6 +93,24 @@
     
 
 
+    <!-- http://projekt-provider.de/ontology/Farm -->
+
+    <owl:Class rdf:about="http://projekt-provider.de/ontology/Farm">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://projekt-provider.de/ontology/operatesInSector"/>
+                <owl:someValuesFrom rdf:resource="http://projekt-provider.de/ontology/AgriculturalSector"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://projekt-provider.de/ontology/Organisation"/>
+        <rdfs:comment xml:lang="en">An organisation that operates in the agricultural sector</rdfs:comment>
+        <rdfs:comment xml:lang="de">Eine Organisation, die im Agrarsektor agiert</rdfs:comment>
+        <rdfs:label xml:lang="en">Farm</rdfs:label>
+        <rdfs:label xml:lang="de">Landwirtschaftlicher Betrieb</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://projekt-provider.de/ontology/LogisticsSector -->
 
     <owl:Class rdf:about="http://projekt-provider.de/ontology/LogisticsSector">
