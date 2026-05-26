@@ -1,0 +1,1163 @@
+@prefix :        <http://example.org/osm-infra#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix geo:     <http://www.opengis.net/ont/geosparql#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix qb:      <http://purl.org/linked-data/cube#> .
+
+
+# ============================================================================
+# ONTOLOGY DECLARATION
+# ============================================================================
+
+<http://provider.org/infrastructure> a owl:Ontology ;
+    rdfs:label "OpenStreetMap based Infrastructure Ontology"@en ;
+    rdfs:comment """
+        An OWL ontology for modeling infrastructure data derived from 
+        OpenStreetMap. Covers transportation (airports, ports, railways, roads),
+        energy (pipelines, power networks), and telecommunications infrastructure.
+    """@en ;
+    owl:versionInfo "1.0.0"^^xsd:string ;
+    dcterms:created "2026-03-09"^^xsd:date ;
+    dcterms:modified "2026-03-09"^^xsd:date .
+
+
+# ============================================================================
+# TOP-LEVEL CLASSES
+# ============================================================================
+
+:InfrastructureFeature a owl:Class ;
+    rdfs:label "Infrastructure Feature"@en ;
+    rdfs:comment "Abstract base class for all infrastructure features."@en .
+
+:TransportationInfrastructure a owl:Class ;
+    rdfs:subClassOf :InfrastructureFeature ;
+    rdfs:label "Transportation Infrastructure"@en ;
+    rdfs:comment "Infrastructure related to the movement of people and goods."@en .
+
+:EnergyInfrastructure a owl:Class ;
+    rdfs:subClassOf :InfrastructureFeature ;
+    rdfs:label "Energy Infrastructure"@en ;
+    rdfs:comment "Infrastructure related to energy generation, transmission, and distribution."@en .
+
+:TelecommunicationsInfrastructure a owl:Class ;
+    rdfs:subClassOf :InfrastructureFeature ;
+    rdfs:label "Telecommunications Infrastructure"@en ;
+    rdfs:comment "Infrastructure related to telecommunications and data transmission."@en .
+
+:UtilityInfrastructure a owl:Class ;
+    rdfs:subClassOf :InfrastructureFeature ;
+    rdfs:label "Utility Infrastructure"@en ;
+    rdfs:comment "General utility infrastructure (water, sewer, etc.)."@en .
+
+
+# ============================================================================
+# GEOMETRY CLASSES
+# ============================================================================
+
+:Node a owl:Class ;
+    rdfs:label "Node"@en ;
+    rdfs:comment "A point geometry representing an OSM node."@en .
+
+:Way a owl:Class ;
+    rdfs:label "Way"@en ;
+    rdfs:comment "A linear or polygon geometry representing an OSM way."@en .
+
+:Relation a owl:Class ;
+    rdfs:label "Relation"@en ;
+    rdfs:comment "A collection of nodes, ways, and relations representing an OSM relation."@en .
+
+
+# ============================================================================
+# AIRPORT INFRASTRUCTURE
+# ============================================================================
+
+:Airport a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Airport"@en ;
+    rdfs:comment "An aerodrome or airport facility. Maps to OSM aeroway=aerodrome."@en ;
+    skos:note "OSM mapping: aeroway=aerodrome"@en .
+
+:InternationalAirport a owl:Class ;
+    rdfs:subClassOf :Airport ;
+    rdfs:label "International Airport"@en ;
+    rdfs:comment "An airport with international flight services."@en .
+
+:RegionalAirport a owl:Class ;
+    rdfs:subClassOf :Airport ;
+    rdfs:label "Regional Airport"@en ;
+    rdfs:comment "A smaller airport serving regional destinations."@en .
+
+:MilitaryAirbase a owl:Class ;
+    rdfs:subClassOf :Airport ;
+    rdfs:label "Military Airbase"@en ;
+    rdfs:comment "A military aviation facility."@en .
+
+:Runway a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Runway"@en ;
+    rdfs:comment "An aircraft runway. Maps to OSM aeroway=runway."@en ;
+    skos:note "OSM mapping: aeroway=runway"@en .
+
+:Taxiway a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Taxiway"@en ;
+    rdfs:comment "A path for aircraft to taxi between runway and apron. Maps to OSM aeroway=taxiway."@en ;
+    skos:note "OSM mapping: aeroway=taxiway"@en .
+
+:Apron a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Apron"@en ;
+    rdfs:comment "An area where aircraft are parked, loaded, or refueled. Maps to OSM aeroway=apron."@en ;
+    skos:note "OSM mapping: aeroway=apron"@en .
+
+:Terminal a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Airport Terminal"@en ;
+    rdfs:comment "A building at an airport for passenger processing. Maps to OSM aeroway=terminal."@en ;
+    skos:note "OSM mapping: aeroway=terminal"@en .
+
+:Heliport a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Heliport"@en ;
+    rdfs:comment "A landing area for helicopters. Maps to OSM aeroway=helipad."@en ;
+    skos:note "OSM mapping: aeroway=helipad"@en .
+
+:Hangar a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Hangar"@en ;
+    rdfs:comment "A shelter for aircraft. Maps to OSM aeroway=hangar."@en ;
+    skos:note "OSM mapping: aeroway=hangar"@en .
+
+:NavigationAid a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Navigation Aid"@en ;
+    rdfs:comment "A navigation aid for aviation (VOR, NDB, etc.). Maps to OSM aeroway=navigationaid."@en ;
+    skos:note "OSM mapping: aeroway=navigationaid"@en .
+
+
+# ============================================================================
+# PORT / WATERWAY INFRASTRUCTURE
+# ============================================================================
+
+:Port a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Port"@en ;
+    rdfs:comment "A maritime or inland waterway port facility."@en .
+
+:Seaport a owl:Class ;
+    rdfs:subClassOf :Port ;
+    rdfs:label "Seaport"@en ;
+    rdfs:comment "A port on the sea or ocean."@en .
+
+:InlandPort a owl:Class ;
+    rdfs:subClassOf :Port ;
+    rdfs:label "Inland Port"@en ;
+    rdfs:comment "A port on a river or canal."@en .
+
+:FerryTerminal a owl:Class ;
+    rdfs:subClassOf :Port ;
+    rdfs:label "Ferry Terminal"@en ;
+    rdfs:comment "A terminal for ferry services. Maps to OSM amenity=ferry_terminal."@en ;
+    skos:note "OSM mapping: amenity=ferry_terminal"@en .
+
+:Berth a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Berth"@en ;
+    rdfs:comment "A designated location for a vessel to dock."@en .
+
+:Quay a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Quay"@en ;
+    rdfs:comment "A structure built parallel to the waterfront for mooring vessels. Maps to OSM waterway=quay."@en ;
+    skos:note "OSM mapping: waterway=quay"@en .
+
+:Pier a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Pier"@en ;
+    rdfs:comment "A raised structure extending into water. Maps to OSM man_made=pier."@en ;
+    skos:note "OSM mapping: man_made=pier"@en .
+
+:Breakwater a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Breakwater"@en ;
+    rdfs:comment "A barrier to protect a harbor from waves. Maps to OSM man_made=breakwater."@en ;
+    skos:note "OSM mapping: man_made=breakwater"@en .
+
+:Dock a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Dock"@en ;
+    rdfs:comment "An enclosed area for vessel loading/unloading. Maps to OSM waterway=dock."@en ;
+    skos:note "OSM mapping: waterway=dock"@en .
+
+:Lock a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Lock"@en ;
+    rdfs:comment "A device for raising and lowering vessels between water levels. Maps to OSM waterway=lock."@en ;
+    skos:note "OSM mapping: waterway=lock"@en .
+
+:Canal a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Canal"@en ;
+    rdfs:comment "An artificial waterway. Maps to OSM waterway=canal."@en ;
+    skos:note "OSM mapping: waterway=canal"@en .
+
+
+# ============================================================================
+# RAILWAY INFRASTRUCTURE
+# ============================================================================
+
+:RailwayLine a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Railway Line"@en ;
+    rdfs:comment "A railway track route. Maps to OSM railway=rail."@en ;
+    skos:note "OSM mapping: railway=rail"@en .
+
+:HighSpeedRail a owl:Class ;
+    rdfs:subClassOf :RailwayLine ;
+    rdfs:label "High-Speed Rail"@en ;
+    rdfs:comment "A high-speed railway line. Maps to OSM railway=rail + highspeed=yes."@en ;
+    skos:note "OSM mapping: railway=rail + highspeed=yes"@en .
+
+:SubwayLine a owl:Class ;
+    rdfs:subClassOf :RailwayLine ;
+    rdfs:label "Subway Line"@en ;
+    rdfs:comment "An underground metro/subway line. Maps to OSM railway=subway."@en ;
+    skos:note "OSM mapping: railway=subway"@en .
+
+:TramLine a owl:Class ;
+    rdfs:subClassOf :RailwayLine ;
+    rdfs:label "Tram Line"@en ;
+    rdfs:comment "A tram or streetcar line. Maps to OSM railway=tram."@en ;
+    skos:note "OSM mapping: railway=tram"@en .
+
+:LightRail a owl:Class ;
+    rdfs:subClassOf :RailwayLine ;
+    rdfs:label "Light Rail"@en ;
+    rdfs:comment "A light rail transit line. Maps to OSM railway=light_rail."@en ;
+    skos:note "OSM mapping: railway=light_rail"@en .
+
+:NarrowGaugeRail a owl:Class ;
+    rdfs:subClassOf :RailwayLine ;
+    rdfs:label "Narrow Gauge Rail"@en ;
+    rdfs:comment "A narrow gauge railway. Maps to OSM railway=narrow_gauge."@en ;
+    skos:note "OSM mapping: railway=narrow_gauge"@en .
+
+:Funicular a owl:Class ;
+    rdfs:subClassOf :RailwayLine ;
+    rdfs:label "Funicular"@en ;
+    rdfs:comment "A cable railway on a steep slope. Maps to OSM railway=funicular."@en ;
+    skos:note "OSM mapping: railway=funicular"@en .
+
+:Monorail a owl:Class ;
+    rdfs:subClassOf :RailwayLine ;
+    rdfs:label "Monorail"@en ;
+    rdfs:comment "A railway with a single rail. Maps to OSM railway=monorail."@en ;
+    skos:note "OSM mapping: railway=monorail"@en .
+
+:RailwayStation a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Railway Station"@en ;
+    rdfs:comment "A station where trains stop for passengers or freight. Maps to OSM railway=station."@en ;
+    skos:note "OSM mapping: railway=station"@en .
+
+:SubwayStation a owl:Class ;
+    rdfs:subClassOf :RailwayStation ;
+    rdfs:label "Subway Station"@en ;
+    rdfs:comment "An underground metro station. Maps to OSM railway=subway_entrance or station=subway."@en ;
+    skos:note "OSM mapping: railway=subway_entrance"@en .
+
+:Halt a owl:Class ;
+    rdfs:subClassOf :RailwayStation ;
+    rdfs:label "Railway Halt"@en ;
+    rdfs:comment "A small railway stop. Maps to OSM railway=halt."@en ;
+    skos:note "OSM mapping: railway=halt"@en .
+
+:RailwayJunction a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Railway Junction"@en ;
+    rdfs:comment "A point where railway lines meet or diverge. Maps to OSM railway=junction."@en ;
+    skos:note "OSM mapping: railway=junction"@en .
+
+:Switch a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Railway Switch"@en ;
+    rdfs:comment "A turnout allowing trains to change tracks. Maps to OSM railway=switch."@en ;
+    skos:note "OSM mapping: railway=switch"@en .
+
+:LevelCrossing a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Level Crossing"@en ;
+    rdfs:comment "Where a railway crosses a road at the same level. Maps to OSM railway=level_crossing."@en ;
+    skos:note "OSM mapping: railway=level_crossing"@en .
+
+:Signal a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Railway Signal"@en ;
+    rdfs:comment "A railway signal controlling train movement. Maps to OSM railway=signal."@en ;
+    skos:note "OSM mapping: railway=signal"@en .
+
+:RailwayBridge a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Railway Bridge"@en ;
+    rdfs:comment "A bridge carrying a railway. Maps to OSM railway=bridge or bridge=yes on railway."@en ;
+    skos:note "OSM mapping: bridge=yes on railway features"@en .
+
+:RailwayTunnel a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Railway Tunnel"@en ;
+    rdfs:comment "A tunnel carrying a railway. Maps to OSM tunnel=yes on railway."@en ;
+    skos:note "OSM mapping: tunnel=yes on railway features"@en .
+
+:RailwayYard a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Railway Yard"@en ;
+    rdfs:comment "A facility for sorting and storing rail cars. Maps to OSM railway=yard."@en ;
+    skos:note "OSM mapping: railway=yard"@en .
+
+:Workshop a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Railway Workshop"@en ;
+    rdfs:comment "A facility for railway maintenance. Maps to OSM railway=workshop."@en ;
+    skos:note "OSM mapping: railway=workshop"@en .
+
+
+# ============================================================================
+# ROAD INFRASTRUCTURE
+# ============================================================================
+
+:Road a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Road"@en ;
+    rdfs:comment "A road or highway. Maps to OSM highway=*."@en ;
+    skos:note "OSM mapping: highway=* (various values)"@en .
+
+:Motorway a owl:Class ;
+    rdfs:subClassOf :Road ;
+    rdfs:label "Motorway"@en ;
+    rdfs:comment "A controlled-access highway. Maps to OSM highway=motorway."@en ;
+    skos:note "OSM mapping: highway=motorway"@en .
+
+:TrunkRoad a owl:Class ;
+    rdfs:subClassOf :Road ;
+    rdfs:label "Trunk Road"@en ;
+    rdfs:comment "A major road, often with partial access control. Maps to OSM highway=trunk."@en ;
+    skos:note "OSM mapping: highway=trunk"@en .
+
+:PrimaryRoad a owl:Class ;
+    rdfs:subClassOf :Road ;
+    rdfs:label "Primary Road"@en ;
+    rdfs:comment "A major regional road. Maps to OSM highway=primary."@en ;
+    skos:note "OSM mapping: highway=primary"@en .
+
+:SecondaryRoad a owl:Class ;
+    rdfs:subClassOf :Road ;
+    rdfs:label "Secondary Road"@en ;
+    rdfs:comment "A secondary regional road. Maps to OSM highway=secondary."@en ;
+    skos:note "OSM mapping: highway=secondary"@en .
+
+:TertiaryRoad a owl:Class ;
+    rdfs:subClassOf :Road ;
+    rdfs:label "Tertiary Road"@en ;
+    rdfs:comment "A tertiary road. Maps to OSM highway=tertiary."@en ;
+    skos:note "OSM mapping: highway=tertiary"@en .
+
+:ResidentialRoad a owl:Class ;
+    rdfs:subClassOf :Road ;
+    rdfs:label "Residential Road"@en ;
+    rdfs:comment "A road within a residential area. Maps to OSM highway=residential."@en ;
+    skos:note "OSM mapping: highway=residential"@en .
+
+:ServiceRoad a owl:Class ;
+    rdfs:subClassOf :Road ;
+    rdfs:label "Service Road"@en ;
+    rdfs:comment "A minor access road. Maps to OSM highway=service."@en ;
+    skos:note "OSM mapping: highway=service"@en .
+
+:Track a owl:Class ;
+    rdfs:subClassOf :Road ;
+    rdfs:label "Track"@en ;
+    rdfs:comment "An unpaved track or dirt road. Maps to OSM highway=track."@en ;
+    skos:note "OSM mapping: highway=track"@en .
+
+:PedestrianPath a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Pedestrian Path"@en ;
+    rdfs:comment "A path for pedestrians. Maps to OSM highway=pedestrian or highway=path."@en ;
+    skos:note "OSM mapping: highway=pedestrian | highway=path"@en .
+
+:Cycleway a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Cycleway"@en ;
+    rdfs:comment "A dedicated cycling path. Maps to OSM highway=cycleway."@en ;
+    skos:note "OSM mapping: highway=cycleway"@en .
+
+:RoadBridge a owl:Class ;
+    rdfs:subClassOf :Road ;
+    rdfs:label "Road Bridge"@en ;
+    rdfs:comment "A bridge carrying a road. Maps to OSM bridge=yes on highway."@en ;
+    skos:note "OSM mapping: bridge=yes on highway features"@en .
+
+:RoadTunnel a owl:Class ;
+    rdfs:subClassOf :Road ;
+    rdfs:label "Road Tunnel"@en ;
+    rdfs:comment "A tunnel carrying a road. Maps to OSM tunnel=yes on highway."@en ;
+    skos:note "OSM mapping: tunnel=yes on highway features"@en .
+
+:Roundabout a owl:Class ;
+    rdfs:subClassOf :Road ;
+    rdfs:label "Roundabout"@en ;
+    rdfs:comment "A circular intersection. Maps to OSM junction=roundabout."@en ;
+    skos:note "OSM mapping: junction=roundabout"@en .
+
+:Junction a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Junction"@en ;
+    rdfs:comment "A highway interchange or junction. Maps to OSM highway=motorway_junction."@en ;
+    skos:note "OSM mapping: highway=motorway_junction"@en .
+
+:TollBooth a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Toll Booth"@en ;
+    rdfs:comment "A facility for collecting road tolls. Maps to OSM barrier=toll_booth."@en ;
+    skos:note "OSM mapping: barrier=toll_booth"@en .
+
+:RestArea a owl:Class ;
+    rdfs:subClassOf :TransportationInfrastructure ;
+    rdfs:label "Rest Area"@en ;
+    rdfs:comment "A roadside rest area. Maps to OSM highway=services or highway=rest_area."@en ;
+    skos:note "OSM mapping: highway=services | highway=rest_area"@en .
+
+:Ford a owl:Class ;
+    rdfs:subClassOf :Road ;
+    rdfs:label "Ford"@en ;
+    rdfs:comment "A shallow water crossing. Maps to OSM highway=ford."@en ;
+    skos:note "OSM mapping: highway=ford"@en .
+
+
+# ============================================================================
+# PIPELINE INFRASTRUCTURE
+# ============================================================================
+
+:Pipeline a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Pipeline"@en ;
+    rdfs:comment "A pipeline for transporting fluids or gases. Maps to OSM man_made=pipeline."@en ;
+    skos:note "OSM mapping: man_made=pipeline"@en .
+
+:OilPipeline a owl:Class ;
+    rdfs:subClassOf :Pipeline ;
+    rdfs:label "Oil Pipeline"@en ;
+    rdfs:comment "A pipeline transporting crude oil or petroleum products."@en .
+
+:GasPipeline a owl:Class ;
+    rdfs:subClassOf :Pipeline ;
+    rdfs:label "Gas Pipeline"@en ;
+    rdfs:comment "A pipeline transporting natural gas."@en .
+
+:WaterPipeline a owl:Class ;
+    rdfs:subClassOf :Pipeline ;
+    rdfs:label "Water Pipeline"@en ;
+    rdfs:comment "A pipeline transporting water. Maps to OSM substance=water."@en .
+
+:SewerPipeline a owl:Class ;
+    rdfs:subClassOf :Pipeline ;
+    rdfs:label "Sewer Pipeline"@en ;
+    rdfs:comment "A pipeline for sewage transport."@en .
+
+:ChemicalPipeline a owl:Class ;
+    rdfs:subClassOf :Pipeline ;
+    rdfs:label "Chemical Pipeline"@en ;
+    rdfs:comment "A pipeline transporting chemical substances."@en .
+
+:PipelineStation a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Pipeline Station"@en ;
+    rdfs:comment "A pumping or compressor station along a pipeline."@en .
+
+:CompressorStation a owl:Class ;
+    rdfs:subClassOf :PipelineStation ;
+    rdfs:label "Compressor Station"@en ;
+    rdfs:comment "A station that compresses gas in a pipeline. Maps to OSM man_made=petroleum_well + type=gas."@en .
+
+:PumpingStation a owl:Class ;
+    rdfs:subClassOf :PipelineStation ;
+    rdfs:label "Pumping Station"@en ;
+    rdfs:comment "A station that pumps liquid through a pipeline."@en .
+
+:PipelineValve a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Pipeline Valve"@en ;
+    rdfs:comment "A valve controlling flow in a pipeline. Maps to OSM pipeline=valve or substance + type=valve."@en .
+
+:Refinery a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Refinery"@en ;
+    rdfs:comment "An oil or gas refinery. Maps to OSM industrial=refinery."@en ;
+    skos:note "OSM mapping: industrial=refinery"@en .
+
+:StorageTank a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Storage Tank"@en ;
+    rdfs:comment "A tank for storing liquids or gases. Maps to OSM man_made=storage_tank."@en ;
+    skos:note "OSM mapping: man_made=storage_tank"@en .
+
+
+# ============================================================================
+# POWER NETWORK INFRASTRUCTURE
+# ============================================================================
+
+:PowerLine a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Power Line"@en ;
+    rdfs:comment "An overhead power transmission or distribution line. Maps to OSM power=line."@en ;
+    skos:note "OSM mapping: power=line"@en .
+
+:HighVoltageLine a owl:Class ;
+    rdfs:subClassOf :PowerLine ;
+    rdfs:label "High Voltage Line"@en ;
+    rdfs:comment "A high voltage transmission line. Maps to OSM power=line with voltage >= 110000."@en .
+
+:MediumVoltageLine a owl:Class ;
+    rdfs:subClassOf :PowerLine ;
+    rdfs:label "Medium Voltage Line"@en ;
+    rdfs:comment "A medium voltage distribution line."@en .
+
+:LowVoltageLine a owl:Class ;
+    rdfs:subClassOf :PowerLine ;
+    rdfs:label "Low Voltage Line"@en ;
+    rdfs:comment "A low voltage distribution line. Maps to OSM power=minor_line."@en ;
+    skos:note "OSM mapping: power=minor_line"@en .
+
+:UndergroundCable a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Underground Cable"@en ;
+    rdfs:comment "An underground power cable. Maps to OSM power=cable + location=underground."@en ;
+    skos:note "OSM mapping: power=cable"@en .
+
+:SubmarineCable a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Submarine Cable"@en ;
+    rdfs:comment "An underwater power cable. Maps to OSM power=cable + location=underwater."@en .
+
+:PowerTower a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Power Tower"@en ;
+    rdfs:comment "A transmission tower/pylon supporting power lines. Maps to OSM power=tower."@en ;
+    skos:note "OSM mapping: power=tower"@en .
+
+:PowerPole a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Power Pole"@en ;
+    rdfs:comment "A utility pole supporting distribution lines. Maps to OSM power=pole."@en ;
+    skos:note "OSM mapping: power=pole"@en .
+
+:Substation a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Electrical Substation"@en ;
+    rdfs:comment "An electrical substation for voltage transformation. Maps to OSM power=substation."@en ;
+    skos:note "OSM mapping: power=substation"@en .
+
+:Transformer a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Transformer"@en ;
+    rdfs:comment "An electrical transformer. Maps to OSM power=transformer."@en ;
+    skos:note "OSM mapping: power=transformer"@en .
+
+:PowerPlant a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Power Plant"@en ;
+    rdfs:comment "A facility generating electricity. Maps to OSM power=plant."@en ;
+    skos:note "OSM mapping: power=plant"@en .
+
+:CoalPowerPlant a owl:Class ;
+    rdfs:subClassOf :PowerPlant ;
+    rdfs:label "Coal Power Plant"@en ;
+    rdfs:comment "A power plant burning coal for electricity."@en .
+
+:GasPowerPlant a owl:Class ;
+    rdfs:subClassOf :PowerPlant ;
+    rdfs:label "Gas Power Plant"@en ;
+    rdfs:comment "A power plant burning natural gas."@en .
+
+:NuclearPowerPlant a owl:Class ;
+    rdfs:subClassOf :PowerPlant ;
+    rdfs:label "Nuclear Power Plant"@en ;
+    rdfs:comment "A nuclear power plant."@en .
+
+:HydroPowerPlant a owl:Class ;
+    rdfs:subClassOf :PowerPlant ;
+    rdfs:label "Hydroelectric Power Plant"@en ;
+    rdfs:comment "A hydroelectric power plant. Maps to OSM power=generator + generator:source=water."@en .
+
+:WindFarm a owl:Class ;
+    rdfs:subClassOf :PowerPlant ;
+    rdfs:label "Wind Farm"@en ;
+    rdfs:comment "A wind energy facility. Maps to OSM power=generator + generator:source=wind."@en .
+
+:SolarFarm a owl:Class ;
+    rdfs:subClassOf :PowerPlant ;
+    rdfs:label "Solar Farm"@en ;
+    rdfs:comment "A solar energy facility. Maps to OSM power=generator + generator:source=solar."@en .
+
+:WindTurbine a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Wind Turbine"@en ;
+    rdfs:comment "A single wind turbine generator. Maps to OSM power=generator + generator:source=wind + generator:type=wind_turbine."@en .
+
+:SolarPanel a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Solar Panel"@en ;
+    rdfs:comment "A solar panel installation. Maps to OSM power=generator + generator:source=solar."@en .
+
+:Generator a owl:Class ;
+    rdfs:subClassOf :EnergyInfrastructure ;
+    rdfs:label "Generator"@en ;
+    rdfs:comment "A power generator. Maps to OSM power=generator."@en ;
+    skos:note "OSM mapping: power=generator"@en .
+
+
+# ============================================================================
+# TELECOMMUNICATIONS INFRASTRUCTURE
+# ============================================================================
+
+:TelecomTower a owl:Class ;
+    rdfs:subClassOf :TelecommunicationsInfrastructure ;
+    rdfs:label "Telecommunications Tower"@en ;
+    rdfs:comment "A tower for telecommunications equipment. Maps to OSM man_made=tower + tower:type=communication."@en ;
+    skos:note "OSM mapping: man_made=tower + tower:type=communication"@en .
+
+:CellTower a owl:Class ;
+    rdfs:subClassOf :TelecomTower ;
+    rdfs:label "Cell Tower"@en ;
+    rdfs:comment "A cellular network tower. Maps to OSM man_made=mast + tower:type=communication or tower:construction=lattice."@en .
+
+:Mast a owl:Class ;
+    rdfs:subClassOf :TelecommunicationsInfrastructure ;
+    rdfs:label "Mast"@en ;
+    rdfs:comment "A mast for antennas. Maps to OSM man_made=mast."@en ;
+    skos:note "OSM mapping: man_made=mast"@en .
+
+:Antenna a owl:Class ;
+    rdfs:subClassOf :TelecommunicationsInfrastructure ;
+    rdfs:label "Antenna"@en ;
+    rdfs:comment "A telecommunications antenna. Maps to OSM man_made=antenna or man_made=communications_tower."@en ;
+    skos:note "OSM mapping: man_made=communications_tower"@en .
+
+:SatelliteDish a owl:Class ;
+    rdfs:subClassOf :TelecommunicationsInfrastructure ;
+    rdfs:label "Satellite Dish"@en ;
+    rdfs:comment "A satellite dish antenna. Maps to OSM man_made=satellite_dish."@en ;
+    skos:note "OSM mapping: man_made=satellite_dish"@en .
+
+:TelecomExchange a owl:Class ;
+    rdfs:subClassOf :TelecommunicationsInfrastructure ;
+    rdfs:label "Telecommunications Exchange"@en ;
+    rdfs:comment "A telephone exchange or central office. Maps to OSM telecom=exchange."@en ;
+    skos:note "OSM mapping: telecom=exchange"@en .
+
+:DataCenter a owl:Class ;
+    rdfs:subClassOf :TelecommunicationsInfrastructure ;
+    rdfs:label "Data Center"@en ;
+    rdfs:comment "A facility housing computer systems and networking equipment."@en .
+
+:FiberCable a owl:Class ;
+    rdfs:subClassOf :TelecommunicationsInfrastructure ;
+    rdfs:label "Fiber Optic Cable"@en ;
+    rdfs:comment "A fiber optic cable for data transmission."@en .
+
+:SubmarineTelecomCable a owl:Class ;
+    rdfs:subClassOf :TelecommunicationsInfrastructure ;
+    rdfs:label "Submarine Telecom Cable"@en ;
+    rdfs:comment "A submarine telecommunications cable."@en .
+
+:CableLandingStation a owl:Class ;
+    rdfs:subClassOf :TelecommunicationsInfrastructure ;
+    rdfs:label "Cable Landing Station"@en ;
+    rdfs:comment "Where submarine cables come ashore."@en .
+
+
+# ============================================================================
+# OBJECT PROPERTIES (Relationships)
+# ============================================================================
+
+:hasGeometry a owl:ObjectProperty ;
+    rdfs:label "has geometry"@en ;
+    rdfs:comment "Links a feature to its geometric representation."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range geo:Geometry .
+
+:connectsTo a owl:ObjectProperty ;
+    rdfs:label "connects to"@en ;
+    rdfs:comment "Indicates that one infrastructure feature connects to another."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range :InfrastructureFeature .
+
+:partOf a owl:ObjectProperty ;
+    rdfs:label "part of"@en ;
+    rdfs:comment "Indicates that a feature is a component of a larger infrastructure."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range :InfrastructureFeature .
+
+:hasPart a owl:ObjectProperty ;
+    rdfs:label "has part"@en ;
+    rdfs:comment "Indicates that a larger infrastructure contains a component."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range :InfrastructureFeature ;
+    owl:inverseOf :partOf .
+
+:withinAirport a owl:ObjectProperty ;
+    rdfs:label "within airport"@en ;
+    rdfs:comment "Links a runway, taxiway, terminal, etc. to its parent airport."@en ;
+    rdfs:domain [ owl:unionOf (:Runway :Taxiway :Apron :Terminal :Hangar) ] ;
+    rdfs:range :Airport .
+
+:withinPort a owl:ObjectProperty ;
+    rdfs:label "within port"@en ;
+    rdfs:comment "Links port infrastructure to its parent port."@en ;
+    rdfs:domain [ owl:unionOf (:Berth :Quay :Dock :Pier) ] ;
+    rdfs:range :Port .
+
+:parallelTo a owl:ObjectProperty ;
+    rdfs:label "parallel to"@en ;
+    rdfs:comment "Indicates two infrastructure features run parallel."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range :InfrastructureFeature .
+
+:crosses a owl:ObjectProperty ;
+    rdfs:label "crosses"@en ;
+    rdfs:comment "Indicates one infrastructure feature crosses another (e.g., road over railway)."@en ;
+    rdfs:domain :TransportationInfrastructure ;
+    rdfs:range :TransportationInfrastructure .
+
+:crossedBy a owl:ObjectProperty ;
+    rdfs:label "crossed by"@en ;
+    rdfs:comment "Inverse of crosses."@en ;
+    owl:inverseOf :crosses .
+
+:suppliesPowerTo a owl:ObjectProperty ;
+    rdfs:label "supplies power to"@en ;
+    rdfs:comment "Indicates an energy infrastructure supplies power to another feature."@en ;
+    rdfs:domain :EnergyInfrastructure ;
+    rdfs:range :InfrastructureFeature .
+
+:poweredBy a owl:ObjectProperty ;
+    rdfs:label "powered by"@en ;
+    rdfs:comment "Indicates a feature receives power from an energy infrastructure."@en ;
+    owl:inverseOf :suppliesPowerTo .
+
+:servesNetwork a owl:ObjectProperty ;
+    rdfs:label "serves network"@en ;
+    rdfs:comment "Indicates a telecom element serves a specific network."@en ;
+    rdfs:domain :TelecommunicationsInfrastructure ;
+    rdfs:range :TelecommunicationsInfrastructure .
+
+:transportsSubstance a owl:ObjectProperty ;
+    rdfs:label "transports substance"@en ;
+    rdfs:comment "Links a pipeline to the substance it carries."@en ;
+    rdfs:domain :Pipeline ;
+    rdfs:range :Substance .
+
+:hasStation a owl:ObjectProperty ;
+    rdfs:label "has station"@en ;
+    rdfs:comment "Links a pipeline or railway to its stations."@en ;
+    rdfs:domain [ owl:unionOf (:Pipeline :RailwayLine) ] ;
+    rdfs:range [ owl:unionOf (:PipelineStation :RailwayStation) ] .
+
+:onRoute a owl:ObjectProperty ;
+    rdfs:label "on route"@en ;
+    rdfs:comment "Indicates a station or stop is on a specific route."@en ;
+    rdfs:domain [ owl:unionOf (:RailwayStation :Junction :LevelCrossing) ] ;
+    rdfs:range :RailwayLine .
+
+
+# ============================================================================
+# SUBSTANCE / CONTENT CLASSES
+# ============================================================================
+
+:Substance a owl:Class ;
+    rdfs:label "Substance"@en ;
+    rdfs:comment "A material transported through a pipeline or stored in infrastructure."@en .
+
+:CrudeOil a owl:Class ;
+    rdfs:subClassOf :Substance ;
+    rdfs:label "Crude Oil"@en .
+
+:Petroleum a owl:Class ;
+    rdfs:subClassOf :Substance ;
+    rdfs:label "Petroleum"@en .
+
+:NaturalGas a owl:Class ;
+    rdfs:subClassOf :Substance ;
+    rdfs:label "Natural Gas"@en .
+
+:LPG a owl:Class ;
+    rdfs:subClassOf :Substance ;
+    rdfs:label "Liquefied Petroleum Gas"@en .
+
+:LNG a owl:Class ;
+    rdfs:subClassOf :Substance ;
+    rdfs:label "Liquefied Natural Gas"@en .
+
+:Water a owl:Class ;
+    rdfs:subClassOf :Substance ;
+    rdfs:label "Water"@en .
+
+:Sewage a owl:Class ;
+    rdfs:subClassOf :Substance ;
+    rdfs:label "Sewage"@en .
+
+:Chemical a owl:Class ;
+    rdfs:subClassOf :Substance ;
+    rdfs:label "Chemical"@en .
+
+:Steam a owl:Class ;
+    rdfs:subClassOf :Substance ;
+    rdfs:label "Steam"@en .
+
+:Hydrogen a owl:Class ;
+    rdfs:subClassOf :Substance ;
+    rdfs:label "Hydrogen"@en .
+
+
+# ============================================================================
+# DATATYPE PROPERTIES (Attributes)
+# ============================================================================
+
+# --- Common OSM Properties ---
+
+:osmId a owl:DatatypeProperty ;
+    rdfs:label "OSM ID"@en ;
+    rdfs:comment "The OpenStreetMap element ID."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:long .
+
+:osmType a owl:DatatypeProperty ;
+    rdfs:label "OSM type"@en ;
+    rdfs:comment "The OSM element type: node, way, or relation."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Values: 'node', 'way', 'relation'"@en .
+
+:name a owl:DatatypeProperty ;
+    rdfs:label "name"@en ;
+    rdfs:comment "The common name of the feature. Maps to OSM name=*."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:string .
+
+:ref a owl:DatatypeProperty ;
+    rdfs:label "reference"@en ;
+    rdfs:comment "A reference code or number. Maps to OSM ref=*."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:string .
+
+:description a owl:DatatypeProperty ;
+    rdfs:label "description"@en ;
+    rdfs:comment "A description of the feature."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:string .
+
+:operator a owl:DatatypeProperty ;
+    rdfs:label "operator"@en ;
+    rdfs:comment "The operator or maintainer. Maps to OSM operator=*."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:string .
+
+:network a owl:DatatypeProperty ;
+    rdfs:label "network"@en ;
+    rdfs:comment "The network the feature belongs to. Maps to OSM network=*."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:string .
+
+:wikidata a owl:DatatypeProperty ;
+    rdfs:label "Wikidata ID"@en ;
+    rdfs:comment "A Wikidata identifier. Maps to OSM wikidata=*."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:string .
+
+:wikipedia a owl:DatatypeProperty ;
+    rdfs:label "Wikipedia"@en ;
+    rdfs:comment "A Wikipedia page reference. Maps to OSM wikipedia=*."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:string .
+
+:startDate a owl:DatatypeProperty ;
+    rdfs:label "start date"@en ;
+    rdfs:comment "The date the feature was built or opened. Maps to OSM start_date=*."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:gYear .
+
+:openingHours a owl:DatatypeProperty ;
+    rdfs:label "opening hours"@en ;
+    rdfs:comment "Operating hours. Maps to OSM opening_hours=*."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:string .
+
+:access a owl:DatatypeProperty ;
+    rdfs:label "access"@en ;
+    rdfs:comment "Access restrictions. Maps to OSM access=*."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Values: 'yes', 'no', 'private', 'permissive', 'destination'"@en .
+
+:surface a owl:DatatypeProperty ;
+    rdfs:label "surface"@en ;
+    rdfs:comment "The surface material. Maps to OSM surface=*."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:string .
+
+:electrified a owl:DatatypeProperty ;
+    rdfs:label "electrified"@en ;
+    rdfs:comment "Whether the railway is electrified. Maps to OSM electrified=*."@en ;
+    rdfs:domain :RailwayLine ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Values: 'contact_line', 'rail', 'yes', 'no'"@en .
+
+# --- Transportation Properties ---
+
+:iataCode a owl:DatatypeProperty ;
+    rdfs:label "IATA code"@en ;
+    rdfs:comment "The IATA airport code (3 letters). Maps to OSM iata=*."@en ;
+    rdfs:domain :Airport ;
+    rdfs:range xsd:string .
+
+:icaoCode a owl:DatatypeProperty ;
+    rdfs:label "ICAO code"@en ;
+    rdfs:comment "The ICAO airport code (4 letters). Maps to OSM icao=*."@en ;
+    rdfs:domain :Airport ;
+    rdfs:range xsd:string .
+
+:elevation a owl:DatatypeProperty ;
+    rdfs:label "elevation"@en ;
+    rdfs:comment "Elevation above sea level in meters. Maps to OSM ele=*."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:decimal .
+
+:length a owl:DatatypeProperty ;
+    rdfs:label "length"@en ;
+    rdfs:comment "Length of a feature in meters."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:decimal .
+
+:width a owl:DatatypeProperty ;
+    rdfs:label "width"@en ;
+    rdfs:comment "Width in meters. Maps to OSM width=*."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:decimal .
+
+:lanes a owl:DatatypeProperty ;
+    rdfs:label "lanes"@en ;
+    rdfs:comment "Number of traffic lanes. Maps to OSM lanes=*."@en ;
+    rdfs:domain :Road ;
+    rdfs:range xsd:nonNegativeInteger .
+
+:maxspeed a owl:DatatypeProperty ;
+    rdfs:label "max speed"@en ;
+    rdfs:comment "Maximum speed limit in km/h. Maps to OSM maxspeed=*."@en ;
+    rdfs:domain :Road ;
+    rdfs:range xsd:string .
+
+:layer a owl:DatatypeProperty ;
+    rdfs:label "layer"@en ;
+    rdfs:comment "The vertical ordering layer. Maps to OSM layer=*."@en ;
+    rdfs:domain :InfrastructureFeature ;
+    rdfs:range xsd:integer .
+
+:oneWay a owl:DatatypeProperty ;
+    rdfs:label "one way"@en ;
+    rdfs:comment "Whether traffic flows in one direction only. Maps to OSM oneway=*."@en ;
+    rdfs:domain :Road ;
+    rdfs:range xsd:boolean .
+
+:toll a owl:DatatypeProperty ;
+    rdfs:label "toll"@en ;
+    rdfs:comment "Whether the road is a toll road. Maps to OSM toll=*."@en ;
+    rdfs:domain :Road ;
+    rdfs:range xsd:boolean .
+
+:maxweight a owl:DatatypeProperty ;
+    rdfs:label "max weight"@en ;
+    rdfs:comment "Maximum weight restriction in tonnes. Maps to OSM maxweight=*."@en ;
+    rdfs:domain :Road ;
+    rdfs:range xsd:decimal .
+
+:maxheight a owl:DatatypeProperty ;
+    rdfs:label "max height"@en ;
+    rdfs:comment "Maximum height restriction in meters. Maps to OSM maxheight=*."@en ;
+    rdfs:domain [ owl:unionOf (:Road :RailwayLine) ] ;
+    rdfs:range xsd:decimal .
+
+# --- Railway Properties ---
+
+:railwayGauge a owl:DatatypeProperty ;
+    rdfs:label "gauge"@en ;
+    rdfs:comment "The track gauge in millimeters. Maps to OSM gauge=*."@en ;
+    rdfs:domain :RailwayLine ;
+    rdfs:range xsd:string .
+
+:railwayTracks a owl:DatatypeProperty ;
+    rdfs:label "number of tracks"@en ;
+    rdfs:comment "Number of parallel tracks. Maps to OSM tracks=*."@en ;
+    rdfs:domain :RailwayLine ;
+    rdfs:range xsd:nonNegativeInteger .
+
+:maxspeedRail a owl:DatatypeProperty ;
+    rdfs:label "max speed (rail)"@en ;
+    rdfs:comment "Maximum speed for trains in km/h. Maps to OSM maxspeed=*."@en ;
+    rdfs:domain :RailwayLine ;
+    rdfs:range xsd:string .
+
+# --- Pipeline Properties ---
+
+:diameter a owl:DatatypeProperty ;
+    rdfs:label "diameter"@en ;
+    rdfs:comment "The pipe diameter. Maps to OSM diameter=*."@en ;
+    rdfs:domain :Pipeline ;
+    rdfs:range xsd:decimal .
+
+:pressure a owl:DatatypeProperty ;
+    rdfs:label "pressure"@en ;
+    rdfs:comment "Operating pressure. Maps to OSM pressure=*."@en ;
+    rdfs:domain :Pipeline ;
+    rdfs:range xsd:string .
+
+:substance a owl:DatatypeProperty ;
+    rdfs:label "substance"@en ;
+    rdfs:comment "The substance carried by the pipeline. Maps to OSM substance=*."@en ;
+    rdfs:domain :Pipeline ;
+    rdfs:range xsd:string .
+
+:location a owl:DatatypeProperty ;
+    rdfs:label "location"@en ;
+    rdfs:comment "Physical location (overhead, underground, underwater). Maps to OSM location=*."@en ;
+    rdfs:domain [ owl:unionOf (:Pipeline :PowerLine) ] ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Values: 'overhead', 'underground', 'underwater'"@en .
+
+# --- Power Properties ---
+
+:voltage a owl:DatatypeProperty ;
+    rdfs:label "voltage"@en ;
+    rdfs:comment "The voltage in volts. Maps to OSM voltage=*."@en ;
+    rdfs:domain :EnergyInfrastructure ;
+    rdfs:range xsd:string .
+
+:frequency a owl:DatatypeProperty ;
+    rdfs:label "frequency"@en ;
+    rdfs:comment "The electrical frequency in Hz. Maps to OSM frequency=*."@en ;
+    rdfs:domain :EnergyInfrastructure ;
+    rdfs:range xsd:string .
+
+:cables a owl:DatatypeProperty ;
+    rdfs:label "cables"@en ;
+    rdfs:comment "Number of electrical conductors. Maps to OSM cables=*."@en ;
+    rdfs:domain :PowerLine ;
+    rdfs:range xsd:nonNegativeInteger .
+
+:wires a owl:DatatypeProperty ;
+    rdfs:label "wires"@en ;
+    rdfs:comment "Number of wire bundles per conductor. Maps to OSM wires=*."@en ;
+    rdfs:domain :PowerLine ;
+    rdfs:range xsd:string .
+
+:generatorSource a owl:DatatypeProperty ;
+    rdfs:label "generator source"@en ;
+    rdfs:comment "The energy source for generation. Maps to OSM generator:source=*."@en ;
+    rdfs:domain :Generator ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Values: 'wind', 'solar', 'hydro', 'nuclear', 'gas', 'coal', 'oil', 'biomass', 'geothermal', 'tidal', 'wave'"@en .
+
+:generatorType a owl:DatatypeProperty ;
+    rdfs:label "generator type"@en ;
+    rdfs:comment "The type of generator. Maps to OSM generator:type=*."@en ;
+    rdfs:domain :Generator ;
+    rdfs:range xsd:string .
+
+:output a owl:DatatypeProperty ;
+    rdfs:label "output"@en ;
+    rdfs:comment "Power output capacity (MW). Maps to OSM generator:output:electricity=*."@en ;
+    rdfs:domain :PowerPlant ;
+    rdfs:range xsd:string .
+
+:transformerType a owl:DatatypeProperty ;
+    rdfs:label "transformer type"@en ;
+    rdfs:comment "The type of transformer. Maps to OSM transformer=*."@en ;
+    rdfs:domain :Transformer ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Values: 'distribution', 'auxiliary'"@en .
+
+# --- Telecommunications Properties ---
+
+:towerType a owl:DatatypeProperty ;
+    rdfs:label "tower type"@en ;
+    rdfs:comment "The type/structure of the tower. Maps to OSM tower:construction=*."@en ;
+    rdfs:domain :TelecomTower ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Values: 'lattice', 'guyed', 'monopole', 'freestanding'"@en .
+
+:towerHeight a owl:DatatypeProperty ;
+    rdfs:label "tower height"@en ;
+    rdfs:comment "Height of the tower in meters. Maps to OSM height=*."@en ;
+    rdfs:domain :TelecomTower ;
+    rdfs:range xsd:decimal .
+
+:mobileNetwork a owl:DatatypeProperty ;
+    rdfs:label "mobile network"@en ;
+    rdfs:comment "The mobile network operator. Maps to OSM operator:mobile=*."@en ;
+    rdfs:domain :TelecomTower ;
+    rdfs:range xsd:string .
+
+
+# ============================================================================
+# DISJOINT CLASS AXIOMS
+# ============================================================================
+
+[
+    a owl:AllDisjointClasses ;
+    owl:members ( :TransportationInfrastructure :EnergyInfrastructure :TelecommunicationsInfrastructure :UtilityInfrastructure )
+] .
+
+[
+    a owl:AllDisjointClasses ;
+    owl:members ( :Airport :Port :Pipeline :RailwayLine :Road :PowerLine :TelecomTower )
+] .
+
+[
+    a owl:AllDisjointClasses ;
+    owl:members ( :Node :Way :Relation )
+] .
+
+
+# ============================================================================
+# INVERSE PROPERTY AXIOMS
+# ============================================================================
+
+:isPartOf a owl:ObjectProperty ;
+    rdfs:label "is part of"@en ;
+    rdfs:comment "Inverse of partOf."@en ;
+    owl:inverseOf :partOf .
+
+:isConnectedTo a owl:ObjectProperty ;
+    rdfs:label "is connected to"@en ;
+    rdfs:comment "Symmetric property indicating mutual connection."@en ;
+    owl:propertyChainAxiom ( :connectsTo ) .
+
+
+# ============================================================================
+# PROPERTY CHARACTERISTICS
+# ============================================================================
+
+:connectsTo a owl:ObjectProperty ;
+    a owl:SymmetricProperty .
+
+:parallelTo a owl:ObjectProperty ;
+    a owl:SymmetricProperty .
+
+:crosses a owl:ObjectProperty ;
+    a owl:AsymmetricProperty .
+
+:partOf a owl:ObjectProperty ;
+    a owl:TransitiveProperty .

@@ -1,0 +1,192 @@
+# ============================================================================
+# NETWORK ABSTRACTION LAYER
+# ============================================================================
+
+# Abstract base for any network
+:Network a owl:Class ;
+    rdfs:subClassOf :InfrastructureFeature ;
+    rdfs:label "Network"@en ;
+    rdfs:comment """
+        An abstract network of connected infrastructure. Represents the logical 
+        entity (e.g., 'the German Autobahn network', 'the UK National Grid', 
+        'the Trans-Siberian Railway').
+    """@en .
+
+:Segment a owl:Class ;
+    rdfs:subClassOf :InfrastructureFeature ;
+    rdfs:label "Segment"@en ;
+    rdfs:comment """
+        A continuous, homogeneous stretch of infrastructure with uniform properties. 
+        Maps naturally to an OSM way. Segments connect at nodes/junctions to form 
+        a network topology.
+    """@en .
+
+:Junction a owl:Class ;
+    rdfs:subClassOf :InfrastructureFeature ;
+    rdfs:label "Junction"@en ;
+    rdfs:comment """
+        A point where segments connect, diverge, or intersect. Maps to OSM nodes 
+        at the endpoints of ways, or to explicitly tagged junctions/interchanges.
+    """@en .
+
+:Route a owl:Class ;
+    rdfs:subClassOf :Network ;
+    rdfs:label "Route"@en ;
+    rdfs:comment """
+        A named path through a network, composed of ordered segments. Maps to 
+        OSM relations with type=route. Examples: 'Interstate 95', 'EuroVelo 6', 
+        'Pipeline XYZ'.
+    """@en .
+
+
+# ============================================================================
+# DOMAIN-SPECIFIC SUBCLASSES
+# ============================================================================
+
+# --- Roads ---
+
+:RoadNetwork a owl:Class ;
+    rdfs:subClassOf :Network ;
+    rdfs:label "Road Network"@en ;
+    rdfs:comment "A connected set of roads, e.g., a national highway system."@en .
+
+:RoadRoute a owl:Class ;
+    rdfs:subClassOf :Route ;
+    rdfs:label "Road Route"@en ;
+    rdfs:comment """
+        A named road route. Maps to OSM relation type=route + route=road. 
+        Examples: 'Route 66', 'A9 Autobahn'.
+    """@en ;
+    skos:note "OSM mapping: relation with type=route + route=road"@en .
+
+:RoadSegment a owl:Class ;
+    rdfs:subClassOf :Segment ;
+    rdfs:label "Road Segment"@en ;
+    rdfs:comment """
+        A homogeneous stretch of road between junctions. Maps to OSM highway=* ways.
+    """@en ;
+    skos:note "OSM mapping: highway=* ways"@en .
+
+:RoadJunction a owl:Class ;
+    rdfs:subClassOf :Junction ;
+    rdfs:label "Road Junction"@en ;
+    rdfs:comment """
+        An intersection or interchange where roads meet. Maps to highway=motorway_junction 
+        or implicit nodes where highway ways connect.
+    """@en .
+
+# --- Railways ---
+
+:RailwayNetwork a owl:Class ;
+    rdfs:subClassOf :Network ;
+    rdfs:label "Railway Network"@en ;
+    rdfs:comment "A connected railway system, e.g., a national rail network."@en .
+
+:RailwayRoute a owl:Class ;
+    rdfs:subClassOf :Route ;
+    rdfs:label "Railway Route"@en ;
+    rdfs:comment """
+        A named railway line. Maps to OSM relation type=route + route=railway. 
+        Example: 'Berlin–Dresden railway'.
+    """@en ;
+    skos:note "OSM mapping: relation with type=route + route=railway"@en .
+
+:RailwaySegment a owl:Class ;
+    rdfs:subClassOf :Segment ;
+    rdfs:label "Railway Segment"@en ;
+    rdfs:comment "A homogeneous stretch of railway track."@en .
+
+# --- Pipelines ---
+
+:PipelineSystem a owl:Class ;
+    rdfs:subClassOf :Network ;
+    rdfs:label "Pipeline System"@en ;
+    rdfs:comment "A connected pipeline network, e.g., 'Trans-Alaska Pipeline'."@en .
+
+:PipelineSegment a owl:Class ;
+    rdfs:subClassOf :Segment ;
+    rdfs:label "Pipeline Segment"@en ;
+    rdfs:comment "A homogeneous stretch of pipeline with uniform diameter, pressure, substance."@en .
+
+# --- Power ---
+
+:PowerNetwork a owl:Class ;
+    rdfs:subClassOf :Network ;
+    rdfs:label "Power Network"@en ;
+    rdfs:comment "An electrical grid or transmission network."@en .
+
+:Circuit a owl:Class ;
+    rdfs:subClassOf :Route ;
+    rdfs:label "Circuit"@en ;
+    rdfs:comment """
+        A named electrical circuit — a specific path through the power network 
+        carrying power from source to consumers.
+    """@en .
+
+:PowerSegment a owl:Class ;
+    rdfs:subClassOf :Segment ;
+    rdfs:label "Power Line Segment"@en ;
+    rdfs:comment """
+        A homogeneous stretch of power line between two towers/poles. 
+        Maps to OSM power=line ways.
+    """@en .
+
+
+# ============================================================================
+# TOPOLOGY PROPERTIES
+# ============================================================================
+
+# Segment-to-segment connections (the graph edges)
+:nextSegment a owl:ObjectProperty ;
+    rdfs:label "next segment"@en ;
+    rdfs:comment """
+        Links a segment to the next segment in the network traversal direction.
+        Enables path-finding and network analysis.
+    """@en ;
+    rdfs:domain :Segment ;
+    rdfs:range :Segment .
+
+:previousSegment a owl:ObjectProperty ;
+    rdfs:label "previous segment"@en ;
+    owl:inverseOf :nextSegment .
+
+# Where segments meet
+:startsAt a owl:ObjectProperty ;
+    rdfs:label "starts at"@en ;
+    rdfs:comment "The junction/node where this segment begins."@en ;
+    rdfs:domain :Segment ;
+    rdfs:range :Junction .
+
+:endsAt a owl:ObjectProperty ;
+    rdfs:label "ends at"@en ;
+    rdfs:comment "The junction/node where this segment ends."@en ;
+    rdfs:domain :Segment ;
+    rdfs:range :Junction .
+
+:hasSegment a owl:ObjectProperty ;
+    rdfs:label "has segment"@en ;
+    rdfs:comment "Links a network or route to its constituent segments."@en ;
+    rdfs:domain :Network ;
+    rdfs:range :Segment .
+
+:segmentOf a owl:ObjectProperty ;
+    rdfs:label "segment of"@en ;
+    owl:inverseOf :hasSegment .
+
+# Route ordering (critical for navigation)
+:routeSequence a owl:DatatypeProperty ;
+    rdfs:label "route sequence"@en ;
+    rdfs:comment """
+        The position of a segment within a route's sequence. Enables 
+        reconstruction of the route path.
+    """@en ;
+    rdfs:domain :Segment ;
+    rdfs:range xsd:nonNegativeInteger .
+
+:routeRole a owl:DatatypeProperty ;
+    rdfs:label "route role"@en ;
+    rdfs:comment """
+        The role of a segment in a route relation. Maps to OSM 'role' in relations.
+    """@en ;
+    rdfs:domain :Segment ;
+    rdfs:range xsd:string .
