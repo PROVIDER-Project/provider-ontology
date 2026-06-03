@@ -1,0 +1,60 @@
+
+@prefix sc:   <http://projekt-provider.de/ontology/supply-chain#> .
+@prefix sc-data:  <http://projekt-provider.de/data/supply-chain#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+
+#################################################################
+# Example individuals for the supply chain ontology
+#################################################################
+
+sc-data:AcmeSupplier
+    a sc:Organization ;
+    rdfs:label "Acme Supplier Ltd." ;
+    sc:hasRole sc-data:AcmeSupplierRole .
+
+sc-data:AcmeSupplierRole
+    a sc:SupplierRole ;
+    rdfs:label "Acme supplier role" .
+
+sc-data:BerlinWarehouse
+    a sc:Warehouse ;
+    rdfs:label "Berlin Warehouse" .
+
+sc-data:WidgetA
+    a sc:Product ;
+    rdfs:label "Widget A" .
+
+sc-data:WidgetA_SKU
+    a sc:SKU ;
+    rdfs:label "Widget A SKU" ;
+    sc:skuCode "WIDGET-A" .
+
+sc-data:PurchaseOrder_1001
+    a sc:PurchaseOrder ;
+    rdfs:label "Purchase Order 1001" ;
+    sc:orderNumber "PO-1001" ;
+    sc:hasSupplier sc-data:AcmeSupplier ;
+    sc:ordersProduct sc-data:WidgetA .
+
+sc-data:WidgetA_Batch_2026_05
+    a sc:Batch ;
+    rdfs:label "Widget A Batch May 2026" .
+
+sc-data:WidgetA_Item_001
+    a sc:MaterialItem ;
+    rdfs:label "Widget A Item 001" ;
+    sc:instanceOfProduct sc-data:WidgetA .
+
+sc-data:Inventory_Berlin_WidgetA
+    a sc:Inventory ;
+    rdfs:label "Berlin inventory for Widget A" ;
+    sc:storedAt sc-data:BerlinWarehouse ;
+    sc:containsItem sc-data:WidgetA_Item_001 .
+
+sc-data:Shipment_1001
+    a sc:TransportationProcess ;
+    rdfs:label "Shipment for PO-1001" ;
+    sc:realizesOrder sc-data:PurchaseOrder_1001 ;
+    sc:shipsItem sc-data:WidgetA_Item_001 .

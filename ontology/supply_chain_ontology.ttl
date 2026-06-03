@@ -1,0 +1,497 @@
+@prefix sc:   <https://projekt-provider.de/ontology/supply-chain#> .
+@prefix bfo:  <http://purl.obolibrary.org/obo/BFO_> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+<https://projekt-provider.de/ontology/supply-chain>
+    a owl:Ontology ;
+    rdfs:label "Starter Supply Chain Ontology" ;
+    rdfs:comment """
+    A small starter ontology for representing organizations, facilities,
+    products, inventory, orders, shipments, and supply-chain processes.
+    It is designed to be refined iteratively and lightly aligned to BFO.
+    """ .
+
+#################################################################
+# Upper-level alignment notes
+#################################################################
+
+# BFO alignment used here:
+# bfo:0000002 continuant
+# bfo:0000003 occurrent
+# bfo:0000004 independent continuant
+# bfo:0000015 process
+# bfo:0000023 role
+# bfo:0000027 object aggregate
+# bfo:0000031 generically dependent continuant
+# bfo:0000040 material entity
+# bfo:0000141 immaterial entity
+# bfo:0000029 site
+# bfo:0000019 quality
+
+#################################################################
+# Core continuants: organizations, facilities, goods
+#################################################################
+
+sc:SupplyChainEntity
+    a owl:Class ;
+    rdfs:label "supply chain entity" ;
+    rdfs:comment "A material, organizational, informational, or locational entity relevant to a supply chain." ;
+    rdfs:subClassOf bfo:0000002 .
+
+sc:Organization
+    a owl:Class ;
+    rdfs:label "organization" ;
+    rdfs:comment "An organization participating in a supply chain, such as a supplier, manufacturer, carrier, buyer, or warehouse operator." ;
+    rdfs:subClassOf bfo:0000027 .
+
+sc:Facility
+    a owl:Class ;
+    rdfs:label "facility" ;
+    rdfs:comment "A physical site or built environment used for supply-chain activity, such as a plant, warehouse, distribution center, port, or store." ;
+    rdfs:subClassOf bfo:0000040 .
+
+sc:Warehouse
+    a owl:Class ;
+    rdfs:label "warehouse" ;
+    rdfs:subClassOf sc:Facility .
+
+sc:ManufacturingPlant
+    a owl:Class ;
+    rdfs:label "manufacturing plant" ;
+    rdfs:subClassOf sc:Facility .
+
+sc:DistributionCenter
+    a owl:Class ;
+    rdfs:label "distribution center" ;
+    rdfs:subClassOf sc:Facility .
+
+sc:Location
+    a owl:Class ;
+    rdfs:label "location" ;
+    rdfs:comment "A geographic or operational place relevant to supply-chain activity." ;
+    rdfs:subClassOf bfo:0000029 .
+
+sc:Product
+    a owl:Class ;
+    rdfs:label "product" ;
+    rdfs:comment "A type of good that can be procured, produced, stored, sold, or shipped." ;
+    rdfs:subClassOf bfo:0000031 .
+
+sc:MaterialItem
+    a owl:Class ;
+    rdfs:label "material item" ;
+    rdfs:comment "A physical item or batch of items in the supply chain." ;
+    rdfs:subClassOf bfo:0000040 .
+
+sc:Batch
+    a owl:Class ;
+    rdfs:label "batch" ;
+    rdfs:comment "A collection of material items produced, received, stored, or shipped together." ;
+    rdfs:subClassOf bfo:0000027 .
+
+sc:Inventory
+    a owl:Class ;
+    rdfs:label "inventory" ;
+    rdfs:comment "A stock of material items held at a facility or location." ;
+    rdfs:subClassOf bfo:0000027 .
+
+#################################################################
+# Roles
+#################################################################
+
+sc:SupplyChainRole
+    a owl:Class ;
+    rdfs:label "supply chain role" ;
+    rdfs:comment "A role borne by an organization, facility, or other entity in a supply-chain context." ;
+    rdfs:subClassOf bfo:0000023 .
+
+sc:SupplierRole
+    a owl:Class ;
+    rdfs:label "supplier role" ;
+    rdfs:subClassOf sc:SupplyChainRole .
+
+sc:ManufacturerRole
+    a owl:Class ;
+    rdfs:label "manufacturer role" ;
+    rdfs:subClassOf sc:SupplyChainRole .
+
+sc:CarrierRole
+    a owl:Class ;
+    rdfs:label "carrier role" ;
+    rdfs:subClassOf sc:SupplyChainRole .
+
+sc:CustomerRole
+    a owl:Class ;
+    rdfs:label "customer role" ;
+    rdfs:subClassOf sc:SupplyChainRole .
+
+sc:WarehouseOperatorRole
+    a owl:Class ;
+    rdfs:label "warehouse operator role" ;
+    rdfs:subClassOf sc:SupplyChainRole .
+
+#################################################################
+# Information entities: orders, documents, identifiers
+#################################################################
+
+sc:SupplyChainInformationEntity
+    a owl:Class ;
+    rdfs:label "supply chain information entity" ;
+    rdfs:comment "An information artifact used in supply-chain coordination or documentation." ;
+    rdfs:subClassOf bfo:0000031 .
+
+sc:Identifier
+    a owl:Class ;
+    rdfs:label "identifier" ;
+    rdfs:subClassOf sc:SupplyChainInformationEntity .
+
+sc:SKU
+    a owl:Class ;
+    rdfs:label "SKU" ;
+    rdfs:comment "A stock keeping unit identifier." ;
+    rdfs:subClassOf sc:Identifier .
+
+sc:Order
+    a owl:Class ;
+    rdfs:label "order" ;
+    rdfs:comment "An information entity representing a request for goods or services." ;
+    rdfs:subClassOf sc:SupplyChainInformationEntity .
+
+sc:PurchaseOrder
+    a owl:Class ;
+    rdfs:label "purchase order" ;
+    rdfs:subClassOf sc:Order .
+
+sc:SalesOrder
+    a owl:Class ;
+    rdfs:label "sales order" ;
+    rdfs:subClassOf sc:Order .
+
+sc:ShipmentDocument
+    a owl:Class ;
+    rdfs:label "shipment document" ;
+    rdfs:subClassOf sc:SupplyChainInformationEntity .
+
+sc:Invoice
+    a owl:Class ;
+    rdfs:label "invoice" ;
+    rdfs:subClassOf sc:SupplyChainInformationEntity .
+
+#################################################################
+# Processes
+#################################################################
+
+sc:SupplyChainProcess
+    a owl:Class ;
+    rdfs:label "supply chain process" ;
+    rdfs:comment "An occurrent/process in which supply-chain entities participate." ;
+    rdfs:subClassOf bfo:0000015 .
+
+sc:ProcurementProcess
+    a owl:Class ;
+    rdfs:label "procurement process" ;
+    rdfs:subClassOf sc:SupplyChainProcess .
+
+sc:ManufacturingProcess
+    a owl:Class ;
+    rdfs:label "manufacturing process" ;
+    rdfs:subClassOf sc:SupplyChainProcess .
+
+sc:TransportationProcess
+    a owl:Class ;
+    rdfs:label "transportation process" ;
+    rdfs:subClassOf sc:SupplyChainProcess .
+
+sc:StorageProcess
+    a owl:Class ;
+    rdfs:label "storage process" ;
+    rdfs:subClassOf sc:SupplyChainProcess .
+
+sc:FulfillmentProcess
+    a owl:Class ;
+    rdfs:label "fulfillment process" ;
+    rdfs:subClassOf sc:SupplyChainProcess .
+
+sc:DeliveryProcess
+    a owl:Class ;
+    rdfs:label "delivery process" ;
+    rdfs:subClassOf sc:SupplyChainProcess .
+
+sc:InspectionProcess
+    a owl:Class ;
+    rdfs:label "inspection process" ;
+    rdfs:subClassOf sc:SupplyChainProcess .
+
+#################################################################
+# Qualities and quantities
+#################################################################
+
+sc:SupplyChainQuality
+    a owl:Class ;
+    rdfs:label "supply chain quality" ;
+    rdfs:comment "A dependent quality relevant to supply-chain management, such as quantity, weight, temperature, or status." ;
+    rdfs:subClassOf bfo:0000019 .
+
+sc:Quantity
+    a owl:Class ;
+    rdfs:label "quantity" ;
+    rdfs:subClassOf sc:SupplyChainQuality .
+
+sc:Weight
+    a owl:Class ;
+    rdfs:label "weight" ;
+    rdfs:subClassOf sc:SupplyChainQuality .
+
+sc:Temperature
+    a owl:Class ;
+    rdfs:label "temperature" ;
+    rdfs:subClassOf sc:SupplyChainQuality .
+
+sc:LeadTime
+    a owl:Class ;
+    rdfs:label "lead time" ;
+    rdfs:comment "A temporal measure associated with a supply-chain process or commitment." ;
+    rdfs:subClassOf sc:SupplyChainQuality .
+
+sc:InventoryStatus
+    a owl:Class ;
+    rdfs:label "inventory status" ;
+    rdfs:subClassOf sc:SupplyChainQuality .
+
+#################################################################
+# Object properties
+#################################################################
+
+sc:hasRole
+    a owl:ObjectProperty ;
+    rdfs:label "has role" ;
+    rdfs:domain sc:SupplyChainEntity ;
+    rdfs:range sc:SupplyChainRole .
+
+sc:roleOf
+    a owl:ObjectProperty ;
+    rdfs:label "role of" ;
+    owl:inverseOf sc:hasRole .
+
+sc:participatesIn
+    a owl:ObjectProperty ;
+    rdfs:label "participates in" ;
+    rdfs:domain sc:SupplyChainEntity ;
+    rdfs:range sc:SupplyChainProcess .
+
+sc:hasParticipant
+    a owl:ObjectProperty ;
+    rdfs:label "has participant" ;
+    owl:inverseOf sc:participatesIn ;
+    rdfs:domain sc:SupplyChainProcess ;
+    rdfs:range sc:SupplyChainEntity .
+
+sc:hasSupplier
+    a owl:ObjectProperty ;
+    rdfs:label "has supplier" ;
+    rdfs:domain sc:Order ;
+    rdfs:range sc:Organization .
+
+sc:hasCustomer
+    a owl:ObjectProperty ;
+    rdfs:label "has customer" ;
+    rdfs:domain sc:Order ;
+    rdfs:range sc:Organization .
+
+sc:ordersProduct
+    a owl:ObjectProperty ;
+    rdfs:label "orders product" ;
+    rdfs:domain sc:Order ;
+    rdfs:range sc:Product .
+
+sc:realizesOrder
+    a owl:ObjectProperty ;
+    rdfs:label "realizes order" ;
+    rdfs:comment "Relates a fulfillment, procurement, or delivery process to the order it realizes." ;
+    rdfs:domain sc:SupplyChainProcess ;
+    rdfs:range sc:Order .
+
+sc:hasOrigin
+    a owl:ObjectProperty ;
+    rdfs:label "has origin" ;
+    rdfs:domain sc:TransportationProcess ;
+    rdfs:range sc:Location .
+
+sc:hasDestination
+    a owl:ObjectProperty ;
+    rdfs:label "has destination" ;
+    rdfs:domain sc:TransportationProcess ;
+    rdfs:range sc:Location .
+
+sc:storedAt
+    a owl:ObjectProperty ;
+    rdfs:label "stored at" ;
+    rdfs:domain sc:Inventory ;
+    rdfs:range sc:Facility .
+
+sc:containsItem
+    a owl:ObjectProperty ;
+    rdfs:label "contains item" ;
+    rdfs:domain sc:Inventory ;
+    rdfs:range sc:MaterialItem .
+
+sc:instanceOfProduct
+    a owl:ObjectProperty ;
+    rdfs:label "instance of product" ;
+    rdfs:comment "Relates a physical material item or batch to the product type it instantiates." ;
+    rdfs:domain sc:MaterialItem ;
+    rdfs:range sc:Product .
+
+sc:hasBatch
+    a owl:ObjectProperty ;
+    rdfs:label "has batch" ;
+    rdfs:domain sc:Product ;
+    rdfs:range sc:Batch .
+
+sc:shipsItem
+    a owl:ObjectProperty ;
+    rdfs:label "ships item" ;
+    rdfs:domain sc:TransportationProcess ;
+    rdfs:range sc:MaterialItem .
+
+sc:producesItem
+    a owl:ObjectProperty ;
+    rdfs:label "produces item" ;
+    rdfs:domain sc:ManufacturingProcess ;
+    rdfs:range sc:MaterialItem .
+
+sc:consumesItem
+    a owl:ObjectProperty ;
+    rdfs:label "consumes item" ;
+    rdfs:domain sc:ManufacturingProcess ;
+    rdfs:range sc:MaterialItem .
+
+sc:hasDocument
+    a owl:ObjectProperty ;
+    rdfs:label "has document" ;
+    rdfs:domain sc:SupplyChainProcess ;
+    rdfs:range sc:SupplyChainInformationEntity .
+
+sc:hasQuality
+    a owl:ObjectProperty ;
+    rdfs:label "has quality" ;
+    rdfs:domain sc:SupplyChainEntity ;
+    rdfs:range sc:SupplyChainQuality .
+
+#################################################################
+# Datatype properties
+#################################################################
+
+sc:identifierValue
+    a owl:DatatypeProperty ;
+    rdfs:label "identifier value" ;
+    rdfs:domain sc:Identifier ;
+    rdfs:range xsd:string .
+
+sc:orderNumber
+    a owl:DatatypeProperty ;
+    rdfs:label "order number" ;
+    rdfs:domain sc:Order ;
+    rdfs:range xsd:string .
+
+sc:skuCode
+    a owl:DatatypeProperty ;
+    rdfs:label "SKU code" ;
+    rdfs:domain sc:SKU ;
+    rdfs:range xsd:string .
+
+sc:quantityValue
+    a owl:DatatypeProperty ;
+    rdfs:label "quantity value" ;
+    rdfs:domain sc:Quantity ;
+    rdfs:range xsd:decimal .
+
+sc:unitOfMeasure
+    a owl:DatatypeProperty ;
+    rdfs:label "unit of measure" ;
+    rdfs:domain sc:SupplyChainQuality ;
+    rdfs:range xsd:string .
+
+sc:plannedStartDate
+    a owl:DatatypeProperty ;
+    rdfs:label "planned start date" ;
+    rdfs:domain sc:SupplyChainProcess ;
+    rdfs:range xsd:dateTime .
+
+sc:plannedEndDate
+    a owl:DatatypeProperty ;
+    rdfs:label "planned end date" ;
+    rdfs:domain sc:SupplyChainProcess ;
+    rdfs:range xsd:dateTime .
+
+sc:actualStartDate
+    a owl:DatatypeProperty ;
+    rdfs:label "actual start date" ;
+    rdfs:domain sc:SupplyChainProcess ;
+    rdfs:range xsd:dateTime .
+
+sc:actualEndDate
+    a owl:DatatypeProperty ;
+    rdfs:label "actual end date" ;
+    rdfs:domain sc:SupplyChainProcess ;
+    rdfs:range xsd:dateTime .
+
+sc:statusValue
+    a owl:DatatypeProperty ;
+    rdfs:label "status value" ;
+    rdfs:domain sc:SupplyChainQuality ;
+    rdfs:range xsd:string .
+
+#################################################################
+# Useful restrictions
+#################################################################
+
+sc:PurchaseOrder
+    rdfs:subClassOf
+        [ a owl:Restriction ;
+          owl:onProperty sc:hasSupplier ;
+          owl:someValuesFrom sc:Organization
+        ],
+        [ a owl:Restriction ;
+          owl:onProperty sc:ordersProduct ;
+          owl:someValuesFrom sc:Product
+        ] .
+
+sc:TransportationProcess
+    rdfs:subClassOf
+        [ a owl:Restriction ;
+          owl:onProperty sc:hasOrigin ;
+          owl:someValuesFrom sc:Location
+        ],
+        [ a owl:Restriction ;
+          owl:onProperty sc:hasDestination ;
+          owl:someValuesFrom sc:Location
+        ],
+        [ a owl:Restriction ;
+          owl:onProperty sc:shipsItem ;
+          owl:someValuesFrom sc:MaterialItem
+        ] .
+
+sc:ManufacturingProcess
+    rdfs:subClassOf
+        [ a owl:Restriction ;
+          owl:onProperty sc:producesItem ;
+          owl:someValuesFrom sc:MaterialItem
+        ] .
+
+sc:Inventory
+    rdfs:subClassOf
+        [ a owl:Restriction ;
+          owl:onProperty sc:storedAt ;
+          owl:someValuesFrom sc:Facility
+        ] .
+
+sc:Facility
+    rdfs:subClassOf
+        [ a owl:Restriction ;
+          owl:onProperty sc:hasLocation ;
+          owl:someValuesFrom sc:Location
+        ] .
