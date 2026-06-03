@@ -1,0 +1,92 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix : <http://projekt-provider.de/ontology/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gist: <https://w3id.org/semanticarts/ns/ontology/gist/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+
+<http://projekt-provider.de/ontology/>
+    a owl:Ontology ;
+    owl:imports <https://w3id.org/semanticarts/ontology/gistBFO> .
+
+:Agent
+    a owl:Class ;
+    rdfs:comment "An independent continuant that bears some form of responsibility for an activity taking place"@en, "Ein independent continuant der eine gewisse Verantwortlichkeit in Bezug auf eine Aktivität hat"@de ;
+    rdfs:label "Agent"@de, "Agent"@en ;
+    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000004> .
+
+:AgriculturalSector
+    a owl:Class ;
+    rdfs:comment "A sector that realizes the cultivation of plants, the raising of animals, or related production activities directed toward the provision of agricultural products."@en, "Ein Sektor, der den Anbau von Pflanzen, die Aufzucht von Tieren oder damit verbundene Produktionsaktivitäten zur Bereitstellung landwirtschaftlicher Produkte umsetzt."@de ;
+    rdfs:label "Agricultural sector"@en, "Landwirtschaftssektor"@de ;
+    rdfs:subClassOf :Sector .
+
+:CommercialOrganisation
+    a owl:Class ;
+    rdfs:comment "An organisation that operates in the trade sector"@en, "Eine Organisation, die im Handelsektor agiert."@de ;
+    rdfs:label "Commercial organisation"@en, "Handelsbetrieb"@de ;
+    rdfs:subClassOf :Organisation ;
+    owl:equivalentClass [
+        a owl:Restriction ;
+        owl:onProperty :operatesInSector ;
+        owl:someValuesFrom :TradeSector
+    ] .
+
+:Farm
+    a owl:Class ;
+    rdfs:comment "An organisation that operates in the agricultural sector"@en, "Eine Organisation, die im Agrarsektor agiert"@de ;
+    rdfs:label "Farm"@en, "Landwirtschaftlicher Betrieb"@de ;
+    rdfs:subClassOf :Organisation ;
+    owl:equivalentClass [
+        a owl:Restriction ;
+        owl:onProperty :operatesInSector ;
+        owl:someValuesFrom :AgriculturalSector
+    ] .
+
+:LogisticsSector
+    a owl:Class ;
+    rdfs:comment "A sector covering the transportation, storage, coordination, and distribution of goods, materials, or resources."@en, "Ein Sektor, der den Transport, die Lagerung, die Koordination und den Vertrieb von Gütern, Materialien oder Ressourcen umfasst."@de ;
+    rdfs:label "Logistics sector"@en, "Logistiksektor"@de ;
+    rdfs:subClassOf :Sector .
+
+:Organisation
+    a owl:Class ;
+    rdfs:comment "An agent that is socially or legally defined and might comprise parts that are itself agents"@en, "Ein Agent, der sozial oder rechtlich definiert ist und aus Teilen bestehen kann, die selbst Agenten sind"@de ;
+    rdfs:label "Organisation"@de, "Organisation"@en ;
+    rdfs:subClassOf :Agent .
+
+:Person
+    a owl:Class ;
+    rdfs:comment "An agent that is a human being"@en, "Ein Agent der ein Mensch ist"@de ;
+    rdfs:label "Person"@de, "Person"@en ;
+    rdfs:subClassOf :Agent .
+
+:Sector
+    a owl:Class ;
+    rdfs:comment "A socially constructed immaterial entity aggregating agents, infrastructure and recurrent processes that collectively realize a characteristic economic, industrial, administrative, or societal function."@en, "Eine sozial konstruierte immaterielle Entität, die Akteure, Infrastruktur und wiederkehrende Prozesse zusammenfasst, welche gemeinsam eine charakteristische ökonomische, industrielle, administrative oder gesellschaftliche Funktion umsetzen."@de ;
+    rdfs:label "Sector"@en, "Sektor"@de ;
+    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000141> .
+
+:TradeSector
+    a owl:Class ;
+    rdfs:comment "A sector that realizes the exchange, distribution, purchase, or sale of goods or services."@en, "Ein Sektor, der den Austausch, den Vertrieb, den Kauf oder den Verkauf von Waren oder Dienstleistungen realisiert."@de ;
+    rdfs:label "Handelssektor"@de, "Trade sector"@en ;
+    rdfs:subClassOf :Sector .
+
+:Wholesaler
+    a owl:Class ;
+    rdfs:comment "A commercial organisation that primarily engages in the purchase and resale of goods in relatively large quantities to retailers, commercial organizations, or other institutional consumers rather than directly to end consumers."@en, "Eine Handelsbetrieb, der sich hauptsächlich mit dem Kauf und Weiterverkauf von Waren in relativ großen Mengen an Einzelhändler, Handelsorganisationen oder andere institutionelle Abnehmer und nicht direkt an Endverbraucher befasst."@de ;
+    rdfs:label "Großhändler"@de, "Wholesaler"@en ;
+    rdfs:subClassOf :CommercialOrganisation .
+
+:operatesInSector
+    a owl:ObjectProperty ;
+    rdfs:comment "Relation between instances of type Agent and instances of type Sector. The relation describes that an Agent instance performs the majority of its fundamental actions in the assigned Sector instance"@en, "Relation zwischen einer Instanz vom Typ Agent und einer Instanz vom Typ Sektor. Die Relation beschreibt, dass die Agent-Instanz den Großteil ihrer grundlegenden Aktionen in der zugeordneten Sektor-Instanz tätigt."@de ;
+    rdfs:domain :Agent ;
+    rdfs:label "agiert in Sektor"@de, "operates in sector"@en ;
+    rdfs:range :Sector .
+

@@ -19,11 +19,47 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://projekt-provider.de/ontology/operatesInSector -->
+
+    <owl:ObjectProperty rdf:about="http://projekt-provider.de/ontology/operatesInSector">
+        <rdfs:domain rdf:resource="http://projekt-provider.de/ontology/Agent"/>
+        <rdfs:range rdf:resource="http://projekt-provider.de/ontology/Sector"/>
+        <rdfs:comment xml:lang="en">Relation between instances of type Agent and instances of type Sector. The relation describes that an Agent instance performs the majority of its fundamental actions in the assigned Sector instance</rdfs:comment>
+        <rdfs:comment xml:lang="de">Relation zwischen einer Instanz vom Typ Agent und einer Instanz vom Typ Sektor. Die Relation beschreibt, dass die Agent-Instanz den Großteil ihrer grundlegenden Aktionen in der zugeordneten Sektor-Instanz tätigt.</rdfs:comment>
+        <rdfs:label xml:lang="de">agiert in Sektor</rdfs:label>
+        <rdfs:label xml:lang="en">operates in sector</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://projekt-provider.de/ontology/Agent -->
+
+    <owl:Class rdf:about="http://projekt-provider.de/ontology/Agent">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000004"/>
+        <rdfs:comment xml:lang="en">An independent continuant that bears some form of responsibility for an activity taking place</rdfs:comment>
+        <rdfs:comment xml:lang="de">Ein independent continuant der eine gewisse Verantwortlichkeit in Bezug auf eine Aktivität hat</rdfs:comment>
+        <rdfs:label xml:lang="de">Agent</rdfs:label>
+        <rdfs:label xml:lang="en">Agent</rdfs:label>
+    </owl:Class>
     
 
 
@@ -39,6 +75,42 @@
     
 
 
+    <!-- http://projekt-provider.de/ontology/CommercialOrganisation -->
+
+    <owl:Class rdf:about="http://projekt-provider.de/ontology/CommercialOrganisation">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://projekt-provider.de/ontology/operatesInSector"/>
+                <owl:someValuesFrom rdf:resource="http://projekt-provider.de/ontology/TradeSector"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://projekt-provider.de/ontology/Organisation"/>
+        <rdfs:comment xml:lang="en">An organisation that operates in the trade sector</rdfs:comment>
+        <rdfs:comment xml:lang="de">Eine Organisation, die im Handelsektor agiert.</rdfs:comment>
+        <rdfs:label xml:lang="en">Commercial organisation</rdfs:label>
+        <rdfs:label xml:lang="de">Handelsbetrieb</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://projekt-provider.de/ontology/Farm -->
+
+    <owl:Class rdf:about="http://projekt-provider.de/ontology/Farm">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://projekt-provider.de/ontology/operatesInSector"/>
+                <owl:someValuesFrom rdf:resource="http://projekt-provider.de/ontology/AgriculturalSector"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://projekt-provider.de/ontology/Organisation"/>
+        <rdfs:comment xml:lang="en">An organisation that operates in the agricultural sector</rdfs:comment>
+        <rdfs:comment xml:lang="de">Eine Organisation, die im Agrarsektor agiert</rdfs:comment>
+        <rdfs:label xml:lang="en">Farm</rdfs:label>
+        <rdfs:label xml:lang="de">Landwirtschaftlicher Betrieb</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://projekt-provider.de/ontology/LogisticsSector -->
 
     <owl:Class rdf:about="http://projekt-provider.de/ontology/LogisticsSector">
@@ -47,6 +119,30 @@
         <rdfs:comment xml:lang="de">Ein Sektor, der den Transport, die Lagerung, die Koordination und den Vertrieb von Gütern, Materialien oder Ressourcen umfasst.</rdfs:comment>
         <rdfs:label xml:lang="en">Logistics sector</rdfs:label>
         <rdfs:label xml:lang="de">Logistiksektor</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://projekt-provider.de/ontology/Organisation -->
+
+    <owl:Class rdf:about="http://projekt-provider.de/ontology/Organisation">
+        <rdfs:subClassOf rdf:resource="http://projekt-provider.de/ontology/Agent"/>
+        <rdfs:comment xml:lang="en">An agent that is socially or legally defined and might comprise parts that are itself agents</rdfs:comment>
+        <rdfs:comment xml:lang="de">Ein Agent, der sozial oder rechtlich definiert ist und aus Teilen bestehen kann, die selbst Agenten sind</rdfs:comment>
+        <rdfs:label xml:lang="de">Organisation</rdfs:label>
+        <rdfs:label xml:lang="en">Organisation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://projekt-provider.de/ontology/Person -->
+
+    <owl:Class rdf:about="http://projekt-provider.de/ontology/Person">
+        <rdfs:subClassOf rdf:resource="http://projekt-provider.de/ontology/Agent"/>
+        <rdfs:comment xml:lang="en">An agent that is a human being</rdfs:comment>
+        <rdfs:comment xml:lang="de">Ein Agent der ein Mensch ist</rdfs:comment>
+        <rdfs:label xml:lang="de">Person</rdfs:label>
+        <rdfs:label xml:lang="en">Person</rdfs:label>
     </owl:Class>
     
 
@@ -71,6 +167,18 @@
         <rdfs:comment xml:lang="de">Ein Sektor, der den Austausch, den Vertrieb, den Kauf oder den Verkauf von Waren oder Dienstleistungen realisiert.</rdfs:comment>
         <rdfs:label xml:lang="de">Handelssektor</rdfs:label>
         <rdfs:label xml:lang="en">Trade sector</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://projekt-provider.de/ontology/Wholesaler -->
+
+    <owl:Class rdf:about="http://projekt-provider.de/ontology/Wholesaler">
+        <rdfs:subClassOf rdf:resource="http://projekt-provider.de/ontology/CommercialOrganisation"/>
+        <rdfs:comment xml:lang="en">A commercial organisation that primarily engages in the purchase and resale of goods in relatively large quantities to retailers, commercial organizations, or other institutional consumers rather than directly to end consumers.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Eine Handelsbetrieb, der sich hauptsächlich mit dem Kauf und Weiterverkauf von Waren in relativ großen Mengen an Einzelhändler, Handelsorganisationen oder andere institutionelle Abnehmer und nicht direkt an Endverbraucher befasst.</rdfs:comment>
+        <rdfs:label xml:lang="de">Großhändler</rdfs:label>
+        <rdfs:label xml:lang="en">Wholesaler</rdfs:label>
     </owl:Class>
 </rdf:RDF>
 
