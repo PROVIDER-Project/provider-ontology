@@ -1,0 +1,382 @@
+@prefix sc:   <https://provider-project.org/ontology/supply-chain#> .
+@prefix ex:   <https://provider-project.org/data/soy-supply-chain#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+#################################################################
+# Organizations
+#################################################################
+
+ex:BoaVistaSoyFarm
+    a sc:Organization ;
+    rdfs:label "Boa Vista Soy Farm" ;
+    sc:hasRole ex:BrazilianProducerRole .
+
+ex:BrazilianProducerRole
+    a sc:SupplierRole ;
+    rdfs:label "Brazilian soybean producer role" .
+
+ex:MatoGrossoSoyCoop
+    a sc:Organization ;
+    rdfs:label "Mato Grosso Soy Cooperative" ;
+    sc:hasRole ex:TraderRole .
+
+ex:TraderRole
+    a sc:SupplierRole ;
+    rdfs:label "soy trader role" .
+
+ex:AtlanticBulkLines
+    a sc:Organization ;
+    rdfs:label "Atlantic Bulk Lines" ;
+    sc:hasRole ex:OceanCarrierRole .
+
+ex:OceanCarrierRole
+    a sc:CarrierRole ;
+    rdfs:label "ocean carrier role" .
+
+ex:HamburgAgriImports
+    a sc:Organization ;
+    rdfs:label "Hamburg Agri Imports GmbH" ;
+    sc:hasRole ex:ImporterRole .
+
+ex:ImporterRole
+    a sc:SupplierRole ;
+    rdfs:label "soy importer role" .
+
+ex:NordFeedProcessing
+    a sc:Organization ;
+    rdfs:label "NordFeed Processing GmbH" ;
+    sc:hasRole ex:ManufacturerRole .
+
+ex:ManufacturerRole
+    a sc:ManufacturerRole ;
+    rdfs:label "feed processor role" .
+
+ex:AgriSupplyLowerSaxony
+    a sc:Organization ;
+    rdfs:label "AgriSupply Lower Saxony GmbH" ;
+    sc:hasRole ex:AgriculturalSupplierRole .
+
+ex:AgriculturalSupplierRole
+    a sc:SupplierRole ;
+    rdfs:label "agricultural feed supplier role" .
+
+ex:HofMeyer
+    a sc:Organization ;
+    rdfs:label "Hof Meyer" ;
+    sc:hasRole ex:GermanFarmerRole .
+
+ex:GermanFarmerRole
+    a sc:CustomerRole ;
+    rdfs:label "German farmer customer role" .
+
+#################################################################
+# Facilities and locations
+#################################################################
+
+ex:BoaVistaFarmSite
+    a sc:Facility ;
+    rdfs:label "Boa Vista Farm Site" .
+
+ex:SantosExportWarehouse
+    a sc:Warehouse ;
+    rdfs:label "Santos Export Warehouse" .
+
+ex:PortOfSantos
+    a sc:Location ;
+    rdfs:label "Port of Santos, Brazil" .
+
+ex:PortOfHamburg
+    a sc:Location ;
+    rdfs:label "Port of Hamburg, Germany" .
+
+ex:HamburgImportTerminal
+    a sc:Facility ;
+    rdfs:label "Hamburg Import Terminal" .
+
+ex:NordFeedPlant
+    a sc:ManufacturingPlant ;
+    rdfs:label "NordFeed Soy Processing Plant" .
+
+ex:LowerSaxonyFeedWarehouse
+    a sc:Warehouse ;
+    rdfs:label "Lower Saxony Feed Warehouse" .
+
+ex:HofMeyerFarm
+    a sc:Facility ;
+    rdfs:label "Hof Meyer Farm" .
+
+#################################################################
+# Products and material items
+#################################################################
+
+ex:Soybeans
+    a sc:Product ;
+    rdfs:label "Soybeans" .
+
+ex:SoybeanMeal
+    a sc:Product ;
+    rdfs:label "Soybean meal" .
+
+ex:SoybeanBatch_BR_2026_001
+    a sc:Batch ;
+    rdfs:label "Soybean batch BR-2026-001" .
+
+ex:SoybeanBatchItem_BR_2026_001
+    a sc:MaterialItem ;
+    rdfs:label "Physical soybean batch item BR-2026-001" ;
+    sc:instanceOfProduct ex:Soybeans .
+
+ex:SoybeanMealBatch_DE_2026_001
+    a sc:Batch ;
+    rdfs:label "Soybean meal batch DE-2026-001" .
+
+ex:SoybeanMealBatchItem_DE_2026_001
+    a sc:MaterialItem ;
+    rdfs:label "Physical soybean meal batch item DE-2026-001" ;
+    sc:instanceOfProduct ex:SoybeanMeal .
+
+#################################################################
+# Identifiers
+#################################################################
+
+ex:SoybeanBatchIdentifier
+    a sc:Identifier ;
+    rdfs:label "Soybean batch identifier" ;
+    sc:identifierValue "BR-2026-001" .
+
+ex:SoybeanMealBatchIdentifier
+    a sc:Identifier ;
+    rdfs:label "Soybean meal batch identifier" ;
+    sc:identifierValue "DE-2026-001" .
+
+ex:SoybeansSKU
+    a sc:SKU ;
+    rdfs:label "Soybeans SKU" ;
+    sc:skuCode "SOY-BEAN-RAW" .
+
+ex:SoybeanMealSKU
+    a sc:SKU ;
+    rdfs:label "Soybean meal SKU" ;
+    sc:skuCode "SOY-MEAL-FEED" .
+
+#################################################################
+# Orders and documents
+#################################################################
+
+ex:PurchaseOrder_Importer_To_Coop
+    a sc:PurchaseOrder ;
+    rdfs:label "Purchase order from Hamburg Agri Imports to Mato Grosso Soy Cooperative" ;
+    sc:orderNumber "PO-SOY-2026-0001" ;
+    sc:hasCustomer ex:HamburgAgriImports ;
+    sc:hasSupplier ex:MatoGrossoSoyCoop ;
+    sc:ordersProduct ex:Soybeans .
+
+ex:PurchaseOrder_Farmer_To_AgriSupply
+    a sc:PurchaseOrder ;
+    rdfs:label "Purchase order from Hof Meyer to AgriSupply Lower Saxony" ;
+    sc:orderNumber "PO-FEED-2026-0142" ;
+    sc:hasCustomer ex:HofMeyer ;
+    sc:hasSupplier ex:AgriSupplyLowerSaxony ;
+    sc:ordersProduct ex:SoybeanMeal .
+
+ex:CommercialInvoice_BR_2026_001
+    a sc:Invoice ;
+    rdfs:label "Commercial invoice for soybean batch BR-2026-001" .
+
+ex:BillOfLading_Santos_Hamburg_001
+    a sc:ShipmentDocument ;
+    rdfs:label "Bill of lading for Santos to Hamburg shipment" .
+
+ex:PhytosanitaryCertificate_BR_2026_001
+    a sc:ShipmentDocument ;
+    rdfs:label "Phytosanitary certificate for soybean batch BR-2026-001" .
+
+ex:DeliveryNote_HofMeyer_001
+    a sc:ShipmentDocument ;
+    rdfs:label "Delivery note for soybean meal delivery to Hof Meyer" .
+
+#################################################################
+# Qualities and quantities
+#################################################################
+
+ex:SoybeanBatchQuantity
+    a sc:Quantity ;
+    rdfs:label "Quantity of soybean batch BR-2026-001" ;
+    sc:quantityValue "25000"^^xsd:decimal ;
+    sc:unitOfMeasure "kg" .
+
+ex:SoybeanMoistureContent
+    a sc:SupplyChainQuality ;
+    rdfs:label "Soybean moisture content" ;
+    sc:quantityValue "12.5"^^xsd:decimal ;
+    sc:unitOfMeasure "percent" .
+
+ex:SoybeanMealBatchQuantity
+    a sc:Quantity ;
+    rdfs:label "Quantity of soybean meal batch DE-2026-001" ;
+    sc:quantityValue "19500"^^xsd:decimal ;
+    sc:unitOfMeasure "kg" .
+
+ex:FarmerDeliveryQuantity
+    a sc:Quantity ;
+    rdfs:label "Quantity of soybean meal delivered to Hof Meyer" ;
+    sc:quantityValue "5000"^^xsd:decimal ;
+    sc:unitOfMeasure "kg" .
+
+#################################################################
+# Inventory states
+#################################################################
+
+ex:Inventory_Santos_Soybeans
+    a sc:Inventory ;
+    rdfs:label "Soybean inventory at Santos Export Warehouse" ;
+    sc:storedAt ex:SantosExportWarehouse ;
+    sc:containsItem ex:SoybeanBatchItem_BR_2026_001 ;
+    sc:hasQuality ex:SoybeanBatchQuantity .
+
+ex:Inventory_LowerSaxony_SoybeanMeal
+    a sc:Inventory ;
+    rdfs:label "Soybean meal inventory at Lower Saxony Feed Warehouse" ;
+    sc:storedAt ex:LowerSaxonyFeedWarehouse ;
+    sc:containsItem ex:SoybeanMealBatchItem_DE_2026_001 ;
+    sc:hasQuality ex:SoybeanMealBatchQuantity .
+
+#################################################################
+# Processes
+#################################################################
+
+ex:Harvesting_BR_2026_001
+    a sc:SupplyChainProcess ;
+    rdfs:label "Harvesting of soybean batch BR-2026-001" ;
+    sc:hasParticipant ex:BoaVistaSoyFarm ;
+    sc:hasParticipant ex:SoybeanBatchItem_BR_2026_001 ;
+    sc:plannedStartDate "2026-02-10T06:00:00Z"^^xsd:dateTime ;
+    sc:actualStartDate "2026-02-10T07:00:00Z"^^xsd:dateTime ;
+    sc:actualEndDate "2026-02-12T18:00:00Z"^^xsd:dateTime .
+
+ex:Procurement_Importer_From_Coop
+    a sc:ProcurementProcess ;
+    rdfs:label "Procurement of Brazilian soybeans by German importer" ;
+    sc:realizesOrder ex:PurchaseOrder_Importer_To_Coop ;
+    sc:hasParticipant ex:MatoGrossoSoyCoop ;
+    sc:hasParticipant ex:HamburgAgriImports ;
+    sc:hasParticipant ex:SoybeanBatchItem_BR_2026_001 ;
+    sc:hasDocument ex:CommercialInvoice_BR_2026_001 .
+
+ex:InlandTransport_Farm_To_Santos
+    a sc:TransportationProcess ;
+    rdfs:label "Truck transport from Mato Grosso farm region to Santos export warehouse" ;
+    sc:hasParticipant ex:MatoGrossoSoyCoop ;
+    sc:hasOrigin ex:BoaVistaFarmSite ;
+    sc:hasDestination ex:PortOfSantos ;
+    sc:shipsItem ex:SoybeanBatchItem_BR_2026_001 ;
+    sc:plannedStartDate "2026-02-14T08:00:00Z"^^xsd:dateTime ;
+    sc:actualStartDate "2026-02-14T09:00:00Z"^^xsd:dateTime ;
+    sc:actualEndDate "2026-02-17T16:00:00Z"^^xsd:dateTime .
+
+ex:ExportInspection_BR_2026_001
+    a sc:InspectionProcess ;
+    rdfs:label "Export quality and phytosanitary inspection for soybean batch BR-2026-001" ;
+    sc:hasParticipant ex:SoybeanBatchItem_BR_2026_001 ;
+    sc:hasDocument ex:PhytosanitaryCertificate_BR_2026_001 ;
+    sc:hasQuality ex:SoybeanMoistureContent ;
+    sc:actualStartDate "2026-02-18T09:00:00Z"^^xsd:dateTime ;
+    sc:actualEndDate "2026-02-18T12:00:00Z"^^xsd:dateTime .
+
+ex:Storage_At_Santos
+    a sc:StorageProcess ;
+    rdfs:label "Storage of soybean batch at Santos export warehouse" ;
+    sc:hasParticipant ex:SantosExportWarehouse ;
+    sc:hasParticipant ex:SoybeanBatchItem_BR_2026_001 ;
+    sc:plannedStartDate "2026-02-17T16:00:00Z"^^xsd:dateTime ;
+    sc:actualStartDate "2026-02-17T17:00:00Z"^^xsd:dateTime ;
+    sc:actualEndDate "2026-02-22T08:00:00Z"^^xsd:dateTime .
+
+ex:OceanShipment_Santos_To_Hamburg
+    a sc:TransportationProcess ;
+    rdfs:label "Ocean shipment of soybean batch from Santos to Hamburg" ;
+    sc:hasParticipant ex:AtlanticBulkLines ;
+    sc:hasParticipant ex:HamburgAgriImports ;
+    sc:hasOrigin ex:PortOfSantos ;
+    sc:hasDestination ex:PortOfHamburg ;
+    sc:shipsItem ex:SoybeanBatchItem_BR_2026_001 ;
+    sc:realizesOrder ex:PurchaseOrder_Importer_To_Coop ;
+    sc:hasDocument ex:BillOfLading_Santos_Hamburg_001 ;
+    sc:hasDocument ex:PhytosanitaryCertificate_BR_2026_001 ;
+    sc:plannedStartDate "2026-02-22T10:00:00Z"^^xsd:dateTime ;
+    sc:plannedEndDate "2026-03-16T10:00:00Z"^^xsd:dateTime ;
+    sc:actualStartDate "2026-02-22T14:00:00Z"^^xsd:dateTime ;
+    sc:actualEndDate "2026-03-17T06:00:00Z"^^xsd:dateTime .
+
+ex:ImportReceiving_Hamburg
+    a sc:SupplyChainProcess ;
+    rdfs:label "Import receiving of soybean batch in Hamburg" ;
+    sc:hasParticipant ex:HamburgAgriImports ;
+    sc:hasParticipant ex:HamburgImportTerminal ;
+    sc:hasParticipant ex:SoybeanBatchItem_BR_2026_001 ;
+    sc:actualStartDate "2026-03-17T08:00:00Z"^^xsd:dateTime ;
+    sc:actualEndDate "2026-03-18T15:00:00Z"^^xsd:dateTime .
+
+ex:Transport_Hamburg_To_NordFeed
+    a sc:TransportationProcess ;
+    rdfs:label "Transport from Hamburg import terminal to NordFeed processing plant" ;
+    sc:hasParticipant ex:HamburgAgriImports ;
+    sc:hasOrigin ex:PortOfHamburg ;
+    sc:hasDestination ex:NordFeedPlant ;
+    sc:shipsItem ex:SoybeanBatchItem_BR_2026_001 ;
+    sc:actualStartDate "2026-03-19T07:00:00Z"^^xsd:dateTime ;
+    sc:actualEndDate "2026-03-19T18:00:00Z"^^xsd:dateTime .
+
+ex:SoybeanCrushing_DE_2026_001
+    a sc:ManufacturingProcess ;
+    rdfs:label "Processing soybeans into soybean meal batch DE-2026-001" ;
+    sc:hasParticipant ex:NordFeedProcessing ;
+    sc:hasParticipant ex:NordFeedPlant ;
+    sc:consumesItem ex:SoybeanBatchItem_BR_2026_001 ;
+    sc:producesItem ex:SoybeanMealBatchItem_DE_2026_001 ;
+    sc:actualStartDate "2026-03-20T06:00:00Z"^^xsd:dateTime ;
+    sc:actualEndDate "2026-03-21T20:00:00Z"^^xsd:dateTime .
+
+ex:Transport_NordFeed_To_AgriSupplyWarehouse
+    a sc:TransportationProcess ;
+    rdfs:label "Transport of soybean meal to Lower Saxony feed warehouse" ;
+    sc:hasParticipant ex:NordFeedProcessing ;
+    sc:hasParticipant ex:AgriSupplyLowerSaxony ;
+    sc:hasOrigin ex:NordFeedPlant ;
+    sc:hasDestination ex:LowerSaxonyFeedWarehouse ;
+    sc:shipsItem ex:SoybeanMealBatchItem_DE_2026_001 ;
+    sc:actualStartDate "2026-03-22T08:00:00Z"^^xsd:dateTime ;
+    sc:actualEndDate "2026-03-22T16:00:00Z"^^xsd:dateTime .
+
+ex:Storage_LowerSaxony_SoybeanMeal
+    a sc:StorageProcess ;
+    rdfs:label "Storage of soybean meal at Lower Saxony warehouse" ;
+    sc:hasParticipant ex:LowerSaxonyFeedWarehouse ;
+    sc:hasParticipant ex:SoybeanMealBatchItem_DE_2026_001 ;
+    sc:actualStartDate "2026-03-22T16:30:00Z"^^xsd:dateTime .
+
+ex:Fulfillment_Farmer_Order
+    a sc:FulfillmentProcess ;
+    rdfs:label "Fulfillment of Hof Meyer soybean meal order" ;
+    sc:realizesOrder ex:PurchaseOrder_Farmer_To_AgriSupply ;
+    sc:hasParticipant ex:AgriSupplyLowerSaxony ;
+    sc:hasParticipant ex:HofMeyer ;
+    sc:hasParticipant ex:SoybeanMealBatchItem_DE_2026_001 ;
+    sc:hasDocument ex:DeliveryNote_HofMeyer_001 ;
+    sc:hasQuality ex:FarmerDeliveryQuantity ;
+    sc:actualStartDate "2026-03-25T08:00:00Z"^^xsd:dateTime ;
+    sc:actualEndDate "2026-03-25T10:00:00Z"^^xsd:dateTime .
+
+ex:Delivery_To_HofMeyer
+    a sc:DeliveryProcess ;
+    rdfs:label "Delivery of soybean meal to Hof Meyer" ;
+    sc:realizesOrder ex:PurchaseOrder_Farmer_To_AgriSupply ;
+    sc:hasParticipant ex:AgriSupplyLowerSaxony ;
+    sc:hasParticipant ex:HofMeyer ;
+    sc:hasOrigin ex:LowerSaxonyFeedWarehouse ;
+    sc:hasDestination ex:HofMeyerFarm ;
+    sc:shipsItem ex:SoybeanMealBatchItem_DE_2026_001 ;
+    sc:hasDocument ex:DeliveryNote_HofMeyer_001 ;
+    sc:actualStartDate "2026-03-25T10:00:00Z"^^xsd:dateTime ;
+    sc:actualEndDate "2026-03-25T14:30:00Z"^^xsd:dateTime .
