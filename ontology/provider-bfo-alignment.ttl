@@ -1,0 +1,236 @@
+@prefix :        <http://projekt-provider.de/ontology/> .
+@prefix bfo:     <http://purl.obolibrary.org/obo/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+
+# ============================================================================
+# ONTOLOGY DECLARATION
+# ============================================================================
+
+<http://projekt-provider.de/ontology/bfo-alignment> a owl:Ontology ;
+    owl:imports <http://projekt-provider.de/ontology/> ;
+    owl:imports <http://purl.obolibrary.org/obo/bfo.owl> ;
+    rdfs:label "PROVIDER BFO Alignment"@en ;
+    rdfs:comment """
+        Alignment module that places PROVIDER core classes under Basic Formal
+        Ontology (BFO) categories. The mappings are intentionally conservative:
+        they use subclass axioms and explanatory scope notes rather than
+        equivalence axioms.
+    """@en ;
+    dcterms:created "2026-05-26"^^xsd:date ;
+    dcterms:modified "2026-06-04"^^xsd:date ;
+    owl:versionInfo "0.2.0" .
+
+
+# ============================================================================
+# BFO CATEGORY REFERENCES
+# ============================================================================
+
+bfo:BFO_0000001 rdfs:label "entity"@en .
+bfo:BFO_0000002 rdfs:label "continuant"@en .
+bfo:BFO_0000003 rdfs:label "occurrent"@en .
+bfo:BFO_0000004 rdfs:label "independent continuant"@en .
+bfo:BFO_0000015 rdfs:label "process"@en .
+bfo:BFO_0000016 rdfs:label "disposition"@en .
+bfo:BFO_0000019 rdfs:label "quality"@en .
+bfo:BFO_0000020 rdfs:label "specifically dependent continuant"@en .
+bfo:BFO_0000023 rdfs:label "role"@en .
+bfo:BFO_0000027 rdfs:label "object aggregate"@en .
+bfo:BFO_0000029 rdfs:label "site"@en .
+bfo:BFO_0000030 rdfs:label "object"@en .
+bfo:BFO_0000031 rdfs:label "generically dependent continuant"@en .
+bfo:BFO_0000040 rdfs:label "material entity"@en .
+bfo:BFO_0000141 rdfs:label "immaterial entity"@en .
+
+
+# ============================================================================
+# INDEPENDENT CONTINUANTS
+# ============================================================================
+
+:Agent rdfs:subClassOf bfo:BFO_0000004 ;
+    skos:scopeNote "Aligned broadly as an independent continuant because PROVIDER agents include people, organizations, institutions, or organized groups."@en .
+
+:Actor rdfs:subClassOf bfo:BFO_0000040 ;
+    skos:scopeNote "An actor is treated as a material entity when it denotes a person, organization, institution, or organized group participating in a supply chain."@en .
+
+:Person rdfs:subClassOf bfo:BFO_0000030 .
+
+:Organization rdfs:subClassOf bfo:BFO_0000027 ;
+    skos:scopeNote "An organization is aligned as an object aggregate: a social/material aggregate of people, assets, and institutional parts."@en .
+
+:Organisation rdfs:subClassOf bfo:BFO_0000027 ;
+    skos:scopeNote "Deprecated spelling alias of :Organization."@en .
+
+:Facility rdfs:subClassOf bfo:BFO_0000040 ;
+    skos:scopeNote "A facility is treated as a material entity; site-like aspects can be modeled separately with BFO site if needed."@en .
+
+:InfrastructureAsset rdfs:subClassOf bfo:BFO_0000040 ;
+    skos:scopeNote "Physical infrastructure assets from OSM-derived modules should normally be material entities, objects, or object aggregates depending on granularity."@en .
+
+:TransportInfrastructureAsset rdfs:subClassOf bfo:BFO_0000040 .
+:StorageInfrastructureAsset rdfs:subClassOf bfo:BFO_0000040 .
+:EnergyInfrastructureAsset rdfs:subClassOf bfo:BFO_0000040 .
+:CommunicationInfrastructureAsset rdfs:subClassOf bfo:BFO_0000040 .
+
+:Farm rdfs:subClassOf bfo:BFO_0000040 ;
+    skos:scopeNote "A farm is aligned as a facility/site for agricultural production. Farm businesses are organizations bearing farmer or producer roles."@en .
+
+:StorageFacility rdfs:subClassOf bfo:BFO_0000040 .
+:ProcessingFacility rdfs:subClassOf bfo:BFO_0000040 .
+:TransferFacility rdfs:subClassOf bfo:BFO_0000040 .
+
+:Network rdfs:subClassOf bfo:BFO_0000027 ;
+    skos:scopeNote "A network is aligned as an object aggregate when it denotes a connected physical system of infrastructure elements. Logical or planned network descriptions may be represented as information content in a later refinement."@en .
+
+
+# ============================================================================
+# IMMATERIAL AND INFORMATION-LIKE CONTINUANTS
+# ============================================================================
+
+:Sector rdfs:subClassOf bfo:BFO_0000141 ;
+    skos:scopeNote "A sector is treated as an immaterial social/analytic entity aggregating recurrent functions, actors, and infrastructure."@en .
+
+:AgriculturalSector rdfs:subClassOf bfo:BFO_0000141 .
+:LogisticsSector rdfs:subClassOf bfo:BFO_0000141 .
+:TradeSector rdfs:subClassOf bfo:BFO_0000141 .
+:ProcessingSector rdfs:subClassOf bfo:BFO_0000141 .
+:EnergySector rdfs:subClassOf bfo:BFO_0000141 .
+:PublicSector rdfs:subClassOf bfo:BFO_0000141 .
+
+:Region rdfs:subClassOf bfo:BFO_0000141 ;
+    skos:scopeNote "Aligned as an immaterial entity because PROVIDER regions may be administrative, economic, or analytic regions rather than physical sites alone. Concrete geospatial sites may be modeled as a specialization aligned to bfo:BFO_0000029."@en .
+
+:Product rdfs:subClassOf bfo:BFO_0000001 ;
+    skos:scopeNote "Kept at BFO entity because PROVIDER products may include material goods, energy products, digital products, certificates, or services. Use a material-product specialization for strictly physical goods."@en .
+
+:Commodity rdfs:subClassOf :Product ;
+    skos:scopeNote "Not directly placed under material entity because some commodities, such as electricity or certificates, may be non-material or information-bearing market objects."@en .
+
+:SupplyChain rdfs:subClassOf bfo:BFO_0000031 ;
+    skos:scopeNote "Aligned as a generically dependent continuant because a supply-chain model or arrangement can be represented, copied, and maintained across actors and information systems. A realized physical supply-chain operation can be modeled as a process."@en .
+
+:SupplyChainStage rdfs:subClassOf bfo:BFO_0000031 ;
+    skos:scopeNote "A stage is an informational or organizational part of a supply-chain model. Concrete execution of a stage is modeled as a process."@en .
+
+:Route rdfs:subClassOf bfo:BFO_0000031 ;
+    skos:scopeNote "A route is treated as an information-bearing planned or observed path. A physical corridor or navigable site may be modeled separately as a site or infrastructure asset."@en .
+
+:DataSource rdfs:subClassOf bfo:BFO_0000001 ;
+    skos:scopeNote "A data source may be a database, document, sensor system, organization, or service; this broad alignment should be specialized by implementation modules."@en .
+
+:Indicator rdfs:subClassOf bfo:BFO_0000031 ;
+    skos:scopeNote "An indicator is treated as an information artifact or specification for what is measured or derived."@en .
+
+:Observation rdfs:subClassOf bfo:BFO_0000031 ;
+    skos:scopeNote "An observation record is treated as a generically dependent continuant. The observing act itself can be modeled as a process."@en .
+
+:MonitoringSignal rdfs:subClassOf bfo:BFO_0000031 .
+
+
+# ============================================================================
+# ROLES
+# ============================================================================
+
+:Role rdfs:subClassOf bfo:BFO_0000023 .
+:SupplyChainRole rdfs:subClassOf bfo:BFO_0000023 .
+:SupplierRole rdfs:subClassOf bfo:BFO_0000023 .
+:ProducerRole rdfs:subClassOf bfo:BFO_0000023 .
+:FarmerRole rdfs:subClassOf bfo:BFO_0000023 .
+:TraderRole rdfs:subClassOf bfo:BFO_0000023 .
+:CarrierRole rdfs:subClassOf bfo:BFO_0000023 .
+:CustomerRole rdfs:subClassOf bfo:BFO_0000023 .
+:ManufacturerRole rdfs:subClassOf bfo:BFO_0000023 .
+:ProcessorRole rdfs:subClassOf bfo:BFO_0000023 .
+:WarehouseOperatorRole rdfs:subClassOf bfo:BFO_0000023 .
+:RegulatorRole rdfs:subClassOf bfo:BFO_0000023 .
+:RetailerRole rdfs:subClassOf bfo:BFO_0000023 .
+
+:Producer rdfs:subClassOf bfo:BFO_0000027 ;
+    skos:scopeNote "Deprecated convenience class. Prefer an :Organization bearing :ProducerRole."@en .
+
+:Trader rdfs:subClassOf bfo:BFO_0000027 ;
+    skos:scopeNote "Deprecated convenience class. Prefer an :Organization bearing :TraderRole."@en .
+
+:Carrier rdfs:subClassOf bfo:BFO_0000027 ;
+    skos:scopeNote "Deprecated convenience class. Prefer an :Organization bearing :CarrierRole."@en .
+
+:Processor rdfs:subClassOf bfo:BFO_0000027 ;
+    skos:scopeNote "Deprecated convenience class. Prefer an :Organization bearing :ProcessorRole."@en .
+
+:Regulator rdfs:subClassOf bfo:BFO_0000027 ;
+    skos:scopeNote "Deprecated convenience class. Prefer an :Organization bearing :RegulatorRole."@en .
+
+:Retailer rdfs:subClassOf bfo:BFO_0000027 ;
+    skos:scopeNote "Deprecated convenience class. Prefer an :Organization bearing :RetailerRole."@en .
+
+:CommercialOrganisation rdfs:subClassOf bfo:BFO_0000027 ;
+    skos:scopeNote "Deprecated compatibility class. Prefer :Organization with explicit supply-chain roles."@en .
+
+:Wholesaler rdfs:subClassOf bfo:BFO_0000027 ;
+    skos:scopeNote "Deprecated compatibility class. Prefer :Organization with explicit supply-chain roles."@en .
+
+
+# ============================================================================
+# OCCURRENTS
+# ============================================================================
+
+:Process rdfs:subClassOf bfo:BFO_0000015 .
+
+:Flow rdfs:subClassOf bfo:BFO_0000015 ;
+    skos:scopeNote "A flow is treated as a process involving movement, transfer, or exchange over time."@en .
+
+:Event rdfs:subClassOf bfo:BFO_0000015 ;
+    skos:scopeNote "In this alignment, events are treated as processes or processual happenings with temporal extent."@en .
+
+:DisruptionEvent rdfs:subClassOf bfo:BFO_0000015 .
+:DisasterEvent rdfs:subClassOf bfo:BFO_0000015 .
+:WeatherEvent rdfs:subClassOf bfo:BFO_0000015 .
+:BiologicalEvent rdfs:subClassOf bfo:BFO_0000015 .
+:PolicyEvent rdfs:subClassOf bfo:BFO_0000015 .
+:LogisticsEvent rdfs:subClassOf bfo:BFO_0000015 .
+:InfrastructureOutageEvent rdfs:subClassOf bfo:BFO_0000015 .
+:MarketEvent rdfs:subClassOf bfo:BFO_0000015 .
+:MarketShockEvent rdfs:subClassOf bfo:BFO_0000015 .
+:PriceRiseEvent rdfs:subClassOf bfo:BFO_0000015 .
+
+:MitigationAction rdfs:subClassOf bfo:BFO_0000015 ;
+    skos:scopeNote "A mitigation action is a process intentionally carried out to reduce risk or impact."@en .
+
+:DiversificationAction rdfs:subClassOf bfo:BFO_0000015 .
+:BufferStockAction rdfs:subClassOf bfo:BFO_0000015 .
+:ReroutingAction rdfs:subClassOf bfo:BFO_0000015 .
+:SubstitutionAction rdfs:subClassOf bfo:BFO_0000015 .
+:EmergencyProcurementAction rdfs:subClassOf bfo:BFO_0000015 .
+
+
+# ============================================================================
+# DEPENDENT CONTINUANTS AND BROAD RISK ENTITIES
+# ============================================================================
+
+:Risk rdfs:subClassOf bfo:BFO_0000016 ;
+    skos:scopeNote "Risk is aligned as a disposition-like dependent continuant: a realizable tendency toward adverse outcomes under triggering conditions. Quantified risk assessments can be represented as information artifacts."@en .
+
+:Vulnerability rdfs:subClassOf bfo:BFO_0000016 ;
+    skos:scopeNote "A vulnerability is aligned as a disposition-like susceptibility to adverse outcomes under triggering conditions."@en .
+
+:ResilienceCapability rdfs:subClassOf bfo:BFO_0000016 ;
+    skos:scopeNote "A resilience capability is aligned as a realizable disposition-like capability to anticipate, absorb, adapt, recover, or transform."@en .
+
+:Exposure rdfs:subClassOf bfo:BFO_0000020 ;
+    skos:scopeNote "Exposure is aligned as a specifically dependent continuant because it characterizes an entity's situated relation to a hazard, region, process, or dependency."@en .
+
+:Hazard rdfs:subClassOf bfo:BFO_0000001 ;
+    skos:scopeNote "Hazard is kept broad because hazards may be represented as processes, material conditions, environmental states, or information-bearing hazard classes."@en .
+
+:Impact rdfs:subClassOf bfo:BFO_0000001 ;
+    skos:scopeNote "Impact is left broad because PROVIDER may use it for actual consequences, potential consequences, qualitative states, or recorded assessments. Subclasses should distinguish realized impact processes, impact qualities, and impact reports where needed."@en .
+
+:AvailabilityImpact rdfs:subClassOf bfo:BFO_0000001 .
+:DelayImpact rdfs:subClassOf bfo:BFO_0000001 .
+:CostImpact rdfs:subClassOf bfo:BFO_0000001 .
+:QualityImpact rdfs:subClassOf bfo:BFO_0000001 .
+:SupplyShortageImpact rdfs:subClassOf bfo:BFO_0000001 .

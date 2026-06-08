@@ -1,92 +1,668 @@
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix : <http://projekt-provider.de/ontology/> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix gist: <https://w3id.org/semanticarts/ns/ontology/gist/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix terms: <http://purl.org/dc/terms/> .
+@prefix :        <http://projekt-provider.de/ontology/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
-<http://projekt-provider.de/ontology/>
-    a owl:Ontology ;
-    owl:imports <https://w3id.org/semanticarts/ontology/gistBFO> .
 
-:Agent
-    a owl:Class ;
-    rdfs:comment "An independent continuant that bears some form of responsibility for an activity taking place"@en, "Ein independent continuant der eine gewisse Verantwortlichkeit in Bezug auf eine Aktivität hat"@de ;
-    rdfs:label "Agent"@de, "Agent"@en ;
-    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000004> .
+# ============================================================================
+# ONTOLOGY DECLARATION
+# ============================================================================
 
-:AgriculturalSector
-    a owl:Class ;
-    rdfs:comment "A sector that realizes the cultivation of plants, the raising of animals, or related production activities directed toward the provision of agricultural products."@en, "Ein Sektor, der den Anbau von Pflanzen, die Aufzucht von Tieren oder damit verbundene Produktionsaktivitäten zur Bereitstellung landwirtschaftlicher Produkte umsetzt."@de ;
-    rdfs:label "Agricultural sector"@en, "Landwirtschaftssektor"@de ;
-    rdfs:subClassOf :Sector .
+<http://projekt-provider.de/ontology/> a owl:Ontology ;
+    rdfs:label "PROVIDER Core Ontology"@en ;
+    rdfs:comment """
+        Core ontology for modelling cross-sector supply chains, disruptions,
+        resilience capabilities, monitoring signals, impacts, and mitigation
+        actions. Infrastructure and supply-chain modules specialize these
+        concepts without duplicating the core upper vocabulary.
+    """@en ;
+    dcterms:created "2026-05-26"^^xsd:date ;
+    dcterms:modified "2026-06-04"^^xsd:date ;
+    owl:versionInfo "0.2.0" .
 
-:CommercialOrganisation
-    a owl:Class ;
-    rdfs:comment "An organisation that operates in the trade sector"@en, "Eine Organisation, die im Handelsektor agiert."@de ;
-    rdfs:label "Commercial organisation"@en, "Handelsbetrieb"@de ;
-    rdfs:subClassOf :Organisation ;
-    owl:equivalentClass [
-        a owl:Restriction ;
-        owl:onProperty :operatesInSector ;
-        owl:someValuesFrom :TradeSector
-    ] .
 
-:Farm
-    a owl:Class ;
-    rdfs:comment "An organisation that operates in the agricultural sector"@en, "Eine Organisation, die im Agrarsektor agiert"@de ;
-    rdfs:label "Farm"@en, "Landwirtschaftlicher Betrieb"@de ;
-    rdfs:subClassOf :Organisation ;
-    owl:equivalentClass [
-        a owl:Restriction ;
-        owl:onProperty :operatesInSector ;
-        owl:someValuesFrom :AgriculturalSector
-    ] .
+# ============================================================================
+# UPPER-LEVEL CORE CLASSES
+# ============================================================================
 
-:LogisticsSector
-    a owl:Class ;
-    rdfs:comment "A sector covering the transportation, storage, coordination, and distribution of goods, materials, or resources."@en, "Ein Sektor, der den Transport, die Lagerung, die Koordination und den Vertrieb von Gütern, Materialien oder Ressourcen umfasst."@de ;
-    rdfs:label "Logistics sector"@en, "Logistiksektor"@de ;
-    rdfs:subClassOf :Sector .
+:Agent a owl:Class ;
+    rdfs:label "Agent"@en, "Agent"@de ;
+    rdfs:comment "An entity that can bear responsibility for an activity, decision, observation, or intervention."@en .
 
-:Organisation
-    a owl:Class ;
-    rdfs:comment "An agent that is socially or legally defined and might comprise parts that are itself agents"@en, "Ein Agent, der sozial oder rechtlich definiert ist und aus Teilen bestehen kann, die selbst Agenten sind"@de ;
-    rdfs:label "Organisation"@de, "Organisation"@en ;
-    rdfs:subClassOf :Agent .
+:Actor a owl:Class ;
+    rdfs:subClassOf :Agent ;
+    rdfs:label "Actor"@en ;
+    rdfs:comment "An agent, organization, institution, or organized group that participates in, governs, monitors, or is affected by a supply chain."@en .
 
-:Person
-    a owl:Class ;
-    rdfs:comment "An agent that is a human being"@en, "Ein Agent der ein Mensch ist"@de ;
-    rdfs:label "Person"@de, "Person"@en ;
-    rdfs:subClassOf :Agent .
+:Person a owl:Class ;
+    rdfs:subClassOf :Actor ;
+    rdfs:label "Person"@en, "Person"@de ;
+    rdfs:comment "A human actor."@en .
 
-:Sector
-    a owl:Class ;
-    rdfs:comment "A socially constructed immaterial entity aggregating agents, infrastructure and recurrent processes that collectively realize a characteristic economic, industrial, administrative, or societal function."@en, "Eine sozial konstruierte immaterielle Entität, die Akteure, Infrastruktur und wiederkehrende Prozesse zusammenfasst, welche gemeinsam eine charakteristische ökonomische, industrielle, administrative oder gesellschaftliche Funktion umsetzen."@de ;
+:Organization a owl:Class ;
+    rdfs:subClassOf :Actor ;
+    rdfs:label "Organization"@en, "Organisation"@de ;
+    rdfs:comment "A formally or informally organized actor such as a company, public authority, cooperative, association, or institutional unit."@en .
+
+:Organisation a owl:Class ;
+    owl:equivalentClass :Organization ;
+    owl:deprecated true ;
+    rdfs:label "Organisation"@en, "Organisation"@de ;
+    rdfs:comment "Deprecated spelling retained for compatibility. Use :Organization as the canonical class."@en .
+
+:Sector a owl:Class ;
     rdfs:label "Sector"@en, "Sektor"@de ;
-    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000141> .
+    rdfs:comment "A socially constructed immaterial entity aggregating actors, infrastructure, and recurrent processes that collectively realize a characteristic economic, industrial, administrative, or societal function."@en .
 
-:TradeSector
-    a owl:Class ;
-    rdfs:comment "A sector that realizes the exchange, distribution, purchase, or sale of goods or services."@en, "Ein Sektor, der den Austausch, den Vertrieb, den Kauf oder den Verkauf von Waren oder Dienstleistungen realisiert."@de ;
-    rdfs:label "Handelssektor"@de, "Trade sector"@en ;
-    rdfs:subClassOf :Sector .
+:Region a owl:Class ;
+    rdfs:label "Region"@en ;
+    rdfs:comment "A geographic, administrative, economic, or analytic area relevant to production, logistics, trade, regulation, exposure, or impact assessment."@en .
 
-:Wholesaler
-    a owl:Class ;
-    rdfs:comment "A commercial organisation that primarily engages in the purchase and resale of goods in relatively large quantities to retailers, commercial organizations, or other institutional consumers rather than directly to end consumers."@en, "Eine Handelsbetrieb, der sich hauptsächlich mit dem Kauf und Weiterverkauf von Waren in relativ großen Mengen an Einzelhändler, Handelsorganisationen oder andere institutionelle Abnehmer und nicht direkt an Endverbraucher befasst."@de ;
-    rdfs:label "Großhändler"@de, "Wholesaler"@en ;
-    rdfs:subClassOf :CommercialOrganisation .
+:Facility a owl:Class ;
+    rdfs:label "Facility"@en ;
+    rdfs:comment "A site, installation, or built environment where supply-chain activities occur, such as production, storage, processing, transfer, inspection, or sale."@en .
 
-:operatesInSector
-    a owl:ObjectProperty ;
-    rdfs:comment "Relation between instances of type Agent and instances of type Sector. The relation describes that an Agent instance performs the majority of its fundamental actions in the assigned Sector instance"@en, "Relation zwischen einer Instanz vom Typ Agent und einer Instanz vom Typ Sektor. Die Relation beschreibt, dass die Agent-Instanz den Großteil ihrer grundlegenden Aktionen in der zugeordneten Sektor-Instanz tätigt."@de ;
-    rdfs:domain :Agent ;
-    rdfs:label "agiert in Sektor"@de, "operates in sector"@en ;
+:InfrastructureAsset a owl:Class ;
+    rdfs:subClassOf :Facility ;
+    rdfs:label "Infrastructure asset"@en ;
+    rdfs:comment "A physical facility or network element used to enable transport, storage, energy, communication, sensing, or other operational functions."@en ;
+    skos:scopeNote "OSM-derived infrastructure classes should align here or to more specific subclasses in an infrastructure module."@en .
+
+:Product a owl:Class ;
+    rdfs:label "Product"@en ;
+    rdfs:comment "A material or immaterial thing produced, transformed, traded, consumed, or otherwise handled in a supply chain."@en .
+
+:Commodity a owl:Class ;
+    rdfs:subClassOf :Product ;
+    rdfs:label "Commodity"@en ;
+    rdfs:comment "A traded product that is largely interchangeable within a market category, such as soybeans, soymeal, crude oil, grain, or electricity."@en .
+
+:Process a owl:Class ;
+    rdfs:label "Process"@en ;
+    rdfs:comment "An activity or process that changes, moves, stores, monitors, governs, consumes, or produces products and resources over time."@en .
+
+:SupplyChain a owl:Class ;
+    rdfs:label "Supply chain"@en ;
+    rdfs:comment "A system of actors, facilities, flows, processes, and dependencies through which products are produced, transformed, transported, distributed, and consumed."@en .
+
+:SupplyChainStage a owl:Class ;
+    rdfs:label "Supply chain stage"@en ;
+    rdfs:comment "A coherent step or phase within a supply chain, such as farming, storage, inland transport, export handling, ocean transport, import handling, processing, distribution, or consumption."@en .
+
+:Flow a owl:Class ;
+    rdfs:subClassOf :Process ;
+    rdfs:label "Flow"@en ;
+    rdfs:comment "A movement, transfer, or exchange of products, information, value, or responsibility between actors, facilities, stages, or regions."@en .
+
+:Route a owl:Class ;
+    rdfs:label "Route"@en ;
+    rdfs:comment "A planned or observed path along which a flow moves."@en ;
+    skos:scopeNote "OSM route relations and network routes can later be aligned to this class."@en .
+
+:Network a owl:Class ;
+    rdfs:label "Network"@en ;
+    rdfs:comment "A connected system of route, segment, node, or facility elements that enables movement, communication, energy distribution, or other connectivity."@en ;
+    skos:scopeNote "OSM-derived road, railway, waterway, power, pipeline, and telecom network abstractions can later specialize this class."@en .
+
+
+# ============================================================================
+# SECTOR SPECIALIZATIONS
+# ============================================================================
+
+:AgriculturalSector a owl:Class ;
+    rdfs:subClassOf :Sector ;
+    rdfs:label "Agricultural sector"@en, "Landwirtschaftssektor"@de ;
+    rdfs:comment "A sector that realizes the cultivation of plants, the raising of animals, or related production activities directed toward the provision of agricultural products."@en .
+
+:LogisticsSector a owl:Class ;
+    rdfs:subClassOf :Sector ;
+    rdfs:label "Logistics sector"@en, "Logistiksektor"@de ;
+    rdfs:comment "A sector covering the transportation, storage, coordination, and distribution of goods, materials, or resources."@en .
+
+:TradeSector a owl:Class ;
+    rdfs:subClassOf :Sector ;
+    rdfs:label "Trade sector"@en, "Handelssektor"@de ;
+    rdfs:comment "A sector that realizes the exchange, distribution, purchase, or sale of goods or services."@en .
+
+:ProcessingSector a owl:Class ;
+    rdfs:subClassOf :Sector ;
+    rdfs:label "Processing sector"@en ;
+    rdfs:comment "A sector that transforms products or materials into derived products, intermediate goods, or consumer goods."@en .
+
+:EnergySector a owl:Class ;
+    rdfs:subClassOf :Sector ;
+    rdfs:label "Energy sector"@en ;
+    rdfs:comment "A sector concerned with the production, conversion, distribution, storage, trade, or consumption of energy."@en .
+
+:PublicSector a owl:Class ;
+    rdfs:subClassOf :Sector ;
+    rdfs:label "Public sector"@en ;
+    rdfs:comment "A sector comprising public authorities and institutions involved in regulation, intervention, public services, or governance."@en .
+
+
+# ============================================================================
+# ROLES, ACTORS, AND FACILITIES
+# ============================================================================
+
+:Role a owl:Class ;
+    rdfs:label "Role"@en ;
+    rdfs:comment "A context-dependent function, responsibility, or participation mode borne by an actor, facility, or other entity."@en .
+
+:SupplyChainRole a owl:Class ;
+    rdfs:subClassOf :Role ;
+    rdfs:label "Supply chain role"@en ;
+    rdfs:comment "A role borne in a supply-chain context."@en .
+
+:SupplierRole a owl:Class ;
+    rdfs:subClassOf :SupplyChainRole ;
+    rdfs:label "Supplier role"@en .
+
+:ProducerRole a owl:Class ;
+    rdfs:subClassOf :SupplierRole ;
+    rdfs:label "Producer role"@en .
+
+:FarmerRole a owl:Class ;
+    rdfs:subClassOf :ProducerRole ;
+    rdfs:label "Farmer role"@en .
+
+:TraderRole a owl:Class ;
+    rdfs:subClassOf :SupplyChainRole ;
+    rdfs:label "Trader role"@en .
+
+:CarrierRole a owl:Class ;
+    rdfs:subClassOf :SupplyChainRole ;
+    rdfs:label "Carrier role"@en .
+
+:CustomerRole a owl:Class ;
+    rdfs:subClassOf :SupplyChainRole ;
+    rdfs:label "Customer role"@en .
+
+:ManufacturerRole a owl:Class ;
+    rdfs:subClassOf :SupplyChainRole ;
+    rdfs:label "Manufacturer role"@en .
+
+:ProcessorRole a owl:Class ;
+    rdfs:subClassOf :ManufacturerRole ;
+    rdfs:label "Processor role"@en .
+
+:WarehouseOperatorRole a owl:Class ;
+    rdfs:subClassOf :SupplyChainRole ;
+    rdfs:label "Warehouse operator role"@en .
+
+:RegulatorRole a owl:Class ;
+    rdfs:subClassOf :SupplyChainRole ;
+    rdfs:label "Regulator role"@en .
+
+:RetailerRole a owl:Class ;
+    rdfs:subClassOf :SupplyChainRole ;
+    rdfs:label "Retailer role"@en .
+
+:Producer a owl:Class ;
+    rdfs:subClassOf :Organization ;
+    owl:deprecated true ;
+    rdfs:label "Producer"@en ;
+    rdfs:comment "Deprecated convenience class. Prefer :Organization bearing :ProducerRole."@en .
+
+:Trader a owl:Class ;
+    rdfs:subClassOf :Organization ;
+    owl:deprecated true ;
+    rdfs:label "Trader"@en ;
+    rdfs:comment "Deprecated convenience class. Prefer :Organization bearing :TraderRole."@en .
+
+:Carrier a owl:Class ;
+    rdfs:subClassOf :Organization ;
+    owl:deprecated true ;
+    rdfs:label "Carrier"@en ;
+    rdfs:comment "Deprecated convenience class. Prefer :Organization bearing :CarrierRole."@en .
+
+:Processor a owl:Class ;
+    rdfs:subClassOf :Organization ;
+    owl:deprecated true ;
+    rdfs:label "Processor"@en ;
+    rdfs:comment "Deprecated convenience class. Prefer :Organization bearing :ProcessorRole."@en .
+
+:Regulator a owl:Class ;
+    rdfs:subClassOf :Organization ;
+    owl:deprecated true ;
+    rdfs:label "Regulator"@en ;
+    rdfs:comment "Deprecated convenience class. Prefer :Organization bearing :RegulatorRole."@en .
+
+:Retailer a owl:Class ;
+    rdfs:subClassOf :Organization ;
+    owl:deprecated true ;
+    rdfs:label "Retailer"@en ;
+    rdfs:comment "Deprecated convenience class. Prefer :Organization bearing :RetailerRole."@en .
+
+:CommercialOrganisation a owl:Class ;
+    rdfs:subClassOf :Organization ;
+    owl:deprecated true ;
+    rdfs:label "Commercial organisation"@en, "Handelsbetrieb"@de ;
+    rdfs:comment "Deprecated compatibility class for commercial organizations. Prefer :Organization with :TraderRole, :RetailerRole, or another explicit role."@en .
+
+:Wholesaler a owl:Class ;
+    rdfs:subClassOf :CommercialOrganisation ;
+    owl:deprecated true ;
+    rdfs:label "Wholesaler"@en, "Grosshaendler"@de ;
+    rdfs:comment "Deprecated compatibility class. Prefer :Organization bearing a supply-chain role such as :TraderRole."@en .
+
+:Farm a owl:Class ;
+    rdfs:subClassOf :Facility ;
+    rdfs:label "Farm"@en, "Landwirtschaftlicher Betrieb"@de ;
+    rdfs:comment "A facility or site used for agricultural production. Farm businesses should be modelled as :Organization instances bearing :FarmerRole or :ProducerRole."@en .
+
+:StorageFacility a owl:Class ;
+    rdfs:subClassOf :Facility ;
+    rdfs:label "Storage facility"@en ;
+    rdfs:comment "A facility used to store products, materials, resources, or vehicles."@en .
+
+:ProcessingFacility a owl:Class ;
+    rdfs:subClassOf :Facility ;
+    rdfs:label "Processing facility"@en ;
+    rdfs:comment "A facility where products or materials are transformed into other products or intermediate goods."@en .
+
+:TransferFacility a owl:Class ;
+    rdfs:subClassOf :InfrastructureAsset ;
+    rdfs:label "Transfer facility"@en ;
+    rdfs:comment "An infrastructure asset where products or passengers are transferred between vehicles, modes, routes, organizations, or jurisdictions."@en .
+
+
+# ============================================================================
+# RISK, RESILIENCE, EVENT, SIGNAL, AND IMPACT CLASSES
+# ============================================================================
+
+:Hazard a owl:Class ;
+    rdfs:label "Hazard"@en ;
+    rdfs:comment "A potentially damaging source, condition, or process that may trigger disruption or harm when it interacts with exposed and vulnerable entities."@en .
+
+:Exposure a owl:Class ;
+    rdfs:label "Exposure"@en ;
+    rdfs:comment "The presence or involvement of an actor, facility, product, process, region, or dependency in a situation where it may be affected by a hazard or disruption."@en .
+
+:Vulnerability a owl:Class ;
+    rdfs:label "Vulnerability"@en ;
+    rdfs:comment "A susceptibility of an actor, facility, product, process, region, dependency, or supply-chain stage to be adversely affected by a hazard or disruption."@en .
+
+:ResilienceCapability a owl:Class ;
+    rdfs:label "Resilience capability"@en ;
+    rdfs:comment "A capability that helps an actor, facility, supply chain, or region anticipate, absorb, adapt to, recover from, or transform in response to disruption."@en .
+
+:Risk a owl:Class ;
+    rdfs:label "Risk"@en ;
+    rdfs:comment "A possible adverse condition involving uncertainty, exposure, vulnerability, likelihood, and consequence."@en .
+
+:Event a owl:Class ;
+    rdfs:subClassOf :Process ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "Something that happens at a time or over a period and may affect actors, facilities, products, flows, sectors, or regions."@en .
+
+:DisruptionEvent a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Disruption event"@en ;
+    rdfs:comment "An event that degrades, interrupts, delays, reroutes, restricts, or otherwise negatively changes normal supply-chain behavior."@en .
+
+:DisasterEvent a owl:Class ;
+    rdfs:subClassOf :DisruptionEvent ;
+    rdfs:label "Disaster event"@en ;
+    rdfs:comment "A disruption event with severe adverse effects on people, infrastructure, production, logistics, markets, or society."@en .
+
+:WeatherEvent a owl:Class ;
+    rdfs:subClassOf :DisruptionEvent ;
+    rdfs:label "Weather event"@en ;
+    rdfs:comment "A disruption event caused by weather or climate conditions."@en .
+
+:BiologicalEvent a owl:Class ;
+    rdfs:subClassOf :DisruptionEvent ;
+    rdfs:label "Biological event"@en ;
+    rdfs:comment "A disruption event caused by pests, diseases, invasive species, or other biological pressures."@en .
+
+:PolicyEvent a owl:Class ;
+    rdfs:subClassOf :DisruptionEvent ;
+    rdfs:label "Policy event"@en ;
+    rdfs:comment "A disruption event caused by a policy, regulatory, trade, customs, or administrative decision."@en .
+
+:LogisticsEvent a owl:Class ;
+    rdfs:subClassOf :DisruptionEvent ;
+    rdfs:label "Logistics event"@en ;
+    rdfs:comment "A disruption event affecting transport, storage, handling, transfer capacity, scheduling, or routing."@en .
+
+:InfrastructureOutageEvent a owl:Class ;
+    rdfs:subClassOf :LogisticsEvent ;
+    rdfs:label "Infrastructure outage event"@en ;
+    rdfs:comment "A disruption event in which an infrastructure asset, network, facility, or service becomes unavailable or has reduced capacity."@en .
+
+:MarketEvent a owl:Class ;
+    rdfs:subClassOf :DisruptionEvent ;
+    rdfs:label "Market event"@en ;
+    rdfs:comment "A disruption event affecting price, liquidity, demand, supply, freight rates, or contract availability."@en .
+
+:MarketShockEvent a owl:Class ;
+    rdfs:subClassOf :MarketEvent ;
+    rdfs:label "Market shock event"@en ;
+    rdfs:comment "A market event involving a sudden or severe change in supply, demand, price, liquidity, freight rates, insurance, or contract availability."@en .
+
+:PriceRiseEvent a owl:Class ;
+    rdfs:subClassOf :MarketShockEvent ;
+    rdfs:label "Price rise event"@en ;
+    rdfs:comment "A market shock event in which the price of a product, input, service, freight route, energy source, or consumer good increases materially."@en .
+
+:Impact a owl:Class ;
+    rdfs:label "Impact"@en ;
+    rdfs:comment "An observed, inferred, or expected consequence for an actor, sector, product, region, facility, process, flow, or supply-chain stage."@en .
+
+:AvailabilityImpact a owl:Class ;
+    rdfs:subClassOf :Impact ;
+    rdfs:label "Availability impact"@en ;
+    rdfs:comment "An impact concerning whether a product, facility, process, route, capacity, or service is available."@en .
+
+:DelayImpact a owl:Class ;
+    rdfs:subClassOf :Impact ;
+    rdfs:label "Delay impact"@en ;
+    rdfs:comment "An impact involving increased lead time, waiting time, transit time, processing time, or recovery time."@en .
+
+:CostImpact a owl:Class ;
+    rdfs:subClassOf :Impact ;
+    rdfs:label "Cost impact"@en ;
+    rdfs:comment "An impact involving increased cost, price, freight rate, insurance premium, margin pressure, or financial loss."@en .
+
+:QualityImpact a owl:Class ;
+    rdfs:subClassOf :Impact ;
+    rdfs:label "Quality impact"@en ;
+    rdfs:comment "An impact involving degraded product, process, service, documentation, compliance, or data quality."@en .
+
+:SupplyShortageImpact a owl:Class ;
+    rdfs:subClassOf :AvailabilityImpact ;
+    rdfs:label "Supply shortage impact"@en ;
+    rdfs:comment "An availability impact in which supply is insufficient relative to demand, commitment, or need."@en .
+
+:MitigationAction a owl:Class ;
+    rdfs:subClassOf :Process ;
+    rdfs:label "Mitigation action"@en ;
+    rdfs:comment "An action intended to reduce risk, exposure, vulnerability, disruption likelihood, or adverse impact."@en .
+
+:DiversificationAction a owl:Class ;
+    rdfs:subClassOf :MitigationAction ;
+    rdfs:label "Diversification action"@en ;
+    rdfs:comment "A mitigation action that reduces dependency concentration by adding or shifting suppliers, regions, routes, products, technologies, or processes."@en .
+
+:BufferStockAction a owl:Class ;
+    rdfs:subClassOf :MitigationAction ;
+    rdfs:label "Buffer stock action"@en ;
+    rdfs:comment "A mitigation action that creates, maintains, releases, or repositions reserve inventory or capacity."@en .
+
+:ReroutingAction a owl:Class ;
+    rdfs:subClassOf :MitigationAction ;
+    rdfs:label "Rerouting action"@en ;
+    rdfs:comment "A mitigation action that changes the route, network, transfer facility, or logistics mode used by a flow."@en .
+
+:SubstitutionAction a owl:Class ;
+    rdfs:subClassOf :MitigationAction ;
+    rdfs:label "Substitution action"@en ;
+    rdfs:comment "A mitigation action that replaces a product, input, process, supplier, or recipe component with an alternative."@en .
+
+:EmergencyProcurementAction a owl:Class ;
+    rdfs:subClassOf :MitigationAction ;
+    rdfs:label "Emergency procurement action"@en ;
+    rdfs:comment "A mitigation action that acquires products, inputs, services, or capacity under disrupted or urgent conditions."@en .
+
+:DataSource a owl:Class ;
+    rdfs:label "Data source"@en ;
+    rdfs:comment "A source from which observations, indicators, forecasts, or signals are obtained."@en .
+
+:Indicator a owl:Class ;
+    rdfs:label "Indicator"@en ;
+    rdfs:comment "A measurable variable or derived metric used to monitor state, performance, exposure, vulnerability, risk, impact, resilience, or recovery."@en .
+
+:Observation a owl:Class ;
+    rdfs:label "Observation"@en ;
+    rdfs:comment "A measurement, estimate, report, forecast, or qualitative assessment of an indicator for a subject at a time or period."@en .
+
+:MonitoringSignal a owl:Class ;
+    rdfs:subClassOf :Observation ;
+    rdfs:label "Monitoring signal"@en ;
+    rdfs:comment "An observation or derived observation used to detect, anticipate, or explain a relevant change in the supply chain."@en .
+
+
+# ============================================================================
+# OBJECT PROPERTIES
+# ============================================================================
+
+:hasRole a owl:ObjectProperty ;
+    rdfs:label "has role"@en ;
+    rdfs:comment "Links an actor, facility, or other entity to a role it bears in a context."@en ;
+    rdfs:range :Role .
+
+:roleOf a owl:ObjectProperty ;
+    rdfs:label "role of"@en ;
+    owl:inverseOf :hasRole .
+
+:hasSector a owl:ObjectProperty ;
+    rdfs:label "has sector"@en ;
+    rdfs:comment "Links an actor, facility, process, supply chain, event, risk, or impact to a relevant sector."@en ;
     rdfs:range :Sector .
 
+:operatesInSector a owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasSector ;
+    owl:deprecated true ;
+    rdfs:label "operates in sector"@en, "agiert in Sektor"@de ;
+    rdfs:comment "Deprecated compatibility property. Use :hasSector for sector classification and :participatesIn or :hasRole for contextual participation."@en ;
+    rdfs:domain :Agent ;
+    rdfs:range :Sector .
+
+:locatedIn a owl:ObjectProperty ;
+    rdfs:label "located in"@en ;
+    rdfs:comment "Links an actor, facility, event, process, flow, observation, exposure, or impact to a relevant region."@en ;
+    rdfs:range :Region .
+
+:operatesFacility a owl:ObjectProperty ;
+    rdfs:label "operates facility"@en ;
+    rdfs:comment "Links an actor to a facility it operates, manages, controls, or is responsible for."@en ;
+    rdfs:domain :Actor ;
+    rdfs:range :Facility .
+
+:participatesIn a owl:ObjectProperty ;
+    rdfs:label "participates in"@en ;
+    rdfs:comment "Links an actor, facility, product, process, stage, event, or role bearer to a supply chain or process in which it participates."@en .
+
+:hasStage a owl:ObjectProperty ;
+    rdfs:label "has stage"@en ;
+    rdfs:comment "Links a supply chain to one of its stages."@en ;
+    rdfs:domain :SupplyChain ;
+    rdfs:range :SupplyChainStage .
+
+:precedesStage a owl:ObjectProperty ;
+    rdfs:label "precedes stage"@en ;
+    rdfs:comment "Links a supply-chain stage to a later stage in the same supply chain."@en ;
+    rdfs:domain :SupplyChainStage ;
+    rdfs:range :SupplyChainStage .
+
+:hasInput a owl:ObjectProperty ;
+    rdfs:label "has input"@en ;
+    rdfs:comment "Links a process or stage to a product, resource, signal, or other entity used as input."@en ;
+    rdfs:range owl:Thing .
+
+:hasOutput a owl:ObjectProperty ;
+    rdfs:label "has output"@en ;
+    rdfs:comment "Links a process or stage to a product, signal, impact, or other entity produced as output."@en ;
+    rdfs:range owl:Thing .
+
+:handlesProduct a owl:ObjectProperty ;
+    rdfs:label "handles product"@en ;
+    rdfs:comment "Links an actor, facility, process, stage, flow, or supply chain to a product it handles."@en ;
+    rdfs:range :Product .
+
+:movesAlong a owl:ObjectProperty ;
+    rdfs:label "moves along"@en ;
+    rdfs:comment "Links a flow to the route or network along which it moves."@en ;
+    rdfs:domain :Flow ;
+    rdfs:range [ owl:unionOf ( :Route :Network ) ] .
+
+:uses a owl:ObjectProperty ;
+    rdfs:label "uses"@en ;
+    rdfs:comment "Links an entity or process to another entity, route, network, product, capability, or resource it uses."@en .
+
+:originatesAt a owl:ObjectProperty ;
+    rdfs:label "originates at"@en ;
+    rdfs:comment "Links a flow, route, event, or process to its origin actor, facility, stage, or region."@en .
+
+:terminatesAt a owl:ObjectProperty ;
+    rdfs:label "terminates at"@en ;
+    rdfs:comment "Links a flow, route, event, or process to its destination actor, facility, stage, or region."@en .
+
+:storedAt a owl:ObjectProperty ;
+    rdfs:label "stored at"@en ;
+    rdfs:comment "Links inventory, products, batches, or material items to the facility or region where they are stored."@en .
+
+:dependsOn a owl:ObjectProperty ;
+    rdfs:label "depends on"@en ;
+    rdfs:comment "Links an entity to another entity whose availability, performance, state, or behavior it depends on."@en .
+
+:affectedBy a owl:ObjectProperty ;
+    rdfs:label "affected by"@en ;
+    rdfs:comment "Links an entity to an event, risk, condition, hazard, vulnerability, exposure, or impact that affects it."@en .
+
+:affects a owl:ObjectProperty ;
+    rdfs:label "affects"@en ;
+    rdfs:comment "Links an event, risk, condition, hazard, vulnerability, exposure, or impact to an entity it affects."@en ;
+    owl:inverseOf :affectedBy .
+
+:causes a owl:ObjectProperty ;
+    rdfs:label "causes"@en ;
+    rdfs:comment "Links an event, risk, observation, hazard, or impact to a resulting event, impact, condition, or state."@en .
+
+:hasHazard a owl:ObjectProperty ;
+    rdfs:label "has hazard"@en ;
+    rdfs:comment "Links a risk, exposure, event, region, supply chain, stage, or entity to a relevant hazard."@en ;
+    rdfs:range :Hazard .
+
+:hasExposure a owl:ObjectProperty ;
+    rdfs:label "has exposure"@en ;
+    rdfs:comment "Links a risk, actor, facility, stage, flow, region, or supply chain to an exposure."@en ;
+    rdfs:range :Exposure .
+
+:hasVulnerability a owl:ObjectProperty ;
+    rdfs:label "has vulnerability"@en ;
+    rdfs:comment "Links a risk, actor, facility, stage, flow, region, or supply chain to a vulnerability."@en ;
+    rdfs:range :Vulnerability .
+
+:hasResilienceCapability a owl:ObjectProperty ;
+    rdfs:label "has resilience capability"@en ;
+    rdfs:comment "Links an actor, facility, region, stage, supply chain, or mitigation action to a resilience capability."@en ;
+    rdfs:range :ResilienceCapability .
+
+:realizedBy a owl:ObjectProperty ;
+    rdfs:label "realized by"@en ;
+    rdfs:comment "Links a risk, vulnerability, capability, or role to an event, process, action, or bearer through which it is realized."@en .
+
+:indicates a owl:ObjectProperty ;
+    rdfs:label "indicates"@en ;
+    rdfs:comment "Links an observation or monitoring signal to the risk, event, condition, impact, capability, vulnerability, exposure, or entity state it indicates."@en .
+
+:observesIndicator a owl:ObjectProperty ;
+    rdfs:label "observes indicator"@en ;
+    rdfs:comment "Links an observation to the indicator it measures, estimates, forecasts, or reports."@en ;
+    rdfs:domain :Observation ;
+    rdfs:range :Indicator .
+
+:observedFor a owl:ObjectProperty ;
+    rdfs:label "observed for"@en ;
+    rdfs:comment "Links an observation to the actor, facility, product, flow, region, process, stage, sector, event, risk, impact, exposure, vulnerability, or capability it describes."@en ;
+    rdfs:domain :Observation .
+
+:derivedFrom a owl:ObjectProperty ;
+    rdfs:label "derived from"@en ;
+    rdfs:comment "Links an observation, indicator, signal, or assessment to a source observation, data source, model, method, or report."@en .
+
+:mitigates a owl:ObjectProperty ;
+    rdfs:label "mitigates"@en ;
+    rdfs:comment "Links a mitigation action or resilience capability to the risk, event, vulnerability, exposure, hazard, dependency, or impact it is intended to reduce."@en .
+
+:implementedBy a owl:ObjectProperty ;
+    rdfs:label "implemented by"@en ;
+    rdfs:comment "Links a mitigation action, process, or intervention to the actor responsible for implementing it."@en ;
+    rdfs:range :Actor .
+
+
+# ============================================================================
+# DATATYPE PROPERTIES
+# ============================================================================
+
+:identifier a owl:DatatypeProperty ;
+    rdfs:label "identifier"@en ;
+    rdfs:comment "A local, external, or domain-specific identifier."@en ;
+    rdfs:range xsd:string .
+
+:name a owl:DatatypeProperty ;
+    rdfs:label "name"@en ;
+    rdfs:comment "A human-readable name."@en ;
+    rdfs:range xsd:string .
+
+:description a owl:DatatypeProperty ;
+    rdfs:label "description"@en ;
+    rdfs:comment "A human-readable description."@en ;
+    rdfs:range xsd:string .
+
+:startTime a owl:DatatypeProperty ;
+    rdfs:label "start time"@en ;
+    rdfs:comment "The start date or timestamp of an event, process, observation, action, or validity interval."@en ;
+    rdfs:range xsd:dateTime .
+
+:endTime a owl:DatatypeProperty ;
+    rdfs:label "end time"@en ;
+    rdfs:comment "The end date or timestamp of an event, process, observation, action, or validity interval."@en ;
+    rdfs:range xsd:dateTime .
+
+:value a owl:DatatypeProperty ;
+    rdfs:label "value"@en ;
+    rdfs:comment "The literal value of an observation, indicator reading, parameter, or estimate."@en .
+
+:unit a owl:DatatypeProperty ;
+    rdfs:label "unit"@en ;
+    rdfs:comment "The unit of measure associated with a value."@en ;
+    rdfs:range xsd:string .
+
+:confidence a owl:DatatypeProperty ;
+    rdfs:label "confidence"@en ;
+    rdfs:comment "A confidence score or qualitative confidence description associated with an observation, forecast, signal, risk, or assessment."@en .
+
+:severity a owl:DatatypeProperty ;
+    rdfs:label "severity"@en ;
+    rdfs:comment "A severity score or qualitative severity description associated with a risk, event, impact, vulnerability, exposure, or signal."@en .
+
+:probability a owl:DatatypeProperty ;
+    rdfs:label "probability"@en ;
+    rdfs:comment "A probability or likelihood value associated with a risk, event, impact, or forecast."@en ;
+    rdfs:range xsd:decimal .
+
+:sequenceIndex a owl:DatatypeProperty ;
+    rdfs:label "sequence index"@en ;
+    rdfs:comment "A non-negative integer indicating the order of a stage, flow, route element, or process step."@en ;
+    rdfs:range xsd:nonNegativeInteger .
+
+
+# ============================================================================
+# ALIGNMENT PLACEHOLDERS FOR OSM-DERIVED INFRASTRUCTURE MODULES
+# ============================================================================
+
+:TransportInfrastructureAsset a owl:Class ;
+    rdfs:subClassOf :InfrastructureAsset ;
+    rdfs:label "Transport infrastructure asset"@en ;
+    rdfs:comment "An infrastructure asset that enables movement of people, products, vehicles, or vessels."@en ;
+    skos:scopeNote "OSM road, railway, port, airport, waterway, and route classes can later align below this class."@en .
+
+:StorageInfrastructureAsset a owl:Class ;
+    rdfs:subClassOf :InfrastructureAsset ;
+    rdfs:label "Storage infrastructure asset"@en ;
+    rdfs:comment "An infrastructure asset that stores products, materials, resources, or vehicles."@en .
+
+:EnergyInfrastructureAsset a owl:Class ;
+    rdfs:subClassOf :InfrastructureAsset ;
+    rdfs:label "Energy infrastructure asset"@en ;
+    rdfs:comment "An infrastructure asset that generates, stores, converts, transmits, or distributes energy."@en .
+
+:CommunicationInfrastructureAsset a owl:Class ;
+    rdfs:subClassOf :InfrastructureAsset ;
+    rdfs:label "Communication infrastructure asset"@en ;
+    rdfs:comment "An infrastructure asset that enables telecommunications, sensing, or data transmission."@en .

@@ -1,5 +1,5 @@
-@prefix sc:   <https://provider-project.org/ontology/supply-chain#> .
-@prefix ex:   <https://provider-project.org/data/soy-supply-chain#> .
+@prefix sc:   <http://projekt-provider.de/ontology/supply-chain#> .
+@prefix ex:   <http://projekt-provider.de/data/soy-supply-chain#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
