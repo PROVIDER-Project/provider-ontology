@@ -262,3 +262,8 @@ Known state:
 - `ontology/provider-main.xml` has not been regenerated from the Turtle source.
 - `ontology/infrastructure_network.ttl` still needs prefix declarations before
   it can be parsed as a standalone Turtle file.
+
+
+## AP2-Architektur und Dataset-Schnittstelle
+
+[Baseline, URI-Regeln und Konformitätsgrenzen](docs/ap2-dataset-interface.md).
