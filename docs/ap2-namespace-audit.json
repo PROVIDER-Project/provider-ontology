@@ -1,0 +1,116 @@
+{
+  "source_scope": "Tracked core/infrastructure/BFO, pinned PDL, legacy registry vocabulary and three own converter examples",
+  "inputs": {
+    "core": {
+      "sha256": "f918fabee13ad6c1a0be8d495c86752ef2e381f032e32c30d803766a01868c19",
+      "distinct_terms_by_namespace": {
+        "http://projekt-provider.de/ontology/": 128,
+        "https://projekt-provider.de/ontology/": 0,
+        "https://provider.example.org/ontology/": 0,
+        "http://projekt-provider.de/ontology/infrastructure#": 0,
+        "https://portwatch.imf.org/ontology/": 0,
+        "https://provider-project.org/ontology/pdl#": 0,
+        "https://w3id.org/provider/": 0
+      },
+      "scope": "URI inventory, not ontology equivalence or logical consistency"
+    },
+    "infrastructure": {
+      "sha256": "7526a533986b516efe1c05a4811f58ec059797f41d0671d80263fb07f2feec17",
+      "distinct_terms_by_namespace": {
+        "http://projekt-provider.de/ontology/": 182,
+        "https://projekt-provider.de/ontology/": 0,
+        "https://provider.example.org/ontology/": 0,
+        "http://projekt-provider.de/ontology/infrastructure#": 181,
+        "https://portwatch.imf.org/ontology/": 0,
+        "https://provider-project.org/ontology/pdl#": 0,
+        "https://w3id.org/provider/": 0
+      },
+      "scope": "URI inventory, not ontology equivalence or logical consistency"
+    },
+    "bfo_alignment": {
+      "sha256": "1fb914cf96fd36af007b19d2b70c3446229b2607d9ca18198df68882b08bc60f",
+      "distinct_terms_by_namespace": {
+        "http://projekt-provider.de/ontology/": 86,
+        "https://projekt-provider.de/ontology/": 0,
+        "https://provider.example.org/ontology/": 0,
+        "http://projekt-provider.de/ontology/infrastructure#": 0,
+        "https://portwatch.imf.org/ontology/": 0,
+        "https://provider-project.org/ontology/pdl#": 0,
+        "https://w3id.org/provider/": 0
+      },
+      "scope": "URI inventory, not ontology equivalence or logical consistency"
+    },
+    "pdl_1_2": {
+      "sha256": "163c6344e2a08dbb6d654871b8dc8f80de6fabf1b386825538cf1495850fa9bf",
+      "distinct_terms_by_namespace": {
+        "http://projekt-provider.de/ontology/": 0,
+        "https://projekt-provider.de/ontology/": 0,
+        "https://provider.example.org/ontology/": 0,
+        "http://projekt-provider.de/ontology/infrastructure#": 0,
+        "https://portwatch.imf.org/ontology/": 0,
+        "https://provider-project.org/ontology/pdl#": 134,
+        "https://w3id.org/provider/": 0
+      },
+      "scope": "URI inventory, not ontology equivalence or logical consistency"
+    },
+    "legacy_port_registry": {
+      "sha256": "f38d74ed35134ffac5de424892ed619926a0158f46d24b24c1985ceea2b893a0",
+      "distinct_terms_by_namespace": {
+        "http://projekt-provider.de/ontology/": 0,
+        "https://projekt-provider.de/ontology/": 0,
+        "https://provider.example.org/ontology/": 34,
+        "http://projekt-provider.de/ontology/infrastructure#": 0,
+        "https://portwatch.imf.org/ontology/": 0,
+        "https://provider-project.org/ontology/pdl#": 0,
+        "https://w3id.org/provider/": 0
+      },
+      "scope": "URI inventory, not ontology equivalence or logical consistency"
+    },
+    "source-daily-ports": {
+      "sha256": "5f98b9b92a6847359dca92ab0fab2c2dfd97df2fa31c4e522b85443186ae0c8a",
+      "distinct_terms_by_namespace": {
+        "http://projekt-provider.de/ontology/": 0,
+        "https://projekt-provider.de/ontology/": 1,
+        "https://provider.example.org/ontology/": 0,
+        "http://projekt-provider.de/ontology/infrastructure#": 0,
+        "https://portwatch.imf.org/ontology/": 17,
+        "https://provider-project.org/ontology/pdl#": 0,
+        "https://w3id.org/provider/": 0
+      },
+      "scope": "URI inventory, not ontology equivalence or logical consistency"
+    },
+    "source-ports": {
+      "sha256": "fecd1f1ea92445f89665636544f9ae5b4f49bd1a1eebec5e77df0b67641b1094",
+      "distinct_terms_by_namespace": {
+        "http://projekt-provider.de/ontology/": 0,
+        "https://projekt-provider.de/ontology/": 35,
+        "https://provider.example.org/ontology/": 0,
+        "http://projekt-provider.de/ontology/infrastructure#": 0,
+        "https://portwatch.imf.org/ontology/": 10,
+        "https://provider-project.org/ontology/pdl#": 0,
+        "https://w3id.org/provider/": 0
+      },
+      "scope": "URI inventory, not ontology equivalence or logical consistency"
+    },
+    "source-unlocode": {
+      "sha256": "5258559c3551e0f29508853b9bc2f5336aad5572b3e3bdb2f3708ff2f97fe20d",
+      "distinct_terms_by_namespace": {
+        "http://projekt-provider.de/ontology/": 0,
+        "https://projekt-provider.de/ontology/": 11,
+        "https://provider.example.org/ontology/": 0,
+        "http://projekt-provider.de/ontology/infrastructure#": 0,
+        "https://portwatch.imf.org/ontology/": 0,
+        "https://provider-project.org/ontology/pdl#": 0,
+        "https://w3id.org/provider/": 0
+      },
+      "scope": "URI inventory, not ontology equivalence or logical consistency"
+    }
+  },
+  "findings": [
+    "HTTP Core and HTTPS source PROVIDER terms are distinct",
+    "Infrastructure Terminal is airport-specific",
+    "Legacy registry example.org is not a production identity baseline",
+    "Artifact graph w3id.org and model/resource namespaces have different roles",
+    "Local PDL 1.1 copies were not selected; pinned public PDL is 1.2"
+  ]
+}

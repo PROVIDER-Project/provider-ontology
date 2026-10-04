@@ -1,0 +1,61 @@
+<https://example.org/ap2/source/unlocode/codes/unlocode-function-scheme> <http://purl.org/dc/terms/identifier> "unlocode-function" .
+<https://example.org/ap2/source/unlocode/codes/unlocode-function-scheme> <http://purl.org/dc/terms/isPartOf> <https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1> .
+<https://example.org/ap2/source/unlocode/codes/unlocode-function-scheme> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+<https://example.org/ap2/source/unlocode/codes/unlocode-function/1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://example.org/ap2/source/unlocode/codes/unlocode-function/1> <http://www.w3.org/2004/02/skos/core#inScheme> <https://example.org/ap2/source/unlocode/codes/unlocode-function-scheme> .
+<https://example.org/ap2/source/unlocode/codes/unlocode-function/1> <http://www.w3.org/2004/02/skos/core#notation> "1" .
+<https://example.org/ap2/source/unlocode/codes/unlocode-function/1> <http://www.w3.org/2004/02/skos/core#prefLabel> "Maritime port function" .
+<https://example.org/ap2/source/unlocode/country/br> <http://purl.org/dc/terms/identifier> "BR" .
+<https://example.org/ap2/source/unlocode/country/br> <http://purl.org/dc/terms/isPartOf> <https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1> .
+<https://example.org/ap2/source/unlocode/country/br> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.org/Country> .
+<https://example.org/ap2/source/unlocode/country/br> <http://www.w3.org/2004/02/skos/core#prefLabel> "Brazil" .
+<https://example.org/ap2/source/unlocode/country/br> <https://schema.org/identifier> "BR" .
+<https://example.org/ap2/source/unlocode/country/de> <http://purl.org/dc/terms/identifier> "DE" .
+<https://example.org/ap2/source/unlocode/country/de> <http://purl.org/dc/terms/isPartOf> <https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1> .
+<https://example.org/ap2/source/unlocode/country/de> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.org/Country> .
+<https://example.org/ap2/source/unlocode/country/de> <http://www.w3.org/2004/02/skos/core#prefLabel> "Germany" .
+<https://example.org/ap2/source/unlocode/country/de> <https://schema.org/identifier> "DE" .
+<https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1/record/2> <http://purl.org/dc/terms/isPartOf> <https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1> .
+<https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1/record/2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/SourceRecord> .
+<https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1/record/2> <https://projekt-provider.de/ontology/sourceRow> "{\"Change\": \"\", \"Coordinates\": \"\", \"Country\": \"BR\", \"Date\": \"2601\", \"Function\": \"1-------\", \"IATA\": \"\", \"Location\": \"SSZ\", \"Name\": \"Synthetic Santos trade location\", \"NameWoDiacritics\": \"Synthetic Santos trade location\", \"Remarks\": \"Invented fixture; no factual source evidence\", \"Status\": \"AA\", \"Subdivision\": \"\"}"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON> .
+<https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1/record/2> <https://projekt-provider.de/ontology/sourceRowNumber> "2"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1/record/3> <http://purl.org/dc/terms/isPartOf> <https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1> .
+<https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1/record/3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/SourceRecord> .
+<https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1/record/3> <https://projekt-provider.de/ontology/sourceRow> "{\"Change\": \"\", \"Coordinates\": \"\", \"Country\": \"DE\", \"Date\": \"2601\", \"Function\": \"1-------\", \"IATA\": \"\", \"Location\": \"HAM\", \"Name\": \"Synthetic Hamburg trade location\", \"NameWoDiacritics\": \"Synthetic Hamburg trade location\", \"Remarks\": \"Invented fixture; no factual source evidence\", \"Status\": \"AA\", \"Subdivision\": \"\"}"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON> .
+<https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1/record/3> <https://projekt-provider.de/ontology/sourceRowNumber> "3"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1> <http://purl.org/dc/terms/identifier> "unlocode-own-model-fixtures-v1" .
+<https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1> <http://purl.org/dc/terms/source> <https://example.org/ap2/fixtures/unlocode.json> .
+<https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1> <http://purl.org/dc/terms/title> "UN/LOCODE registry" .
+<https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/dc/terms/Dataset> .
+<https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/Dataset> .
+<https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1> <https://projekt-provider.de/ontology/baseIri> "https://example.org/ap2/source/unlocode/" .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <http://purl.org/dc/terms/description> "Invented fixture; no factual source evidence" .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <http://purl.org/dc/terms/identifier> "BRSSZ" .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <http://purl.org/dc/terms/isPartOf> <https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1> .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <http://purl.org/dc/terms/spatial> <https://example.org/ap2/source/unlocode/country/br> .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/TradeLocation> .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.org/Place> .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <http://www.w3.org/2000/01/rdf-schema#label> "Synthetic Santos trade location" .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <http://www.w3.org/2004/02/skos/core#prefLabel> "Synthetic Santos trade location" .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <http://www.w3.org/ns/prov#wasDerivedFrom> <https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1/record/2> .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <https://projekt-provider.de/ontology/countryCode> "BR" .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <https://projekt-provider.de/ontology/hasUnlocodeFunction> <https://example.org/ap2/source/unlocode/codes/unlocode-function/1> .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <https://projekt-provider.de/ontology/sourceDate> "2601" .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <https://projekt-provider.de/ontology/unlocode> "BRSSZ" .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <https://projekt-provider.de/ontology/unlocodeStatus> "AA" .
+<https://example.org/ap2/source/unlocode/unlocode/br/ssz> <https://schema.org/identifier> "BRSSZ" .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <http://purl.org/dc/terms/description> "Invented fixture; no factual source evidence" .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <http://purl.org/dc/terms/identifier> "DEHAM" .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <http://purl.org/dc/terms/isPartOf> <https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1> .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <http://purl.org/dc/terms/spatial> <https://example.org/ap2/source/unlocode/country/de> .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/TradeLocation> .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.org/Place> .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <http://www.w3.org/2000/01/rdf-schema#label> "Synthetic Hamburg trade location" .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <http://www.w3.org/2004/02/skos/core#prefLabel> "Synthetic Hamburg trade location" .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <http://www.w3.org/ns/prov#wasDerivedFrom> <https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1/record/3> .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <https://projekt-provider.de/ontology/countryCode> "DE" .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <https://projekt-provider.de/ontology/hasUnlocodeFunction> <https://example.org/ap2/source/unlocode/codes/unlocode-function/1> .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <https://projekt-provider.de/ontology/sourceDate> "2601" .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <https://projekt-provider.de/ontology/unlocode> "DEHAM" .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <https://projekt-provider.de/ontology/unlocodeStatus> "AA" .
+<https://example.org/ap2/source/unlocode/unlocode/de/ham> <https://schema.org/identifier> "DEHAM" .

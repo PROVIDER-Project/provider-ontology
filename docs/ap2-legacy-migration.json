@@ -1,0 +1,21 @@
+{
+  "status": "review-candidate; no automatic rewrite",
+  "legacy_namespace": "https://provider.example.org/ontology/",
+  "target_namespace": "http://projekt-provider.de/ontology/ap2-pilot#",
+  "term_decisions": {
+    "Port": "OperationalPort: qualified reviewed register role, not blanket equivalence",
+    "TradeLocation": "TradeLocation: retain source location and provenance",
+    "PortArea": "PortArea: keep geometry node separate",
+    "PortTerminal": "Terminal: maritime, not infrastructure airport Terminal",
+    "SourcePortRecord": "SourceRecord plus separately described SourcePortFeature; retain original row and artifact",
+    "PortIdentityAssertion": "MatchAssertion: directional predicate and exact review/evidence needed",
+    "PortObservationArea": "Keep AIS/statistical geofence distinct; no automatic conversion to physical PortArea"
+  },
+  "relation_decisions": {
+    "describes_same_operational_port": "SourcePortFeature -> describesOperationalPort -> OperationalPort",
+    "serves_trade_location": "OperationalPort -> servesTradeLocation -> TradeLocation; reverse a legacy source-to-port record direction explicitly if needed",
+    "describes_area_of_port": "PortArea -> areaOfPort -> OperationalPort",
+    "describes_terminal_of_port": "Terminal -> terminalOfPort -> OperationalPort"
+  },
+  "resource_policy": "Preserve confirmed real registry IDs through reviewed aliases; never mint real IDs from synthetic example.org demo identifiers"
+}

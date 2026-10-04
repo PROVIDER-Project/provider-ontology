@@ -1,0 +1,49 @@
+<https://example.org/ap2/source/portwatch/country/BRA> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://portwatch.imf.org/ontology/Country> .
+<https://example.org/ap2/source/portwatch/country/BRA> <http://www.w3.org/2004/02/skos/core#prefLabel> "BRA"@en .
+<https://example.org/ap2/source/portwatch/country/BRA> <https://portwatch.imf.org/ontology/countryName> "BRA" .
+<https://example.org/ap2/source/portwatch/country/BRA> <https://portwatch.imf.org/ontology/iso3> "BRA" .
+<https://example.org/ap2/source/portwatch/country/DEU> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://portwatch.imf.org/ontology/Country> .
+<https://example.org/ap2/source/portwatch/country/DEU> <http://www.w3.org/2004/02/skos/core#prefLabel> "DEU"@en .
+<https://example.org/ap2/source/portwatch/country/DEU> <https://portwatch.imf.org/ontology/countryName> "DEU" .
+<https://example.org/ap2/source/portwatch/country/DEU> <https://portwatch.imf.org/ontology/iso3> "DEU" .
+<https://example.org/ap2/source/portwatch/dataset/portwatch/daily-ports> <http://purl.org/dc/terms/conformsTo> <https://portwatch.imf.org/ontology/> .
+<https://example.org/ap2/source/portwatch/dataset/portwatch/daily-ports> <http://purl.org/dc/terms/description> "Daily port calls and import/export trade volume estimates for PortWatch ports" .
+<https://example.org/ap2/source/portwatch/dataset/portwatch/daily-ports> <http://purl.org/dc/terms/source> <https://portwatch.imf.org/> .
+<https://example.org/ap2/source/portwatch/dataset/portwatch/daily-ports> <http://purl.org/dc/terms/title> "PortWatch Daily Ports Data" .
+<https://example.org/ap2/source/portwatch/dataset/portwatch/daily-ports> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://portwatch.imf.org/ontology/Dataset> .
+<https://example.org/ap2/source/portwatch/dataset/portwatch/daily-ports> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/Dataset> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/2026-01-01> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/sosa/Observation> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/2026-01-01> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://portwatch.imf.org/ontology/PortTrafficObservation> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/2026-01-01> <http://www.w3.org/ns/sosa/hasFeatureOfInterest> <https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/2026-01-01> <http://www.w3.org/ns/sosa/resultTime> "2026-01-01T00:00:00+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/2026-01-01> <https://portwatch.imf.org/ontology/day> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/2026-01-01> <https://portwatch.imf.org/ontology/exportVolumeTotalTons> "4"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/2026-01-01> <https://portwatch.imf.org/ontology/importVolumeTotalTons> "8"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/2026-01-01> <https://portwatch.imf.org/ontology/month> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/2026-01-01> <https://portwatch.imf.org/ontology/observationDate> "2026-01-01"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/2026-01-01> <https://portwatch.imf.org/ontology/observedPort> <https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/2026-01-01> <https://portwatch.imf.org/ontology/portCallsTotal> "3"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/2026-01-01> <https://portwatch.imf.org/ontology/year> "2026"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/2026-01-01> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/sosa/Observation> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/2026-01-01> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://portwatch.imf.org/ontology/PortTrafficObservation> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/2026-01-01> <http://www.w3.org/ns/sosa/hasFeatureOfInterest> <https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/2026-01-01> <http://www.w3.org/ns/sosa/resultTime> "2026-01-01T00:00:00+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/2026-01-01> <https://portwatch.imf.org/ontology/day> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/2026-01-01> <https://portwatch.imf.org/ontology/exportVolumeTotalTons> "5"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/2026-01-01> <https://portwatch.imf.org/ontology/importVolumeTotalTons> "12.5"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/2026-01-01> <https://portwatch.imf.org/ontology/month> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/2026-01-01> <https://portwatch.imf.org/ontology/observationDate> "2026-01-01"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/2026-01-01> <https://portwatch.imf.org/ontology/observedPort> <https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/2026-01-01> <https://portwatch.imf.org/ontology/portCallsTotal> "2"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/2026-01-01> <https://portwatch.imf.org/ontology/year> "2026"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://portwatch.imf.org/ontology/Port> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <http://www.w3.org/2000/01/rdf-schema#label> "Synthetic Hamburg" .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <http://www.w3.org/2004/02/skos/core#prefLabel> "Synthetic Hamburg"@en .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <https://portwatch.imf.org/ontology/locatedInCountry> <https://example.org/ap2/source/portwatch/country/DEU> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <https://portwatch.imf.org/ontology/portWatchId> "demoHamburg" .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://portwatch.imf.org/ontology/Port> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <http://www.w3.org/2000/01/rdf-schema#label> "Synthetic Santos" .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <http://www.w3.org/2004/02/skos/core#prefLabel> "Synthetic Santos"@en .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <https://portwatch.imf.org/ontology/locatedInCountry> <https://example.org/ap2/source/portwatch/country/BRA> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <https://portwatch.imf.org/ontology/portWatchId> "demoSantos" .
+<https://portwatch.imf.org/ontology/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .

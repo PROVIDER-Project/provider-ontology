@@ -1,0 +1,197 @@
+@prefix ap: <http://projekt-provider.de/ontology/ap2-pilot#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://example.org/ap2/> .
+@prefix pdl: <https://provider-project.org/ontology/pdl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ap2/assertion/0> a ap:MatchAssertion ;
+    ap:dataKind ap:Synthetic ;
+    ap:evidence <https://example.org/ap2/record/portwatch/demoSantos> ;
+    ap:object <https://example.org/ap2/port/santos> ;
+    ap:relation ap:describesOperationalPort ;
+    ap:reviewStatus ap:Accepted ;
+    ap:reviewedAt "2026-01-03T00:00:00+00:00"^^xsd:dateTime ;
+    ap:reviewer "Own fixture author; no real match approval" ;
+    ap:subject <https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> .
+
+<https://example.org/ap2/assertion/1> a ap:MatchAssertion ;
+    ap:dataKind ap:Synthetic ;
+    ap:evidence <https://example.org/ap2/record/portwatch/demoSantos> ;
+    ap:object <https://example.org/ap2/source/unlocode/unlocode/br/ssz> ;
+    ap:relation ap:servesTradeLocation ;
+    ap:reviewStatus ap:Accepted ;
+    ap:reviewedAt "2026-01-03T00:00:00+00:00"^^xsd:dateTime ;
+    ap:reviewer "Own fixture author; no real match approval" ;
+    ap:subject <https://example.org/ap2/port/santos> .
+
+<https://example.org/ap2/assertion/2> a ap:MatchAssertion ;
+    ap:dataKind ap:Synthetic ;
+    ap:evidence <https://example.org/ap2/record/portwatch/demoHamburg> ;
+    ap:object <https://example.org/ap2/port/hamburg> ;
+    ap:relation ap:describesOperationalPort ;
+    ap:reviewStatus ap:Accepted ;
+    ap:reviewedAt "2026-01-03T00:00:00+00:00"^^xsd:dateTime ;
+    ap:reviewer "Own fixture author; no real match approval" ;
+    ap:subject <https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> .
+
+<https://example.org/ap2/assertion/3> a ap:MatchAssertion ;
+    ap:dataKind ap:Synthetic ;
+    ap:evidence <https://example.org/ap2/record/portwatch/demoHamburg> ;
+    ap:object <https://example.org/ap2/source/unlocode/unlocode/de/ham> ;
+    ap:relation ap:servesTradeLocation ;
+    ap:reviewStatus ap:Accepted ;
+    ap:reviewedAt "2026-01-03T00:00:00+00:00"^^xsd:dateTime ;
+    ap:reviewer "Own fixture author; no real match approval" ;
+    ap:subject <https://example.org/ap2/port/hamburg> .
+
+<https://example.org/ap2/assertion/4> a ap:MatchAssertion ;
+    ap:dataKind ap:Synthetic ;
+    ap:evidence ex:fixture-evidence ;
+    ap:object <https://example.org/ap2/port/santos> ;
+    ap:relation ap:areaOfPort ;
+    ap:reviewStatus ap:Accepted ;
+    ap:reviewedAt "2026-01-03T00:00:00+00:00"^^xsd:dateTime ;
+    ap:reviewer "Own fixture author; no real match approval" ;
+    ap:subject <https://example.org/ap2/area/santos> .
+
+<https://example.org/ap2/assertion/5> a ap:MatchAssertion ;
+    ap:dataKind ap:Synthetic ;
+    ap:evidence ex:fixture-evidence ;
+    ap:object <https://example.org/ap2/port/santos> ;
+    ap:relation ap:terminalOfPort ;
+    ap:reviewStatus ap:Accepted ;
+    ap:reviewedAt "2026-01-03T00:00:00+00:00"^^xsd:dateTime ;
+    ap:reviewer "Own fixture author; no real match approval" ;
+    ap:subject <https://example.org/ap2/terminal/santos> .
+
+<https://example.org/ap2/assertion/pending> a ap:MatchAssertion ;
+    ap:dataKind ap:Synthetic ;
+    ap:evidence ex:fixture-evidence ;
+    ap:object <https://example.org/ap2/port/santos> ;
+    ap:relation ap:describesOperationalPort ;
+    ap:reviewStatus ap:Pending ;
+    ap:subject <https://example.org/ap2/source/portwatch/portwatch/port/demoUnreviewed> .
+
+<https://example.org/ap2/episode/invented-disruption/1> a ap:EventEpisode ;
+    ap:dataKind ap:Synthetic ;
+    ap:episodeOf <https://example.org/ap2/event/invented-disruption> .
+
+<https://example.org/ap2/scenario/entity/hamburg> a pdl:Infrastructure ;
+    ap:dataKind ap:Synthetic ;
+    ap:representsFacility <https://example.org/ap2/port/hamburg> .
+
+<https://example.org/ap2/scenario/entity/santos> a pdl:Infrastructure ;
+    ap:dataKind ap:Synthetic ;
+    ap:representsFacility <https://example.org/ap2/port/santos> .
+
+<https://example.org/ap2/scenario/event/invented-disruption> a pdl:Event ;
+    ap:dataKind ap:Synthetic ;
+    ap:representsEvent <https://example.org/ap2/event/invented-disruption> .
+
+<https://example.org/ap2/activity/hamburg/2026-01-01> a ap:ObservationActivity ;
+    ap:dataKind ap:Synthetic ;
+    sosa:hasFeatureOfInterest <https://example.org/ap2/port/hamburg> ;
+    sosa:hasResult <https://example.org/ap2/observation/hamburg/2026-01-01> .
+
+<https://example.org/ap2/activity/santos/2026-01-01> a ap:ObservationActivity ;
+    ap:dataKind ap:Synthetic ;
+    sosa:hasFeatureOfInterest <https://example.org/ap2/port/santos> ;
+    sosa:hasResult <https://example.org/ap2/observation/santos/2026-01-01> .
+
+<https://example.org/ap2/area/santos> a ap:PortArea ;
+    ap:areaOfPort <https://example.org/ap2/port/santos> .
+
+<https://example.org/ap2/measurement/hamburg/calls> a ap:Measurement ;
+    ap:metric ap:DailyPortCalls ;
+    ap:unit ap:PortCallCount ;
+    ap:value 3.0 .
+
+<https://example.org/ap2/measurement/hamburg/export> a ap:Measurement ;
+    ap:metric ap:ExportShipmentEstimate ;
+    ap:unit ap:MetricTonne ;
+    ap:value 4.0 .
+
+<https://example.org/ap2/measurement/hamburg/import> a ap:Measurement ;
+    ap:metric ap:ImportShipmentEstimate ;
+    ap:unit ap:MetricTonne ;
+    ap:value 8.0 .
+
+<https://example.org/ap2/measurement/santos/calls> a ap:Measurement ;
+    ap:metric ap:DailyPortCalls ;
+    ap:unit ap:PortCallCount ;
+    ap:value 2.0 .
+
+<https://example.org/ap2/measurement/santos/export> a ap:Measurement ;
+    ap:metric ap:ExportShipmentEstimate ;
+    ap:unit ap:MetricTonne ;
+    ap:value 5.0 .
+
+<https://example.org/ap2/measurement/santos/import> a ap:Measurement ;
+    ap:metric ap:ImportShipmentEstimate ;
+    ap:unit ap:MetricTonne ;
+    ap:value 12.5 .
+
+<https://example.org/ap2/observation/hamburg/2026-01-01> a ap:Observation ;
+    ap:dataKind ap:Synthetic ;
+    ap:hasMeasurement <https://example.org/ap2/measurement/hamburg/calls>,
+        <https://example.org/ap2/measurement/hamburg/export>,
+        <https://example.org/ap2/measurement/hamburg/import> ;
+    ap:observedDay "2026-01-01"^^xsd:date ;
+    ap:observedFeature <https://example.org/ap2/port/hamburg> ;
+    ap:sourceObservation <https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/2026-01-01> ;
+    prov:wasGeneratedBy <https://example.org/ap2/activity/hamburg/2026-01-01> .
+
+<https://example.org/ap2/observation/santos/2026-01-01> a ap:Observation ;
+    ap:dataKind ap:Synthetic ;
+    ap:hasMeasurement <https://example.org/ap2/measurement/santos/calls>,
+        <https://example.org/ap2/measurement/santos/export>,
+        <https://example.org/ap2/measurement/santos/import> ;
+    ap:observedDay "2026-01-01"^^xsd:date ;
+    ap:observedFeature <https://example.org/ap2/port/santos> ;
+    ap:sourceObservation <https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/2026-01-01> ;
+    prov:wasGeneratedBy <https://example.org/ap2/activity/santos/2026-01-01> .
+
+<https://example.org/ap2/source/portwatch/portwatch/port/demoUnreviewed> a ap:SourcePortFeature .
+
+<https://example.org/ap2/terminal/santos> a ap:Terminal ;
+    ap:terminalOfPort <https://example.org/ap2/port/santos> .
+
+<https://example.org/ap2/event/invented-disruption> a ap:Event ;
+    ap:dataKind ap:Synthetic .
+
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> ap:countryISO3 "DEU" ;
+    ap:describesOperationalPort <https://example.org/ap2/port/hamburg> ;
+    prov:wasDerivedFrom <https://example.org/ap2/record/portwatch/demoHamburg> .
+
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> ap:countryISO3 "BRA" ;
+    ap:describesOperationalPort <https://example.org/ap2/port/santos> ;
+    prov:wasDerivedFrom <https://example.org/ap2/record/portwatch/demoSantos> .
+
+<https://example.org/ap2/record/portwatch/demoHamburg> a ap:SourceRecord ;
+    ap:describesFeature <https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> ;
+    ap:sourceRowHash "0833c6486574802204aefe6e28b46c3a0321b018a9d53de6841223bfbeda4d6b" ;
+    dcterms:identifier "demoHamburg" ;
+    dcterms:isPartOf <https://example.org/ap2/source-artifact/85a11abee0ba47ce4c70559334d55b544b0ad669802d2d1ee51f2bded2c5a044> .
+
+<https://example.org/ap2/record/portwatch/demoSantos> a ap:SourceRecord ;
+    ap:describesFeature <https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> ;
+    ap:sourceRowHash "0c1cc2e9a71d3b51f3e7479a6728635d985890575995e9171d4b804d697ccad3" ;
+    dcterms:identifier "demoSantos" ;
+    dcterms:isPartOf <https://example.org/ap2/source-artifact/85a11abee0ba47ce4c70559334d55b544b0ad669802d2d1ee51f2bded2c5a044> .
+
+<https://example.org/ap2/port/hamburg> a ap:OperationalPort ;
+    rdfs:label "Synthetic Hamburg" ;
+    ap:countryISO2 "DE" ;
+    ap:countryISO3 "DEU" ;
+    ap:dataKind ap:Synthetic ;
+    ap:servesTradeLocation <https://example.org/ap2/source/unlocode/unlocode/de/ham> .
+
+<https://example.org/ap2/port/santos> a ap:OperationalPort ;
+    rdfs:label "Synthetic Santos" ;
+    ap:countryISO2 "BR" ;
+    ap:countryISO3 "BRA" ;
+    ap:dataKind ap:Synthetic ;
+    ap:servesTradeLocation <https://example.org/ap2/source/unlocode/unlocode/br/ssz> .

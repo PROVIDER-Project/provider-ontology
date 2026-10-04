@@ -1,0 +1,87 @@
+{
+  "ports": {
+    "artifact_id": "85a11abee0ba47ce4c70559334d55b544b0ad669802d2d1ee51f2bded2c5a044",
+    "inputs": [
+      {
+        "bytes": 223,
+        "path": "input.csv",
+        "sha256": "6a696a14a04bf4283bad9e07828bc37d1bde0a749edeb6c1f672cd4d56e1de54"
+      }
+    ],
+    "source": {
+      "release": "own-model-fixtures-v1",
+      "url": "https://example.org/ap2/fixtures/ports.csv"
+    },
+    "data_kind": "synthetic",
+    "counts": {
+      "chokepoints": 0,
+      "connections": 0,
+      "geometries": 2,
+      "input_records": 2,
+      "observations": 0,
+      "ports": 2,
+      "triples": 133
+    },
+    "software": {
+      "name": "provider-datasets",
+      "version": "0.6.0"
+    },
+    "fixture_repository_commit": "a5491082c23b058ff1a77891570368c2e596acc3"
+  },
+  "daily-ports": {
+    "artifact_id": "2ef8cba3dbc886581632098620e0a978fba29537b078dbad0396898b3da6450c",
+    "inputs": [
+      {
+        "bytes": 153,
+        "path": "input.csv",
+        "sha256": "55185e54d3f713d08560c49b960c30a680851ad684a7efcead0705a36b7eee5f"
+      }
+    ],
+    "source": {
+      "release": "own-model-fixtures-v1",
+      "url": "https://example.org/ap2/fixtures/daily-ports.csv"
+    },
+    "data_kind": "synthetic",
+    "counts": {
+      "chokepoints": 0,
+      "connections": 0,
+      "geometries": 0,
+      "input_records": 2,
+      "observations": 2,
+      "ports": 2,
+      "triples": 49
+    },
+    "software": {
+      "name": "provider-datasets",
+      "version": "0.6.0"
+    },
+    "fixture_repository_commit": "a5491082c23b058ff1a77891570368c2e596acc3"
+  },
+  "unlocode": {
+    "artifact_id": "124ffd64b04a610953e95e373496f99dca011944155369eb6b140ad680717c9f",
+    "inputs": [
+      {
+        "bytes": 1136,
+        "path": "input.json",
+        "sha256": "c5269833334c62153a3e7f53e352e9517d52ca4c1202069cf86498c863015d80"
+      }
+    ],
+    "source": {
+      "release": "own-model-fixtures-v1",
+      "url": "https://example.org/ap2/fixtures/unlocode.json"
+    },
+    "data_kind": "synthetic",
+    "counts": {
+      "geometries": 0,
+      "input_records": 2,
+      "locations": 2,
+      "source_records": 2,
+      "triples": 61
+    },
+    "software": {
+      "name": "provider-datasets",
+      "version": "0.6.0"
+    },
+    "fixture_repository_commit": "a5491082c23b058ff1a77891570368c2e596acc3"
+  }
+}

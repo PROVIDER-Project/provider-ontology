@@ -1,0 +1,85 @@
+@prefix ap: <http://projekt-provider.de/ontology/ap2-pilot#> .
+@prefix core: <http://projekt-provider.de/ontology/> .
+@prefix infra: <http://projekt-provider.de/ontology/infrastructure#> .
+@prefix pdl: <https://provider-project.org/ontology/pdl#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://projekt-provider.de/ontology/ap2-pilot> a owl:Ontology ;
+  owl:versionInfo "0.1.0-rc1" ;
+  owl:imports <http://projekt-provider.de/ontology/> ;
+  dct:title "PROVIDER AP2 pilot model profile"@en ;
+  dct:description "Local review candidate; not a partner-approved ontology release or production data approval."@en .
+
+ap:OperationalPort a owl:Class ; rdfs:subClassOf core:Facility, infra:Port ;
+  rdfs:comment "Canonical operational maritime/inland port facility, identified independently of source record and trade-location code."@en .
+ap:Terminal a owl:Class ; rdfs:subClassOf core:Facility ;
+  rdfs:comment "Maritime cargo/passenger terminal; not the airport class infrastructure:Terminal."@en .
+ap:PortArea a owl:Class ; rdfs:subClassOf geo:Feature ;
+  rdfs:comment "Geographic representation of an area associated with a port, not the operational port identity."@en .
+ap:TradeLocation a owl:Class ; rdfs:subClassOf geo:Feature ;
+  rdfs:comment "Location in a trade code list; maritime function does not establish identity with a physical port."@en .
+ap:SourceRecord a owl:Class ; rdfs:subClassOf prov:Entity ;
+  rdfs:comment "Release/artifact-bound source row or feature representation, not its described physical facility."@en .
+ap:SourcePortFeature a owl:Class ; rdfs:subClassOf geo:Feature ;
+  rdfs:comment "Source-specific port feature; association with a canonical port requires a reviewed assertion."@en .
+ap:Observation a owl:Class ; rdfs:subClassOf core:Observation ;
+  rdfs:comment "Observation information/result, following the existing PROVIDER BFO alignment. Distinct from the activity that produces it."@en .
+ap:ObservationActivity a owl:Class ; rdfs:subClassOf sosa:Observation ;
+  rdfs:comment "Observation/estimation activity, distinct from the resulting information object."@en .
+ap:SourceObservation a owl:Class ; rdfs:comment "Source-specific observation representation; source SOSA typing is preserved without globally retyping it as a PROVIDER result."@en .
+ap:observedFeature a owl:ObjectProperty ; rdfs:domain ap:Observation ; rdfs:range geo:Feature .
+ap:sourceObservation a owl:ObjectProperty ; rdfs:domain ap:Observation ; rdfs:range ap:SourceObservation .
+ap:Event a owl:Class ; rdfs:subClassOf core:Event .
+ap:EventEpisode a owl:Class ; rdfs:subClassOf prov:Entity ;
+  rdfs:comment "Source-specific episode/version within an event; scores and episode geometry stay scoped here."@en .
+ap:MatchAssertion a owl:Class ; rdfs:subClassOf prov:Entity ;
+  rdfs:comment "Qualified directional candidate or reviewed association with evidence and a decision; never an automatic owl:sameAs."@en .
+ap:Measurement a owl:Class .
+ap:Metric a owl:Class .
+ap:Unit a owl:Class .
+
+# These distinctions apply to role-separated nodes in this pilot, not to all external vocabularies.
+[] a owl:AllDisjointClasses ; owl:members (ap:OperationalPort ap:TradeLocation ap:SourceRecord ap:PortArea ap:Terminal) .
+
+ap:describesOperationalPort a owl:ObjectProperty ; rdfs:domain ap:SourcePortFeature ; rdfs:range ap:OperationalPort .
+ap:servesTradeLocation a owl:ObjectProperty ; rdfs:domain ap:OperationalPort ; rdfs:range ap:TradeLocation .
+ap:areaOfPort a owl:ObjectProperty ; rdfs:domain ap:PortArea ; rdfs:range ap:OperationalPort .
+ap:terminalOfPort a owl:ObjectProperty ; rdfs:domain ap:Terminal ; rdfs:range ap:OperationalPort .
+ap:describesFeature a owl:ObjectProperty ; rdfs:domain ap:SourceRecord ; rdfs:range geo:Feature .
+ap:episodeOf a owl:ObjectProperty ; rdfs:domain ap:EventEpisode ; rdfs:range ap:Event .
+# Alignment uses explicit representation relations, not class/property equivalence.
+ap:representsFacility a owl:ObjectProperty ; rdfs:domain pdl:Infrastructure ; rdfs:range core:Facility .
+ap:representsEvent a owl:ObjectProperty ; rdfs:domain pdl:Event ; rdfs:range core:Event .
+ap:subject a owl:ObjectProperty ; rdfs:domain ap:MatchAssertion .
+ap:relation a owl:ObjectProperty ; rdfs:domain ap:MatchAssertion ; rdfs:range rdf:Property .
+ap:object a owl:ObjectProperty ; rdfs:domain ap:MatchAssertion .
+ap:reviewStatus a owl:ObjectProperty ; rdfs:domain ap:MatchAssertion .
+ap:evidence a owl:ObjectProperty ; rdfs:domain ap:MatchAssertion .
+ap:dataKind a owl:ObjectProperty .
+ap:Pending a prov:Entity .
+ap:Accepted a prov:Entity .
+ap:Rejected a prov:Entity .
+ap:Synthetic a prov:Entity .
+ap:Real a prov:Entity .
+ap:reviewer a owl:DatatypeProperty ; rdfs:range xsd:string .
+ap:reviewedAt a owl:DatatypeProperty ; rdfs:range xsd:dateTime .
+ap:sourceRowHash a owl:DatatypeProperty ; rdfs:range xsd:string .
+ap:countryISO2 a owl:DatatypeProperty ; rdfs:range xsd:string .
+ap:countryISO3 a owl:DatatypeProperty ; rdfs:range xsd:string .
+ap:observedDay a owl:DatatypeProperty ; rdfs:domain ap:Observation ; rdfs:range xsd:date .
+ap:hasMeasurement a owl:ObjectProperty ; rdfs:domain ap:Observation ; rdfs:range ap:Measurement .
+ap:metric a owl:ObjectProperty ; rdfs:domain ap:Measurement ; rdfs:range ap:Metric .
+ap:unit a owl:ObjectProperty ; rdfs:range ap:Unit .
+ap:value a owl:DatatypeProperty ; rdfs:domain ap:Measurement ; rdfs:range xsd:decimal .
+ap:PortCallCount a ap:Unit ; rdfs:comment "Count of port calls; not a count of unique ships."@en .
+ap:MetricTonne a ap:Unit ; rdfs:comment "1000 kilograms; PortWatch shipment estimate, not a commodity-specific measurement."@en .
+ap:ImportShipmentEstimate a ap:Metric ; ap:unit ap:MetricTonne .
+ap:ExportShipmentEstimate a ap:Metric ; ap:unit ap:MetricTonne .
+ap:DailyPortCalls a ap:Metric ; ap:unit ap:PortCallCount .

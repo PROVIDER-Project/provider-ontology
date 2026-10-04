@@ -1,0 +1,64 @@
+{
+  "id": "provider-ap2-pilot",
+  "version": "0.1.0-rc1",
+  "status": "local-review-candidate",
+  "partner_review": "pending",
+  "core_baseline": {
+    "version": "0.2.0",
+    "commit": "ea060ca2f9f9a253947f6f66e572679ed8f0a75d",
+    "namespace": "http://projekt-provider.de/ontology/"
+  },
+  "pdl_baseline": {
+    "version": "1.2",
+    "repository": "https://github.com/PROVIDER-Project/provider-pdl",
+    "commit": "7b442bac5a00d5ede62dd0736efd5a790a7a259a",
+    "path": "spec/pdl-ontology.ttl",
+    "sha256": "163c6344e2a08dbb6d654871b8dc8f80de6fabf1b386825538cf1495850fa9bf",
+    "license": "CC BY 4.0 as declared by ontology"
+  },
+  "dataset_api_baseline": {
+    "version": "0.6.0",
+    "commit": "5a406628cd18ceb46173a95b410f03d8ea0f5107",
+    "artifact_contract": "1.3.0",
+    "existing_manifest_profile": "provider-source-vocabularies 1.0.0; reference-only"
+  },
+  "local_reference_files": {
+    "ontology/provider-main.ttl": "f918fabee13ad6c1a0be8d495c86752ef2e381f032e32c30d803766a01868c19",
+    "ontology/infrastructure.ttl": "7526a533986b516efe1c05a4811f58ec059797f41d0671d80263fb07f2feec17",
+    "ontology/ap2-pilot-profile.ttl": "34db939286ea3fd7a363f185beff6b619190cb0c56e1ba6f63c161a3fcaf1021",
+    "ontology/ap2-source-alignment.ttl": "b1ebd05f6cf6925e1a31bf932098dfb46593808c8624f4fd122f2e28046ee467",
+    "tests/reference/pdl-ontology-1.2.ttl": "163c6344e2a08dbb6d654871b8dc8f80de6fabf1b386825538cf1495850fa9bf",
+    "ontology/provider-bfo-alignment.ttl": "1fb914cf96fd36af007b19d2b70c3446229b2607d9ca18198df68882b08bc60f"
+  },
+  "example_files": {
+    "examples/ap2-pilot/canonical-example.ttl": "95b6b0fab2eae8a16af948e69a3de2874c296996af6a1619e0bdc082d3346bbc",
+    "examples/ap2-pilot/source-daily-ports.nt": "5f98b9b92a6847359dca92ab0fab2c2dfd97df2fa31c4e522b85443186ae0c8a",
+    "examples/ap2-pilot/source-ports.nt": "fecd1f1ea92445f89665636544f9ae5b4f49bd1a1eebec5e77df0b67641b1094",
+    "examples/ap2-pilot/source-unlocode.nt": "5258559c3551e0f29508853b9bc2f5336aad5572b3e3bdb2f3708ff2f97fe20d"
+  },
+  "example_data_kind": "synthetic",
+  "conformance": "Selected pilot rules and explicit source alignment; no full SHACL/OWL or source-rights approval",
+  "uri_policy": {
+    "profile_namespace": "http://projekt-provider.de/ontology/ap2-pilot#",
+    "future_canonical_port_base": "https://projekt-provider.de/id/port/",
+    "source_identifiers": "preserve existing source URI and artifact/release context",
+    "production_graph_base": "https://w3id.org/provider/graph/",
+    "synthetic_resource_base": "https://example.org/ap2/",
+    "namespace_replacement": "no blanket HTTP/HTTPS or example.org replacement"
+  },
+  "units": {
+    "daily_port_calls": "integer count of port calls, not unique ships",
+    "daily_import_export": "decimal AIS-derived shipment estimate in metric tonnes; not soy-specific",
+    "chokepoint_capacity": "source-specific estimate retained; no generic port import/export equivalence"
+  },
+  "temporal_policy": {
+    "observed_day": "ISO xsd:date; independent of acquisition time",
+    "source_result_time": "midnight UTC may encode the day; do not treat as measurement/acquisition instant",
+    "acquisition": "separate manifest run receipt",
+    "unlocode_source_date": "raw source token, not automatically parsed into observation day"
+  },
+  "country_policy": "ISO2/ISO3 remain distinct; explicit reference mapping; conflicts block reviewed association",
+  "source_example_fixture_commit": "a5491082c23b058ff1a77891570368c2e596acc3",
+  "namespace_audit": "docs/ap2-namespace-audit.json",
+  "legacy_migration": "docs/ap2-legacy-migration.json"
+}

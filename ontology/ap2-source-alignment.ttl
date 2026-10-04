@@ -1,0 +1,18 @@
+@prefix ap: <http://projekt-provider.de/ontology/ap2-pilot#> .
+@prefix src: <https://projekt-provider.de/ontology/> .
+@prefix pw: <https://portwatch.imf.org/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://projekt-provider.de/ontology/ap2-source-alignment> a owl:Ontology ;
+  owl:versionInfo "0.1.0-rc1" ;
+  owl:imports <http://projekt-provider.de/ontology/ap2-pilot> ;
+  rdfs:comment "Explicit opt-in source compatibility layer. No wholesale HTTP/HTTPS equivalence or URI replacement."@en .
+
+pw:Port rdfs:subClassOf ap:SourcePortFeature .
+src:Port rdfs:subClassOf ap:SourcePortFeature .
+src:TradeLocation rdfs:subClassOf ap:TradeLocation .
+src:SourceRecord rdfs:subClassOf ap:SourceRecord .
+pw:PortTrafficObservation rdfs:subClassOf ap:SourceObservation .
+pw:ChokepointTransitObservation rdfs:subClassOf ap:SourceObservation .
+# Other static estimates, GDACS types and all existing source predicates stay source-specific.

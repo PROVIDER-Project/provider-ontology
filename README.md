@@ -267,3 +267,7 @@ Known state:
 ## AP2-Architektur und Dataset-Schnittstelle
 
 [Baseline, URI-Regeln und Konformitätsgrenzen](docs/ap2-dataset-interface.md).
+
+## AP2 pilot model profile (J1-07)
+
+The local review candidate 0.1.0-rc1, explicit source compatibility layer, pinned PDL 1.2 reference and tested own examples are documented in [docs/ap2-pilot-profile.md](docs/ap2-pilot-profile.md). It preserves Core 0.2.0 and distinguishes operational ports, trade locations, source records, observation results/activities and scenario representations. Partner review and real source/identity approval remain pending.

@@ -1,0 +1,133 @@
+<https://example.org/ap2/source/portwatch/country/BRA> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://portwatch.imf.org/ontology/Country> .
+<https://example.org/ap2/source/portwatch/country/BRA> <http://www.w3.org/2000/01/rdf-schema#label> "Brazil" .
+<https://example.org/ap2/source/portwatch/country/BRA> <http://www.w3.org/2004/02/skos/core#prefLabel> "Brazil"@en .
+<https://example.org/ap2/source/portwatch/country/BRA> <https://portwatch.imf.org/ontology/countryName> "Brazil" .
+<https://example.org/ap2/source/portwatch/country/BRA> <https://portwatch.imf.org/ontology/iso3> "BRA" .
+<https://example.org/ap2/source/portwatch/country/DEU> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://portwatch.imf.org/ontology/Country> .
+<https://example.org/ap2/source/portwatch/country/DEU> <http://www.w3.org/2000/01/rdf-schema#label> "Germany" .
+<https://example.org/ap2/source/portwatch/country/DEU> <http://www.w3.org/2004/02/skos/core#prefLabel> "Germany"@en .
+<https://example.org/ap2/source/portwatch/country/DEU> <https://portwatch.imf.org/ontology/countryName> "Germany" .
+<https://example.org/ap2/source/portwatch/country/DEU> <https://portwatch.imf.org/ontology/iso3> "DEU" .
+<https://example.org/ap2/source/portwatch/dataset/portwatch/ports> <http://purl.org/dc/terms/conformsTo> <https://portwatch.imf.org/ontology/> .
+<https://example.org/ap2/source/portwatch/dataset/portwatch/ports> <http://purl.org/dc/terms/conformsTo> <https://projekt-provider.de/ontology/PortWatchPortAndChokepointEstimatesOntologyPart> .
+<https://example.org/ap2/source/portwatch/dataset/portwatch/ports> <http://purl.org/dc/terms/description> "Static PortWatch ports database with locations, country links, vessel composition, and derived trade profile estimates" .
+<https://example.org/ap2/source/portwatch/dataset/portwatch/ports> <http://purl.org/dc/terms/source> <https://portwatch.imf.org/> .
+<https://example.org/ap2/source/portwatch/dataset/portwatch/ports> <http://purl.org/dc/terms/title> "PortWatch Ports Data" .
+<https://example.org/ap2/source/portwatch/dataset/portwatch/ports> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://portwatch.imf.org/ontology/Dataset> .
+<https://example.org/ap2/source/portwatch/dataset/portwatch/ports> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/Dataset> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoHamburg/1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/EstimatedObservation> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoHamburg/1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/PortTradeCategoryRankEstimate> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoHamburg/1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/TradeCategoryRankEstimate> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoHamburg/1> <https://projekt-provider.de/ontology/estimatedForMaritimeLocation> <https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoHamburg/1> <https://projekt-provider.de/ontology/estimatedForPort> <https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoHamburg/1> <https://projekt-provider.de/ontology/isModelDerived> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoHamburg/1> <https://projekt-provider.de/ontology/isOfficialStatistic> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoHamburg/1> <https://projekt-provider.de/ontology/rank> "1"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoHamburg/1> <https://projekt-provider.de/ontology/rankedTradeCategory> <https://projekt-provider.de/ontology/PWMineralProducts> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoHamburg/1> <https://projekt-provider.de/ontology/sourceDataset> <https://example.org/ap2/source/portwatch/dataset/portwatch/ports> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoSantos/1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/EstimatedObservation> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoSantos/1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/PortTradeCategoryRankEstimate> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoSantos/1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/TradeCategoryRankEstimate> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoSantos/1> <https://projekt-provider.de/ontology/estimatedForMaritimeLocation> <https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoSantos/1> <https://projekt-provider.de/ontology/estimatedForPort> <https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoSantos/1> <https://projekt-provider.de/ontology/isModelDerived> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoSantos/1> <https://projekt-provider.de/ontology/isOfficialStatistic> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoSantos/1> <https://projekt-provider.de/ontology/rank> "1"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoSantos/1> <https://projekt-provider.de/ontology/rankedTradeCategory> <https://projekt-provider.de/ontology/PWVegetableProducts> .
+<https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoSantos/1> <https://projekt-provider.de/ontology/sourceDataset> <https://example.org/ap2/source/portwatch/dataset/portwatch/ports> .
+<https://example.org/ap2/source/portwatch/geometry/portwatch/port/demoHamburg> <http://www.opengis.net/ont/geosparql#asWKT> "POINT(4 3)"^^<http://www.opengis.net/ont/geosparql#wktLiteral> .
+<https://example.org/ap2/source/portwatch/geometry/portwatch/port/demoHamburg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.opengis.net/ont/geosparql#Geometry> .
+<https://example.org/ap2/source/portwatch/geometry/portwatch/port/demoSantos> <http://www.opengis.net/ont/geosparql#asWKT> "POINT(2 1)"^^<http://www.opengis.net/ont/geosparql#wktLiteral> .
+<https://example.org/ap2/source/portwatch/geometry/portwatch/port/demoSantos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.opengis.net/ont/geosparql#Geometry> .
+<https://example.org/ap2/source/portwatch/measure/port-traffic-profile/demoHamburg/total> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/PortActivityMeasure> .
+<https://example.org/ap2/source/portwatch/measure/port-traffic-profile/demoHamburg/total> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/VesselTrafficMeasure> .
+<https://example.org/ap2/source/portwatch/measure/port-traffic-profile/demoHamburg/total> <https://projekt-provider.de/ontology/averageAnnualVesselMovementCount> "8"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://example.org/ap2/source/portwatch/measure/port-traffic-profile/demoHamburg/total> <https://projekt-provider.de/ontology/forVesselCategory> <https://projekt-provider.de/ontology/AllTrackedVesselsCategory> .
+<https://example.org/ap2/source/portwatch/measure/port-traffic-profile/demoSantos/total> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/PortActivityMeasure> .
+<https://example.org/ap2/source/portwatch/measure/port-traffic-profile/demoSantos/total> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/VesselTrafficMeasure> .
+<https://example.org/ap2/source/portwatch/measure/port-traffic-profile/demoSantos/total> <https://projekt-provider.de/ontology/averageAnnualVesselMovementCount> "12.5"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://example.org/ap2/source/portwatch/measure/port-traffic-profile/demoSantos/total> <https://projekt-provider.de/ontology/forVesselCategory> <https://projekt-provider.de/ontology/AllTrackedVesselsCategory> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoHamburg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/sosa/Observation> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoHamburg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/MaritimeTradeProfileObservation> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoHamburg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/PortTradeProfileObservation> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoHamburg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/PortWatchDerivedObservation> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoHamburg> <http://www.w3.org/ns/sosa/hasFeatureOfInterest> <https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoHamburg> <https://projekt-provider.de/ontology/estimatedForMaritimeLocation> <https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoHamburg> <https://projekt-provider.de/ontology/estimatedForPort> <https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoHamburg> <https://projekt-provider.de/ontology/hasRankedTradeCategoryEstimate> <https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoHamburg/1> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoHamburg> <https://projekt-provider.de/ontology/isModelDerived> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoHamburg> <https://projekt-provider.de/ontology/isOfficialStatistic> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoHamburg> <https://projekt-provider.de/ontology/rankingBasis> "PortWatch ranked HS-derived trade categories" .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoHamburg> <https://projekt-provider.de/ontology/sourceDataset> <https://example.org/ap2/source/portwatch/dataset/portwatch/ports> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoSantos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/sosa/Observation> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoSantos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/MaritimeTradeProfileObservation> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoSantos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/PortTradeProfileObservation> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoSantos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/PortWatchDerivedObservation> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoSantos> <http://www.w3.org/ns/sosa/hasFeatureOfInterest> <https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoSantos> <https://projekt-provider.de/ontology/estimatedForMaritimeLocation> <https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoSantos> <https://projekt-provider.de/ontology/estimatedForPort> <https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoSantos> <https://projekt-provider.de/ontology/hasRankedTradeCategoryEstimate> <https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoSantos/1> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoSantos> <https://projekt-provider.de/ontology/isModelDerived> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoSantos> <https://projekt-provider.de/ontology/isOfficialStatistic> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoSantos> <https://projekt-provider.de/ontology/rankingBasis> "PortWatch ranked HS-derived trade categories" .
+<https://example.org/ap2/source/portwatch/observation/port-trade-profile/demoSantos> <https://projekt-provider.de/ontology/sourceDataset> <https://example.org/ap2/source/portwatch/dataset/portwatch/ports> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoHamburg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/sosa/Observation> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoHamburg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/MaritimeTrafficProfileObservation> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoHamburg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/PortTrafficProfileObservation> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoHamburg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/PortWatchDerivedObservation> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoHamburg> <http://www.w3.org/ns/sosa/hasFeatureOfInterest> <https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoHamburg> <https://projekt-provider.de/ontology/hasVesselTrafficMeasure> <https://example.org/ap2/source/portwatch/measure/port-traffic-profile/demoHamburg/total> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoHamburg> <https://projekt-provider.de/ontology/isModelDerived> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoHamburg> <https://projekt-provider.de/ontology/isOfficialStatistic> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoHamburg> <https://projekt-provider.de/ontology/observedAtMaritimeLocation> <https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoHamburg> <https://projekt-provider.de/ontology/sourceDataset> <https://example.org/ap2/source/portwatch/dataset/portwatch/ports> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoSantos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/sosa/Observation> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoSantos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/MaritimeTrafficProfileObservation> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoSantos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/PortTrafficProfileObservation> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoSantos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/PortWatchDerivedObservation> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoSantos> <http://www.w3.org/ns/sosa/hasFeatureOfInterest> <https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoSantos> <https://projekt-provider.de/ontology/hasVesselTrafficMeasure> <https://example.org/ap2/source/portwatch/measure/port-traffic-profile/demoSantos/total> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoSantos> <https://projekt-provider.de/ontology/isModelDerived> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoSantos> <https://projekt-provider.de/ontology/isOfficialStatistic> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoSantos> <https://projekt-provider.de/ontology/observedAtMaritimeLocation> <https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> .
+<https://example.org/ap2/source/portwatch/observation/port-traffic-profile/demoSantos> <https://projekt-provider.de/ontology/sourceDataset> <https://example.org/ap2/source/portwatch/dataset/portwatch/ports> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <http://www.opengis.net/ont/geosparql#hasGeometry> <https://example.org/ap2/source/portwatch/geometry/portwatch/port/demoHamburg> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.opengis.net/ont/geosparql#Feature> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://portwatch.imf.org/ontology/Port> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/Port> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <http://www.w3.org/2000/01/rdf-schema#label> "Synthetic Hamburg" .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <http://www.w3.org/2004/02/skos/core#prefLabel> "Synthetic Hamburg"@en .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <https://portwatch.imf.org/ontology/locatedInCountry> <https://example.org/ap2/source/portwatch/country/DEU> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <https://portwatch.imf.org/ontology/portName> "Synthetic Hamburg" .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <https://portwatch.imf.org/ontology/portWatchId> "demoHamburg" .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoHamburg> <https://portwatch.imf.org/ontology/unlocode> "DE HAM" .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <http://www.opengis.net/ont/geosparql#hasGeometry> <https://example.org/ap2/source/portwatch/geometry/portwatch/port/demoSantos> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.opengis.net/ont/geosparql#Feature> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://portwatch.imf.org/ontology/Port> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/Port> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <http://www.w3.org/2000/01/rdf-schema#label> "Synthetic Santos" .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <http://www.w3.org/2004/02/skos/core#prefLabel> "Synthetic Santos"@en .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <https://portwatch.imf.org/ontology/locatedInCountry> <https://example.org/ap2/source/portwatch/country/BRA> .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <https://portwatch.imf.org/ontology/portName> "Synthetic Santos" .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <https://portwatch.imf.org/ontology/portWatchId> "demoSantos" .
+<https://example.org/ap2/source/portwatch/portwatch/port/demoSantos> <https://portwatch.imf.org/ontology/unlocode> "BR SSZ" .
+<https://portwatch.imf.org/ontology/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<https://projekt-provider.de/ontology/PWMineralProducts> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://projekt-provider.de/ontology/PWMineralProducts> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/CommodityGroup> .
+<https://projekt-provider.de/ontology/PWMineralProducts> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/PortWatchTradeCategory> .
+<https://projekt-provider.de/ontology/PWMineralProducts> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/TradeCategory> .
+<https://projekt-provider.de/ontology/PWMineralProducts> <http://www.w3.org/2000/01/rdf-schema#label> "Mineral Products" .
+<https://projekt-provider.de/ontology/PWMineralProducts> <http://www.w3.org/2004/02/skos/core#inScheme> <https://projekt-provider.de/ontology/PortWatchTradeCategoryScheme> .
+<https://projekt-provider.de/ontology/PWMineralProducts> <http://www.w3.org/2004/02/skos/core#prefLabel> "Mineral Products"@en .
+<https://projekt-provider.de/ontology/PWMineralProducts> <https://projekt-provider.de/ontology/categoryLabelFromSource> "Mineral Products" .
+<https://projekt-provider.de/ontology/PWMineralProducts> <https://projekt-provider.de/ontology/classificationSystem> "PortWatch 13 HS-derived trade categories" .
+<https://projekt-provider.de/ontology/PWVegetableProducts> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://projekt-provider.de/ontology/PWVegetableProducts> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/CommodityGroup> .
+<https://projekt-provider.de/ontology/PWVegetableProducts> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/PortWatchTradeCategory> .
+<https://projekt-provider.de/ontology/PWVegetableProducts> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://projekt-provider.de/ontology/TradeCategory> .
+<https://projekt-provider.de/ontology/PWVegetableProducts> <http://www.w3.org/2000/01/rdf-schema#label> "Vegetable Products" .
+<https://projekt-provider.de/ontology/PWVegetableProducts> <http://www.w3.org/2004/02/skos/core#inScheme> <https://projekt-provider.de/ontology/PortWatchTradeCategoryScheme> .
+<https://projekt-provider.de/ontology/PWVegetableProducts> <http://www.w3.org/2004/02/skos/core#prefLabel> "Vegetable Products"@en .
+<https://projekt-provider.de/ontology/PWVegetableProducts> <https://projekt-provider.de/ontology/categoryLabelFromSource> "Vegetable Products" .
+<https://projekt-provider.de/ontology/PWVegetableProducts> <https://projekt-provider.de/ontology/classificationSystem> "PortWatch 13 HS-derived trade categories" .
+<https://projekt-provider.de/ontology/PortWatchPortAndChokepointEstimatesOntologyPart> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
