@@ -1,0 +1,153 @@
+{
+  "id": "provider-ap2-port-shacl",
+  "version": "0.1.0-rc1",
+  "status": "local-review-candidate",
+  "model_profile": "provider-ap2-pilot 0.1.0-rc1",
+  "core_version": "0.2.0",
+  "model_commit": "369c8cf91ab1c01e21770f98042300c407fb7a8f",
+  "pdl": {
+    "version": "1.2",
+    "repository": "https://github.com/PROVIDER-Project/provider-pdl",
+    "commit": "7b442bac5a00d5ede62dd0736efd5a790a7a259a",
+    "path": "spec/pdl-ontology.ttl",
+    "sha256": "163c6344e2a08dbb6d654871b8dc8f80de6fabf1b386825538cf1495850fa9bf",
+    "license": "CC BY 4.0 as declared by ontology"
+  },
+  "validator_versions": {
+    "pyshacl": "0.40.1",
+    "rdflib": "7.6.0",
+    "owlrl": "7.6.2"
+  },
+  "ontology_files": [
+    "ontology/provider-main.ttl",
+    "ontology/infrastructure.ttl",
+    "ontology/ap2-pilot-profile.ttl",
+    "ontology/ap2-source-alignment.ttl",
+    "tests/reference/pdl-ontology-1.2.ttl",
+    "ontology/provider-bfo-alignment.ttl"
+  ],
+  "modules": [
+    {
+      "path": "ontology/provider-main.ttl",
+      "sha256": "f918fabee13ad6c1a0be8d495c86752ef2e381f032e32c30d803766a01868c19",
+      "ontology_iris": [
+        "http://projekt-provider.de/ontology/"
+      ],
+      "versions": [
+        "0.2.0"
+      ],
+      "declared_imports": []
+    },
+    {
+      "path": "ontology/infrastructure.ttl",
+      "sha256": "7526a533986b516efe1c05a4811f58ec059797f41d0671d80263fb07f2feec17",
+      "ontology_iris": [
+        "http://projekt-provider.de/ontology/infrastructure"
+      ],
+      "versions": [
+        "1.0.0"
+      ],
+      "declared_imports": []
+    },
+    {
+      "path": "ontology/ap2-pilot-profile.ttl",
+      "sha256": "34db939286ea3fd7a363f185beff6b619190cb0c56e1ba6f63c161a3fcaf1021",
+      "ontology_iris": [
+        "http://projekt-provider.de/ontology/ap2-pilot"
+      ],
+      "versions": [
+        "0.1.0-rc1"
+      ],
+      "declared_imports": [
+        "http://projekt-provider.de/ontology/"
+      ]
+    },
+    {
+      "path": "ontology/ap2-source-alignment.ttl",
+      "sha256": "b1ebd05f6cf6925e1a31bf932098dfb46593808c8624f4fd122f2e28046ee467",
+      "ontology_iris": [
+        "http://projekt-provider.de/ontology/ap2-source-alignment"
+      ],
+      "versions": [
+        "0.1.0-rc1"
+      ],
+      "declared_imports": [
+        "http://projekt-provider.de/ontology/ap2-pilot"
+      ]
+    },
+    {
+      "path": "tests/reference/pdl-ontology-1.2.ttl",
+      "sha256": "163c6344e2a08dbb6d654871b8dc8f80de6fabf1b386825538cf1495850fa9bf",
+      "ontology_iris": [
+        "https://provider-project.org/ontology/pdl"
+      ],
+      "versions": [
+        "1.2"
+      ],
+      "declared_imports": [
+        "https://schema.coypu.org/global/2.3"
+      ]
+    },
+    {
+      "path": "ontology/provider-bfo-alignment.ttl",
+      "sha256": "1fb914cf96fd36af007b19d2b70c3446229b2607d9ca18198df68882b08bc60f",
+      "ontology_iris": [
+        "http://projekt-provider.de/ontology/bfo-alignment"
+      ],
+      "versions": [
+        "0.2.0"
+      ],
+      "declared_imports": [
+        "http://projekt-provider.de/ontology/",
+        "http://purl.obolibrary.org/obo/bfo.owl"
+      ]
+    }
+  ],
+  "files": {
+    "ontology/provider-main.ttl": "f918fabee13ad6c1a0be8d495c86752ef2e381f032e32c30d803766a01868c19",
+    "ontology/infrastructure.ttl": "7526a533986b516efe1c05a4811f58ec059797f41d0671d80263fb07f2feec17",
+    "ontology/ap2-pilot-profile.ttl": "34db939286ea3fd7a363f185beff6b619190cb0c56e1ba6f63c161a3fcaf1021",
+    "ontology/ap2-source-alignment.ttl": "b1ebd05f6cf6925e1a31bf932098dfb46593808c8624f4fd122f2e28046ee467",
+    "tests/reference/pdl-ontology-1.2.ttl": "163c6344e2a08dbb6d654871b8dc8f80de6fabf1b386825538cf1495850fa9bf",
+    "ontology/provider-bfo-alignment.ttl": "1fb914cf96fd36af007b19d2b70c3446229b2607d9ca18198df68882b08bc60f",
+    "shapes/ap2-source-shapes.ttl": "f12cda7c0be34cee00baee3e28e0702fd7712512672c66290beb5dbf4549be7c",
+    "shapes/ap2-review-shapes.ttl": "9cf6c5f7c2e32024277db9530c33449c8f843f5112e5b680bc6b1b0166a7f474",
+    "shapes/ap2-canonical-shapes.ttl": "aac81f3efa99308cbd798a712d88bc9ba7134aeb02c2e88112b8cafcc27361e9",
+    "shapes/ap2-source-boundary.ttl": "52380d325195a7e109b0436618c8eead47192ba14798502484c3132e98e33a2e",
+    "tools/validate_ap2_shacl.py": "8f5572c4f75c709a86bca4cade569870f44a769b679ccc31a67d900da2c32396",
+    "requirements-validation.txt": "efe402661a1175a58d7185b85376f151a2d6188dd295f4051d6b9cbefc19f83f",
+    "docs/ap2-pilot-profile.json": "46425873689d1f8c67690b4306e4c32f21fafb118ccd416950dbaea82985ce90",
+    "examples/ap2-pilot/canonical-example.ttl": "95b6b0fab2eae8a16af948e69a3de2874c296996af6a1619e0bdc082d3346bbc",
+    "examples/ap2-pilot/source-daily-ports.nt": "5f98b9b92a6847359dca92ab0fab2c2dfd97df2fa31c4e522b85443186ae0c8a",
+    "examples/ap2-pilot/source-ports.nt": "fecd1f1ea92445f89665636544f9ae5b4f49bd1a1eebec5e77df0b67641b1094",
+    "examples/ap2-pilot/source-unlocode.nt": "5258559c3551e0f29508853b9bc2f5336aad5572b3e3bdb2f3708ff2f97fe20d"
+  },
+  "profiles": {
+    "source": [
+      "shapes/ap2-source-shapes.ttl",
+      "shapes/ap2-review-shapes.ttl",
+      "shapes/ap2-source-boundary.ttl"
+    ],
+    "canonical": [
+      "shapes/ap2-source-shapes.ttl",
+      "shapes/ap2-review-shapes.ttl",
+      "shapes/ap2-canonical-shapes.ttl"
+    ]
+  },
+  "scope": "Bounded AP2 Santos/Hamburg port/source/review/observation/PDL profile. Point bounds in CRS84; no global OSM/GDACS/HS/soy validation, polygon topology, full OWL consistency or source-rights approval.",
+  "inference": "none; only pinned explicit URI class hierarchy used for SHACL targets/classes",
+  "imports": "offline explicit module allowlist; no remote imports; BFO axioms are local alignment only, not a full imported BFO reasoning closure",
+  "country_pairs_checked": {
+    "BR": "BRA",
+    "DE": "DEU"
+  },
+  "excluded_files": {
+    "ontology/provider-main.xml": "Alternative serialization; not a second module",
+    "ontology/infrastructure_network.ttl": "Separate network extension; not required by bounded port pilot",
+    "ontology/supply_chain_ontology.ttl": "Separate extension; not required by bounded port pilot",
+    "ontology/provider-event.ttl": "User untracked draft; not adopted or changed",
+    "provider-main.ttl": "User untracked root draft; not adopted or changed",
+    "misc/supply_chain_dummy_data.ttl": "Legacy sample, not an authoritative module",
+    "use-cases/soybean/example_data.ttl": "Legacy use-case data, not this port validation baseline"
+  }
+}

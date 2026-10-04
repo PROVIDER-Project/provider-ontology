@@ -1,0 +1,64 @@
+{
+  "checked_at": "2026-10-04T14:05:28.773956+00:00",
+  "repository": "https://github.com/PROVIDER-Project/provider-ontology",
+  "branches": {
+    "main": {
+      "commit": "b90b20e7d6fa2b3036190ce19adc2d4dd01ead1c",
+      "files": {
+        "ontology/provider-main.ttl": {
+          "status": "unavailable",
+          "http_status": 404
+        },
+        "ontology/infrastructure.ttl": {
+          "status": "unavailable",
+          "http_status": 404
+        },
+        "ontology/provider-bfo-alignment.ttl": {
+          "status": "unavailable",
+          "http_status": 404
+        },
+        "ontology/ap2-pilot-profile.ttl": {
+          "status": "unavailable",
+          "http_status": 404
+        },
+        "ontology/ap2-source-alignment.ttl": {
+          "status": "unavailable",
+          "http_status": 404
+        }
+      }
+    },
+    "develop": {
+      "commit": "ea060ca2f9f9a253947f6f66e572679ed8f0a75d",
+      "files": {
+        "ontology/provider-main.ttl": {
+          "status": "available",
+          "sha256": "f918fabee13ad6c1a0be8d495c86752ef2e381f032e32c30d803766a01868c19",
+          "matches_local": true,
+          "url": "https://raw.githubusercontent.com/PROVIDER-Project/provider-ontology/ea060ca2f9f9a253947f6f66e572679ed8f0a75d/ontology/provider-main.ttl"
+        },
+        "ontology/infrastructure.ttl": {
+          "status": "available",
+          "sha256": "7526a533986b516efe1c05a4811f58ec059797f41d0671d80263fb07f2feec17",
+          "matches_local": true,
+          "url": "https://raw.githubusercontent.com/PROVIDER-Project/provider-ontology/ea060ca2f9f9a253947f6f66e572679ed8f0a75d/ontology/infrastructure.ttl"
+        },
+        "ontology/provider-bfo-alignment.ttl": {
+          "status": "available",
+          "sha256": "1fb914cf96fd36af007b19d2b70c3446229b2607d9ca18198df68882b08bc60f",
+          "matches_local": true,
+          "url": "https://raw.githubusercontent.com/PROVIDER-Project/provider-ontology/ea060ca2f9f9a253947f6f66e572679ed8f0a75d/ontology/provider-bfo-alignment.ttl"
+        },
+        "ontology/ap2-pilot-profile.ttl": {
+          "status": "unavailable",
+          "http_status": 404
+        },
+        "ontology/ap2-source-alignment.ttl": {
+          "status": "unavailable",
+          "http_status": 404
+        }
+      }
+    }
+  },
+  "local_profile_commit": "369c8cf91ab1c01e21770f98042300c407fb7a8f",
+  "interpretation": "Public snapshots compared without changing the local baseline. New local profile modules may be unpublished; no remote release approval inferred."
+}

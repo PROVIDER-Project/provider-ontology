@@ -1,0 +1,92 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix shape: <http://projekt-provider.de/shapes/ap2#> .
+@prefix ap: <http://projekt-provider.de/ontology/ap2-pilot#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+shape:MatchAssertionShape a sh:NodeShape ; sh:targetClass ap:MatchAssertion ;
+  sh:nodeKind sh:IRI ;
+  sh:property [ sh:path ap:subject ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path ap:object ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path ap:relation ; sh:minCount 1 ; sh:maxCount 1 ; sh:in (ap:describesOperationalPort ap:servesTradeLocation ap:areaOfPort ap:terminalOfPort) ] ;
+  sh:property [ sh:path ap:reviewStatus ; sh:minCount 1 ; sh:maxCount 1 ; sh:in (ap:Pending ap:Accepted ap:Rejected) ] ;
+  sh:property [ sh:path ap:dataKind ; sh:minCount 1 ; sh:maxCount 1 ; sh:in (ap:Real ap:Synthetic) ] ;
+  sh:property [ sh:path ap:evidence ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path ap:reviewer ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:pattern "\\S" ] ;
+  sh:property [ sh:path ap:reviewedAt ; sh:maxCount 1 ; sh:datatype xsd:dateTime ; sh:pattern "(Z|[+-][0-9]{2}:[0-9]{2})$" ] ;
+  sh:or ( [ sh:property [ sh:path ap:reviewStatus ; sh:in (ap:Pending ap:Rejected) ] ]
+          [ sh:property [ sh:path ap:reviewer ; sh:minCount 1 ] ;
+            sh:property [ sh:path ap:reviewedAt ; sh:minCount 1 ] ] ) ;
+  sh:sparql [ sh:message "Pending or rejected matches must not materialize the proposed relation." ; sh:select """
+    PREFIX ap: <http://projekt-provider.de/ontology/ap2-pilot#>
+    SELECT $this WHERE { $this ap:subject ?s; ap:relation ?p; ap:object ?o; ap:reviewStatus ?status .
+      FILTER(?status IN (ap:Pending, ap:Rejected)) ?s ?p ?o . }
+  """ ] ;
+  sh:sparql [ sh:message "Accepted matches need an actual relation and explicitly typed subject/object roles." ; sh:select """
+    PREFIX ap: <http://projekt-provider.de/ontology/ap2-pilot#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this WHERE { $this ap:subject ?s; ap:relation ?p; ap:object ?o; ap:reviewStatus ap:Accepted .
+      FILTER(!EXISTS { ?s ?p ?o . }
+       || (?p = ap:describesOperationalPort && !EXISTS { ?s a/rdfs:subClassOf* ap:SourcePortFeature . ?o a/rdfs:subClassOf* ap:OperationalPort . })
+       || (?p = ap:servesTradeLocation && !EXISTS { ?s a/rdfs:subClassOf* ap:OperationalPort . ?o a/rdfs:subClassOf* ap:TradeLocation . })
+       || (?p = ap:areaOfPort && !EXISTS { ?s a/rdfs:subClassOf* ap:PortArea . ?o a/rdfs:subClassOf* ap:OperationalPort . })
+       || (?p = ap:terminalOfPort && !EXISTS { ?s a/rdfs:subClassOf* ap:Terminal . ?o a/rdfs:subClassOf* ap:OperationalPort . })) }
+  """ ] ;
+  sh:sparql [ sh:message "Accepted association has conflicting or missing source/canonical country evidence." ; sh:select """
+    PREFIX ap: <http://projekt-provider.de/ontology/ap2-pilot#>
+    PREFIX pw: <https://portwatch.imf.org/ontology/>
+    PREFIX src: <https://projekt-provider.de/ontology/>
+    SELECT $this WHERE { $this ap:subject ?s; ap:relation ?p; ap:object ?o; ap:reviewStatus ap:Accepted .
+      FILTER((?p = ap:describesOperationalPort && !EXISTS {
+         ?s (ap:countryISO3|pw:locatedInCountry/pw:iso3) ?country . ?o ap:countryISO3 ?country . })
+        || (?p = ap:servesTradeLocation && !EXISTS { ?s ap:countryISO2 ?country . ?o src:countryCode ?country . })) }
+  """ ] .
+
+shape:MaterializedRelationShape a sh:NodeShape ;
+  sh:targetSubjectsOf ap:describesOperationalPort, ap:servesTradeLocation, ap:areaOfPort, ap:terminalOfPort ;
+  sh:sparql [ sh:message "Each materialized relation requires an accepted evidenced MatchAssertion." ; sh:select """
+    PREFIX ap: <http://projekt-provider.de/ontology/ap2-pilot#>
+    SELECT $this ?path ?value WHERE {
+      $this ?path ?value . FILTER(?path IN (ap:describesOperationalPort, ap:servesTradeLocation, ap:areaOfPort, ap:terminalOfPort))
+      FILTER NOT EXISTS { ?assertion a ap:MatchAssertion; ap:subject $this; ap:relation ?path;
+        ap:object ?value; ap:reviewStatus ap:Accepted; ap:evidence ?evidence . }
+    }
+  """ ] .
+
+shape:DistinctRolesShape a sh:NodeShape ;
+  sh:targetClass ap:OperationalPort, ap:Terminal, ap:PortArea, ap:TradeLocation, ap:SourceRecord, ap:SourcePortFeature ;
+  sh:sparql [ sh:message "Source feature, record, trade location, canonical port, terminal and area must remain separate nodes." ; sh:select """
+    PREFIX ap: <http://projekt-provider.de/ontology/ap2-pilot#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this WHERE { $this a ?type1, ?type2 . ?type1 rdfs:subClassOf* ?role1 . ?type2 rdfs:subClassOf* ?role2 .
+      FILTER(?role1 IN (ap:OperationalPort, ap:Terminal, ap:PortArea, ap:TradeLocation, ap:SourceRecord, ap:SourcePortFeature)
+        && ?role2 IN (ap:OperationalPort, ap:Terminal, ap:PortArea, ap:TradeLocation, ap:SourceRecord, ap:SourcePortFeature)
+        && STR(?role1) < STR(?role2)) }
+  """ ] .
+
+shape:NoGlobalIdentityShape a sh:NodeShape ;
+  sh:targetSubjectsOf owl:sameAs, owl:equivalentClass, owl:equivalentProperty ;
+  sh:property [ sh:path owl:sameAs ; sh:maxCount 0 ] ;
+  sh:property [ sh:path owl:equivalentClass ; sh:maxCount 0 ] ;
+  sh:property [ sh:path owl:equivalentProperty ; sh:maxCount 0 ] .
+shape:DataKindShape a sh:NodeShape ; sh:targetSubjectsOf ap:dataKind ;
+  sh:property [ sh:path ap:dataKind ; sh:maxCount 1 ; sh:in (ap:Real ap:Synthetic) ] .
+
+shape:PortPilotScopeShape a sh:NodeShape ; sh:targetNode <urn:provider:ap2:validation-scope> ;
+  sh:sparql [ sh:message "No AP2 port-pilot target found; empty or unrelated graphs are not validated by this baseline." ; sh:select """
+    PREFIX ap: <http://projekt-provider.de/ontology/ap2-pilot#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this WHERE { FILTER NOT EXISTS { ?node a/rdfs:subClassOf* ?role .
+      FILTER(?role IN (ap:SourcePortFeature, ap:TradeLocation, ap:SourceRecord, ap:OperationalPort, ap:Observation, ap:MatchAssertion)) } }
+  """ ] .
+
+shape:RoleIdentifierShape a sh:NodeShape ;
+  sh:targetClass ap:SourcePortFeature, ap:TradeLocation, ap:SourceRecord, ap:OperationalPort, ap:Terminal, ap:PortArea ;
+  sh:nodeKind sh:IRI ; sh:pattern "^https?://[^ ]+$" .
+shape:AcceptedKindShape a sh:NodeShape ; sh:targetClass ap:MatchAssertion ;
+  sh:sparql [ sh:message "Accepted match data kind conflicts with an explicitly classified endpoint." ; sh:select """
+    PREFIX ap: <http://projekt-provider.de/ontology/ap2-pilot#>
+    SELECT $this WHERE { $this ap:reviewStatus ap:Accepted; ap:dataKind ?kind; ap:subject ?s; ap:object ?o .
+      { ?s ap:dataKind ?endpointKind . } UNION { ?o ap:dataKind ?endpointKind . }
+      FILTER(?kind != ?endpointKind) }
+  """ ] .

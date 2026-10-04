@@ -1,0 +1,6 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ap: <http://projekt-provider.de/ontology/ap2-pilot#> .
+@prefix shape: <http://projekt-provider.de/shapes/ap2#> .
+shape:SourceBoundary a sh:NodeShape ;
+ sh:targetClass ap:OperationalPort, ap:Observation, ap:ObservationActivity, ap:Measurement ;
+ sh:sparql [ sh:message "Canonical entities require the canonical validation profile." ; sh:select "SELECT $this WHERE { FILTER(BOUND($this)) }" ] .

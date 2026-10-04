@@ -1,0 +1,142 @@
+[
+  {
+    "name": "missing-country",
+    "subject": "https://example.org/ap2/port/santos",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#countryISO2",
+    "replacement": null,
+    "remove_existing": true
+  },
+  {
+    "name": "country-mismatch",
+    "subject": "https://example.org/ap2/port/santos",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#countryISO3",
+    "replacement": "\"DEU\"",
+    "remove_existing": true
+  },
+  {
+    "name": "accepted-without-reviewer",
+    "subject": "https://example.org/ap2/assertion/0",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#reviewer",
+    "replacement": null,
+    "remove_existing": true
+  },
+  {
+    "name": "review-time-without-zone",
+    "subject": "https://example.org/ap2/assertion/0",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#reviewedAt",
+    "replacement": "\"2026-01-03T00:00:00\"^^<http://www.w3.org/2001/XMLSchema#dateTime>",
+    "remove_existing": true
+  },
+  {
+    "name": "pending-materialized",
+    "subject": "https://example.org/ap2/assertion/0",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#reviewStatus",
+    "replacement": "<http://projekt-provider.de/ontology/ap2-pilot#Pending>",
+    "remove_existing": true
+  },
+  {
+    "name": "rejected-materialized",
+    "subject": "https://example.org/ap2/assertion/0",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#reviewStatus",
+    "replacement": "<http://projekt-provider.de/ontology/ap2-pilot#Rejected>",
+    "remove_existing": true
+  },
+  {
+    "name": "missing-evidence",
+    "subject": "https://example.org/ap2/assertion/0",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#evidence",
+    "replacement": null,
+    "remove_existing": true
+  },
+  {
+    "name": "wrong-relation-direction",
+    "subject": "https://example.org/ap2/assertion/0",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#subject",
+    "replacement": "<https://example.org/ap2/port/santos>",
+    "remove_existing": true
+  },
+  {
+    "name": "negative-tonnes",
+    "subject": "https://example.org/ap2/measurement/santos/import",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#value",
+    "replacement": "\"-1\"^^<http://www.w3.org/2001/XMLSchema#decimal>",
+    "remove_existing": true
+  },
+  {
+    "name": "wrong-unit",
+    "subject": "https://example.org/ap2/measurement/santos/import",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#unit",
+    "replacement": "<http://projekt-provider.de/ontology/ap2-pilot#PortCallCount>",
+    "remove_existing": true
+  },
+  {
+    "name": "fractional-calls",
+    "subject": "https://example.org/ap2/measurement/santos/calls",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#value",
+    "replacement": "\"2.5\"^^<http://www.w3.org/2001/XMLSchema#decimal>",
+    "remove_existing": true
+  },
+  {
+    "name": "source-value-divergence",
+    "subject": "https://example.org/ap2/measurement/santos/import",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#value",
+    "replacement": "\"99\"^^<http://www.w3.org/2001/XMLSchema#decimal>",
+    "remove_existing": true
+  },
+  {
+    "name": "wrong-observation-day",
+    "subject": "https://example.org/ap2/observation/santos/2026-01-01",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#observedDay",
+    "replacement": "\"2026-01-02\"^^<http://www.w3.org/2001/XMLSchema#date>",
+    "remove_existing": true
+  },
+  {
+    "name": "missing-source-observation",
+    "subject": "https://example.org/ap2/observation/santos/2026-01-01",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#sourceObservation",
+    "replacement": null,
+    "remove_existing": true
+  },
+  {
+    "name": "missing-generation",
+    "subject": "https://example.org/ap2/observation/santos/2026-01-01",
+    "predicate": "http://www.w3.org/ns/prov#wasGeneratedBy",
+    "replacement": null,
+    "remove_existing": true
+  },
+  {
+    "name": "result-as-activity",
+    "subject": "https://example.org/ap2/observation/santos/2026-01-01",
+    "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "replacement": "<http://www.w3.org/ns/sosa/Observation>",
+    "remove_existing": false
+  },
+  {
+    "name": "episode-as-event",
+    "subject": "https://example.org/ap2/episode/invented-disruption/1",
+    "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "replacement": "<http://projekt-provider.de/ontology/ap2-pilot#Event>",
+    "remove_existing": false
+  },
+  {
+    "name": "global-identity",
+    "subject": "https://example.org/ap2/port/santos",
+    "predicate": "http://www.w3.org/2002/07/owl#sameAs",
+    "replacement": "<https://example.org/unreviewed>",
+    "remove_existing": false
+  },
+  {
+    "name": "real-synthetic-mixing",
+    "subject": "https://example.org/ap2/port/santos",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#dataKind",
+    "replacement": "<http://projekt-provider.de/ontology/ap2-pilot#Real>",
+    "remove_existing": true
+  },
+  {
+    "name": "missing-provenance-hash",
+    "subject": "https://example.org/ap2/record/portwatch/demoSantos",
+    "predicate": "http://projekt-provider.de/ontology/ap2-pilot#sourceRowHash",
+    "replacement": null,
+    "remove_existing": true
+  }
+]
