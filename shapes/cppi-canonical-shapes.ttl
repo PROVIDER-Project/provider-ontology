@@ -1,0 +1,56 @@
+@prefix cp: <http://projekt-provider.de/ontology/ap2-cppi#> .
+@prefix ap: <http://projekt-provider.de/ontology/ap2-pilot#> .
+@prefix src: <https://provider-projekt.de/ontology/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+cp:AnnualShape a sh:NodeShape ; sh:targetClass cp:AnnualObservation ;
+ sh:property [ sh:path cp:observedFeature ; sh:minCount 1 ; sh:maxCount 1 ; sh:class ap:OperationalPort ] ;
+ sh:property [ sh:path cp:referenceYear ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:gYear ] ;
+ sh:property [ sh:path cp:sourceObservation ; sh:minCount 1 ; sh:maxCount 1 ; sh:class src:ContainerPortPerformanceObservation ] ;
+ sh:property [ sh:path cp:hasMeasurement ; sh:minCount 1 ; sh:class cp:Measurement ] ;
+ sh:property [ sh:path cp:alignment ; sh:minCount 1 ; sh:maxCount 1 ; sh:class cp:PortAlignment ] ;
+ sh:property [ sh:path prov:wasGeneratedBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:class cp:ObservationActivity ] ;
+ sh:property [ sh:path ap:dataKind ; sh:minCount 1 ; sh:maxCount 1 ; sh:in (ap:Real ap:Synthetic) ] ;
+ sh:sparql [ sh:message "Annual source year, feature and explicitly accepted alignment must agree." ; sh:select """
+ PREFIX cp: <http://projekt-provider.de/ontology/ap2-cppi#>
+ PREFIX ap: <http://projekt-provider.de/ontology/ap2-pilot#>
+ PREFIX src: <https://provider-projekt.de/ontology/>
+ SELECT $this WHERE {
+  $this cp:referenceYear ?y; cp:observedFeature ?p; cp:sourceObservation ?s; cp:alignment ?a .
+  FILTER NOT EXISTS { ?s src:referenceYear ?y; src:forPort ?sp . ?a cp:sourcePort ?sp; cp:canonicalPort ?p; ap:reviewStatus ap:Accepted . }
+ }""" ] .
+cp:MeasurementShape a sh:NodeShape ; sh:targetClass cp:Measurement ;
+ sh:property [ sh:path cp:metric ; sh:minCount 1 ; sh:maxCount 1 ; sh:in (cp:CPPIIndexScore cp:GlobalRank cp:AdministrativeIndexScore cp:StatisticalIndexScore cp:SamplePortCalls cp:BerthTimeShare) ] ;
+ sh:property [ sh:path cp:unit ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+ sh:property [ sh:path cp:value ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ] ;
+ sh:sparql [ sh:message "Measurement value and unit must match the source predicate and metric." ; sh:select """
+ PREFIX cp: <http://projekt-provider.de/ontology/ap2-cppi#>
+ SELECT $this WHERE {
+  $this cp:metric ?m; cp:value ?v; cp:unit ?u .
+  FILTER NOT EXISTS { ?m cp:sourcePredicate ?pred; cp:unit ?u . ?o cp:hasMeasurement $this; cp:sourceObservation ?s . ?s ?pred ?sourceValue . FILTER(?v = ?sourceValue) }
+ }""" ] ;
+ sh:sparql [ sh:message "Rank/count must be integral and valid, and berth fraction must lie in [0,1]." ; sh:select """
+ PREFIX cp: <http://projekt-provider.de/ontology/ap2-cppi#>
+ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+ SELECT $this WHERE {
+ $this cp:metric ?m; cp:value ?v .
+ FILTER((?m=cp:GlobalRank && (?v<1 || ?v != xsd:integer(?v))) || (?m=cp:SamplePortCalls && (?v<0 || ?v != xsd:integer(?v))) || (?m=cp:BerthTimeShare && (?v<0 || ?v>1)))
+ }""" ] .
+cp:AlignmentShape a sh:NodeShape ; sh:targetClass cp:PortAlignment ;
+ sh:property [ sh:path cp:sourcePort ; sh:minCount 1 ; sh:maxCount 1 ; sh:class src:ContainerPort ] ;
+ sh:property [ sh:path cp:canonicalPort ; sh:minCount 1 ; sh:maxCount 1 ; sh:class ap:OperationalPort ] ;
+ sh:property [ sh:path ap:reviewStatus ; sh:hasValue ap:Accepted ; sh:maxCount 1 ] ;
+ sh:property [ sh:path cp:reviewer ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] ;
+ sh:property [ sh:path cp:evidenceNote ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] .
+cp:ActivityShape a sh:NodeShape ; sh:targetClass cp:ObservationActivity ;
+ sh:property [ sh:path sosa:hasFeatureOfInterest ; sh:minCount 1 ; sh:maxCount 1 ; sh:class ap:OperationalPort ] ;
+ sh:property [ sh:path sosa:hasResult ; sh:minCount 1 ; sh:maxCount 1 ; sh:class cp:AnnualObservation ] ;
+ sh:sparql [ sh:message "Activity feature must equal result feature." ; sh:select """
+ PREFIX cp: <http://projekt-provider.de/ontology/ap2-cppi#>
+ PREFIX sosa: <http://www.w3.org/ns/sosa/>
+ SELECT $this WHERE { $this sosa:hasResult ?o; sosa:hasFeatureOfInterest ?p . FILTER NOT EXISTS { ?o cp:observedFeature ?p . } }
+ """ ] .

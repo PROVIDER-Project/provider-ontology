@@ -1,0 +1,31 @@
+@prefix cp: <http://projekt-provider.de/ontology/ap2-cppi#> .
+@prefix ap: <http://projekt-provider.de/ontology/ap2-pilot#> .
+@prefix core: <http://projekt-provider.de/ontology/> .
+@prefix src: <https://provider-projekt.de/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+cp:AnnualObservation a owl:Class ; rdfs:subClassOf core:Observation ;
+  rdfs:comment "Annual information result, distinct from the observation activity. CPPI edition and reference year retained; not a daily traffic observation."@en .
+cp:ObservationActivity a owl:Class ; rdfs:subClassOf sosa:Observation .
+cp:Measurement a owl:Class .
+cp:PortAlignment a owl:Class ; rdfs:comment "Explicit source-based review of a CPPI port against an accepted operational-port/trade-location anchor. Not owl:sameAs or certification of geographic equality."@en .
+src:ContainerPortPerformanceObservation rdfs:subClassOf ap:SourceObservation .
+cp:referenceYear a owl:DatatypeProperty ; rdfs:range xsd:gYear .
+cp:observedFeature a owl:ObjectProperty ; rdfs:range ap:OperationalPort .
+cp:sourceObservation a owl:ObjectProperty ; rdfs:range src:ContainerPortPerformanceObservation .
+cp:hasMeasurement a owl:ObjectProperty ; rdfs:range cp:Measurement .
+cp:metric a owl:ObjectProperty .
+cp:value a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+cp:unit a owl:ObjectProperty .
+cp:CPPIIndexScore cp:sourcePredicate src:cppiScore ; cp:unit cp:DimensionlessIndex .
+cp:GlobalRank cp:sourcePredicate src:globalRank ; cp:unit cp:OrdinalRank .
+cp:AdministrativeIndexScore cp:sourcePredicate src:administrativeScore ; cp:unit cp:DimensionlessIndex .
+cp:StatisticalIndexScore cp:sourcePredicate src:statisticalScore ; cp:unit cp:DimensionlessIndex .
+cp:SamplePortCalls cp:sourcePredicate src:numberOfPortCalls ; cp:unit cp:PortCallCount .
+cp:BerthTimeShare cp:sourcePredicate src:berthTimeShare ; cp:unit cp:Fraction .
+cp:DimensionlessIndex rdfs:comment "Dimensionless standardized CPPI index. Negative and zero scores are valid; this value is not hours or tonnes."@en .
+cp:OrdinalRank rdfs:comment "Positive integral position in the edition's reported ranking. Do not derive historical ranks from current-year rankings."@en .
+cp:Fraction rdfs:comment "Proportion on [0,1], retained from the CPPI annex; not rescaled to percent."@en .

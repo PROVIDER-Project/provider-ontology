@@ -1,0 +1,501 @@
+@prefix provider: <https://provider-projekt.de/ontology/> .
+@prefix resource: <https://provider.example.org/resource/> .
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct:      <http://purl.org/dc/terms/> .
+@prefix dcat:     <http://www.w3.org/ns/dcat#> .
+@prefix prov:     <http://www.w3.org/ns/prov#> .
+@prefix sosa:     <http://www.w3.org/ns/sosa/> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix time:     <http://www.w3.org/2006/time#> .
+@prefix qudt:     <http://qudt.org/schema/qudt/> .
+@prefix unit:     <http://qudt.org/vocab/unit/> .
+@prefix geo:      <http://www.opengis.net/ont/geosparql#> .
+
+<https://provider-projekt.de/ontology/cppi>
+    a owl:Ontology ;
+    dct:title "PROVIDER ontology module for the Container Port Performance Index"@en ;
+    dct:description "Models CPPI editions, annual port-level observations, scores, ranks, methodology components, ship-size groups, call-size bands, and provenance. The module is designed to complement the existing PROVIDER port ontology."@en ;
+    dct:created "2026-06-13"^^xsd:date ;
+    dct:source <https://www.worldbank.org/en/topic/transport/publication/cppi> ,
+               <https://thedocs.worldbank.org/en/doc/855fe5e7123d85b05d4e84c95b8fd1e2-0400012026/original/Methodology-Note.pdf> ;
+    owl:versionInfo "0.1.0" .
+
+#################################################################
+# Reused PROVIDER classes (declared here for standalone parsing)
+#################################################################
+
+provider:Dataset a owl:Class ;
+    rdfs:label "Dataset"@en .
+
+provider:Port a owl:Class ;
+    rdfs:label "Port"@en .
+
+provider:Country a owl:Class ;
+    rdfs:label "Country"@en .
+
+provider:PortSnapshotObservation a owl:Class ;
+    rdfs:label "Port snapshot observation"@en .
+
+#################################################################
+# Classes
+#################################################################
+
+provider:ContainerPort a owl:Class ;
+    rdfs:subClassOf provider:Port ;
+    rdfs:label "Container port"@en ;
+    rdfs:comment "A port that handles container vessels. CPPI results are reported at port level, not at individual terminal level."@en .
+
+provider:ContainerPortPerformanceIndexEdition a owl:Class ;
+    rdfs:subClassOf provider:Dataset , dcat:Dataset ;
+    rdfs:label "Container Port Performance Index edition"@en ;
+    rdfs:comment "A published edition of the Container Port Performance Index, including its temporal coverage, methodology, and distributions."@en .
+
+provider:ContainerPortPerformanceObservation a owl:Class ;
+    rdfs:subClassOf provider:PortSnapshotObservation , sosa:Observation , prov:Entity ;
+    rdfs:label "container port performance observation"@en ;
+    rdfs:comment "A port-level CPPI result for one reference year. It may contain the combined score and rank and, when available, the administrative and statistical component scores and ranks."@en .
+
+provider:CPPIStratifiedPortTimeObservation a owl:Class ;
+    rdfs:subClassOf sosa:Observation , prov:Entity ;
+    rdfs:label "CPPI stratified port-time observation"@en ;
+    rdfs:comment "An optional detailed observation for one port, year, ship-size group, and call-size band. It can represent call counts and average arrival, berth, departure, or total port hours used as inputs to CPPI calculation."@en .
+
+provider:CPPIApproach a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "CPPI calculation approach"@en .
+
+provider:ShipSizeGroup a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "CPPI ship-size group"@en ;
+    rdfs:comment "A CPPI vessel-capacity stratum expressed in nominal TEU capacity."@en .
+
+provider:CallSizeBand a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "CPPI call-size band"@en ;
+    rdfs:comment "A CPPI stratum based on the number of container moves in a port call. Call size is load plus discharge plus restow moves."@en .
+
+provider:PortTimeComponent a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "port-time component"@en .
+
+provider:CPPIQualityRule a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "CPPI quality or eligibility rule"@en .
+
+#################################################################
+# Object properties
+#################################################################
+
+provider:inCPPIEdition a owl:ObjectProperty ;
+    rdfs:domain provider:ContainerPortPerformanceObservation ;
+    rdfs:range provider:ContainerPortPerformanceIndexEdition ;
+    rdfs:label "in CPPI edition"@en .
+
+provider:forPort a owl:ObjectProperty ;
+    rdfs:subPropertyOf sosa:hasFeatureOfInterest ;
+    rdfs:range provider:Port ;
+    rdfs:label "for port"@en .
+
+provider:usesCPPIApproach a owl:ObjectProperty ;
+    rdfs:domain provider:ContainerPortPerformanceIndexEdition ;
+    rdfs:range provider:CPPIApproach ;
+    rdfs:label "uses CPPI approach"@en .
+
+provider:hasShipSizeGroup a owl:ObjectProperty ;
+    rdfs:range provider:ShipSizeGroup ;
+    rdfs:label "has ship-size group"@en .
+
+provider:hasCallSizeBand a owl:ObjectProperty ;
+    rdfs:range provider:CallSizeBand ;
+    rdfs:label "has call-size band"@en .
+
+provider:hasQualityRule a owl:ObjectProperty ;
+    rdfs:domain provider:ContainerPortPerformanceIndexEdition ;
+    rdfs:range provider:CPPIQualityRule ;
+    rdfs:label "has quality rule"@en .
+
+provider:locatedInCountry a owl:ObjectProperty ;
+    rdfs:domain provider:Port ;
+    rdfs:range provider:Country ;
+    rdfs:label "located in country"@en .
+
+provider:hasGeometry a owl:ObjectProperty ;
+    rdfs:subPropertyOf geo:hasGeometry ;
+    rdfs:label "has geometry"@en .
+
+#################################################################
+# Datatype properties: dimensions and results
+#################################################################
+
+provider:referenceYear a owl:DatatypeProperty ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "reference year"@en ;
+    rdfs:comment "The calendar year whose port calls and performance are represented by an observation."@en .
+
+provider:editionYear a owl:DatatypeProperty ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "edition year"@en .
+
+provider:referenceDistributionYear a owl:DatatypeProperty ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "reference-distribution year"@en ;
+    rdfs:comment "The fixed year whose distribution is used to standardize the comparable time series."@en .
+
+provider:cppiScore a owl:DatatypeProperty ;
+    rdfs:domain provider:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "CPPI combined score"@en ;
+    rdfs:comment "Arithmetic average of the administrative and statistical CPPI component indices. Positive values indicate above-reference performance and negative values below-reference performance relative to the fixed reference distribution."@en .
+
+provider:globalRank a owl:DatatypeProperty ;
+    rdfs:domain provider:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:integer ;
+    rdfs:label "CPPI global rank"@en ;
+    rdfs:comment "Overall rank obtained by sorting combined CPPI scores in descending order."@en .
+
+provider:administrativeScore a owl:DatatypeProperty ;
+    rdfs:domain provider:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "administrative CPPI score"@en .
+
+provider:administrativeRank a owl:DatatypeProperty ;
+    rdfs:domain provider:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:integer ;
+    rdfs:label "administrative CPPI rank"@en .
+
+provider:statisticalScore a owl:DatatypeProperty ;
+    rdfs:domain provider:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "statistical CPPI score"@en .
+
+provider:statisticalRank a owl:DatatypeProperty ;
+    rdfs:domain provider:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:integer ;
+    rdfs:label "statistical CPPI rank"@en .
+
+provider:scoreChange a owl:DatatypeProperty ;
+    rdfs:domain provider:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "score change"@en ;
+    rdfs:comment "Change in CPPI score relative to a comparison year, when explicitly supplied by the source."@en .
+
+provider:rankChange a owl:DatatypeProperty ;
+    rdfs:domain provider:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:integer ;
+    rdfs:label "rank change"@en ;
+    rdfs:comment "Change in rank relative to a comparison year, when explicitly supplied by the source. The source's sign convention is retained."@en .
+
+provider:numberOfPortCalls a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "number of port calls"@en .
+
+provider:averageArrivalHours a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "average arrival hours"@en ;
+    rdfs:comment "Average elapsed hours from arrival at anchorage or pilot station to start of cargo operations."@en .
+
+provider:averageBerthHours a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "average berth hours"@en ;
+    rdfs:comment "Average elapsed hours from start of cargo operations to departure from berth."@en .
+
+provider:averageDepartureHours a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "average departure hours"@en ;
+    rdfs:comment "Average elapsed hours from departure from berth to exit from port limits. This time is recorded but excluded from CPPI calculation."@en .
+
+provider:averagePortHours a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "average port hours"@en ;
+    rdfs:comment "Average arrival plus berth hours used by CPPI."@en .
+
+provider:berthTimeShare a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "berth-time share"@en .
+
+#################################################################
+# Datatype properties: port identity and provenance
+#################################################################
+
+provider:portName a owl:DatatypeProperty ;
+    rdfs:domain provider:Port ;
+    rdfs:range xsd:string ;
+    rdfs:label "port name"@en .
+
+provider:unLocode a owl:DatatypeProperty ;
+    rdfs:domain provider:Port ;
+    rdfs:range xsd:string ;
+    rdfs:label "UN/LOCODE"@en .
+
+provider:countryName a owl:DatatypeProperty ;
+    rdfs:domain provider:Country ;
+    rdfs:range xsd:string ;
+    rdfs:label "country name"@en .
+
+provider:iso2 a owl:DatatypeProperty ;
+    rdfs:domain provider:Country ;
+    rdfs:range xsd:string ;
+    rdfs:label "ISO 3166-1 alpha-2 code"@en .
+
+provider:iso3 a owl:DatatypeProperty ;
+    rdfs:domain provider:Country ;
+    rdfs:range xsd:string ;
+    rdfs:label "ISO 3166-1 alpha-3 code"@en .
+
+provider:regionName a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "region name"@en .
+
+provider:sourceSheet a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "source worksheet"@en .
+
+provider:sourceRowNumber a owl:DatatypeProperty ;
+    rdfs:range xsd:positiveInteger ;
+    rdfs:label "source row number"@en .
+
+provider:sourceFileName a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "source file name"@en .
+
+#################################################################
+# Datatype properties: classifications and rules
+#################################################################
+
+provider:minimumTEUCapacity a owl:DatatypeProperty ;
+    rdfs:domain provider:ShipSizeGroup ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "minimum TEU capacity"@en .
+
+provider:maximumTEUCapacity a owl:DatatypeProperty ;
+    rdfs:domain provider:ShipSizeGroup ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "maximum TEU capacity"@en .
+
+provider:minimumContainerMoves a owl:DatatypeProperty ;
+    rdfs:domain provider:CallSizeBand ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "minimum container moves"@en .
+
+provider:maximumContainerMoves a owl:DatatypeProperty ;
+    rdfs:domain provider:CallSizeBand ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "maximum container moves"@en .
+
+provider:fuelConsumptionIndexWeight a owl:DatatypeProperty ;
+    rdfs:domain provider:ShipSizeGroup ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "fuel-consumption index weight"@en .
+
+provider:minimumAnnualCallCount a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "minimum annual call count"@en .
+
+provider:minimumBerthMovesPerHour a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "minimum berth moves per hour"@en .
+
+provider:maximumBerthMovesPerHour a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "maximum berth moves per hour"@en .
+
+provider:minimumCellShare a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "minimum cell share"@en ;
+    rdfs:comment "Minimum share of observations within a ship-size group required for a call-size group to be retained."@en .
+
+provider:excludesDepartureHours a owl:DatatypeProperty ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "excludes departure hours"@en .
+
+#################################################################
+# CPPI approach concepts
+#################################################################
+
+provider:CPPIApproachScheme a skos:ConceptScheme ;
+    skos:prefLabel "CPPI calculation approaches"@en .
+
+provider:AdministrativeApproach a provider:CPPIApproach ;
+    skos:inScheme provider:CPPIApproachScheme ;
+    skos:prefLabel "administrative approach"@en ;
+    skos:definition "Direct comparison of mean port hours within ship-size and call-size strata, followed by call-share and fuel-consumption weighting."@en .
+
+provider:StatisticalApproach a provider:CPPIApproach ;
+    skos:inScheme provider:CPPIApproachScheme ;
+    skos:prefLabel "statistical approach"@en ;
+    skos:definition "Approach using expectation-maximization imputation and non-negative matrix factorization before applying the common ship-size weighting."@en .
+
+provider:CombinedCPPIApproach a provider:CPPIApproach ;
+    skos:inScheme provider:CPPIApproachScheme ;
+    skos:prefLabel "combined CPPI approach"@en ;
+    skos:definition "Arithmetic average of the independently calculated administrative and statistical indices."@en .
+
+#################################################################
+# Ship-size concept scheme
+#################################################################
+
+provider:CPPIShipSizeScheme a skos:ConceptScheme ;
+    skos:prefLabel "CPPI ship-size groups"@en .
+
+provider:ShipSizeFeeder a provider:ShipSizeGroup ;
+    skos:inScheme provider:CPPIShipSizeScheme ;
+    skos:prefLabel "Feeder: less than 1,500 TEU"@en ;
+    provider:maximumTEUCapacity 1499 ;
+    provider:fuelConsumptionIndexWeight 0.46 .
+
+provider:ShipSizeIntraRegional a provider:ShipSizeGroup ;
+    skos:inScheme provider:CPPIShipSizeScheme ;
+    skos:prefLabel "Intra-regional: 1,500 to 5,000 TEU"@en ;
+    provider:minimumTEUCapacity 1500 ;
+    provider:maximumTEUCapacity 5000 ;
+    provider:fuelConsumptionIndexWeight 1.00 .
+
+provider:ShipSizeIntermediate a provider:ShipSizeGroup ;
+    skos:inScheme provider:CPPIShipSizeScheme ;
+    skos:prefLabel "Intermediate: 5,000 to 8,500 TEU"@en ;
+    provider:minimumTEUCapacity 5000 ;
+    provider:maximumTEUCapacity 8500 ;
+    provider:fuelConsumptionIndexWeight 1.54 .
+
+provider:ShipSizeNeoPanamax a provider:ShipSizeGroup ;
+    skos:inScheme provider:CPPIShipSizeScheme ;
+    skos:prefLabel "Neo-Panamax: 8,500 to 13,500 TEU"@en ;
+    provider:minimumTEUCapacity 8500 ;
+    provider:maximumTEUCapacity 13500 ;
+    provider:fuelConsumptionIndexWeight 1.97 .
+
+provider:ShipSizeUltraLarge a provider:ShipSizeGroup ;
+    skos:inScheme provider:CPPIShipSizeScheme ;
+    skos:prefLabel "Ultra-large: greater than 13,500 TEU"@en ;
+    provider:minimumTEUCapacity 13501 ;
+    provider:fuelConsumptionIndexWeight 2.57 .
+
+#################################################################
+# Call-size concept scheme
+#################################################################
+
+provider:CPPICallSizeScheme a skos:ConceptScheme ;
+    skos:prefLabel "CPPI call-size bands"@en .
+
+provider:CallSizeLT250 a provider:CallSizeBand ;
+    skos:inScheme provider:CPPICallSizeScheme ; skos:prefLabel "less than 250 moves"@en ;
+    provider:maximumContainerMoves 249 .
+provider:CallSize250To500 a provider:CallSizeBand ;
+    skos:inScheme provider:CPPICallSizeScheme ; skos:prefLabel "250 to 500 moves"@en ;
+    provider:minimumContainerMoves 250 ; provider:maximumContainerMoves 500 .
+provider:CallSize500To1000 a provider:CallSizeBand ;
+    skos:inScheme provider:CPPICallSizeScheme ; skos:prefLabel "500 to 1,000 moves"@en ;
+    provider:minimumContainerMoves 500 ; provider:maximumContainerMoves 1000 .
+provider:CallSize1000To1500 a provider:CallSizeBand ;
+    skos:inScheme provider:CPPICallSizeScheme ; skos:prefLabel "1,000 to 1,500 moves"@en ;
+    provider:minimumContainerMoves 1000 ; provider:maximumContainerMoves 1500 .
+provider:CallSize1500To2000 a provider:CallSizeBand ;
+    skos:inScheme provider:CPPICallSizeScheme ; skos:prefLabel "1,500 to 2,000 moves"@en ;
+    provider:minimumContainerMoves 1500 ; provider:maximumContainerMoves 2000 .
+provider:CallSize2000To2500 a provider:CallSizeBand ;
+    skos:inScheme provider:CPPICallSizeScheme ; skos:prefLabel "2,000 to 2,500 moves"@en ;
+    provider:minimumContainerMoves 2000 ; provider:maximumContainerMoves 2500 .
+provider:CallSize2500To3000 a provider:CallSizeBand ;
+    skos:inScheme provider:CPPICallSizeScheme ; skos:prefLabel "2,500 to 3,000 moves"@en ;
+    provider:minimumContainerMoves 2500 ; provider:maximumContainerMoves 3000 .
+provider:CallSize3000To4000 a provider:CallSizeBand ;
+    skos:inScheme provider:CPPICallSizeScheme ; skos:prefLabel "3,000 to 4,000 moves"@en ;
+    provider:minimumContainerMoves 3000 ; provider:maximumContainerMoves 4000 .
+provider:CallSize4000To6000 a provider:CallSizeBand ;
+    skos:inScheme provider:CPPICallSizeScheme ; skos:prefLabel "4,000 to 6,000 moves"@en ;
+    provider:minimumContainerMoves 4000 ; provider:maximumContainerMoves 6000 .
+provider:CallSizeGT6000 a provider:CallSizeBand ;
+    skos:inScheme provider:CPPICallSizeScheme ; skos:prefLabel "greater than 6,000 moves"@en ;
+    provider:minimumContainerMoves 6001 .
+
+#################################################################
+# Port-time component concepts
+#################################################################
+
+provider:PortTimeComponentScheme a skos:ConceptScheme ;
+    skos:prefLabel "CPPI port-time components"@en .
+
+provider:ArrivalHours a provider:PortTimeComponent ;
+    skos:inScheme provider:PortTimeComponentScheme ;
+    skos:prefLabel "arrival hours"@en ;
+    skos:definition "Time from arrival at anchorage or pilot station to start of cargo operations."@en .
+
+provider:BerthHours a provider:PortTimeComponent ;
+    skos:inScheme provider:PortTimeComponentScheme ;
+    skos:prefLabel "berth hours"@en ;
+    skos:definition "Time from start of cargo operations to departure from berth."@en .
+
+provider:DepartureHours a provider:PortTimeComponent ;
+    skos:inScheme provider:PortTimeComponentScheme ;
+    skos:prefLabel "departure hours"@en ;
+    skos:definition "Time from departure from berth to exit from port limits; recorded but excluded from CPPI calculation."@en .
+
+provider:CPPIIncludedPortHours a provider:PortTimeComponent ;
+    skos:inScheme provider:PortTimeComponentScheme ;
+    skos:prefLabel "CPPI included port hours"@en ;
+    skos:definition "Arrival hours plus berth hours."@en .
+
+#################################################################
+# Quality and eligibility rules
+#################################################################
+
+provider:MinimumAnnualCallsRule a provider:CPPIQualityRule ;
+    rdfs:label "minimum annual calls rule"@en ;
+    provider:minimumAnnualCallCount 24 .
+
+provider:BerthProductivityRangeRule a provider:CPPIQualityRule ;
+    rdfs:label "berth productivity data-quality range"@en ;
+    provider:minimumBerthMovesPerHour 10 ;
+    provider:maximumBerthMovesPerHour 650 .
+
+provider:MinimumCellShareRule a provider:CPPIQualityRule ;
+    rdfs:label "minimum call-size-cell share rule"@en ;
+    provider:minimumCellShare 0.005 .
+
+provider:DepartureHoursExclusionRule a provider:CPPIQualityRule ;
+    rdfs:label "departure-hours exclusion rule"@en ;
+    provider:excludesDepartureHours true .
+
+#################################################################
+# CPPI 2025 edition metadata
+#################################################################
+
+<https://provider.example.org/resource/organization/world-bank-group>
+    a prov:Agent ;
+    rdfs:label "World Bank Group"@en .
+
+<https://provider.example.org/resource/organization/sp-global-market-intelligence>
+    a prov:Agent ;
+    rdfs:label "S&P Global Market Intelligence"@en .
+
+<https://provider.example.org/resource/period/cppi-2020-2025>
+    a time:ProperInterval ;
+    rdfs:label "CPPI reference years 2020–2025"@en .
+
+<https://provider.example.org/resource/dataset/cppi-2025>
+    a provider:ContainerPortPerformanceIndexEdition ;
+    dct:title "The Container Port Performance Index 2025"@en ;
+    dct:description "Sixth CPPI edition, providing a standardized comparable series for reference years 2020–2025 and detailed results for 2025."@en ;
+    dct:issued "2026-06-10"^^xsd:date ;
+    dct:publisher <https://provider.example.org/resource/organization/world-bank-group> ,
+                  <https://provider.example.org/resource/organization/sp-global-market-intelligence> ;
+    dct:temporal <https://provider.example.org/resource/period/cppi-2020-2025> ;
+    dct:source <https://www.worldbank.org/en/topic/transport/publication/cppi> ,
+               <https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099060826180010325> ;
+    provider:editionYear "2025"^^xsd:gYear ;
+    provider:referenceDistributionYear "2024"^^xsd:gYear ;
+    provider:usesCPPIApproach provider:AdministrativeApproach ,
+                              provider:StatisticalApproach ,
+                              provider:CombinedCPPIApproach ;
+    provider:hasQualityRule provider:MinimumAnnualCallsRule ,
+                            provider:BerthProductivityRangeRule ,
+                            provider:MinimumCellShareRule ,
+                            provider:DepartureHoursExclusionRule ;
+    provider:hasShipSizeGroup provider:ShipSizeFeeder ,
+                              provider:ShipSizeIntraRegional ,
+                              provider:ShipSizeIntermediate ,
+                              provider:ShipSizeNeoPanamax ,
+                              provider:ShipSizeUltraLarge .

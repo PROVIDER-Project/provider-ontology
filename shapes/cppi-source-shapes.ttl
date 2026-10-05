@@ -1,0 +1,64 @@
+@prefix provider: <https://provider-projekt.de/ontology/> .
+@prefix sh:       <http://www.w3.org/ns/shacl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct:      <http://purl.org/dc/terms/> .
+@prefix sosa:     <http://www.w3.org/ns/sosa/> .
+
+provider:CPPIObservationShape
+    a sh:NodeShape ;
+    sh:targetClass provider:ContainerPortPerformanceObservation ;
+    sh:closed false ;
+    sh:property [
+        sh:path provider:forPort ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:class provider:Port ;
+        sh:message "A CPPI observation must identify exactly one port."@en
+    ] ;
+    sh:property [
+        sh:path provider:inCPPIEdition ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:class provider:ContainerPortPerformanceIndexEdition
+    ] ;
+    sh:property [
+        sh:path provider:referenceYear ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:gYear ;
+        sh:pattern "^20[0-9]{2}$"
+    ] ;
+    sh:or (
+        [ sh:property [ sh:path provider:cppiScore ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ] ]
+        [ sh:property [ sh:path provider:globalRank ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 1 ] ]
+    ) ;
+    sh:property [ sh:path provider:cppiScore ; sh:maxCount 1 ; sh:datatype xsd:decimal ] ;
+    sh:property [ sh:path provider:globalRank ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 1 ] ;
+    sh:property [ sh:path provider:administrativeScore ; sh:maxCount 1 ; sh:datatype xsd:decimal ] ;
+    sh:property [ sh:path provider:administrativeRank ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 1 ] ;
+    sh:property [ sh:path provider:statisticalScore ; sh:maxCount 1 ; sh:datatype xsd:decimal ] ;
+    sh:property [ sh:path provider:statisticalRank ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 1 ] ;
+    sh:property [ sh:path provider:numberOfPortCalls ; sh:maxCount 1 ; sh:datatype xsd:nonNegativeInteger ] ;
+    sh:property [ sh:path provider:sourceRowNumber ; sh:maxCount 1 ; sh:datatype xsd:positiveInteger ] .
+
+provider:CPPIPortShape
+    a sh:NodeShape ;
+    sh:targetClass provider:ContainerPort ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:Literal
+    ] ;
+    sh:property [
+        sh:path provider:unLocode ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[A-Z]{2}[A-Z0-9]{3}$" ;
+        sh:flags "i"
+    ] .
+
+provider:CPPIEditionShape
+    a sh:NodeShape ;
+    sh:targetClass provider:ContainerPortPerformanceIndexEdition ;
+    sh:property [ sh:path dct:title ; sh:minCount 1 ] ;
+    sh:property [ sh:path provider:editionYear ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:gYear ] ;
+    sh:property [ sh:path provider:referenceDistributionYear ; sh:maxCount 1 ; sh:datatype xsd:gYear ] .
