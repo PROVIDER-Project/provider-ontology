@@ -1,0 +1,17 @@
+@prefix m: <https://projekt-provider.de/ontology/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+m:ReviewedAlignmentShape a sh:NodeShape ;
+ sh:targetClass m:EntityAlignmentAssertion ;
+ sh:property [ sh:path m:sourceEntity ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+ sh:property [ sh:path m:targetEntity ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+ sh:property [ sh:path m:alignmentRelation ; sh:in (m:ExactAssetMatch m:AssetPartOfComplex m:ComplexContainsAsset) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+ sh:property [ sh:path m:reviewStatus ; sh:hasValue "accepted_by_reviewer" ; sh:maxCount 1 ] ;
+ sh:property [ sh:path m:reviewNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ] ;
+ sh:property [ sh:path m:reviewEvidence ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ] ;
+ sh:property [ sh:path prov:wasAttributedTo ; sh:minCount 1 ] ;
+ sh:property [ sh:path m:hardConflict ; sh:maxCount 0 ] ;
+ sh:sparql [ sh:message "Only exact reviewed identity may create a canonical mapping." ;
+  sh:select """PREFIX m: <https://projekt-provider.de/ontology/>
+    SELECT $this WHERE { $this m:alignmentRelation ?r ; m:mappedConcept ?c . FILTER(?r != m:ExactAssetMatch) }""" ] .

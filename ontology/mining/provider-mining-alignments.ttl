@@ -1,0 +1,21 @@
+@prefix mining:   <https://projekt-provider.de/ontology/> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa:     <http://www.w3.org/ns/sosa/> .
+@prefix geo:      <http://www.opengis.net/ont/geosparql#> .
+@prefix prov:     <http://www.w3.org/ns/prov#> .
+@prefix schema:   <https://schema.org/> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+
+# Conservative alignments. They intentionally avoid owl:equivalentClass where
+# the external concept has broader or different identity conditions.
+
+mining:ExtractiveFacility rdfs:subClassOf schema:Place, geo:Feature .
+mining:ProcessingFacility rdfs:subClassOf schema:Place, geo:Feature .
+mining:MineralDeposit rdfs:subClassOf schema:Place, geo:Feature .
+mining:MiningObservation rdfs:subClassOf sosa:Observation, prov:Entity .
+mining:SourceRecord rdfs:subClassOf prov:Entity .
+provider:Commodity rdfs:subClassOf skos:Concept .
+provider:Material rdfs:subClassOf skos:Concept .
+provider:Organization rdfs:subClassOf schema:Organization, prov:Agent .

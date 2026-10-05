@@ -1,0 +1,22 @@
+@prefix mining: <https://projekt-provider.de/ontology/> .
+@prefix sh:     <http://www.w3.org/ns/shacl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+mining:EntityAlignmentAssertionShape a sh:NodeShape ;
+    sh:targetClass mining:EntityAlignmentAssertion ;
+    sh:property [ sh:path mining:sourceEntity ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path mining:targetEntity ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path mining:alignmentRelation ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path mining:alignmentConfidence ;
+        sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ; sh:maxInclusive 1
+    ] ;
+    sh:property [ sh:path mining:reviewStatus ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+mining:MaterialMappingAssertionShape a sh:NodeShape ;
+    sh:targetClass mining:MaterialMappingAssertion ;
+    sh:property [ sh:path mining:appliesToFacility ; sh:minCount 1 ] ;
+    sh:property [ sh:path mining:mappedConcept ; sh:minCount 1 ] ;
+    sh:property [ sh:path mining:sourceValue ; sh:minCount 1 ] ;
+    sh:property [ sh:path mining:mappingConfidence ; sh:minCount 1 ; sh:datatype xsd:decimal ] .

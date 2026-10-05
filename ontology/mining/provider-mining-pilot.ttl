@@ -1,0 +1,10 @@
+@prefix m: <https://projekt-provider.de/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+<https://projekt-provider.de/ontology/mining-pilot/1.0.0> a owl:Ontology ;
+ rdfs:label "Reviewed bounded mining integration pilot"@en ; owl:versionInfo "1.0.0" .
+m:MiningComplex a owl:Class ; rdfs:subClassOf m:InfrastructureAsset ; rdfs:label "mining complex"@en .
+m:reviewEvidence a owl:DatatypeProperty ; rdfs:label "review evidence reference"@en .
+m:AssetPartOfComplex a m:AlignmentRelation ; rdfs:comment "A source asset belongs to a target complex; this does not assert identity."@en .
+m:ComplexContainsAsset a m:AlignmentRelation ; rdfs:comment "A source complex contains a target asset; this does not assert identity."@en .
