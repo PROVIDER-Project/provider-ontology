@@ -1,5 +1,11 @@
 # PROVIDER Ontology
 
+## Repository und Arbeitsbranch
+
+Aktuelle Remote-Zuordnungen, geprüfte Arbeitscommits und Checkout-Anleitung:
+[aktive PROVIDER-Repositories](docs/repositories.md). Für den aktuellen AP2-Stand
+den Branch `develop` verwenden.
+
 PROVIDER project ontology for modelling cross-sector supply chains, disruptions,
 resilience capabilities, monitoring signals, impacts, mitigation actions, and
 their relationship to infrastructure.
