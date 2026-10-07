@@ -1,14 +1,14 @@
 # Aktive PROVIDER-Repositories
 
-Stand: 06.10.2026. Die folgenden Remote-Branches wurden direkt auf GitHub geprüft.
+Remote-Baseline: 06.10.2026; lokales Verzeichnislayout aktualisiert am 07.10.2026. Die folgenden Remote-Branches wurden direkt auf GitHub geprüft.
 Sie enthalten den gemeinsamen AP2-Arbeitsstand; `main` ist bei keinem der drei
 Repositories die hier aufgeführte Arbeitsbaseline.
 
 | Repository | Aktiver Remote-Branch | Geprüfter Arbeitscommit | Lokaler Checkout auf dem bisherigen Arbeitsrechner |
 |---|---|---|---|
-| [provider-datasets](https://github.com/PROVIDER-Project/provider-datasets/tree/ap2-local-progress) | `ap2-local-progress` | `e2b825803f21dde63c5f17ca315faeac4452bda1` | `ontologies/provider-datasets` |
+| [provider-datasets](https://github.com/PROVIDER-Project/provider-datasets/tree/ap2-local-progress) | `ap2-local-progress` | `e2b825803f21dde63c5f17ca315faeac4452bda1` | `code/provider-datasets` |
 | [provider-workflow](https://github.com/PROVIDER-Project/provider-workflow/tree/ap2-workflow-migration) | `ap2-workflow-migration` | `0facd954d7b5489ed62a6aa34bf060fdf9f9ff84` | `code/dagster-gdacs` |
-| [provider-ontology](https://github.com/PROVIDER-Project/provider-ontology/tree/develop) | `develop` | `85df18ec15117db050df96f7d715dd4b18ce1796` | `ontologies/provider-ontology` |
+| [provider-ontology](https://github.com/PROVIDER-Project/provider-ontology/tree/develop) | `develop` | `85df18ec15117db050df96f7d715dd4b18ce1796` | `code/provider-ontology` |
 
 Die Commit-IDs dokumentieren den geprüften Implementierungsstand vor dieser
 Dokumentationskorrektur. Spätere Commits auf den Arbeitsbranches sind möglich;
@@ -19,10 +19,10 @@ reproduzierbare Laufpakete verwenden weiterhin ihre ausdrücklich gepinnten Vers
 Aus einem gemeinsamen PROVIDER-Arbeitsverzeichnis mit GitHub-SSH-Zugriff:
 
 ```bash
-mkdir -p ontologies code
-git clone --branch ap2-local-progress git@github.com:PROVIDER-Project/provider-datasets.git ontologies/provider-datasets
+mkdir -p code
+git clone --branch ap2-local-progress git@github.com:PROVIDER-Project/provider-datasets.git code/provider-datasets
 git clone --branch ap2-workflow-migration git@github.com:PROVIDER-Project/provider-workflow.git code/dagster-gdacs
-git clone --branch develop git@github.com:PROVIDER-Project/provider-ontology.git ontologies/provider-ontology
+git clone --branch develop git@github.com:PROVIDER-Project/provider-ontology.git code/provider-ontology
 ```
 
 Die Befehle sind für neue, noch nicht vorhandene Zielverzeichnisse gedacht. Das
