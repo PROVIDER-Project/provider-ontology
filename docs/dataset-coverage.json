@@ -1,0 +1,718 @@
+{
+  "checked_on": "2026-10-13",
+  "registry_commit": "bd31c364499ba643302ab397c97d5ad8ae5a242f",
+  "registry_sha256": "3265f23f1dbedd3ef948621b5187705fdd0338d06696482d301110b62d763eba",
+  "registry_ids": [
+    "portwatch",
+    "gdacs",
+    "hs2017",
+    "unlocode",
+    "portwatch-hs2017",
+    "cppi",
+    "port-alignment",
+    "soy-backtest",
+    "mining-icmm",
+    "mining-gem",
+    "gta",
+    "searoutes",
+    "osm",
+    "gdelt",
+    "acled",
+    "baci",
+    "lpi",
+    "un-comtrade",
+    "chirps",
+    "ana-monitor-secas",
+    "fao-asis-vhi",
+    "ibge",
+    "conab",
+    "comexstat",
+    "mapbiomas",
+    "eurostat-marnet",
+    "provider-searoute",
+    "ais",
+    "mastodon",
+    "partner-data",
+    "eurostat-comext",
+    "destatis-indicators",
+    "facility-company-reports",
+    "eu-sanctions"
+  ],
+  "sources": [
+    {
+      "source_id": "portwatch",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/ports#OperationalPort",
+        "https://projekt-provider.de/ontology/ports#TradeLocation",
+        "https://projekt-provider.de/ontology/ports#MatchAssertion"
+      ],
+      "competency_questions": [
+        "CQ10",
+        "CQ15"
+      ],
+      "integration_status": "legacy-profile-kept; adapter-pending",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "maritime-reference",
+        "maritime-observations"
+      ]
+    },
+    {
+      "source_id": "gdacs",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/event#Event",
+        "https://projekt-provider.de/ontology/hazard#HazardEvent",
+        "https://projekt-provider.de/ontology/ports#EventEpisode",
+        "https://projekt-provider.de/ontology/EvidenceAssertion"
+      ],
+      "competency_questions": [
+        "CQ11",
+        "CQ23"
+      ],
+      "integration_status": "legacy-profile-kept; adapter-pending",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "hazard-events",
+        "semiconductor-facilities"
+      ]
+    },
+    {
+      "source_id": "hs2017",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/CommodityConcept",
+        "https://projekt-provider.de/ontology/CNSelection",
+        "https://projekt-provider.de/ontology/classificationScheme"
+      ],
+      "competency_questions": [
+        "CQ02",
+        "CQ09"
+      ],
+      "integration_status": "legacy-profile-kept; adapter-pending",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "soy-trade",
+        "adblue-trade",
+        "semiconductor-trade"
+      ]
+    },
+    {
+      "source_id": "unlocode",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/ports#OperationalPort",
+        "https://projekt-provider.de/ontology/ports#TradeLocation",
+        "https://projekt-provider.de/ontology/ports#MatchAssertion"
+      ],
+      "competency_questions": [
+        "CQ10",
+        "CQ15"
+      ],
+      "integration_status": "legacy-profile-kept; adapter-pending",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "maritime-reference"
+      ]
+    },
+    {
+      "source_id": "portwatch-hs2017",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/CommodityConcept",
+        "https://projekt-provider.de/ontology/CNSelection",
+        "https://projekt-provider.de/ontology/classificationScheme"
+      ],
+      "competency_questions": [
+        "CQ02",
+        "CQ09"
+      ],
+      "integration_status": "legacy-profile-kept; adapter-pending",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "maritime-observations"
+      ]
+    },
+    {
+      "source_id": "cppi",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/cppi#AnnualObservation",
+        "https://projekt-provider.de/ontology/CPPIIndexScore",
+        "https://projekt-provider.de/ontology/SourceRecord"
+      ],
+      "competency_questions": [
+        "CQ13",
+        "CQ18"
+      ],
+      "integration_status": "legacy-profile-kept; adapter-pending",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "maritime-performance"
+      ]
+    },
+    {
+      "source_id": "port-alignment",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/ports#OperationalPort",
+        "https://projekt-provider.de/ontology/ports#TradeLocation",
+        "https://projekt-provider.de/ontology/ports#MatchAssertion"
+      ],
+      "competency_questions": [
+        "CQ10",
+        "CQ15"
+      ],
+      "integration_status": "legacy-profile-kept; adapter-pending",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "maritime-reference",
+        "maritime-performance"
+      ]
+    },
+    {
+      "source_id": "soy-backtest",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/CropSeason",
+        "https://projekt-provider.de/ontology/RasterObservation",
+        "https://projekt-provider.de/ontology/SpatialMask",
+        "https://projekt-provider.de/ontology/StatisticalObservation"
+      ],
+      "competency_questions": [
+        "CQ14",
+        "CQ24"
+      ],
+      "integration_status": "legacy-profile-kept; adapter-pending",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "soy-climate",
+        "soy-yield",
+        "soy-trade"
+      ]
+    },
+    {
+      "source_id": "mining-icmm",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/mining#Mine",
+        "https://projekt-provider.de/ontology/mining#MiningComplex",
+        "https://projekt-provider.de/ontology/mining#EntityAlignmentAssertion",
+        "https://projekt-provider.de/ontology/CommodityConcept"
+      ],
+      "competency_questions": [
+        "CQ12",
+        "CQ25"
+      ],
+      "integration_status": "legacy-profile-kept; adapter-pending",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "mining-reference",
+        "mining-alignment"
+      ]
+    },
+    {
+      "source_id": "mining-gem",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/mining#Mine",
+        "https://projekt-provider.de/ontology/mining#MiningComplex",
+        "https://projekt-provider.de/ontology/mining#EntityAlignmentAssertion",
+        "https://projekt-provider.de/ontology/CommodityConcept"
+      ],
+      "competency_questions": [
+        "CQ12",
+        "CQ25"
+      ],
+      "integration_status": "legacy-profile-kept; adapter-pending",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "mining-reference",
+        "mining-alignment"
+      ]
+    },
+    {
+      "source_id": "gta",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/EvidenceAssertion",
+        "https://projekt-provider.de/ontology/ScenarioAssumption",
+        "https://projekt-provider.de/ontology/PolicyEvent"
+      ],
+      "competency_questions": [
+        "CQ19",
+        "CQ20"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "firm-network"
+      ]
+    },
+    {
+      "source_id": "searoutes",
+      "selection": "deferred",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/RouteEstimate",
+        "https://projekt-provider.de/ontology/RouteCalculation",
+        "https://projekt-provider.de/ontology/network#RouteStep"
+      ],
+      "competency_questions": [
+        "CQ16",
+        "CQ22"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "maritime-routing"
+      ]
+    },
+    {
+      "source_id": "osm",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/infrastructure#InfrastructureFeature",
+        "https://projekt-provider.de/ontology/network#Network",
+        "https://projekt-provider.de/ontology/ports#PortArea"
+      ],
+      "competency_questions": [
+        "CQ15",
+        "CQ22"
+      ],
+      "integration_status": "legacy-profile-kept; adapter-pending",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "maritime-reference"
+      ]
+    },
+    {
+      "source_id": "gdelt",
+      "selection": "deferred",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/event#Event",
+        "https://projekt-provider.de/ontology/hazard#HazardEvent",
+        "https://projekt-provider.de/ontology/ports#EventEpisode",
+        "https://projekt-provider.de/ontology/EvidenceAssertion"
+      ],
+      "competency_questions": [
+        "CQ11",
+        "CQ23"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "news-events",
+        "policy-disruptions",
+        "downstream-industry"
+      ]
+    },
+    {
+      "source_id": "acled",
+      "selection": "deferred",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/event#Event",
+        "https://projekt-provider.de/ontology/hazard#HazardEvent",
+        "https://projekt-provider.de/ontology/ports#EventEpisode",
+        "https://projekt-provider.de/ontology/EvidenceAssertion"
+      ],
+      "competency_questions": [
+        "CQ11",
+        "CQ23"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "conflict-context"
+      ]
+    },
+    {
+      "source_id": "baci",
+      "selection": "deferred",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/StatisticalCell",
+        "https://projekt-provider.de/ontology/StatisticalObservation",
+        "https://projekt-provider.de/ontology/StatisticalMeasurement",
+        "https://projekt-provider.de/ontology/AnnualCoverage"
+      ],
+      "competency_questions": [
+        "CQ03",
+        "CQ04",
+        "CQ05",
+        "CQ08"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "firm-network",
+        "semiconductor-trade",
+        "soy-extended-chain"
+      ]
+    },
+    {
+      "source_id": "lpi",
+      "selection": "deferred",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/StatisticalCell",
+        "https://projekt-provider.de/ontology/StatisticalObservation",
+        "https://projekt-provider.de/ontology/StatisticalMeasurement",
+        "https://projekt-provider.de/ontology/AnnualCoverage"
+      ],
+      "competency_questions": [
+        "CQ03",
+        "CQ04",
+        "CQ05",
+        "CQ08"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "maritime-performance"
+      ]
+    },
+    {
+      "source_id": "un-comtrade",
+      "selection": "deferred",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/StatisticalCell",
+        "https://projekt-provider.de/ontology/StatisticalObservation",
+        "https://projekt-provider.de/ontology/StatisticalMeasurement",
+        "https://projekt-provider.de/ontology/AnnualCoverage"
+      ],
+      "competency_questions": [
+        "CQ03",
+        "CQ04",
+        "CQ05",
+        "CQ08"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "firm-network",
+        "adblue-trade",
+        "semiconductor-trade",
+        "soy-extended-chain"
+      ]
+    },
+    {
+      "source_id": "chirps",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/CropSeason",
+        "https://projekt-provider.de/ontology/RasterObservation",
+        "https://projekt-provider.de/ontology/SpatialMask",
+        "https://projekt-provider.de/ontology/StatisticalObservation"
+      ],
+      "competency_questions": [
+        "CQ14",
+        "CQ24"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "soy-climate"
+      ]
+    },
+    {
+      "source_id": "ana-monitor-secas",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/CropSeason",
+        "https://projekt-provider.de/ontology/RasterObservation",
+        "https://projekt-provider.de/ontology/SpatialMask",
+        "https://projekt-provider.de/ontology/StatisticalObservation"
+      ],
+      "competency_questions": [
+        "CQ14",
+        "CQ24"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "soy-climate"
+      ]
+    },
+    {
+      "source_id": "fao-asis-vhi",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/CropSeason",
+        "https://projekt-provider.de/ontology/RasterObservation",
+        "https://projekt-provider.de/ontology/SpatialMask",
+        "https://projekt-provider.de/ontology/StatisticalObservation"
+      ],
+      "competency_questions": [
+        "CQ14",
+        "CQ24"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "soy-climate"
+      ]
+    },
+    {
+      "source_id": "ibge",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/StatisticalCell",
+        "https://projekt-provider.de/ontology/StatisticalObservation",
+        "https://projekt-provider.de/ontology/StatisticalMeasurement",
+        "https://projekt-provider.de/ontology/AnnualCoverage"
+      ],
+      "competency_questions": [
+        "CQ03",
+        "CQ04",
+        "CQ05",
+        "CQ08"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "soy-climate",
+        "soy-yield"
+      ]
+    },
+    {
+      "source_id": "conab",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/CropSeason",
+        "https://projekt-provider.de/ontology/RasterObservation",
+        "https://projekt-provider.de/ontology/SpatialMask",
+        "https://projekt-provider.de/ontology/StatisticalObservation"
+      ],
+      "competency_questions": [
+        "CQ14",
+        "CQ24"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "soy-yield"
+      ]
+    },
+    {
+      "source_id": "comexstat",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/StatisticalCell",
+        "https://projekt-provider.de/ontology/StatisticalObservation",
+        "https://projekt-provider.de/ontology/StatisticalMeasurement",
+        "https://projekt-provider.de/ontology/AnnualCoverage"
+      ],
+      "competency_questions": [
+        "CQ03",
+        "CQ04",
+        "CQ05",
+        "CQ08"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "soy-trade"
+      ]
+    },
+    {
+      "source_id": "mapbiomas",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/CropSeason",
+        "https://projekt-provider.de/ontology/RasterObservation",
+        "https://projekt-provider.de/ontology/SpatialMask",
+        "https://projekt-provider.de/ontology/StatisticalObservation"
+      ],
+      "competency_questions": [
+        "CQ14",
+        "CQ24"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "soy-climate"
+      ]
+    },
+    {
+      "source_id": "eurostat-marnet",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/RouteEstimate",
+        "https://projekt-provider.de/ontology/RouteCalculation",
+        "https://projekt-provider.de/ontology/network#RouteStep"
+      ],
+      "competency_questions": [
+        "CQ16",
+        "CQ22"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "maritime-routing"
+      ]
+    },
+    {
+      "source_id": "provider-searoute",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/RouteEstimate",
+        "https://projekt-provider.de/ontology/RouteCalculation",
+        "https://projekt-provider.de/ontology/network#RouteStep"
+      ],
+      "competency_questions": [
+        "CQ16",
+        "CQ22"
+      ],
+      "integration_status": "legacy-profile-kept; adapter-pending",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "maritime-routing"
+      ]
+    },
+    {
+      "source_id": "ais",
+      "selection": "deferred",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/RouteEstimate",
+        "https://projekt-provider.de/ontology/RouteCalculation",
+        "https://projekt-provider.de/ontology/network#RouteStep"
+      ],
+      "competency_questions": [
+        "CQ16",
+        "CQ22"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "observed-voyages"
+      ]
+    },
+    {
+      "source_id": "mastodon",
+      "selection": "deferred",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/event#Event",
+        "https://projekt-provider.de/ontology/hazard#HazardEvent",
+        "https://projekt-provider.de/ontology/ports#EventEpisode",
+        "https://projekt-provider.de/ontology/EvidenceAssertion"
+      ],
+      "competency_questions": [
+        "CQ11",
+        "CQ23"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "news-events"
+      ]
+    },
+    {
+      "source_id": "partner-data",
+      "selection": "deferred",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/IndustrialFacility",
+        "https://projekt-provider.de/ontology/Organization",
+        "https://projekt-provider.de/ontology/EvidenceAssertion"
+      ],
+      "competency_questions": [
+        "CQ01",
+        "CQ20",
+        "CQ21"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "firm-network",
+        "adblue-trade",
+        "adblue-energy-production",
+        "policy-disruptions",
+        "semiconductor-facilities",
+        "semiconductor-trade",
+        "downstream-industry",
+        "soy-extended-chain"
+      ]
+    },
+    {
+      "source_id": "eurostat-comext",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/StatisticalCell",
+        "https://projekt-provider.de/ontology/StatisticalObservation",
+        "https://projekt-provider.de/ontology/StatisticalMeasurement",
+        "https://projekt-provider.de/ontology/AnnualCoverage"
+      ],
+      "competency_questions": [
+        "CQ03",
+        "CQ04",
+        "CQ05",
+        "CQ08"
+      ],
+      "integration_status": "comext-real-projection-validated",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "adblue-trade",
+        "semiconductor-trade",
+        "soy-extended-chain"
+      ]
+    },
+    {
+      "source_id": "destatis-indicators",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/StatisticalCell",
+        "https://projekt-provider.de/ontology/NitrogenProductionMass",
+        "https://projekt-provider.de/ontology/ProductionIndex",
+        "https://projekt-provider.de/ontology/ProductionCapacity"
+      ],
+      "competency_questions": [
+        "CQ06",
+        "CQ07",
+        "CQ17"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "adblue-energy-production",
+        "downstream-industry"
+      ]
+    },
+    {
+      "source_id": "facility-company-reports",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/IndustrialFacility",
+        "https://projekt-provider.de/ontology/Organization",
+        "https://projekt-provider.de/ontology/EvidenceAssertion"
+      ],
+      "competency_questions": [
+        "CQ01",
+        "CQ20",
+        "CQ21"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "adblue-energy-production",
+        "semiconductor-facilities",
+        "soy-extended-chain"
+      ]
+    },
+    {
+      "source_id": "eu-sanctions",
+      "selection": "selected",
+      "model_terms": [
+        "https://projekt-provider.de/ontology/EvidenceAssertion",
+        "https://projekt-provider.de/ontology/ScenarioAssumption",
+        "https://projekt-provider.de/ontology/PolicyEvent"
+      ],
+      "competency_questions": [
+        "CQ19",
+        "CQ20"
+      ],
+      "integration_status": "model-only; no production-adapter",
+      "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
+      "working_requirements": [
+        "policy-disruptions"
+      ]
+    }
+  ]
+}

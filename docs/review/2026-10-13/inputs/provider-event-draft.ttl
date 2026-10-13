@@ -1,0 +1,1288 @@
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix dcat:     <http://www.w3.org/ns/dcat#> .
+@prefix prov:     <http://www.w3.org/ns/prov#> .
+@prefix time:     <http://www.w3.org/2006/time#> .
+@prefix geo:      <http://www.opengis.net/ont/geosparql#> .
+@prefix qudt:     <http://qudt.org/schema/qudt/> .
+@prefix schema:   <https://schema.org/> .
+
+@prefix provider: <https://w3id.org/provider/ontology/core#> .
+@prefix provevent:<https://w3id.org/provider/ontology/event#> .
+@prefix provhaz:  <https://w3id.org/provider/ontology/hazard#> .
+@prefix provconf: <https://w3id.org/provider/ontology/conflict#> .
+@prefix provinfra:<https://w3id.org/provider/ontology/infrastructure#> .
+@prefix acled:    <https://w3id.org/provider/vocab/acled#> .
+
+<https://w3id.org/provider/ontology/event>
+    a owl:Ontology ;
+    dcterms:title "PROVIDER Event, Hazard, Conflict, and Exposure Ontology"@en ;
+    dcterms:description "Ontology module for modeling disruption-relevant events in the PROVIDER knowledge graph, including generic disruption events, natural hazard events and alerts such as GDACS, baseline hazard layers such as flood and seismic hazard maps, asset-level hazard exposure assessments, conflict/security events such as ACLED records, and event impact assessments for supply-chain resilience analysis."@en ;
+    dcterms:creator "PROVIDER project"@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:created "2026-06-09"^^xsd:date ;
+    rdfs:seeAlso <http://www.opengis.net/ont/geosparql> ,
+                 <http://www.w3.org/ns/prov> ,
+                 <http://www.w3.org/ns/dcat> ,
+                 <http://www.w3.org/2006/time> ,
+                 <https://schema.org/> .
+
+#################################################################
+# Annotation properties
+#################################################################
+
+provevent:recommendedMapping
+    a owl:AnnotationProperty ;
+    rdfs:label "recommended mapping"@en ;
+    rdfs:comment "Human-readable implementation guidance for ETL mappings into this ontology."@en .
+
+provevent:modelingNote
+    a owl:AnnotationProperty ;
+    rdfs:label "modeling note"@en ;
+    rdfs:comment "A modeling note intended for ontology maintainers and data engineers."@en .
+
+#################################################################
+# 1. Generic event and disruption event model
+#################################################################
+
+provevent:Event
+    a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "A temporally situated occurrence that may have a location, spatial extent, source record, participants, observations, and possible impacts."@en ;
+    rdfs:subClassOf prov:Entity .
+
+provevent:DisruptionEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:Event ;
+    rdfs:label "Disruption Event"@en ;
+    rdfs:comment "An event that may disrupt, damage, delay, constrain, or otherwise affect supply chains, infrastructure, logistics, production, procurement, or demand."@en ;
+    provevent:modelingNote "Use this as the common superclass for hazard events, conflict events, infrastructure disruption events, cyber incidents, regulatory disruption events, and similar supply-chain-relevant events. Do not use HazardEvent as the superclass for conflict events."@en .
+
+provevent:InfrastructureDisruptionEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:DisruptionEvent ;
+    rdfs:label "Infrastructure Disruption Event"@en ;
+    rdfs:comment "A disruption event directly affecting infrastructure availability or operation, such as a port closure, road closure, railway outage, power outage, or pipeline outage."@en .
+
+provevent:TransportDisruptionEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:InfrastructureDisruptionEvent ;
+    rdfs:label "Transport Disruption Event"@en .
+
+provevent:PortClosureEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:TransportDisruptionEvent ;
+    rdfs:label "Port Closure Event"@en .
+
+provevent:RoadClosureEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:TransportDisruptionEvent ;
+    rdfs:label "Road Closure Event"@en .
+
+provevent:RailDisruptionEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:TransportDisruptionEvent ;
+    rdfs:label "Rail Disruption Event"@en .
+
+provevent:AirportDisruptionEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:TransportDisruptionEvent ;
+    rdfs:label "Airport Disruption Event"@en .
+
+provevent:PowerOutageEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:InfrastructureDisruptionEvent ;
+    rdfs:label "Power Outage Event"@en .
+
+provevent:PipelineDisruptionEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:InfrastructureDisruptionEvent ;
+    rdfs:label "Pipeline Disruption Event"@en .
+
+provevent:CyberIncidentEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:DisruptionEvent ;
+    rdfs:label "Cyber Incident Event"@en .
+
+provevent:RegulatoryDisruptionEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:DisruptionEvent ;
+    rdfs:label "Regulatory Disruption Event"@en .
+
+provevent:ExportRestrictionEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:RegulatoryDisruptionEvent ;
+    rdfs:label "Export Restriction Event"@en .
+
+provevent:ImportBanEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:RegulatoryDisruptionEvent ;
+    rdfs:label "Import Ban Event"@en .
+
+provevent:SanctionEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:RegulatoryDisruptionEvent ;
+    rdfs:label "Sanction Event"@en .
+
+provevent:BorderClosureEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:RegulatoryDisruptionEvent ;
+    rdfs:label "Border Closure Event"@en .
+
+#################################################################
+# 2. Common event properties
+#################################################################
+
+provevent:sourceRecordId
+    a owl:DatatypeProperty ;
+    rdfs:domain provevent:Event ;
+    rdfs:range xsd:string ;
+    rdfs:label "source record identifier"@en ;
+    rdfs:comment "Identifier of the source-system record from which the event was created, for example a GDACS event id or ACLED event id."@en .
+
+provevent:sourceDataset
+    a owl:ObjectProperty ;
+    rdfs:domain provevent:Event ;
+    rdfs:range dcat:Dataset ;
+    rdfs:label "source dataset"@en .
+
+provevent:sourceUrl
+    a owl:DatatypeProperty ;
+    rdfs:domain provevent:Event ;
+    rdfs:range xsd:anyURI ;
+    rdfs:label "source URL"@en .
+
+provevent:occurredOn
+    a owl:DatatypeProperty ;
+    rdfs:domain provevent:Event ;
+    rdfs:range xsd:date ;
+    rdfs:label "occurred on"@en .
+
+provevent:startedAt
+    a owl:DatatypeProperty ;
+    rdfs:domain provevent:Event ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "started at"@en .
+
+provevent:endedAt
+    a owl:DatatypeProperty ;
+    rdfs:domain provevent:Event ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "ended at"@en .
+
+provevent:hasEventTime
+    a owl:ObjectProperty ;
+    rdfs:domain provevent:Event ;
+    rdfs:range time:TemporalEntity ;
+    rdfs:label "has event time"@en .
+
+provevent:hasLocation
+    a owl:ObjectProperty ;
+    rdfs:domain provevent:Event ;
+    rdfs:range geo:Feature ;
+    rdfs:label "has location"@en ;
+    rdfs:comment "Links an event to a spatial feature representing its location, epicenter, centroid, reported place, or source-specific location."@en .
+
+provevent:hasAffectedArea
+    a owl:ObjectProperty ;
+    rdfs:domain provevent:DisruptionEvent ;
+    rdfs:range geo:Feature ;
+    rdfs:label "has affected area"@en ;
+    rdfs:comment "Links a disruption event to a footprint, alert area, buffer, administrative region, or modeled affected area."@en .
+
+provevent:locatedInCountry
+    a owl:ObjectProperty ;
+    rdfs:domain provevent:Event ;
+    rdfs:range provider:Country ;
+    rdfs:label "located in country"@en .
+
+provevent:locatedInRegion
+    a owl:ObjectProperty ;
+    rdfs:domain provevent:Event ;
+    rdfs:range geo:Feature ;
+    rdfs:label "located in region"@en .
+
+provevent:hasSeverity
+    a owl:DatatypeProperty ;
+    rdfs:domain provevent:DisruptionEvent ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has severity"@en .
+
+provevent:severityClass
+    a owl:DatatypeProperty ;
+    rdfs:domain provevent:DisruptionEvent ;
+    rdfs:range xsd:string ;
+    rdfs:label "severity class"@en ;
+    rdfs:comment "Categorical severity, preferably normalized to a PROVIDER-controlled vocabulary while preserving the source value separately."@en .
+
+provevent:confidence
+    a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "confidence"@en ;
+    rdfs:comment "Confidence score in the range 0 to 1 where applicable."@en .
+
+provevent:dataVersion
+    a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string ;
+    rdfs:label "data version"@en .
+
+provevent:ingestedAt
+    a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "ingested at"@en .
+
+provevent:sourceProvider
+    a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string ;
+    rdfs:label "source provider"@en .
+
+#################################################################
+# 3. Hazard phenomena vocabulary
+#################################################################
+
+provhaz:HazardPhenomenon
+    a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "Hazard Phenomenon"@en ;
+    rdfs:comment "A category of potentially disruptive natural, environmental, biological, or compound hazard."@en .
+
+provhaz:HydrologicalHazard
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardPhenomenon ;
+    rdfs:label "Hydrological Hazard"@en .
+
+provhaz:GeophysicalHazard
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardPhenomenon ;
+    rdfs:label "Geophysical Hazard"@en .
+
+provhaz:MeteorologicalHazard
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardPhenomenon ;
+    rdfs:label "Meteorological Hazard"@en .
+
+provhaz:ClimatologicalHazard
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardPhenomenon ;
+    rdfs:label "Climatological Hazard"@en .
+
+provhaz:BiologicalHazard
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardPhenomenon ;
+    rdfs:label "Biological Hazard"@en .
+
+provhaz:hasHazardType
+    a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range provhaz:HazardPhenomenon ;
+    rdfs:label "has hazard type"@en ;
+    rdfs:comment "Links a hazard event, alert, layer, observation, or assessment to a hazard phenomenon such as river flood, seismic shaking, tropical cyclone, wildfire, or drought."@en .
+
+provhaz:riverFlood
+    a provhaz:HydrologicalHazard ;
+    skos:prefLabel "River flood"@en ;
+    skos:broader provhaz:flood .
+
+provhaz:coastalFlood
+    a provhaz:HydrologicalHazard ;
+    skos:prefLabel "Coastal flood"@en ;
+    skos:broader provhaz:flood .
+
+provhaz:flashFlood
+    a provhaz:HydrologicalHazard ;
+    skos:prefLabel "Flash flood"@en ;
+    skos:broader provhaz:flood .
+
+provhaz:flood
+    a provhaz:HydrologicalHazard ;
+    skos:prefLabel "Flood"@en .
+
+provhaz:drought
+    a provhaz:HydrologicalHazard ;
+    skos:prefLabel "Drought"@en .
+
+provhaz:earthquake
+    a provhaz:GeophysicalHazard ;
+    skos:prefLabel "Earthquake"@en .
+
+provhaz:seismicShaking
+    a provhaz:GeophysicalHazard ;
+    skos:prefLabel "Seismic shaking"@en .
+
+provhaz:tsunami
+    a provhaz:GeophysicalHazard ;
+    skos:prefLabel "Tsunami"@en .
+
+provhaz:volcanicActivity
+    a provhaz:GeophysicalHazard ;
+    skos:prefLabel "Volcanic activity"@en .
+
+provhaz:landslide
+    a provhaz:GeophysicalHazard ;
+    skos:prefLabel "Landslide"@en .
+
+provhaz:tropicalCyclone
+    a provhaz:MeteorologicalHazard ;
+    skos:prefLabel "Tropical cyclone"@en .
+
+provhaz:storm
+    a provhaz:MeteorologicalHazard ;
+    skos:prefLabel "Storm"@en .
+
+provhaz:extremeWind
+    a provhaz:MeteorologicalHazard ;
+    skos:prefLabel "Extreme wind"@en .
+
+provhaz:extremeRainfall
+    a provhaz:MeteorologicalHazard ;
+    skos:prefLabel "Extreme rainfall"@en .
+
+provhaz:extremeHeat
+    a provhaz:ClimatologicalHazard ;
+    skos:prefLabel "Extreme heat"@en .
+
+provhaz:extremeCold
+    a provhaz:ClimatologicalHazard ;
+    skos:prefLabel "Extreme cold"@en .
+
+provhaz:wildfire
+    a provhaz:ClimatologicalHazard ;
+    skos:prefLabel "Wildfire"@en .
+
+provhaz:pestOutbreak
+    a provhaz:BiologicalHazard ;
+    skos:prefLabel "Pest outbreak"@en .
+
+provhaz:diseaseOutbreak
+    a provhaz:BiologicalHazard ;
+    skos:prefLabel "Disease outbreak"@en .
+
+#################################################################
+# 4. Hazard events and observations
+#################################################################
+
+provhaz:HazardEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:DisruptionEvent ;
+    rdfs:label "Hazard Event"@en ;
+    rdfs:comment "A temporally situated natural, environmental, biological, or compound hazard occurrence, such as an earthquake, flood, cyclone, wildfire, drought, volcanic eruption, or landslide."@en .
+
+provhaz:EarthquakeEvent
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardEvent ;
+    rdfs:label "Earthquake Event"@en .
+
+provhaz:FloodEvent
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardEvent ;
+    rdfs:label "Flood Event"@en .
+
+provhaz:TropicalCycloneEvent
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardEvent ;
+    rdfs:label "Tropical Cyclone Event"@en .
+
+provhaz:WildfireEvent
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardEvent ;
+    rdfs:label "Wildfire Event"@en .
+
+provhaz:DroughtEvent
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardEvent ;
+    rdfs:label "Drought Event"@en .
+
+provhaz:VolcanicEvent
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardEvent ;
+    rdfs:label "Volcanic Event"@en .
+
+provhaz:LandslideEvent
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardEvent ;
+    rdfs:label "Landslide Event"@en .
+
+provhaz:TsunamiEvent
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardEvent ;
+    rdfs:label "Tsunami Event"@en .
+
+provhaz:HazardObservation
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Hazard Observation"@en ;
+    rdfs:comment "An observation of a hazard-related phenomenon, such as satellite fire detection, rainfall observation, seismic measurement, or flood extent observation. Observations may support event detection but are not necessarily events themselves."@en .
+
+provhaz:SatelliteFireObservation
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardObservation ;
+    rdfs:label "Satellite Fire Observation"@en .
+
+provhaz:SeismicObservation
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardObservation ;
+    rdfs:label "Seismic Observation"@en .
+
+provhaz:FloodObservation
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardObservation ;
+    rdfs:label "Flood Observation"@en .
+
+provhaz:WeatherObservation
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardObservation ;
+    rdfs:label "Weather Observation"@en .
+
+provhaz:observedAt
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardObservation ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "observed at"@en .
+
+provhaz:observesEvent
+    a owl:ObjectProperty ;
+    rdfs:domain provhaz:HazardObservation ;
+    rdfs:range provhaz:HazardEvent ;
+    rdfs:label "observes event"@en .
+
+provhaz:observationValue
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardObservation ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "observation value"@en .
+
+provhaz:observationUnit
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardObservation ;
+    rdfs:range xsd:string ;
+    rdfs:label "observation unit"@en .
+
+provhaz:magnitude
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:EarthquakeEvent ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "magnitude"@en .
+
+provhaz:depthKilometers
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:EarthquakeEvent ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "depth in kilometers"@en .
+
+provhaz:maximumWindSpeed
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:TropicalCycloneEvent ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "maximum wind speed"@en .
+
+provhaz:affectedPopulation
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardEvent ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "affected population"@en .
+
+provhaz:fireRadiativePowerMW
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:SatelliteFireObservation ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "fire radiative power in MW"@en .
+
+#################################################################
+# 5. Hazard alerts, including GDACS
+#################################################################
+
+provhaz:HazardAlert
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Hazard Alert"@en ;
+    rdfs:comment "A warning, alert, bulletin, or source-provider status record issued for a hazard event or observation."@en .
+
+provhaz:GDACSAlert
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardAlert ;
+    rdfs:label "GDACS Alert"@en ;
+    rdfs:comment "An alert record issued by the Global Disaster Alert and Coordination System."@en ;
+    provevent:recommendedMapping "Map GDACS alert-level records to provhaz:GDACSAlert and link them to the corresponding provhaz:HazardEvent using provhaz:alertsAbout and provhaz:hasAlert."@en .
+
+provhaz:EarlyWarningAlert
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardAlert ;
+    rdfs:label "Early Warning Alert"@en .
+
+provhaz:ObservationAlert
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardAlert ;
+    rdfs:label "Observation Alert"@en .
+
+provhaz:hasAlert
+    a owl:ObjectProperty ;
+    rdfs:domain provhaz:HazardEvent ;
+    rdfs:range provhaz:HazardAlert ;
+    rdfs:label "has alert"@en .
+
+provhaz:alertsAbout
+    a owl:ObjectProperty ;
+    rdfs:domain provhaz:HazardAlert ;
+    rdfs:range provhaz:HazardEvent ;
+    rdfs:label "alerts about"@en .
+
+provhaz:alertLevel
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardAlert ;
+    rdfs:range xsd:string ;
+    rdfs:label "alert level"@en ;
+    rdfs:comment "Alert severity level as provided by the source system, for example Green, Orange, or Red in GDACS."@en .
+
+provhaz:issuedAt
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardAlert ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "issued at"@en .
+
+provhaz:expiresAt
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardAlert ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "expires at"@en .
+
+#################################################################
+# 6. Hazard datasets and spatial hazard layers
+#################################################################
+
+provhaz:HazardDataset
+    a owl:Class ;
+    rdfs:subClassOf dcat:Dataset ;
+    rdfs:label "Hazard Dataset"@en ;
+    rdfs:comment "A dataset containing hazard events, observations, alerts, baseline hazard layers, historical records, or derived exposure indicators."@en .
+
+provhaz:EventDataset
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardDataset ;
+    rdfs:label "Event Dataset"@en .
+
+provhaz:ObservationDataset
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardDataset ;
+    rdfs:label "Observation Dataset"@en .
+
+provhaz:BaselineHazardDataset
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardDataset ;
+    rdfs:label "Baseline Hazard Dataset"@en ;
+    rdfs:comment "A dataset describing estimated, modeled, or probabilistic hazard intensity over space, for example flood depth by return period or seismic peak ground acceleration."@en .
+
+provhaz:HistoricalHazardDataset
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardDataset ;
+    rdfs:label "Historical Hazard Dataset"@en .
+
+provhaz:HazardLayer
+    a owl:Class ;
+    rdfs:subClassOf geo:Feature ;
+    rdfs:label "Hazard Layer"@en ;
+    rdfs:comment "A spatial layer representing hazard intensity, probability, return period, susceptibility, forecast state, or hazard zones. Baseline hazard layers are not events."@en ;
+    provevent:modelingNote "Use HazardLayer for flood, seismic, drought, cyclone wind, wildfire-risk, and similar spatial hazard surfaces. Do not model such baseline layers as HazardEvent."@en .
+
+provhaz:RasterHazardLayer
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardLayer ;
+    rdfs:label "Raster Hazard Layer"@en .
+
+provhaz:VectorHazardLayer
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardLayer ;
+    rdfs:label "Vector Hazard Layer"@en .
+
+provhaz:FloodHazardLayer
+    a owl:Class ;
+    rdfs:subClassOf provhaz:RasterHazardLayer ;
+    rdfs:label "Flood Hazard Layer"@en .
+
+provhaz:SeismicHazardLayer
+    a owl:Class ;
+    rdfs:subClassOf provhaz:RasterHazardLayer ;
+    rdfs:label "Seismic Hazard Layer"@en .
+
+provhaz:CycloneWindHazardLayer
+    a owl:Class ;
+    rdfs:subClassOf provhaz:RasterHazardLayer ;
+    rdfs:label "Cyclone Wind Hazard Layer"@en .
+
+provhaz:DroughtHazardLayer
+    a owl:Class ;
+    rdfs:subClassOf provhaz:RasterHazardLayer ;
+    rdfs:label "Drought Hazard Layer"@en .
+
+provhaz:WildfireHazardLayer
+    a owl:Class ;
+    rdfs:subClassOf provhaz:RasterHazardLayer ;
+    rdfs:label "Wildfire Hazard Layer"@en .
+
+provhaz:HazardZoneLayer
+    a owl:Class ;
+    rdfs:subClassOf provhaz:VectorHazardLayer ;
+    rdfs:label "Hazard Zone Layer"@en .
+
+provhaz:FaultZoneLayer
+    a owl:Class ;
+    rdfs:subClassOf provhaz:VectorHazardLayer ;
+    rdfs:label "Fault Zone Layer"@en .
+
+provhaz:VolcanoInventoryLayer
+    a owl:Class ;
+    rdfs:subClassOf provhaz:VectorHazardLayer ;
+    rdfs:label "Volcano Inventory Layer"@en .
+
+provhaz:hasLayer
+    a owl:ObjectProperty ;
+    rdfs:domain provhaz:HazardDataset ;
+    rdfs:range provhaz:HazardLayer ;
+    rdfs:label "has layer"@en .
+
+provhaz:belongsToDataset
+    a owl:ObjectProperty ;
+    rdfs:domain provhaz:HazardLayer ;
+    rdfs:range provhaz:HazardDataset ;
+    rdfs:label "belongs to dataset"@en .
+
+provhaz:hazardMetric
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardLayer ;
+    rdfs:range xsd:string ;
+    rdfs:label "hazard metric"@en ;
+    rdfs:comment "Name of the represented metric, for example flood depth, peak ground acceleration, wind speed, SPEI, or fire danger index."@en .
+
+provhaz:unit
+    a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string ;
+    rdfs:label "unit"@en .
+
+provhaz:returnPeriodYears
+    a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "return period in years"@en .
+
+provhaz:exceedanceProbability
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardLayer ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "exceedance probability"@en .
+
+provhaz:exposureDurationYears
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardLayer ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "exposure duration in years"@en .
+
+provhaz:spatialResolution
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardLayer ;
+    rdfs:range xsd:string ;
+    rdfs:label "spatial resolution"@en .
+
+provhaz:rasterPath
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:RasterHazardLayer ;
+    rdfs:range xsd:string ;
+    rdfs:label "raster path"@en .
+
+provhaz:vectorPath
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:VectorHazardLayer ;
+    rdfs:range xsd:string ;
+    rdfs:label "vector path"@en .
+
+#################################################################
+# 7. Generic event impact assessments
+#################################################################
+
+provevent:EventImpactAssessment
+    a owl:Class ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:label "Event Impact Assessment"@en ;
+    rdfs:comment "An assessment relating a disruption event to a potentially affected asset, route, supply-chain node, region, shipment, organization, or other entity."@en .
+
+provevent:assessesImpactOf
+    a owl:ObjectProperty ;
+    rdfs:domain provevent:EventImpactAssessment ;
+    rdfs:range provevent:DisruptionEvent ;
+    rdfs:label "assesses impact of"@en .
+
+provevent:assessesEntity
+    a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:label "assesses entity"@en ;
+    rdfs:comment "The entity being assessed, for example an infrastructure asset, supplier, facility, route, shipment, organization, administrative region, or supply-chain node."@en .
+
+provevent:assessesAsset
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf provevent:assessesEntity ;
+    rdfs:domain owl:Thing ;
+    rdfs:range provinfra:InfrastructureAsset ;
+    rdfs:label "assesses asset"@en .
+
+provevent:assessesSupplyChainNode
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf provevent:assessesEntity ;
+    rdfs:domain owl:Thing ;
+    rdfs:range provider:SupplyChainNode ;
+    rdfs:label "assesses supply chain node"@en .
+
+provevent:assessesRoute
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf provevent:assessesEntity ;
+    rdfs:domain owl:Thing ;
+    rdfs:range provider:TransportRoute ;
+    rdfs:label "assesses route"@en .
+
+provevent:assessesRegion
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf provevent:assessesEntity ;
+    rdfs:domain owl:Thing ;
+    rdfs:range geo:Feature ;
+    rdfs:label "assesses region"@en .
+
+provevent:impactClass
+    a owl:DatatypeProperty ;
+    rdfs:domain provevent:EventImpactAssessment ;
+    rdfs:range xsd:string ;
+    rdfs:label "impact class"@en .
+
+provevent:impactScore
+    a owl:DatatypeProperty ;
+    rdfs:domain provevent:EventImpactAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "impact score"@en .
+
+provevent:distanceMeters
+    a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "distance in meters"@en .
+
+provevent:assessmentMethod
+    a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string ;
+    rdfs:label "assessment method"@en .
+
+provevent:assessedAt
+    a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "assessed at"@en .
+
+provevent:coverageFraction
+    a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "coverage fraction"@en ;
+    rdfs:comment "Fraction of the assessed geometry covered by a hazard layer, event footprint, conflict buffer, or affected area."@en .
+
+provhaz:HazardEventImpactAssessment
+    a owl:Class ;
+    rdfs:subClassOf provevent:EventImpactAssessment ;
+    rdfs:label "Hazard Event Impact Assessment"@en ;
+    rdfs:comment "An event impact assessment based on an actual hazard event such as a GDACS flood, earthquake, cyclone, or wildfire event."@en .
+
+#################################################################
+# 8. Baseline hazard exposure assessments
+#################################################################
+
+provhaz:HazardExposureAssessment
+    a owl:Class ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:label "Hazard Exposure Assessment"@en ;
+    rdfs:comment "An assessment that relates an asset, route, supply-chain node, region, shipment, or organization to a baseline hazard layer or hazard dataset. This is used for potential/modelled hazard exposure, not for actual events."@en .
+
+provhaz:AssetExposureAssessment
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardExposureAssessment ;
+    rdfs:label "Asset Exposure Assessment"@en .
+
+provhaz:SupplyChainNodeExposureAssessment
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardExposureAssessment ;
+    rdfs:label "Supply Chain Node Exposure Assessment"@en .
+
+provhaz:TransportCorridorExposureAssessment
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardExposureAssessment ;
+    rdfs:label "Transport Corridor Exposure Assessment"@en .
+
+provhaz:RegionalExposureAssessment
+    a owl:Class ;
+    rdfs:subClassOf provhaz:HazardExposureAssessment ;
+    rdfs:label "Regional Exposure Assessment"@en .
+
+provhaz:basedOnHazardLayer
+    a owl:ObjectProperty ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range provhaz:HazardLayer ;
+    rdfs:label "based on hazard layer"@en .
+
+provhaz:basedOnHazardDataset
+    a owl:ObjectProperty ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range provhaz:HazardDataset ;
+    rdfs:label "based on hazard dataset"@en .
+
+provhaz:exposureValue
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "exposure value"@en .
+
+provhaz:exposureUnit
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:string ;
+    rdfs:label "exposure unit"@en .
+
+provhaz:exposureClass
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:string ;
+    rdfs:label "exposure class"@en ;
+    rdfs:comment "Categorical exposure level such as none, low, medium, high, or very high."@en .
+
+provhaz:exposureScore
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "exposure score"@en .
+
+provhaz:bufferDistanceMeters
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "buffer distance in meters"@en .
+
+provhaz:minimumValue
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "minimum value"@en .
+
+provhaz:maximumValue
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "maximum value"@en .
+
+provhaz:meanValue
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "mean value"@en .
+
+provhaz:floodDepthMeters
+    a owl:DatatypeProperty ;
+    rdfs:subPropertyOf provhaz:exposureValue ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "flood depth in meters"@en .
+
+provhaz:floodReturnPeriodYears
+    a owl:DatatypeProperty ;
+    rdfs:subPropertyOf provhaz:returnPeriodYears ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "flood return period in years"@en .
+
+provhaz:peakGroundAccelerationG
+    a owl:DatatypeProperty ;
+    rdfs:subPropertyOf provhaz:exposureValue ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "peak ground acceleration in g"@en .
+
+provhaz:seismicIntensityClass
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:string ;
+    rdfs:label "seismic intensity class"@en .
+
+provhaz:windSpeedMetersPerSecond
+    a owl:DatatypeProperty ;
+    rdfs:subPropertyOf provhaz:exposureValue ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "wind speed in meters per second"@en .
+
+provhaz:windReturnPeriodYears
+    a owl:DatatypeProperty ;
+    rdfs:subPropertyOf provhaz:returnPeriodYears ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "wind return period in years"@en .
+
+provhaz:droughtIndexValue
+    a owl:DatatypeProperty ;
+    rdfs:subPropertyOf provhaz:exposureValue ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "drought index value"@en .
+
+provhaz:droughtIndexType
+    a owl:DatatypeProperty ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:string ;
+    rdfs:label "drought index type"@en .
+
+provhaz:wildfireRiskIndex
+    a owl:DatatypeProperty ;
+    rdfs:subPropertyOf provhaz:exposureValue ;
+    rdfs:domain provhaz:HazardExposureAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "wildfire risk index"@en .
+
+#################################################################
+# 9. Conflict / ACLED event model
+#################################################################
+
+provconf:ConflictEvent
+    a owl:Class ;
+    rdfs:subClassOf provevent:DisruptionEvent ;
+    rdfs:label "Conflict Event"@en ;
+    rdfs:comment "A conflict, political violence, protest, riot, strategic development, or related security event that may affect supply chains, infrastructure, logistics, production, or procurement."@en .
+
+provconf:BattleEvent
+    a owl:Class ;
+    rdfs:subClassOf provconf:ConflictEvent ;
+    rdfs:label "Battle Event"@en ;
+    provevent:recommendedMapping "Map ACLED event_type Battles to this class."@en .
+
+provconf:ExplosionRemoteViolenceEvent
+    a owl:Class ;
+    rdfs:subClassOf provconf:ConflictEvent ;
+    rdfs:label "Explosion or Remote Violence Event"@en ;
+    provevent:recommendedMapping "Map ACLED event_type Explosions/Remote violence to this class."@en .
+
+provconf:ViolenceAgainstCiviliansEvent
+    a owl:Class ;
+    rdfs:subClassOf provconf:ConflictEvent ;
+    rdfs:label "Violence Against Civilians Event"@en ;
+    provevent:recommendedMapping "Map ACLED event_type Violence against civilians to this class."@en .
+
+provconf:ProtestEvent
+    a owl:Class ;
+    rdfs:subClassOf provconf:ConflictEvent ;
+    rdfs:label "Protest Event"@en ;
+    provevent:recommendedMapping "Map ACLED event_type Protests to this class."@en .
+
+provconf:RiotEvent
+    a owl:Class ;
+    rdfs:subClassOf provconf:ConflictEvent ;
+    rdfs:label "Riot Event"@en ;
+    provevent:recommendedMapping "Map ACLED event_type Riots to this class."@en .
+
+provconf:StrategicDevelopmentEvent
+    a owl:Class ;
+    rdfs:subClassOf provconf:ConflictEvent ;
+    rdfs:label "Strategic Development Event"@en ;
+    provevent:recommendedMapping "Map ACLED event_type Strategic developments to this class."@en .
+
+provconf:ConflictActor
+    a owl:Class ;
+    rdfs:label "Conflict Actor"@en ;
+    rdfs:comment "An actor participating in or associated with a conflict event, such as a state force, rebel group, militia, political group, protest group, or civilian group."@en .
+
+provconf:StateForce
+    a owl:Class ;
+    rdfs:subClassOf provconf:ConflictActor ;
+    rdfs:label "State Force"@en .
+
+provconf:NonStateArmedGroup
+    a owl:Class ;
+    rdfs:subClassOf provconf:ConflictActor ;
+    rdfs:label "Non-State Armed Group"@en .
+
+provconf:PoliticalMilitia
+    a owl:Class ;
+    rdfs:subClassOf provconf:ConflictActor ;
+    rdfs:label "Political Militia"@en .
+
+provconf:IdentityMilitia
+    a owl:Class ;
+    rdfs:subClassOf provconf:ConflictActor ;
+    rdfs:label "Identity Militia"@en .
+
+provconf:ProtesterGroup
+    a owl:Class ;
+    rdfs:subClassOf provconf:ConflictActor ;
+    rdfs:label "Protester Group"@en .
+
+provconf:CivilianGroup
+    a owl:Class ;
+    rdfs:subClassOf provconf:ConflictActor ;
+    rdfs:label "Civilian Group"@en .
+
+provconf:ExternalOtherForce
+    a owl:Class ;
+    rdfs:subClassOf provconf:ConflictActor ;
+    rdfs:label "External or Other Force"@en .
+
+provconf:hasActor
+    a owl:ObjectProperty ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range provconf:ConflictActor ;
+    rdfs:label "has actor"@en .
+
+provconf:hasPrimaryActor
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf provconf:hasActor ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range provconf:ConflictActor ;
+    rdfs:label "has primary actor"@en .
+
+provconf:hasSecondaryActor
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf provconf:hasActor ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range provconf:ConflictActor ;
+    rdfs:label "has secondary actor"@en .
+
+provconf:fatalities
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range xsd:integer ;
+    rdfs:label "fatalities"@en .
+
+provconf:civilianTargeting
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "civilian targeting"@en .
+
+provconf:notes
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range xsd:string ;
+    rdfs:label "notes"@en .
+
+provconf:acledEventId
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range xsd:string ;
+    rdfs:label "ACLED event identifier"@en .
+
+provconf:acledEventType
+    a owl:ObjectProperty ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range skos:Concept ;
+    rdfs:label "ACLED event type"@en .
+
+provconf:acledSubEventType
+    a owl:ObjectProperty ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range skos:Concept ;
+    rdfs:label "ACLED sub-event type"@en .
+
+provconf:acledInteractionCode
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range xsd:string ;
+    rdfs:label "ACLED interaction code"@en .
+
+provconf:acledGeoPrecision
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range xsd:integer ;
+    rdfs:label "ACLED geographic precision"@en .
+
+provconf:acledTimePrecision
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range xsd:integer ;
+    rdfs:label "ACLED time precision"@en .
+
+provconf:sourceScale
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range xsd:string ;
+    rdfs:label "source scale"@en .
+
+provconf:admin1Name
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range xsd:string ;
+    rdfs:label "first-level administrative unit name"@en .
+
+provconf:admin2Name
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range xsd:string ;
+    rdfs:label "second-level administrative unit name"@en .
+
+provconf:admin3Name
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictEvent ;
+    rdfs:range xsd:string ;
+    rdfs:label "third-level administrative unit name"@en .
+
+#################################################################
+# 10. Conflict event impact and exposure assessment
+#################################################################
+
+provconf:ConflictEventImpactAssessment
+    a owl:Class ;
+    rdfs:subClassOf provevent:EventImpactAssessment ;
+    rdfs:label "Conflict Event Impact Assessment"@en ;
+    rdfs:comment "An event impact assessment based on an actual conflict, protest, riot, battle, explosion, remote violence, or strategic development event."@en .
+
+provconf:ConflictExposureAssessment
+    a owl:Class ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:label "Conflict Exposure Assessment"@en ;
+    rdfs:comment "An assessment of an asset, route, region, or supply-chain node based on historical or recent conflict event density, fatalities, actor activity, disorder type, or related conflict/security indicators."@en .
+
+provconf:eventCount
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictExposureAssessment ;
+    rdfs:range xsd:integer ;
+    rdfs:label "event count"@en .
+
+provconf:fatalityCount
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictExposureAssessment ;
+    rdfs:range xsd:integer ;
+    rdfs:label "fatality count"@en .
+
+provconf:lookbackPeriodDays
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictExposureAssessment ;
+    rdfs:range xsd:integer ;
+    rdfs:label "lookback period in days"@en .
+
+provconf:conflictExposureScore
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictExposureAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "conflict exposure score"@en .
+
+provconf:conflictExposureClass
+    a owl:DatatypeProperty ;
+    rdfs:domain provconf:ConflictExposureAssessment ;
+    rdfs:range xsd:string ;
+    rdfs:label "conflict exposure class"@en .
+
+#################################################################
+# 11. ACLED SKOS concepts
+#################################################################
+
+acled:EventTypeScheme
+    a skos:ConceptScheme ;
+    skos:prefLabel "ACLED event type scheme"@en ;
+    dcterms:description "SKOS representation of broad ACLED event types used by PROVIDER mappings."@en .
+
+acled:Battles
+    a skos:Concept ;
+    skos:inScheme acled:EventTypeScheme ;
+    skos:prefLabel "Battles"@en ;
+    skos:exactMatch provconf:BattleEvent .
+
+acled:ExplosionsRemoteViolence
+    a skos:Concept ;
+    skos:inScheme acled:EventTypeScheme ;
+    skos:prefLabel "Explosions/Remote violence"@en ;
+    skos:exactMatch provconf:ExplosionRemoteViolenceEvent .
+
+acled:ViolenceAgainstCivilians
+    a skos:Concept ;
+    skos:inScheme acled:EventTypeScheme ;
+    skos:prefLabel "Violence against civilians"@en ;
+    skos:exactMatch provconf:ViolenceAgainstCiviliansEvent .
+
+acled:Protests
+    a skos:Concept ;
+    skos:inScheme acled:EventTypeScheme ;
+    skos:prefLabel "Protests"@en ;
+    skos:exactMatch provconf:ProtestEvent .
+
+acled:Riots
+    a skos:Concept ;
+    skos:inScheme acled:EventTypeScheme ;
+    skos:prefLabel "Riots"@en ;
+    skos:exactMatch provconf:RiotEvent .
+
+acled:StrategicDevelopments
+    a skos:Concept ;
+    skos:inScheme acled:EventTypeScheme ;
+    skos:prefLabel "Strategic developments"@en ;
+    skos:exactMatch provconf:StrategicDevelopmentEvent .
+
+acled:SubEventTypeScheme
+    a skos:ConceptScheme ;
+    skos:prefLabel "ACLED sub-event type scheme"@en .
+
+acled:ArmedClash
+    a skos:Concept ;
+    skos:inScheme acled:SubEventTypeScheme ;
+    skos:prefLabel "Armed clash"@en ;
+    skos:broader acled:Battles .
+
+acled:Attack
+    a skos:Concept ;
+    skos:inScheme acled:SubEventTypeScheme ;
+    skos:prefLabel "Attack"@en ;
+    skos:broader acled:ViolenceAgainstCivilians .
+
+acled:PeacefulProtest
+    a skos:Concept ;
+    skos:inScheme acled:SubEventTypeScheme ;
+    skos:prefLabel "Peaceful protest"@en ;
+    skos:broader acled:Protests .
+
+acled:MobViolence
+    a skos:Concept ;
+    skos:inScheme acled:SubEventTypeScheme ;
+    skos:prefLabel "Mob violence"@en ;
+    skos:broader acled:Riots .
+
+acled:AirDroneStrike
+    a skos:Concept ;
+    skos:inScheme acled:SubEventTypeScheme ;
+    skos:prefLabel "Air/drone strike"@en ;
+    skos:broader acled:ExplosionsRemoteViolence .
+
+acled:LootingPropertyDestruction
+    a skos:Concept ;
+    skos:inScheme acled:SubEventTypeScheme ;
+    skos:prefLabel "Looting/property destruction"@en ;
+    skos:broader acled:StrategicDevelopments .
+
+#################################################################
+# 12. Recommended mapping notes
+#################################################################
+
+[] a owl:Axiom ;
+    owl:annotatedSource provhaz:HazardLayer ;
+    owl:annotatedProperty rdfs:comment ;
+    owl:annotatedTarget "A spatial layer representing hazard intensity, probability, return period, susceptibility, forecast state, or hazard zones. Baseline hazard layers are not events."@en ;
+    provevent:modelingNote "Examples: JRC Global River Flood Hazard return-period raster, World Bank/GFDRR flood depth layer, GEM seismic PGA layer, cyclone wind return-period raster, drought index raster. Materialize full rasters outside RDF and store only metadata plus derived exposure assessments in the KG."@en .
+
+[] a owl:Axiom ;
+    owl:annotatedSource provconf:ConflictEvent ;
+    owl:annotatedProperty rdfs:comment ;
+    owl:annotatedTarget "A conflict, political violence, protest, riot, strategic development, or related security event that may affect supply chains, infrastructure, logistics, production, or procurement."@en ;
+    provevent:modelingNote "ACLED records should be modeled as provconf:ConflictEvent subclasses, not as provhaz:HazardEvent. The shared superclass is provevent:DisruptionEvent."@en .
+
+[] a owl:Axiom ;
+    owl:annotatedSource provevent:EventImpactAssessment ;
+    owl:annotatedProperty rdfs:comment ;
+    owl:annotatedTarget "An assessment relating a disruption event to a potentially affected asset, route, supply-chain node, region, shipment, organization, or other entity."@en ;
+    provevent:modelingNote "Use EventImpactAssessment for actual events such as GDACS events and ACLED events. Use HazardExposureAssessment for baseline hazard layers, and ConflictExposureAssessment for aggregate exposure to historical/recent conflict patterns."@en .
+

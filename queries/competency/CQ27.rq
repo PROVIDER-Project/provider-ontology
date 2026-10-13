@@ -1,0 +1,13 @@
+PREFIX p: <https://projekt-provider.de/ontology/>
+PREFIX ex: <https://example.org/provider-review/>
+PREFIX ports: <https://projekt-provider.de/ontology/ports#>
+PREFIX n: <https://projekt-provider.de/ontology/network#>
+PREFIX mining: <https://projekt-provider.de/ontology/mining#>
+PREFIX hazard: <https://projekt-provider.de/ontology/hazard#>
+PREFIX cp: <https://projekt-provider.de/ontology/cppi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dct: <http://purl.org/dc/terms/>
+ASK {ex:operator p:hasRole ex:role; p:operatesFacility ex:plant . ex:role a p:ProducerRole . FILTER(ex:role!=ex:plant)}

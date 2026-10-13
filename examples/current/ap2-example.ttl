@@ -1,0 +1,263 @@
+@prefix cp: <https://projekt-provider.de/ontology/cppi#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://example.org/provider-review/> .
+@prefix hazard: <https://projekt-provider.de/ontology/hazard#> .
+@prefix mining: <https://projekt-provider.de/ontology/mining#> .
+@prefix n: <https://projekt-provider.de/ontology/network#> .
+@prefix ns1: <https://projekt-provider.de/ontology/supply-chain#> .
+@prefix p: <https://projekt-provider.de/ontology/> .
+@prefix ports: <https://projekt-provider.de/ontology/ports#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:action a p:BufferStockAction ;
+    p:implementedBy ex:operator ;
+    p:mitigates ex:risk .
+
+ex:batch a p:Commodity ;
+    p:classificationConcept ex:selection-2022 .
+
+ex:capacity a p:StatisticalMeasurement ;
+    p:hasUnit <https://projekt-provider.de/ontology/unit/TonnePerYear> ;
+    p:measurementKind p:ProductionCapacity ;
+    p:measurementValue 1000.0 .
+
+ex:chain a p:SupplyChain ;
+    p:hasStage ex:stage1,
+        ex:stage2 .
+
+ex:cppi-year a cp:AnnualObservation ;
+    cp:referenceYear "2022"^^xsd:gYear ;
+    p:hasMeasurement ex:cppi-value .
+
+ex:dataset a p:SourceDataset ;
+    dcterms:bibliographicCitation "PROVIDER invented test data; not official observations" ;
+    dcterms:license <https://example.org/own-synthetic-data-terms> ;
+    p:dataKind "synthetic" .
+
+ex:distance a p:StatisticalMeasurement ;
+    p:hasUnit <https://projekt-provider.de/ontology/unit/NauticalMile> ;
+    p:measurementKind p:RouteDistance ;
+    p:measurementValue 500.0 .
+
+ex:episode a ports:EventEpisode ;
+    ports:episodeOf ex:hazard .
+
+ex:genesis-quarter a p:StatisticalCell,
+        p:StatisticalObservation ;
+    p:dataKind "synthetic" ;
+    p:hasMeasurement ex:nitrogen ;
+    p:presence "present" ;
+    p:referenceQuarter "2022-Q1" ;
+    p:sourceRecord ex:source .
+
+ex:geofence a ports:PortArea ;
+    ports:areaOfPort ex:port .
+
+ex:mine-link a mining:EntityAlignmentAssertion ;
+    mining:alignmentRelation mining:AssetPartOfComplex ;
+    mining:sourceEntity ex:mine ;
+    mining:targetEntity ex:complex .
+
+ex:missing a p:MissingCell,
+        p:StatisticalCell ;
+    p:classificationConcept ex:selection-2022 ;
+    p:dataKind "synthetic" ;
+    p:presence "missing" ;
+    p:providerStatus "c" ;
+    p:referenceMonth "2022-01"^^xsd:gYearMonth ;
+    p:sourceRecord ex:source .
+
+ex:modeled-route a p:RouteEstimate ;
+    prov:wasGeneratedBy ex:route-calculation ;
+    p:describesRoute ex:route .
+
+ex:partial-year a p:AnnualCoverage ;
+    p:complete false ;
+    p:observedMonths 8 ;
+    p:observedSum ex:partial-sum ;
+    p:referenceYear "2022"^^xsd:gYear .
+
+ex:pdl-node a <https://provider-project.org/ontology/pdl#Infrastructure> ;
+    ports:representsFacility ex:plant .
+
+ex:plan a p:EvidenceAssertion ;
+    p:assertionMode p:Planned ;
+    p:claimObject "Invented planned expansion" ;
+    p:claimPredicate p:name ;
+    p:claimSubject ex:plant ;
+    p:sourceRecord ex:source ;
+    p:validFrom "2022-01-01"^^xsd:date .
+
+ex:port-source a ports:SourcePortFeature ;
+    ports:describesOperationalPort ex:port .
+
+ex:present a p:StatisticalCell,
+        p:StatisticalObservation ;
+    p:classificationConcept ex:selection-2022 ;
+    p:dataKind "synthetic" ;
+    p:hasMeasurement ex:present-value ;
+    p:presence "present" ;
+    p:referenceMonth "2022-01"^^xsd:gYearMonth ;
+    p:sourceRecord ex:source .
+
+ex:price-index a p:StatisticalMeasurement ;
+    p:hasUnit <https://projekt-provider.de/ontology/unit/IndexPoint> ;
+    p:indexBase "2015=100" ;
+    p:measurementKind p:PriceIndex ;
+    p:measurementValue 103.2 .
+
+ex:production-index a p:StatisticalMeasurement ;
+    p:hasUnit <https://projekt-provider.de/ontology/unit/IndexPoint> ;
+    p:indexBase "2015=100" ;
+    p:measurementKind p:ProductionIndex ;
+    p:measurementValue 95.0 .
+
+ex:raster-result a p:RasterObservation ;
+    p:hasMeasurement ex:spi ;
+    p:referenceSeason ex:season ;
+    p:usesMask ex:mask .
+
+ex:reported a p:EvidenceAssertion ;
+    p:assertionMode p:Reported ;
+    p:claimObject "Invented plant label" ;
+    p:claimPredicate p:name ;
+    p:claimSubject ex:plant ;
+    p:sourceRecord ex:source ;
+    p:validFrom "2022-01-01"^^xsd:date .
+
+ex:scenario a p:EvidenceAssertion ;
+    p:assertionMode p:ScenarioAssumption ;
+    p:assumptionNote "Invented assumption; not an empirical causal claim" ;
+    p:claimObject ex:plant ;
+    p:claimPredicate p:causes ;
+    p:claimSubject ex:hazard .
+
+ex:selection-2021 a p:CNSelection,
+        p:ClassificationSelection ;
+    p:classificationScheme <http://data.europa.eu/xsp/cn2021/cn2021> ;
+    p:classificationYear 2021 ;
+    p:comparisonPolicy "carry-hs2022-boundary-and-qualifications" ;
+    p:hsEdition "HS2017" ;
+    p:memberCode "85423190" ;
+    p:productCode "854231" .
+
+ex:step-a a n:RouteStep ;
+    n:inRoute ex:route ;
+    n:segment ex:segment ;
+    n:sequenceIndex "0"^^xsd:nonNegativeInteger .
+
+ex:step-b a n:RouteStep ;
+    n:inRoute ex:other-route ;
+    n:segment ex:segment ;
+    n:sequenceIndex "3"^^xsd:nonNegativeInteger .
+
+ex:transport a ns1:TransportationProcess ;
+    ns1:hasDocument ex:document .
+
+ex:yield a p:StatisticalMeasurement ;
+    p:hasUnit <https://projekt-provider.de/ontology/unit/TonnePerHectare> ;
+    p:measurementKind p:SoyYield ;
+    p:measurementValue 3.2 .
+
+ex:zero a p:StatisticalCell,
+        p:StatisticalObservation ;
+    p:classificationConcept ex:selection-2022 ;
+    p:dataKind "synthetic" ;
+    p:hasMeasurement ex:zero-value ;
+    p:presence "explicit-zero" ;
+    p:referenceMonth "2022-01"^^xsd:gYearMonth ;
+    p:sourceRecord ex:source .
+
+ex:complex a mining:MiningComplex .
+
+ex:cppi-value a p:StatisticalMeasurement ;
+    p:hasUnit <https://projekt-provider.de/ontology/unit/DimensionlessIndex> ;
+    p:measurementKind p:CPPIIndexScore ;
+    p:measurementValue -12.0 .
+
+ex:document a ns1:ShipmentDocument .
+
+ex:exposure a p:Exposure .
+
+ex:locode a ports:TradeLocation .
+
+ex:mask a p:SpatialMask ;
+    p:maskReason "fixed-mask retrospective exposure assumption" ;
+    p:maskYear "2020"^^xsd:gYear .
+
+ex:mine a mining:Mine .
+
+ex:nitrogen a p:StatisticalMeasurement ;
+    p:hasUnit <https://projekt-provider.de/ontology/unit/TonneNitrogen> ;
+    p:measurementKind p:NitrogenProductionMass ;
+    p:measurementValue 100.0 .
+
+ex:operator a p:Organization ;
+    p:hasRole ex:role ;
+    p:operatesFacility ex:plant .
+
+ex:other-route a n:Route .
+
+ex:partial-sum a p:StatisticalMeasurement ;
+    p:hasUnit <https://projekt-provider.de/ontology/unit/Kilogram> ;
+    p:measurementKind p:TradeMass ;
+    p:measurementValue 100.0 .
+
+ex:present-value a p:StatisticalMeasurement ;
+    p:hasUnit <https://projekt-provider.de/ontology/unit/Kilogram> ;
+    p:measurementKind p:TradeMass ;
+    p:measurementValue 12.5 .
+
+ex:risk a p:Risk .
+
+ex:role a p:ProducerRole .
+
+ex:route-calculation a p:RouteCalculation .
+
+ex:season a p:CropSeason ;
+    p:seasonEnd "2022-05-31"^^xsd:date ;
+    p:seasonStart "2021-10-01"^^xsd:date .
+
+ex:spi a p:StatisticalMeasurement ;
+    p:hasUnit <https://projekt-provider.de/ontology/unit/DimensionlessIndex> ;
+    p:measurementKind p:SPI3 ;
+    p:measurementValue -1.5 .
+
+ex:stage1 a p:SupplyChainStage ;
+    p:precedesStage ex:stage2 .
+
+ex:zero-value a p:StatisticalMeasurement ;
+    p:hasUnit <https://projekt-provider.de/ontology/unit/Kilogram> ;
+    p:measurementKind p:TradeMass ;
+    p:measurementValue 0.0 .
+
+ex:hazard a hazard:HazardEvent .
+
+ex:port a ports:OperationalPort ;
+    ports:servesTradeLocation ex:locode .
+
+ex:route a n:Route .
+
+ex:segment a n:Segment .
+
+ex:stage2 a p:SupplyChainStage .
+
+ex:selection-2022 a p:CNSelection,
+        p:ClassificationSelection ;
+    p:classificationScheme <http://data.europa.eu/xsp/cn2022/cn2022> ;
+    p:classificationYear 2022 ;
+    p:comparisonPolicy "carry-hs2022-boundary-and-qualifications" ;
+    p:hsEdition "HS2022" ;
+    p:memberCode "85423190" ;
+    p:productCode "854231" .
+
+ex:plant a p:IndustrialFacility ;
+    p:hasExposure ex:exposure .
+
+ex:source a p:SourceRecord ;
+    dcterms:source <https://example.org/invented-source> ;
+    p:acquiredAt "2026-10-06T08:00:00+00:00"^^xsd:dateTime ;
+    p:providerUpdatedAt "2026-09-15T11:00:00+02:00"^^xsd:dateTime ;
+    p:sourceHash "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" .
+

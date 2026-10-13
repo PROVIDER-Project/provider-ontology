@@ -1,0 +1,670 @@
+{
+  "namespace": "https://projekt-provider.de/ontology/",
+  "policy": "No blanket sameAs, equivalentClass or automatic instance rewrite. HTTP core-to-HTTPS is a reviewed identifier change; mining/activity/concept and source-specific changes require explicit adapters.",
+  "prefix_changes": [
+    [
+      "http://projekt-provider.de/ontology/ap2-pilot",
+      "https://projekt-provider.de/ontology/ports"
+    ],
+    [
+      "http://projekt-provider.de/ontology/ap2-source-alignment",
+      "https://projekt-provider.de/ontology/source-alignment"
+    ],
+    [
+      "http://projekt-provider.de/ontology/ap2-cppi",
+      "https://projekt-provider.de/ontology/cppi"
+    ],
+    [
+      "http://projekt-provider.de/ontology/",
+      "https://projekt-provider.de/ontology/"
+    ],
+    [
+      "https://provider-projekt.de/ontology/",
+      "https://projekt-provider.de/ontology/source/cppi#"
+    ],
+    [
+      "https://w3id.org/provider/ontology/core#",
+      "https://projekt-provider.de/ontology/"
+    ],
+    [
+      "https://w3id.org/provider/ontology/infrastructure#",
+      "https://projekt-provider.de/ontology/infrastructure#"
+    ],
+    [
+      "https://w3id.org/provider/ontology/",
+      "https://projekt-provider.de/ontology/"
+    ],
+    [
+      "https://w3id.org/provider/vocab/acled#",
+      "https://projekt-provider.de/ontology/source/acled#"
+    ],
+    [
+      "http://projekt-provider.de/shapes/ap2#",
+      "https://projekt-provider.de/ontology/shapes/ports#"
+    ]
+  ],
+  "mining_terms": {
+    "https://projekt-provider.de/ontology/operationFacility": {
+      "target": "https://projekt-provider.de/ontology/mining#operationFacility",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/OperationRelation": {
+      "target": "https://projekt-provider.de/ontology/mining#OperationRelation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/Prospect": {
+      "target": "https://projekt-provider.de/ontology/mining#Prospect",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/validFrom": {
+      "target": "https://projekt-provider.de/ontology/mining#validFrom",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/productionEndYear": {
+      "target": "https://projekt-provider.de/ontology/mining#productionEndYear",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/transportOrigin": {
+      "target": "https://projekt-provider.de/ontology/mining#transportOrigin",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/gradePpm": {
+      "target": "https://projekt-provider.de/ontology/mining#gradePpm",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/MaterialTransportRelation": {
+      "target": "https://projekt-provider.de/ontology/mining#MaterialTransportRelation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/TailingsStorageFacility": {
+      "target": "https://projekt-provider.de/ontology/mining#TailingsStorageFacility",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/mappedConcept": {
+      "target": "https://projekt-provider.de/ontology/mining#mappedConcept",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ExtractiveFacility": {
+      "target": "https://projekt-provider.de/ontology/mining#ExtractiveFacility",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/observedCountry": {
+      "target": "https://projekt-provider.de/ontology/mining#observedCountry",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/MineralDeposit": {
+      "target": "https://projekt-provider.de/ontology/mining#MineralDeposit",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/numericValue": {
+      "target": "https://projekt-provider.de/ontology/mining#numericValue",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/hasMiningFootprint": {
+      "target": "https://projekt-provider.de/ontology/mining#hasMiningFootprint",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/MiningFootprint": {
+      "target": "https://projekt-provider.de/ontology/mining#MiningFootprint",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/rawRecordJson": {
+      "target": "https://projekt-provider.de/ontology/mining#rawRecordJson",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/extractsCommodity": {
+      "target": "https://projekt-provider.de/ontology/mining#extractsCommodity",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/inferenceMethod": {
+      "target": "https://projekt-provider.de/ontology/mining#inferenceMethod",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/activityStatusText": {
+      "target": "https://projekt-provider.de/ontology/mining#activityStatusText",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ReserveObservation": {
+      "target": "https://projekt-provider.de/ontology/mining#ReserveObservation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/mining": {
+      "target": "https://projekt-provider.de/ontology/mining#mining",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/WasteStorageFacility": {
+      "target": "https://projekt-provider.de/ontology/mining#WasteStorageFacility",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/transportMode": {
+      "target": "https://projekt-provider.de/ontology/mining#transportMode",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/surfaceAreaSquareKilometres": {
+      "target": "https://projekt-provider.de/ontology/mining#surfaceAreaSquareKilometres",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/owner": {
+      "target": "https://projekt-provider.de/ontology/mining#owner",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/OwnershipRelation": {
+      "target": "https://projekt-provider.de/ontology/mining#OwnershipRelation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/sourceIdentifier": {
+      "target": "https://projekt-provider.de/ontology/mining#sourceIdentifier",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/otherName": {
+      "target": "https://projekt-provider.de/ontology/mining#otherName",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/associatedDeposit": {
+      "target": "https://projekt-provider.de/ontology/mining#associatedDeposit",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/Mine": {
+      "target": "https://projekt-provider.de/ontology/mining#Mine",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ClassificationAssertion": {
+      "target": "https://projekt-provider.de/ontology/mining#ClassificationAssertion",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/sourceTable": {
+      "target": "https://projekt-provider.de/ontology/mining#sourceTable",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/administrativeAreaText": {
+      "target": "https://projekt-provider.de/ontology/mining#administrativeAreaText",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/gadmIdentifier": {
+      "target": "https://projekt-provider.de/ontology/mining#gadmIdentifier",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/recoveryRate": {
+      "target": "https://projekt-provider.de/ontology/mining#recoveryRate",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/appliesToFacility": {
+      "target": "https://projekt-provider.de/ontology/mining#appliesToFacility",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/Refinery": {
+      "target": "https://projekt-provider.de/ontology/mining#Refinery",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/concessionAreaSquareKilometres": {
+      "target": "https://projekt-provider.de/ontology/mining#concessionAreaSquareKilometres",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/isExport": {
+      "target": "https://projekt-provider.de/ontology/mining#isExport",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/confidenceScore": {
+      "target": "https://projekt-provider.de/ontology/mining#confidenceScore",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/status": {
+      "target": "https://projekt-provider.de/ontology/mining#status",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/MineralOccurrence": {
+      "target": "https://projekt-provider.de/ontology/mining#MineralOccurrence",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/unitCode": {
+      "target": "https://projekt-provider.de/ontology/mining#unitCode",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ResourceObservation": {
+      "target": "https://projekt-provider.de/ontology/mining#ResourceObservation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/containsCommodity": {
+      "target": "https://projekt-provider.de/ontology/mining#containsCommodity",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/validYear": {
+      "target": "https://projekt-provider.de/ontology/mining#validYear",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/mappingMethod": {
+      "target": "https://projekt-provider.de/ontology/mining#mappingMethod",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/primaryCommodity": {
+      "target": "https://projekt-provider.de/ontology/mining#primaryCommodity",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/operator": {
+      "target": "https://projekt-provider.de/ontology/mining#operator",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/BeneficiationPlant": {
+      "target": "https://projekt-provider.de/ontology/mining#BeneficiationPlant",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/MiningObservation": {
+      "target": "https://projekt-provider.de/ontology/mining#MiningObservation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/producesMaterial": {
+      "target": "https://projekt-provider.de/ontology/mining#producesMaterial",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/processesMaterial": {
+      "target": "https://projekt-provider.de/ontology/mining#processesMaterial",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/StatusObservation": {
+      "target": "https://projekt-provider.de/ontology/mining#StatusObservation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/referenceText": {
+      "target": "https://projekt-provider.de/ontology/mining#referenceText",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/MiningProject": {
+      "target": "https://projekt-provider.de/ontology/mining#MiningProject",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/MiningWaste": {
+      "target": "https://projekt-provider.de/ontology/mining#MiningWaste",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ExtractionSite": {
+      "target": "https://projekt-provider.de/ontology/mining#ExtractionSite",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/parentFacility": {
+      "target": "https://projekt-provider.de/ontology/mining#parentFacility",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/Ore": {
+      "target": "https://projekt-provider.de/ontology/mining#Ore",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ExtractionObservation": {
+      "target": "https://projekt-provider.de/ontology/mining#ExtractionObservation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/Concentrator": {
+      "target": "https://projekt-provider.de/ontology/mining#Concentrator",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/reportingPeriod": {
+      "target": "https://projekt-provider.de/ontology/mining#reportingPeriod",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/productionStartYear": {
+      "target": "https://projekt-provider.de/ontology/mining#productionStartYear",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/method": {
+      "target": "https://projekt-provider.de/ontology/mining#method",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/partOfMiningProject": {
+      "target": "https://projekt-provider.de/ontology/mining#partOfMiningProject",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/hasWasteFacility": {
+      "target": "https://projekt-provider.de/ontology/mining#hasWasteFacility",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/hasExtractionSite": {
+      "target": "https://projekt-provider.de/ontology/mining#hasExtractionSite",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/mappingConfidence": {
+      "target": "https://projekt-provider.de/ontology/mining#mappingConfidence",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/depositTypeText": {
+      "target": "https://projekt-provider.de/ontology/mining#depositTypeText",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ownershipShare": {
+      "target": "https://projekt-provider.de/ontology/mining#ownershipShare",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/hasEconomicActivity": {
+      "target": "https://projekt-provider.de/ontology/mining#hasEconomicActivity",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/Concentrate": {
+      "target": "https://projekt-provider.de/ontology/mining#Concentrate",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/observedFacility": {
+      "target": "https://projekt-provider.de/ontology/mining#observedFacility",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ownershipFacility": {
+      "target": "https://projekt-provider.de/ontology/mining#ownershipFacility",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/facilityEquipment": {
+      "target": "https://projekt-provider.de/ontology/mining#facilityEquipment",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ProcessingObservation": {
+      "target": "https://projekt-provider.de/ontology/mining#ProcessingObservation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/EmissionObservation": {
+      "target": "https://projekt-provider.de/ontology/mining#EmissionObservation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/observationYear": {
+      "target": "https://projekt-provider.de/ontology/mining#observationYear",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/observedMaterial": {
+      "target": "https://projekt-provider.de/ontology/mining#observedMaterial",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/RefinedProduct": {
+      "target": "https://projekt-provider.de/ontology/mining#RefinedProduct",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/qualityNote": {
+      "target": "https://projekt-provider.de/ontology/mining#qualityNote",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ProductionObservation": {
+      "target": "https://projekt-provider.de/ontology/mining#ProductionObservation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/CapacityObservation": {
+      "target": "https://projekt-provider.de/ontology/mining#CapacityObservation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/WorkforceObservation": {
+      "target": "https://projekt-provider.de/ontology/mining#WorkforceObservation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/transportDestination": {
+      "target": "https://projekt-provider.de/ontology/mining#transportDestination",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/sourceDataset": {
+      "target": "https://projekt-provider.de/ontology/mining#sourceDataset",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/associatedCommodity": {
+      "target": "https://projekt-provider.de/ontology/mining#associatedCommodity",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/Quarry": {
+      "target": "https://projekt-provider.de/ontology/mining#Quarry",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/inputValueTonnes": {
+      "target": "https://projekt-provider.de/ontology/mining#inputValueTonnes",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/sourceRowNumber": {
+      "target": "https://projekt-provider.de/ontology/mining#sourceRowNumber",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/locatedInCountry": {
+      "target": "https://projekt-provider.de/ontology/mining#locatedInCountry",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/validTo": {
+      "target": "https://projekt-provider.de/ontology/mining#validTo",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/inputMaterial": {
+      "target": "https://projekt-provider.de/ontology/mining#inputMaterial",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/sourceConcept": {
+      "target": "https://projekt-provider.de/ontology/mining#sourceConcept",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/WasteObservation": {
+      "target": "https://projekt-provider.de/ontology/mining#WasteObservation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/productionSizeClass": {
+      "target": "https://projekt-provider.de/ontology/mining#productionSizeClass",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/Smelter": {
+      "target": "https://projekt-provider.de/ontology/mining#Smelter",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/transportedMaterial": {
+      "target": "https://projekt-provider.de/ontology/mining#transportedMaterial",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/commodityScore": {
+      "target": "https://projekt-provider.de/ontology/mining#commodityScore",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/observedProduct": {
+      "target": "https://projekt-provider.de/ontology/mining#observedProduct",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/reviewNote": {
+      "target": "https://projekt-provider.de/ontology/mining#reviewNote",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/RejectedAssetMatch": {
+      "target": "https://projekt-provider.de/ontology/mining#RejectedAssetMatch",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/basedOnCommodity": {
+      "target": "https://projekt-provider.de/ontology/mining#basedOnCommodity",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/valueBasis": {
+      "target": "https://projekt-provider.de/ontology/mining#valueBasis",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/targetEntity": {
+      "target": "https://projekt-provider.de/ontology/mining#targetEntity",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/mining-integration": {
+      "target": "https://projekt-provider.de/ontology/mining#mining-integration",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/materialStage": {
+      "target": "https://projekt-provider.de/ontology/mining#materialStage",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/EntityAlignmentAssertion": {
+      "target": "https://projekt-provider.de/ontology/mining#EntityAlignmentAssertion",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/AlignmentRun": {
+      "target": "https://projekt-provider.de/ontology/mining#AlignmentRun",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ExactAssetMatch": {
+      "target": "https://projekt-provider.de/ontology/mining#ExactAssetMatch",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/statusScore": {
+      "target": "https://projekt-provider.de/ontology/mining#statusScore",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/generatedByAlignmentRun": {
+      "target": "https://projekt-provider.de/ontology/mining#generatedByAlignmentRun",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/organizationScore": {
+      "target": "https://projekt-provider.de/ontology/mining#organizationScore",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/hardConflict": {
+      "target": "https://projekt-provider.de/ontology/mining#hardConflict",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/MaterialMappingAssertion": {
+      "target": "https://projekt-provider.de/ontology/mining#MaterialMappingAssertion",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/reviewStatus": {
+      "target": "https://projekt-provider.de/ontology/mining#reviewStatus",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ExactOrganizationMatch": {
+      "target": "https://projekt-provider.de/ontology/mining#ExactOrganizationMatch",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/spatialDistanceKilometres": {
+      "target": "https://projekt-provider.de/ontology/mining#spatialDistanceKilometres",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/spatialScore": {
+      "target": "https://projekt-provider.de/ontology/mining#spatialScore",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/describesEntity": {
+      "target": "https://projekt-provider.de/ontology/mining#describesEntity",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/observedCommodity": {
+      "target": "https://projekt-provider.de/ontology/mining#observedCommodity",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/denotesCanonicalEntity": {
+      "target": "https://projekt-provider.de/ontology/mining#denotesCanonicalEntity",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/nameSimilarity": {
+      "target": "https://projekt-provider.de/ontology/mining#nameSimilarity",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/AssetPartOfComplex": {
+      "target": "https://projekt-provider.de/ontology/mining#AssetPartOfComplex",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/alignmentConfidence": {
+      "target": "https://projekt-provider.de/ontology/mining#alignmentConfidence",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ComplexContainsAsset": {
+      "target": "https://projekt-provider.de/ontology/mining#ComplexContainsAsset",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/CanonicalFacility": {
+      "target": "https://projekt-provider.de/ontology/mining#CanonicalFacility",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ProbableAssetMatch": {
+      "target": "https://projekt-provider.de/ontology/mining#ProbableAssetMatch",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/oreType": {
+      "target": "https://projekt-provider.de/ontology/mining#oreType",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/sourceEntity": {
+      "target": "https://projekt-provider.de/ontology/mining#sourceEntity",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ProbableOrganizationMatch": {
+      "target": "https://projekt-provider.de/ontology/mining#ProbableOrganizationMatch",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/CoLocatedCandidate": {
+      "target": "https://projekt-provider.de/ontology/mining#CoLocatedCandidate",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/sourceValue": {
+      "target": "https://projekt-provider.de/ontology/mining#sourceValue",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/alignmentRelation": {
+      "target": "https://projekt-provider.de/ontology/mining#alignmentRelation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/facilityTypeScore": {
+      "target": "https://projekt-provider.de/ontology/mining#facilityTypeScore",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/CanonicalOrganization": {
+      "target": "https://projekt-provider.de/ontology/mining#CanonicalOrganization",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/sourceField": {
+      "target": "https://projekt-provider.de/ontology/mining#sourceField",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/MiningComplex": {
+      "target": "https://projekt-provider.de/ontology/mining#MiningComplex",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/reviewEvidence": {
+      "target": "https://projekt-provider.de/ontology/mining#reviewEvidence",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/AlignmentRelation": {
+      "target": "https://projekt-provider.de/ontology/mining#AlignmentRelation",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/SourceRecordShape": {
+      "target": "https://projekt-provider.de/ontology/mining#SourceRecordShape",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/MineShape": {
+      "target": "https://projekt-provider.de/ontology/mining#MineShape",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ProcessingFacilityShape": {
+      "target": "https://projekt-provider.de/ontology/mining#ProcessingFacilityShape",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/MiningObservationShape": {
+      "target": "https://projekt-provider.de/ontology/mining#MiningObservationShape",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ProductionObservationShape": {
+      "target": "https://projekt-provider.de/ontology/mining#ProductionObservationShape",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ClassificationAssertionShape": {
+      "target": "https://projekt-provider.de/ontology/mining#ClassificationAssertionShape",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/OwnershipRelationShape": {
+      "target": "https://projekt-provider.de/ontology/mining#OwnershipRelationShape",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/EntityAlignmentAssertionShape": {
+      "target": "https://projekt-provider.de/ontology/mining#EntityAlignmentAssertionShape",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/MaterialMappingAssertionShape": {
+      "target": "https://projekt-provider.de/ontology/mining#MaterialMappingAssertionShape",
+      "policy": "explicit-adapter-required; source graph retained"
+    },
+    "https://projekt-provider.de/ontology/ReviewedAlignmentShape": {
+      "target": "https://projekt-provider.de/ontology/mining#ReviewedAlignmentShape",
+      "policy": "explicit-adapter-required; source graph retained"
+    }
+  },
+  "semantic_exceptions": [
+    {
+      "legacy": "https://projekt-provider.de/ontology/Commodity",
+      "decision": "Mining-source concept usage must become CommodityConcept; physical core Commodity remains distinct. Never globally rewrite this ambiguous IRI in stored source data."
+    },
+    {
+      "legacy": "https://projekt-provider.de/ontology/MiningObservation",
+      "decision": "Preserve source representation. New result and observation activity need distinct resources/typing under mining#; no prefix-only conversion."
+    },
+    {
+      "legacy": "http://projekt-provider.de/ontology/unit",
+      "decision": "Legacy literal unit remains datatype property. New hasUnit is an object property with controlled unit IRIs."
+    }
+  ]
+}

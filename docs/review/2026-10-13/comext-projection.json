@@ -1,0 +1,15 @@
+{
+  "source_artifact_id": "01d4d80e1aa711744026cc7a2d2b351090be187e53b1886c6709b42b68637ec0",
+  "source_rdf_sha256": "fb599ad494be22a956c97afbaf915beee54d9985769da8713df6aea79d8fbea9",
+  "model_version": "0.3.0-rc1",
+  "model_manifest_sha256": "be78eef22c1e6979a84ea01f23297d057d7c139980d99ee13319e3146753c6d5",
+  "adapter_sha256": "a07e711bae1fdd3c1746340d079b18b90aa82dd3a15f68410b63e9d06fb930a8",
+  "namespace": "https://projekt-provider.de/ontology/",
+  "source_untouched": true,
+  "cells": 3960,
+  "missing": 1124,
+  "triples": 77239,
+  "full_shacl": true,
+  "limits": "Comext-only explicit adapter; no other production-source migration, no public release or partner acceptance.",
+  "rdf_sha256": "9d04cdc4c1ee0ad1d5074a4173fcdb4ee55384af82ede87b6627153f42398ecb"
+}

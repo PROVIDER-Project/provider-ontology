@@ -1,0 +1,296 @@
+{
+  "passed": true,
+  "namespace": "https://projekt-provider.de/ontology/",
+  "version": "0.3.0-rc1",
+  "modules": [
+    {
+      "path": "ontology/current/core.ttl",
+      "sha256": "b644248470211821e3670dc692814f5092ced20ae8d6dcde631ee4e7b6fb54ab"
+    },
+    {
+      "path": "ontology/current/bfo-alignment.ttl",
+      "sha256": "de26cbe83d4d52be1f51734d002d59886e68e63626c66f22c65ff458c112cd7f"
+    },
+    {
+      "path": "ontology/current/supply-chain.ttl",
+      "sha256": "55af747cac25babb5adf8f10e16989f02cb9d867488cfc5b9b6b92307019e589"
+    },
+    {
+      "path": "ontology/current/infrastructure.ttl",
+      "sha256": "249c9a088c33e730bf055fbaf84b8a0dcc021f70635e6bcd171c09412d586579"
+    },
+    {
+      "path": "ontology/current/network.ttl",
+      "sha256": "d000c39525383eb22a22259db2907d78f300901ab9855f907ef5f16642b021b0"
+    },
+    {
+      "path": "ontology/current/ports.ttl",
+      "sha256": "9c7f12a1f07d7f252ecffa88a6780d05b12e5c882b4de02cb52ed7b6748bfa4d"
+    },
+    {
+      "path": "ontology/current/source-alignment.ttl",
+      "sha256": "cc5eb9d3bbe5abc2050154a37198500def9061b018c87b843e72dd53f66e33a7"
+    },
+    {
+      "path": "ontology/current/cppi-source.ttl",
+      "sha256": "d703d867bd1118a0520c58569e03d1c3aabd8adf316548e05300eb932db409f6"
+    },
+    {
+      "path": "ontology/current/cppi.ttl",
+      "sha256": "3507342c1b2d81ff16bcfa4a705ca92b3a806bb717bbf447102d266c804ed872"
+    },
+    {
+      "path": "ontology/current/mining.ttl",
+      "sha256": "a9ec0908cb8a84610091b3360bc892d096cabed5c703750359365eaefd4710e0"
+    },
+    {
+      "path": "ontology/current/mining-alignments.ttl",
+      "sha256": "5c99b4ad46956b5c0e8d69506eb878f4a5d3cc2815529b293709e00470f262f5"
+    },
+    {
+      "path": "ontology/current/mining-integration.ttl",
+      "sha256": "70b9a16d9879bf789635fd436e92b7498c8b11c0b7d110c60416c64d35b2e380"
+    },
+    {
+      "path": "ontology/current/mining-pilot.ttl",
+      "sha256": "98ab667bc3cabb1643bde1930d1990e79bdcae1c77b6245c5259e9a7d1e84280"
+    },
+    {
+      "path": "ontology/current/event.ttl",
+      "sha256": "07ed7fa3ddc260810559e166956869c858bef354568827c52a4392c87cc66bc4"
+    },
+    {
+      "path": "ontology/current/statistics.ttl",
+      "sha256": "c6718705c743699c4edca645fcefbc509934e2bcbca642991e5c4453bd29994e"
+    }
+  ],
+  "triples": 4362,
+  "classes": 447,
+  "errors": [],
+  "scope": "Offline structural and explicit hierarchy checks; not complete OWL2 DL, complete BFO import closure or production release approval.",
+  "competency_questions": [
+    {
+      "id": "CQ01",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ02",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ03",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ04",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ05",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ06",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ07",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ08",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ09",
+      "passed": true,
+      "actual": [
+        [
+          "2021",
+          "HS2017"
+        ],
+        [
+          "2022",
+          "HS2022"
+        ]
+      ],
+      "expected": [
+        [
+          "2021",
+          "HS2017"
+        ],
+        [
+          "2022",
+          "HS2022"
+        ]
+      ]
+    },
+    {
+      "id": "CQ10",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ11",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ12",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ13",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ14",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ15",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ16",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ17",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ18",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ19",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ20",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ21",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ22",
+      "passed": true,
+      "actual": [
+        [
+          "0"
+        ],
+        [
+          "3"
+        ]
+      ],
+      "expected": [
+        [
+          "0"
+        ],
+        [
+          "3"
+        ]
+      ]
+    },
+    {
+      "id": "CQ23",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "id": "CQ24",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ25",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ26",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ27",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ28",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ29",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ30",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "CQ31",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    }
+  ],
+  "shacl": {
+    "conforms": true,
+    "profile": "statistics",
+    "input_sha256": "27b72d793334874f979c6bcdf1259067366af6d1201fb4d5a4c488c8f928442f"
+  }
+}

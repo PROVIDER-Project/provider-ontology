@@ -1,0 +1,159 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix mining: <https://projekt-provider.de/ontology/mining#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+mining:AssetPartOfComplex a skos:Concept ;
+    skos:prefLabel "asset is part of complex"@en .
+
+mining:CanonicalFacility a owl:Class ;
+    rdfs:label "canonical facility"@en ;
+    rdfs:subClassOf provider:InfrastructureAsset .
+
+mining:CanonicalOrganization a owl:Class ;
+    rdfs:label "canonical organization"@en ;
+    rdfs:subClassOf provider:Organization .
+
+mining:CoLocatedCandidate a skos:Concept ;
+    skos:prefLabel "co-located alignment candidate"@en .
+
+mining:ComplexContainsAsset a skos:Concept ;
+    skos:prefLabel "complex contains asset"@en .
+
+mining:ExactAssetMatch a skos:Concept ;
+    skos:prefLabel "exact asset match"@en .
+
+mining:ExactOrganizationMatch a skos:Concept ;
+    skos:prefLabel "exact organization match"@en .
+
+mining:MaterialMappingAssertion a owl:Class ;
+    rdfs:label "material mapping assertion"@en ;
+    rdfs:subClassOf mining:ClassificationAssertion .
+
+mining:MiningObservation rdfs:subClassOf provider:Observation .
+
+mining:ProbableAssetMatch a skos:Concept ;
+    skos:prefLabel "probable asset match"@en .
+
+mining:ProbableOrganizationMatch a skos:Concept ;
+    skos:prefLabel "probable organization match"@en .
+
+mining:RejectedAssetMatch a skos:Concept ;
+    skos:prefLabel "rejected asset match"@en .
+
+mining:alignmentConfidence a owl:DatatypeProperty ;
+    rdfs:domain mining:EntityAlignmentAssertion ;
+    rdfs:range xsd:decimal .
+
+mining:alignmentRelation a owl:ObjectProperty ;
+    rdfs:label "alignment relation"@en ;
+    rdfs:domain mining:EntityAlignmentAssertion ;
+    rdfs:range skos:Concept .
+
+mining:basedOnCommodity a owl:ObjectProperty ;
+    rdfs:label "based on commodity"@en .
+
+mining:commodityScore a owl:DatatypeProperty ;
+    rdfs:domain mining:EntityAlignmentAssertion ;
+    rdfs:range xsd:decimal .
+
+mining:denotesCanonicalEntity a owl:ObjectProperty ;
+    rdfs:label "denotes canonical entity"@en .
+
+mining:describesEntity a owl:ObjectProperty ;
+    rdfs:label "describes entity"@en .
+
+mining:facilityTypeScore a owl:DatatypeProperty ;
+    rdfs:domain mining:EntityAlignmentAssertion ;
+    rdfs:range xsd:decimal .
+
+mining:generatedByAlignmentRun a owl:ObjectProperty ;
+    rdfs:domain mining:EntityAlignmentAssertion ;
+    rdfs:range mining:AlignmentRun .
+
+mining:hardConflict a owl:DatatypeProperty ;
+    rdfs:domain mining:EntityAlignmentAssertion ;
+    rdfs:range xsd:string .
+
+mining:materialStage a owl:ObjectProperty ;
+    rdfs:label "material stage"@en .
+
+mining:nameSimilarity a owl:DatatypeProperty ;
+    rdfs:domain mining:EntityAlignmentAssertion ;
+    rdfs:range xsd:decimal .
+
+mining:observedCommodity a owl:ObjectProperty ;
+    rdfs:label "observed commodity"@en .
+
+mining:observedFacility rdfs:subPropertyOf provider:observedFor .
+
+mining:observedProduct a owl:ObjectProperty ;
+    rdfs:label "observed product"@en .
+
+mining:oreType a owl:ObjectProperty ;
+    rdfs:label "ore type"@en .
+
+mining:organizationScore a owl:DatatypeProperty ;
+    rdfs:domain mining:EntityAlignmentAssertion ;
+    rdfs:range xsd:decimal .
+
+mining:reviewNote a owl:DatatypeProperty ;
+    rdfs:domain mining:EntityAlignmentAssertion ;
+    rdfs:range xsd:string .
+
+mining:reviewStatus a owl:DatatypeProperty ;
+    rdfs:domain mining:EntityAlignmentAssertion ;
+    rdfs:range xsd:string .
+
+mining:sourceEntity a owl:ObjectProperty ;
+    rdfs:label "source entity"@en ;
+    rdfs:domain mining:EntityAlignmentAssertion .
+
+mining:sourceField a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+mining:sourceValue a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+mining:spatialDistanceKilometres a owl:DatatypeProperty ;
+    rdfs:domain mining:EntityAlignmentAssertion ;
+    rdfs:range xsd:decimal .
+
+mining:spatialScore a owl:DatatypeProperty ;
+    rdfs:domain mining:EntityAlignmentAssertion ;
+    rdfs:range xsd:decimal .
+
+mining:statusScore a owl:DatatypeProperty ;
+    rdfs:domain mining:EntityAlignmentAssertion ;
+    rdfs:range xsd:decimal .
+
+mining:targetEntity a owl:ObjectProperty ;
+    rdfs:label "target entity"@en ;
+    rdfs:domain mining:EntityAlignmentAssertion .
+
+mining:valueBasis a owl:ObjectProperty ;
+    rdfs:label "value basis"@en .
+
+provider:mining-integration a owl:Ontology ;
+    rdfs:label "PROVIDER mining-integration"@en ;
+    dct:created "2026-06-27"^^xsd:date ;
+    dct:description "Terms for GEM material normalization, evidence-bearing facility alignment and canonical PROVIDER entities."@en ;
+    dct:license <https://opensource.org/license/mit> ;
+    dct:modified "2026-10-13"^^xsd:date ;
+    dct:title "PROVIDER mining integration ontology"@en ;
+    owl:imports provider:mining ;
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/mining-integration> ;
+    owl:versionInfo "0.3.0-rc1" .
+
+mining:AlignmentRun a owl:Class ;
+    rdfs:label "alignment run"@en ;
+    rdfs:subClassOf prov:Activity .
+
+mining:EntityAlignmentAssertion a owl:Class ;
+    rdfs:label "entity alignment assertion"@en ;
+    rdfs:subClassOf prov:Entity .
+

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <uri name="https://projekt-provider.de/ontology/" uri="core.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/core" uri="core.ttl" />
+  <uri name="https://projekt-provider.de/ontology/bfo-alignment" uri="bfo-alignment.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/bfo-alignment" uri="bfo-alignment.ttl" />
+  <uri name="https://projekt-provider.de/ontology/supply-chain" uri="supply-chain.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/supply-chain" uri="supply-chain.ttl" />
+  <uri name="https://projekt-provider.de/ontology/infrastructure" uri="infrastructure.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/infrastructure" uri="infrastructure.ttl" />
+  <uri name="https://projekt-provider.de/ontology/network" uri="network.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/network" uri="network.ttl" />
+  <uri name="https://projekt-provider.de/ontology/ports" uri="ports.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/ports" uri="ports.ttl" />
+  <uri name="https://projekt-provider.de/ontology/source-alignment" uri="source-alignment.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/source-alignment" uri="source-alignment.ttl" />
+  <uri name="https://projekt-provider.de/ontology/source/cppi" uri="cppi-source.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/source/cppi" uri="cppi-source.ttl" />
+  <uri name="https://projekt-provider.de/ontology/cppi" uri="cppi.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/cppi" uri="cppi.ttl" />
+  <uri name="https://projekt-provider.de/ontology/mining" uri="mining.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/mining" uri="mining.ttl" />
+  <uri name="https://projekt-provider.de/ontology/mining-alignments" uri="mining-alignments.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/mining-alignments" uri="mining-alignments.ttl" />
+  <uri name="https://projekt-provider.de/ontology/mining-integration" uri="mining-integration.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/mining-integration" uri="mining-integration.ttl" />
+  <uri name="https://projekt-provider.de/ontology/mining-pilot" uri="mining-pilot.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/mining-pilot" uri="mining-pilot.ttl" />
+  <uri name="https://projekt-provider.de/ontology/event" uri="event.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/event" uri="event.ttl" />
+  <uri name="https://projekt-provider.de/ontology/statistics" uri="statistics.ttl" />
+  <uri name="https://projekt-provider.de/ontology/releases/0.3.0-rc1/statistics" uri="statistics.ttl" />
+</catalog>

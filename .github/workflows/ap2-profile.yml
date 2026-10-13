@@ -14,3 +14,4 @@ jobs:
       - run: python tools/check_ap2_profile.py
       - run: python tools/validate_ap2_shacl.py --data-kind synthetic --output /tmp/ap2-shacl-report
       - run: python -m unittest discover -s tests -p 'test_*.py'
+      - run: python tools/review_current.py --data examples/current/ap2-example.ttl --output /tmp/provider-current-review.json

@@ -1,0 +1,768 @@
+{
+  "files": [
+    {
+      "path": "examples/ap2-pilot/canonical-example.ttl",
+      "sha256": "95b6b0fab2eae8a16af948e69a3de2874c296996af6a1619e0bdc082d3346bbc",
+      "triples": 158,
+      "ontologies": [],
+      "namespace_counts": {
+        "http://projekt-provider.de/ontology/ap2-pilot#": 185,
+        "https://example.org/ap2/assertion/": 61,
+        "https://example.org/ap2/port/": 29,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 29,
+        "https://example.org/ap2/record/portwatch/": 16,
+        "https://example.org/ap2/measurement/hamburg/": 15,
+        "https://example.org/ap2/measurement/santos/": 15,
+        "https://example.org/ap2/source/portwatch/portwatch/port/": 12,
+        "https://example.org/ap2/observation/santos/": 10,
+        "https://example.org/ap2/observation/hamburg/": 10,
+        "https://example.org/ap2/scenario/entity/": 6,
+        "https://example.org/ap2/activity/hamburg/": 5,
+        "https://example.org/ap2/activity/santos/": 5,
+        "http://www.w3.org/ns/sosa/": 4,
+        "http://purl.org/dc/terms/": 4,
+        "http://www.w3.org/ns/prov#": 4,
+        "https://example.org/ap2/event/": 4,
+        "https://example.org/ap2/scenario/event/": 3,
+        "https://example.org/ap2/episode/invented-disruption/": 3,
+        "https://provider-project.org/ontology/pdl#": 3,
+        "https://example.org/ap2/area/": 3,
+        "https://example.org/ap2/terminal/": 3,
+        "https://example.org/ap2/": 3,
+        "https://example.org/ap2/source/unlocode/unlocode/de/": 2,
+        "https://example.org/ap2/source-artifact/": 2,
+        "https://example.org/ap2/source/unlocode/unlocode/br/": 2,
+        "http://www.w3.org/2000/01/rdf-schema#": 2,
+        "https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/": 1,
+        "https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "examples/ap2-pilot/source-daily-ports.nt",
+      "sha256": "5f98b9b92a6847359dca92ab0fab2c2dfd97df2fa31c4e522b85443186ae0c8a",
+      "triples": 49,
+      "ontologies": [
+        "https://portwatch.imf.org/ontology/"
+      ],
+      "namespace_counts": {
+        "https://portwatch.imf.org/ontology/": 33,
+        "https://example.org/ap2/source/portwatch/portwatch/port/": 14,
+        "https://example.org/ap2/source/portwatch/observation/port-traffic/demoHamburg/": 12,
+        "https://example.org/ap2/source/portwatch/observation/port-traffic/demoSantos/": 12,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 11,
+        "https://example.org/ap2/source/portwatch/country/": 10,
+        "https://example.org/ap2/source/portwatch/dataset/portwatch/": 6,
+        "http://www.w3.org/ns/sosa/": 6,
+        "http://purl.org/dc/terms/": 4,
+        "http://www.w3.org/2004/02/skos/core#": 4,
+        "http://www.w3.org/2000/01/rdf-schema#": 2,
+        "https://portwatch.imf.org/": 1,
+        "http://www.w3.org/2002/07/owl#": 1,
+        "https://projekt-provider.de/ontology/": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "examples/ap2-pilot/source-ports.nt",
+      "sha256": "fecd1f1ea92445f89665636544f9ae5b4f49bd1a1eebec5e77df0b67641b1094",
+      "triples": 133,
+      "ontologies": [
+        "https://portwatch.imf.org/ontology/",
+        "https://projekt-provider.de/ontology/PortWatchPortAndChokepointEstimatesOntologyPart"
+      ],
+      "namespace_counts": {
+        "https://projekt-provider.de/ontology/": 103,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 48,
+        "https://example.org/ap2/source/portwatch/portwatch/port/": 34,
+        "https://example.org/ap2/source/portwatch/observation/port-trade-profile/": 24,
+        "https://example.org/ap2/source/portwatch/observation/port-traffic-profile/": 20,
+        "https://portwatch.imf.org/ontology/": 19,
+        "https://example.org/ap2/source/portwatch/dataset/portwatch/": 13,
+        "https://example.org/ap2/source/portwatch/country/": 12,
+        "https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoHamburg/": 11,
+        "https://example.org/ap2/source/portwatch/estimate/port-trade-category-rank/demoSantos/": 11,
+        "http://www.w3.org/2004/02/skos/core#": 10,
+        "http://www.opengis.net/ont/geosparql#": 8,
+        "http://www.w3.org/ns/sosa/": 8,
+        "https://example.org/ap2/source/portwatch/geometry/portwatch/port/": 6,
+        "http://www.w3.org/2000/01/rdf-schema#": 6,
+        "https://example.org/ap2/source/portwatch/measure/port-traffic-profile/demoHamburg/": 5,
+        "https://example.org/ap2/source/portwatch/measure/port-traffic-profile/demoSantos/": 5,
+        "http://purl.org/dc/terms/": 5,
+        "http://www.w3.org/2002/07/owl#": 2,
+        "https://portwatch.imf.org/": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "examples/ap2-pilot/source-unlocode.nt",
+      "sha256": "5258559c3551e0f29508853b9bc2f5336aad5572b3e3bdb2f3708ff2f97fe20d",
+      "triples": 61,
+      "ontologies": [],
+      "namespace_counts": {
+        "https://projekt-provider.de/ontology/": 20,
+        "http://purl.org/dc/terms/": 20,
+        "https://example.org/ap2/source/unlocode/unlocode/de/": 15,
+        "https://example.org/ap2/source/unlocode/unlocode/br/": 15,
+        "https://example.org/ap2/source/unlocode/dataset/unlocode/": 13,
+        "https://example.org/ap2/source/unlocode/country/": 12,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 12,
+        "https://example.org/ap2/source/unlocode/dataset/unlocode/own-model-fixtures-v1/record/": 10,
+        "http://www.w3.org/2004/02/skos/core#": 9,
+        "https://schema.org/": 8,
+        "https://example.org/ap2/source/unlocode/codes/unlocode-function/": 6,
+        "https://example.org/ap2/source/unlocode/codes/": 4,
+        "http://www.w3.org/2000/01/rdf-schema#": 2,
+        "http://www.w3.org/ns/prov#": 2,
+        "https://example.org/ap2/fixtures/": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "misc/supply_chain_dummy_data.ttl",
+      "sha256": "e8e3115a89eeab3ae4deb5a500b4afd4c0f517dc2f87db71681deb7c5a05101d",
+      "triples": 30,
+      "ontologies": [],
+      "namespace_counts": {
+        "http://projekt-provider.de/data/supply-chain#": 38,
+        "http://projekt-provider.de/ontology/supply-chain#": 20,
+        "http://www.w3.org/2000/01/rdf-schema#": 10,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 10
+      },
+      "imports": []
+    },
+    {
+      "path": "ontology/ap2-cppi-profile.ttl",
+      "sha256": "d5079e70bfe7b161f51fa5e23d9aa0438a05b71cae96591bcd0cb0d928eb1e7c",
+      "triples": 36,
+      "ontologies": [],
+      "namespace_counts": {
+        "http://projekt-provider.de/ontology/ap2-cppi#": 54,
+        "http://www.w3.org/2000/01/rdf-schema#": 13,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 11,
+        "http://www.w3.org/2002/07/owl#": 11,
+        "https://provider-projekt.de/ontology/": 8,
+        "http://www.w3.org/2001/XMLSchema#": 2,
+        "http://projekt-provider.de/ontology/ap2-pilot#": 2,
+        "http://www.w3.org/ns/sosa/": 1,
+        "http://projekt-provider.de/ontology/": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "ontology/ap2-pilot-profile.ttl",
+      "sha256": "34db939286ea3fd7a363f185beff6b619190cb0c56e1ba6f63c161a3fcaf1021",
+      "triples": 136,
+      "ontologies": [
+        "http://projekt-provider.de/ontology/ap2-pilot"
+      ],
+      "namespace_counts": {
+        "http://projekt-provider.de/ontology/ap2-pilot#": 161,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 65,
+        "http://www.w3.org/2000/01/rdf-schema#": 65,
+        "http://www.w3.org/2002/07/owl#": 46,
+        "http://projekt-provider.de/ontology/": 12,
+        "http://www.w3.org/ns/prov#": 8,
+        "http://www.w3.org/2001/XMLSchema#": 7,
+        "http://www.opengis.net/ont/geosparql#": 5,
+        "http://purl.org/dc/terms/": 2,
+        "https://provider-project.org/ontology/pdl#": 2,
+        "http://www.w3.org/ns/sosa/": 1,
+        "http://projekt-provider.de/ontology/infrastructure#": 1
+      },
+      "imports": [
+        "http://projekt-provider.de/ontology/"
+      ]
+    },
+    {
+      "path": "ontology/ap2-source-alignment.ttl",
+      "sha256": "b1ebd05f6cf6925e1a31bf932098dfb46593808c8624f4fd122f2e28046ee467",
+      "triples": 10,
+      "ontologies": [
+        "http://projekt-provider.de/ontology/ap2-source-alignment"
+      ],
+      "namespace_counts": {
+        "http://www.w3.org/2000/01/rdf-schema#": 7,
+        "http://projekt-provider.de/ontology/ap2-pilot#": 6,
+        "http://projekt-provider.de/ontology/": 5,
+        "https://portwatch.imf.org/ontology/": 3,
+        "http://www.w3.org/2002/07/owl#": 3,
+        "https://projekt-provider.de/ontology/": 3,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 1
+      },
+      "imports": [
+        "http://projekt-provider.de/ontology/ap2-pilot"
+      ]
+    },
+    {
+      "path": "ontology/infrastructure.ttl",
+      "sha256": "7526a533986b516efe1c05a4811f58ec059797f41d0671d80263fb07f2feec17",
+      "triples": 936,
+      "ontologies": [
+        "http://projekt-provider.de/ontology/infrastructure"
+      ],
+      "namespace_counts": {
+        "http://projekt-provider.de/ontology/infrastructure#": 1063,
+        "http://www.w3.org/2000/01/rdf-schema#": 590,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 270,
+        "http://www.w3.org/2002/07/owl#": 205,
+        "http://www.w3.org/2004/02/skos/core#": 69,
+        "http://www.w3.org/2001/XMLSchema#": 44,
+        "http://projekt-provider.de/ontology/": 6,
+        "http://purl.org/dc/terms/": 2,
+        "http://www.opengis.net/ont/geosparql#": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "ontology/infrastructure_network.ttl",
+      "sha256": "c85528fe9dc97330f8933f1393fdbcab8f810ce5c91f0ce6904cf0e480f640ff",
+      "triples": 103,
+      "ontologies": [],
+      "namespace_counts": {
+        "http://projekt-provider.de/ontology/infrastructure#": 131,
+        "http://www.w3.org/2000/01/rdf-schema#": 74,
+        "http://www.w3.org/2002/07/owl#": 26,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 24,
+        "http://www.w3.org/2004/02/skos/core#": 3,
+        "http://www.w3.org/2001/XMLSchema#": 2
+      },
+      "imports": []
+    },
+    {
+      "path": "ontology/mining/provider-mining-alignments.ttl",
+      "sha256": "37cd08deecf987cea89d2b23d045a476720d6f4613074b1b726f08ccda5a2c6b",
+      "triples": 13,
+      "ontologies": [],
+      "namespace_counts": {
+        "https://projekt-provider.de/ontology/": 13,
+        "http://www.w3.org/2000/01/rdf-schema#": 13,
+        "https://schema.org/": 4,
+        "http://www.w3.org/ns/prov#": 3,
+        "http://www.opengis.net/ont/geosparql#": 3,
+        "http://www.w3.org/2004/02/skos/core#": 2,
+        "http://www.w3.org/ns/sosa/": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "ontology/mining/provider-mining-integration-shacl.ttl",
+      "sha256": "013847eafb64a62b07f3d25663832f7ed762f3425c040d30b6d40da04dc4feed",
+      "triples": 40,
+      "ontologies": [],
+      "namespace_counts": {
+        "http://www.w3.org/ns/shacl#": 40,
+        "https://projekt-provider.de/ontology/": 24,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 2,
+        "http://www.w3.org/2001/XMLSchema#": 2
+      },
+      "imports": []
+    },
+    {
+      "path": "ontology/mining/provider-mining-integration.ttl",
+      "sha256": "a459d13e1bbf66a7886b682c2388985237e34af02c7056db36493ec93cf71417",
+      "triples": 105,
+      "ontologies": [
+        "https://projekt-provider.de/ontology/mining-integration"
+      ],
+      "namespace_counts": {
+        "https://projekt-provider.de/ontology/": 124,
+        "http://www.w3.org/2000/01/rdf-schema#": 51,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 39,
+        "http://www.w3.org/2002/07/owl#": 34,
+        "http://www.w3.org/2004/02/skos/core#": 17,
+        "http://www.w3.org/2001/XMLSchema#": 13,
+        "http://purl.org/dc/terms/": 4,
+        "http://www.w3.org/ns/prov#": 2,
+        "https://opensource.org/license/": 1,
+        "https://projekt-provider.de/ontology/mining/": 1,
+        "https://projekt-provider.de/ontology/mining-integration/": 1
+      },
+      "imports": [
+        "https://projekt-provider.de/ontology/mining/0.2.0"
+      ]
+    },
+    {
+      "path": "ontology/mining/provider-mining-pilot.ttl",
+      "sha256": "6fa802a7757c3a60843a1c14a28411c0cb24defad40687a1f07f1d61ec48cbd8",
+      "triples": 12,
+      "ontologies": [
+        "https://projekt-provider.de/ontology/mining-pilot/1.0.0"
+      ],
+      "namespace_counts": {
+        "https://projekt-provider.de/ontology/": 12,
+        "http://www.w3.org/2000/01/rdf-schema#": 6,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 5,
+        "http://www.w3.org/2002/07/owl#": 4,
+        "https://projekt-provider.de/ontology/mining-pilot/": 3
+      },
+      "imports": []
+    },
+    {
+      "path": "ontology/mining/provider-mining-reviewed-shacl.ttl",
+      "sha256": "042f375dee3c3a82671509a46c2e96ea12c26e86ec939c938cbec7119f152791",
+      "triples": 46,
+      "ontologies": [],
+      "namespace_counts": {
+        "http://www.w3.org/ns/shacl#": 42,
+        "https://projekt-provider.de/ontology/": 22,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 8,
+        "http://www.w3.org/2001/XMLSchema#": 2,
+        "http://www.w3.org/ns/prov#": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "ontology/mining/provider-mining-shacl.ttl",
+      "sha256": "b7e79fa1797ff0a3ae377ebe68364a6a22b58ff81d5ad04de842f39c4c4ed91e",
+      "triples": 107,
+      "ontologies": [],
+      "namespace_counts": {
+        "http://www.w3.org/ns/shacl#": 99,
+        "https://projekt-provider.de/ontology/": 56,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 18,
+        "http://www.w3.org/2001/XMLSchema#": 6,
+        "http://www.w3.org/2004/02/skos/core#": 3,
+        "http://www.w3.org/2000/01/rdf-schema#": 2,
+        "http://www.w3.org/ns/sosa/": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "ontology/mining/provider-mining.ttl",
+      "sha256": "22ce94fd4b74072ad4a90f5de2863f915f034f6082005bb1d9e1189e17797c90",
+      "triples": 393,
+      "ontologies": [
+        "https://projekt-provider.de/ontology/mining"
+      ],
+      "namespace_counts": {
+        "https://projekt-provider.de/ontology/": 484,
+        "http://www.w3.org/2000/01/rdf-schema#": 279,
+        "http://www.w3.org/2002/07/owl#": 110,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 109,
+        "http://www.w3.org/2001/XMLSchema#": 34,
+        "http://www.opengis.net/ont/geosparql#": 14,
+        "http://www.w3.org/ns/prov#": 7,
+        "http://www.w3.org/2004/02/skos/core#": 7,
+        "http://purl.org/dc/terms/": 5,
+        "http://www.w3.org/ns/sosa/": 3,
+        "https://opensource.org/license/": 1,
+        "https://projekt-provider.de/ontology/mining/": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "ontology/provider-bfo-alignment.ttl",
+      "sha256": "1fb914cf96fd36af007b19d2b70c3446229b2607d9ca18198df68882b08bc60f",
+      "triples": 142,
+      "ontologies": [
+        "http://projekt-provider.de/ontology/bfo-alignment"
+      ],
+      "namespace_counts": {
+        "http://projekt-provider.de/ontology/": 129,
+        "http://www.w3.org/2000/01/rdf-schema#": 101,
+        "http://purl.obolibrary.org/obo/": 99,
+        "http://www.w3.org/2004/02/skos/core#": 35,
+        "http://www.w3.org/2002/07/owl#": 4,
+        "http://purl.org/dc/terms/": 2,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 1
+      },
+      "imports": [
+        "http://projekt-provider.de/ontology/",
+        "http://purl.obolibrary.org/obo/bfo.owl"
+      ]
+    },
+    {
+      "path": "ontology/provider-event.ttl",
+      "sha256": "9ecc7bfd294027519827f94f3b9210c42592bf8bae2e60036f07de07612376f1",
+      "triples": 793,
+      "ontologies": [
+        "https://w3id.org/provider/ontology/event"
+      ],
+      "namespace_counts": {
+        "http://www.w3.org/2000/01/rdf-schema#": 495,
+        "https://w3id.org/provider/ontology/hazard#": 495,
+        "https://w3id.org/provider/ontology/event#": 242,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 213,
+        "http://www.w3.org/2002/07/owl#": 207,
+        "https://w3id.org/provider/ontology/conflict#": 192,
+        "http://www.w3.org/2004/02/skos/core#": 77,
+        "https://w3id.org/provider/vocab/acled#": 71,
+        "http://www.w3.org/2001/XMLSchema#": 69,
+        "https://w3id.org/provider/ontology/": 12,
+        "http://purl.org/dc/terms/": 6,
+        "http://www.w3.org/ns/prov#": 6,
+        "http://www.opengis.net/ont/geosparql#": 5,
+        "https://w3id.org/provider/ontology/core#": 3,
+        "http://www.w3.org/ns/dcat#": 2,
+        "http://www.w3.org/ns/": 2,
+        "https://schema.org/": 1,
+        "http://www.w3.org/2006/time#": 1,
+        "https://w3id.org/provider/ontology/infrastructure#": 1,
+        "http://www.w3.org/2006/": 1,
+        "http://www.opengis.net/ont/": 1,
+        "https://creativecommons.org/licenses/by/4.0/": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "ontology/provider-main.ttl",
+      "sha256": "f918fabee13ad6c1a0be8d495c86752ef2e381f032e32c30d803766a01868c19",
+      "triples": 505,
+      "ontologies": [
+        "http://projekt-provider.de/ontology/"
+      ],
+      "namespace_counts": {
+        "http://projekt-provider.de/ontology/": 590,
+        "http://www.w3.org/2000/01/rdf-schema#": 352,
+        "http://www.w3.org/2002/07/owl#": 145,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 133,
+        "http://www.w3.org/2001/XMLSchema#": 8,
+        "http://www.w3.org/2004/02/skos/core#": 4,
+        "http://purl.org/dc/terms/": 2
+      },
+      "imports": []
+    },
+    {
+      "path": "ontology/provider-main.xml",
+      "sha256": "b108330aa277dccd9ab9d6e2f0839ce75e52cb8f2dc28a49e2e753dcbb5820cc",
+      "triples": 77,
+      "ontologies": [
+        "http://projekt-provider.de/ontology/"
+      ],
+      "namespace_counts": {
+        "http://projekt-provider.de/ontology/": 85,
+        "http://www.w3.org/2000/01/rdf-schema#": 56,
+        "http://www.w3.org/2002/07/owl#": 21,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 14,
+        "http://purl.obolibrary.org/obo/": 2,
+        "https://w3id.org/semanticarts/ontology/": 1
+      },
+      "imports": [
+        "https://w3id.org/semanticarts/ontology/gistBFO"
+      ]
+    },
+    {
+      "path": "ontology/source-cppi.ttl",
+      "sha256": "e6d2e88d0e1489e005bce596ac6f32ab122afb369aeb07618a626f1272e20f31",
+      "triples": 372,
+      "ontologies": [
+        "https://provider-projekt.de/ontology/cppi"
+      ],
+      "namespace_counts": {
+        "https://provider-projekt.de/ontology/": 486,
+        "http://www.w3.org/2000/01/rdf-schema#": 161,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 92,
+        "http://www.w3.org/2004/02/skos/core#": 63,
+        "http://www.w3.org/2002/07/owl#": 59,
+        "http://www.w3.org/2001/XMLSchema#": 36,
+        "https://provider.example.org/resource/dataset/": 23,
+        "http://purl.org/dc/terms/": 13,
+        "https://provider.example.org/resource/organization/": 6,
+        "http://www.w3.org/ns/prov#": 5,
+        "https://provider.example.org/resource/period/": 3,
+        "http://www.w3.org/ns/sosa/": 3,
+        "https://www.worldbank.org/en/topic/transport/publication/": 2,
+        "http://www.opengis.net/ont/geosparql#": 1,
+        "https://documents.worldbank.org/en/publication/documents-reports/documentdetail/": 1,
+        "http://www.w3.org/2006/time#": 1,
+        "https://thedocs.worldbank.org/en/doc/855fe5e7123d85b05d4e84c95b8fd1e2-0400012026/original/": 1,
+        "http://www.w3.org/ns/dcat#": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "ontology/supply_chain_ontology.ttl",
+      "sha256": "9c1a77ce3ce08d04abfe3d1c45247da69e3a6e95b7a79c9f5a75532215124eaa",
+      "triples": 377,
+      "ontologies": [
+        "http://projekt-provider.de/ontology/supply-chain"
+      ],
+      "namespace_counts": {
+        "http://projekt-provider.de/ontology/supply-chain#": 408,
+        "http://www.w3.org/2000/01/rdf-schema#": 225,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 124,
+        "http://www.w3.org/2002/07/owl#": 112,
+        "http://projekt-provider.de/ontology/": 53,
+        "http://www.w3.org/2001/XMLSchema#": 10,
+        "http://www.w3.org/2004/02/skos/core#": 3,
+        "http://purl.org/dc/terms/": 1
+      },
+      "imports": [
+        "http://projekt-provider.de/ontology/"
+      ]
+    },
+    {
+      "path": "provider-main.ttl",
+      "sha256": "b9b6db71acf7fda3b1392902f7662379a031fb28f01310cedb4c5c0c548210c0",
+      "triples": 316,
+      "ontologies": [
+        "http://projekt-provider.de/ontology/"
+      ],
+      "namespace_counts": {
+        "http://projekt-provider.de/ontology/": 359,
+        "http://www.w3.org/2000/01/rdf-schema#": 221,
+        "http://www.w3.org/2002/07/owl#": 88,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 87,
+        "http://www.w3.org/2001/XMLSchema#": 8,
+        "http://www.w3.org/2004/02/skos/core#": 4,
+        "http://purl.org/dc/terms/": 1,
+        "https://w3id.org/semanticarts/ontology/": 1,
+        "http://purl.obolibrary.org/obo/": 1
+      },
+      "imports": [
+        "https://w3id.org/semanticarts/ontology/gistBFO"
+      ]
+    },
+    {
+      "path": "shapes/ap2-canonical-shapes.ttl",
+      "sha256": "aac81f3efa99308cbd798a712d88bc9ba7134aeb02c2e88112b8cafcc27361e9",
+      "triples": 179,
+      "ontologies": [],
+      "namespace_counts": {
+        "http://www.w3.org/ns/shacl#": 160,
+        "http://projekt-provider.de/shapes/ap2#": 56,
+        "http://projekt-provider.de/ontology/ap2-pilot#": 46,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 40,
+        "http://www.w3.org/ns/sosa/": 4,
+        "http://www.w3.org/2001/XMLSchema#": 4,
+        "https://provider-project.org/ontology/pdl#": 2,
+        "http://projekt-provider.de/ontology/": 2,
+        "http://www.w3.org/2000/01/rdf-schema#": 1,
+        "http://www.w3.org/ns/prov#": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "shapes/ap2-review-shapes.ttl",
+      "sha256": "9cf6c5f7c2e32024277db9530c33449c8f843f5112e5b680bc6b1b0166a7f474",
+      "triples": 147,
+      "ontologies": [],
+      "namespace_counts": {
+        "http://www.w3.org/ns/shacl#": 122,
+        "http://projekt-provider.de/shapes/ap2#": 54,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 44,
+        "http://projekt-provider.de/ontology/ap2-pilot#": 44,
+        "http://www.w3.org/2002/07/owl#": 6,
+        "http://www.w3.org/2001/XMLSchema#": 2,
+        "urn:provider:ap2:validation-scope/": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "shapes/ap2-source-boundary.ttl",
+      "sha256": "52380d325195a7e109b0436618c8eead47192ba14798502484c3132e98e33a2e",
+      "triples": 8,
+      "ontologies": [],
+      "namespace_counts": {
+        "http://www.w3.org/ns/shacl#": 8,
+        "http://projekt-provider.de/shapes/ap2#": 6,
+        "http://projekt-provider.de/ontology/ap2-pilot#": 4,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "shapes/ap2-source-shapes.ttl",
+      "sha256": "f12cda7c0be34cee00baee3e28e0702fd7712512672c66290beb5dbf4549be7c",
+      "triples": 135,
+      "ontologies": [],
+      "namespace_counts": {
+        "http://www.w3.org/ns/shacl#": 135,
+        "http://projekt-provider.de/shapes/ap2#": 43,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 18,
+        "https://portwatch.imf.org/ontology/": 14,
+        "http://www.w3.org/2001/XMLSchema#": 10,
+        "http://www.opengis.net/ont/geosparql#": 7,
+        "https://projekt-provider.de/ontology/": 4,
+        "http://projekt-provider.de/ontology/ap2-pilot#": 3,
+        "http://purl.org/dc/terms/": 2,
+        "http://www.w3.org/ns/sosa/": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "shapes/cppi-canonical-shapes.ttl",
+      "sha256": "6001349c343d5303e86a1984fd07bf2a9c59898be87c482c63dc98715556b9dd",
+      "triples": 119,
+      "ontologies": [],
+      "namespace_counts": {
+        "http://www.w3.org/ns/shacl#": 104,
+        "http://projekt-provider.de/ontology/ap2-cppi#": 55,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 22,
+        "http://projekt-provider.de/ontology/ap2-pilot#": 8,
+        "http://www.w3.org/2001/XMLSchema#": 2,
+        "https://provider-projekt.de/ontology/": 2,
+        "http://www.w3.org/ns/sosa/": 2,
+        "http://www.w3.org/ns/prov#": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "shapes/cppi-source-shapes.ttl",
+      "sha256": "7522cc051b78736a21284dc79d6fb803068c50069ce3ade5b08e842b67fa621a",
+      "triples": 97,
+      "ontologies": [],
+      "namespace_counts": {
+        "http://www.w3.org/ns/shacl#": 94,
+        "https://provider-projekt.de/ontology/": 45,
+        "http://www.w3.org/2001/XMLSchema#": 14,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 8,
+        "http://www.w3.org/2000/01/rdf-schema#": 1,
+        "http://purl.org/dc/terms/": 1
+      },
+      "imports": []
+    },
+    {
+      "path": "tests/reference/pdl-ontology-1.2.ttl",
+      "sha256": "163c6344e2a08dbb6d654871b8dc8f80de6fabf1b386825538cf1495850fa9bf",
+      "triples": 728,
+      "ontologies": [
+        "https://provider-project.org/ontology/pdl"
+      ],
+      "namespace_counts": {
+        "https://provider-project.org/ontology/pdl#": 836,
+        "http://www.w3.org/2000/01/rdf-schema#": 445,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 177,
+        "http://www.w3.org/2002/07/owl#": 149,
+        "http://www.w3.org/2004/02/skos/core#": 72,
+        "http://www.w3.org/2001/XMLSchema#": 36,
+        "https://schema.coypu.org/global#": 31,
+        "https://provider-project.org/ontology/": 11,
+        "http://purl.org/dc/terms/": 6,
+        "https://schema.coypu.org/global/": 2,
+        "https://creativecommons.org/licenses/by/4.0/": 1
+      },
+      "imports": [
+        "https://schema.coypu.org/global/2.3"
+      ]
+    },
+    {
+      "path": "use-cases/soybean/example_data.ttl",
+      "sha256": "20d4e77015067934ecd8b5b6de02e2c17b7c5b0239ca34a76d70292a7e860913",
+      "triples": 232,
+      "ontologies": [],
+      "namespace_counts": {
+        "http://projekt-provider.de/data/soy-supply-chain#": 308,
+        "http://projekt-provider.de/ontology/supply-chain#": 175,
+        "http://www.w3.org/2000/01/rdf-schema#": 57,
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#": 57
+      },
+      "imports": []
+    }
+  ],
+  "issues": {
+    "property_type_collisions": [],
+    "multiple_domains": [],
+    "multiple_ranges": [],
+    "classes_both_activity_and_result": [],
+    "duplicate_module_terms": [
+      {
+        "term": "http://projekt-provider.de/ontology/infrastructure#Junction",
+        "files": [
+          "ontology/infrastructure.ttl",
+          "ontology/infrastructure_network.ttl"
+        ]
+      },
+      {
+        "term": "https://projekt-provider.de/ontology/AssetPartOfComplex",
+        "files": [
+          "ontology/mining/provider-mining-integration.ttl",
+          "ontology/mining/provider-mining-pilot.ttl"
+        ]
+      },
+      {
+        "term": "https://projekt-provider.de/ontology/ComplexContainsAsset",
+        "files": [
+          "ontology/mining/provider-mining-integration.ttl",
+          "ontology/mining/provider-mining-pilot.ttl"
+        ]
+      },
+      {
+        "term": "http://projekt-provider.de/ontology/",
+        "files": [
+          "ontology/provider-main.ttl",
+          "ontology/provider-main.xml"
+        ]
+      },
+      {
+        "term": "http://projekt-provider.de/ontology/Agent",
+        "files": [
+          "ontology/provider-main.ttl",
+          "ontology/provider-main.xml"
+        ]
+      },
+      {
+        "term": "http://projekt-provider.de/ontology/Person",
+        "files": [
+          "ontology/provider-main.ttl",
+          "ontology/provider-main.xml"
+        ]
+      },
+      {
+        "term": "http://projekt-provider.de/ontology/Organisation",
+        "files": [
+          "ontology/provider-main.ttl",
+          "ontology/provider-main.xml"
+        ]
+      },
+      {
+        "term": "http://projekt-provider.de/ontology/Sector",
+        "files": [
+          "ontology/provider-main.ttl",
+          "ontology/provider-main.xml"
+        ]
+      },
+      {
+        "term": "http://projekt-provider.de/ontology/AgriculturalSector",
+        "files": [
+          "ontology/provider-main.ttl",
+          "ontology/provider-main.xml"
+        ]
+      },
+      {
+        "term": "http://projekt-provider.de/ontology/LogisticsSector",
+        "files": [
+          "ontology/provider-main.ttl",
+          "ontology/provider-main.xml"
+        ]
+      },
+      {
+        "term": "http://projekt-provider.de/ontology/TradeSector",
+        "files": [
+          "ontology/provider-main.ttl",
+          "ontology/provider-main.xml"
+        ]
+      },
+      {
+        "term": "http://projekt-provider.de/ontology/CommercialOrganisation",
+        "files": [
+          "ontology/provider-main.ttl",
+          "ontology/provider-main.xml"
+        ]
+      },
+      {
+        "term": "http://projekt-provider.de/ontology/Wholesaler",
+        "files": [
+          "ontology/provider-main.ttl",
+          "ontology/provider-main.xml"
+        ]
+      },
+      {
+        "term": "http://projekt-provider.de/ontology/Farm",
+        "files": [
+          "ontology/provider-main.ttl",
+          "ontology/provider-main.xml"
+        ]
+      },
+      {
+        "term": "http://projekt-provider.de/ontology/operatesInSector",
+        "files": [
+          "ontology/provider-main.ttl",
+          "ontology/provider-main.xml"
+        ]
+      }
+    ]
+  }
+}

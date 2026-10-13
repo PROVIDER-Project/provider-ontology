@@ -1,0 +1,334 @@
+{
+  "status": "Executed against invented fixtures; partner requirements still to confirm",
+  "questions": [
+    {
+      "id": "CQ01",
+      "question_de": "Sind Organisation und betriebene Anlage getrennt?",
+      "query": "queries/competency/CQ01.rq",
+      "expected": true,
+      "coverage": [
+        "facilities"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ02",
+      "question_de": "Bleibt die physische Ware vom Klassifikationskonzept getrennt?",
+      "query": "queries/competency/CQ02.rq",
+      "expected": true,
+      "coverage": [
+        "classifications"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ03",
+      "question_de": "Bleiben leere Zellen ohne Zahlenwert und Ergebnisbehauptung?",
+      "query": "queries/competency/CQ03.rq",
+      "expected": true,
+      "coverage": [
+        "statistics"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ04",
+      "question_de": "Bleibt eine belegte Null als Zahlenwert erhalten?",
+      "query": "queries/competency/CQ04.rq",
+      "expected": true,
+      "coverage": [
+        "statistics"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ05",
+      "question_de": "Bleiben unvollständige Jahreswerte Teilsummen?",
+      "query": "queries/competency/CQ05.rq",
+      "expected": true,
+      "coverage": [
+        "trade"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ06",
+      "question_de": "Sind Preisindex, Produktionsindex und Kapazität verschieden?",
+      "query": "queries/competency/CQ06.rq",
+      "expected": true,
+      "coverage": [
+        "genesis"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ07",
+      "question_de": "Ist t-N von Tonnen Warenmasse unterscheidbar?",
+      "query": "queries/competency/CQ07.rq",
+      "expected": true,
+      "coverage": [
+        "genesis"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ08",
+      "question_de": "Bleiben Statistikmonat, Provider-Update und Abruf getrennt?",
+      "query": "queries/competency/CQ08.rq",
+      "expected": true,
+      "coverage": [
+        "provenance"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ09",
+      "question_de": "Tragen gleiche Warencodes über 2022 unterschiedliche Jahresbezüge?",
+      "query": "queries/competency/CQ09.rq",
+      "expected": [
+        [
+          "2021",
+          "HS2017"
+        ],
+        [
+          "2022",
+          "HS2022"
+        ]
+      ],
+      "coverage": [
+        "classifications"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ10",
+      "question_de": "Bleiben Hafenquelle, Hafenanlage und UN/LOCODE-Ort verschieden?",
+      "query": "queries/competency/CQ10.rq",
+      "expected": true,
+      "coverage": [
+        "ports"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ11",
+      "question_de": "Ist eine GDACS-Episode getrennt vom Ereignis darstellbar?",
+      "query": "queries/competency/CQ11.rq",
+      "expected": true,
+      "coverage": [
+        "hazards"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ12",
+      "question_de": "Wird Teil-von bei Mining nicht als Identität ausgegeben?",
+      "query": "queries/competency/CQ12.rq",
+      "expected": true,
+      "coverage": [
+        "mining"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ13",
+      "question_de": "Bleiben negative CPPI-Scores mit Jahresbezug gültig?",
+      "query": "queries/competency/CQ13.rq",
+      "expected": true,
+      "coverage": [
+        "cppi"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ14",
+      "question_de": "Bleiben Sojasaison und Maskenjahr getrennt?",
+      "query": "queries/competency/CQ14.rq",
+      "expected": true,
+      "coverage": [
+        "soy",
+        "rasters"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ15",
+      "question_de": "Belegt eine OSM-Hafenfläche keine Anlagenkapazität?",
+      "query": "queries/competency/CQ15.rq",
+      "expected": true,
+      "coverage": [
+        "osm"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ16",
+      "question_de": "Wird aus einer berechneten Seeroute keine beobachtete Fahrt?",
+      "query": "queries/competency/CQ16.rq",
+      "expected": true,
+      "coverage": [
+        "routing"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ17",
+      "question_de": "Sind GENESIS-Quartale ohne künstliche Monatswerte darstellbar?",
+      "query": "queries/competency/CQ17.rq",
+      "expected": true,
+      "coverage": [
+        "genesis"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ18",
+      "question_de": "Sind Nutzungsbedingungen und Credit an der Datenquelle auffindbar?",
+      "query": "queries/competency/CQ18.rq",
+      "expected": true,
+      "coverage": [
+        "rights"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ19",
+      "question_de": "Bleibt eine Szenarioannahme eine qualifizierte Aussage?",
+      "query": "queries/competency/CQ19.rq",
+      "expected": true,
+      "coverage": [
+        "scenarios"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ20",
+      "question_de": "Sind gemeldete Fakten mit Quellenbelegen verknüpft?",
+      "query": "queries/competency/CQ20.rq",
+      "expected": true,
+      "coverage": [
+        "facilities",
+        "evidence"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ21",
+      "question_de": "Bleibt eine geplante Änderung vom beobachteten Betrieb getrennt?",
+      "query": "queries/competency/CQ21.rq",
+      "expected": true,
+      "coverage": [
+        "facilities"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ22",
+      "question_de": "Kann derselbe Abschnitt in zwei Routen verschiedene Positionen haben?",
+      "query": "queries/competency/CQ22.rq",
+      "expected": [
+        [
+          "0"
+        ],
+        [
+          "3"
+        ]
+      ],
+      "coverage": [
+        "routing",
+        "osm"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ23",
+      "question_de": "Wird aus einer Gefahrenklasse kein realisierter Lieferausfall gefolgert?",
+      "query": "queries/competency/CQ23.rq",
+      "expected": false,
+      "coverage": [
+        "hazards"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ24",
+      "question_de": "Bleibt das Quellenkennzeichen einer fehlenden Zelle erhalten?",
+      "query": "queries/competency/CQ24.rq",
+      "expected": true,
+      "coverage": [
+        "statistics"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ25",
+      "question_de": "Bleiben Mining-Ergebnis und Beobachtungsaktivität getrennt?",
+      "query": "queries/competency/CQ25.rq",
+      "expected": true,
+      "coverage": [
+        "mining"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; model expressibility, not empirical dataset completeness."
+    },
+    {
+      "id": "CQ26",
+      "question_de": "Sind Lieferkettenstufen und ihre Reihenfolge darstellbar?",
+      "query": "queries/competency/CQ26.rq",
+      "expected": true,
+      "coverage": [
+        "supply-chain"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; no empirical or partner acceptance claim."
+    },
+    {
+      "id": "CQ27",
+      "question_de": "Trägt die Organisation eine Rolle statt die Anlage damit gleichzusetzen?",
+      "query": "queries/competency/CQ27.rq",
+      "expected": true,
+      "coverage": [
+        "roles"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; no empirical or partner acceptance claim."
+    },
+    {
+      "id": "CQ28",
+      "question_de": "Bleibt eine Exposition vom realisierten Ausfall unterscheidbar?",
+      "query": "queries/competency/CQ28.rq",
+      "expected": true,
+      "coverage": [
+        "risk"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; no empirical or partner acceptance claim."
+    },
+    {
+      "id": "CQ29",
+      "question_de": "Kann eine Maßnahme Risiko und zuständigen Akteur verbinden?",
+      "query": "queries/competency/CQ29.rq",
+      "expected": true,
+      "coverage": [
+        "resilience"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; no empirical or partner acceptance claim."
+    },
+    {
+      "id": "CQ30",
+      "question_de": "Ist eine PDL-Repräsentation von der physischen Anlage getrennt?",
+      "query": "queries/competency/CQ30.rq",
+      "expected": true,
+      "coverage": [
+        "scenarios"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; no empirical or partner acceptance claim."
+    },
+    {
+      "id": "CQ31",
+      "question_de": "Bleiben Transportprozess und Versanddokument verschieden?",
+      "query": "queries/competency/CQ31.rq",
+      "expected": true,
+      "coverage": [
+        "supply-chain"
+      ],
+      "evidence_scope": "Invented fixture plus active schema; no empirical or partner acceptance claim."
+    }
+  ]
+}

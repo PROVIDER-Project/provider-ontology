@@ -1,0 +1,28 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ports: <https://projekt-provider.de/ontology/ports#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://portwatch.imf.org/ontology/ChokepointTransitObservation> rdfs:subClassOf ports:SourceObservation .
+
+<https://portwatch.imf.org/ontology/Port> rdfs:subClassOf ports:SourcePortFeature .
+
+<https://portwatch.imf.org/ontology/PortTrafficObservation> rdfs:subClassOf ports:SourceObservation .
+
+provider:Port rdfs:subClassOf ports:SourcePortFeature .
+
+provider:SourceRecord rdfs:subClassOf ports:SourceRecord .
+
+provider:TradeLocation rdfs:subClassOf ports:TradeLocation .
+
+provider:source-alignment a owl:Ontology ;
+    rdfs:label "PROVIDER source-alignment"@en ;
+    dct:license <https://opensource.org/license/mit> ;
+    dct:modified "2026-10-13"^^xsd:date ;
+    rdfs:comment "Explicit opt-in source compatibility layer. No wholesale HTTP/HTTPS equivalence or URI replacement."@en ;
+    owl:imports provider:ports ;
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/source-alignment> ;
+    owl:versionInfo "0.3.0-rc1" .
+

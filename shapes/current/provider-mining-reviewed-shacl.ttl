@@ -1,0 +1,45 @@
+@prefix mining: <https://projekt-provider.de/ontology/mining#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+mining:MiningObservation rdfs:subClassOf provider:Observation .
+
+mining:ReviewedAlignmentShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path mining:sourceEntity ],
+        [ sh:minCount 1 ;
+            sh:path prov:wasAttributedTo ],
+        [ sh:maxCount 0 ;
+            sh:path mining:hardConflict ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path mining:targetEntity ],
+        [ sh:in ( mining:ExactAssetMatch mining:AssetPartOfComplex mining:ComplexContainsAsset ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mining:alignmentRelation ],
+        [ sh:hasValue "accepted_by_reviewer" ;
+            sh:maxCount 1 ;
+            sh:path mining:reviewStatus ],
+        [ sh:datatype xsd:string ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path mining:reviewNote ],
+        [ sh:datatype xsd:string ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path mining:reviewEvidence ] ;
+    sh:sparql [ sh:message "Only exact reviewed identity may create a canonical mapping." ;
+            sh:select """PREFIX m: <https://projekt-provider.de/ontology/mining#>
+    SELECT $this WHERE { $this m:alignmentRelation ?r ; m:mappedConcept ?c . FILTER(?r != m:ExactAssetMatch) }""" ] ;
+    sh:targetClass mining:EntityAlignmentAssertion .
+
+mining:observedFacility rdfs:subPropertyOf provider:observedFor .
+

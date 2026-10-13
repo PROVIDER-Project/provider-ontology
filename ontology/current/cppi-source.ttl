@@ -1,0 +1,482 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix ns1: <https://projekt-provider.de/ontology/source/cppi#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://projekt-provider.de/ontology/source/cppi> a owl:Ontology ;
+    rdfs:label "PROVIDER source/cppi"@en ;
+    dct:created "2026-06-13"^^xsd:date ;
+    dct:description "Models CPPI editions, annual port-level observations, scores, ranks, methodology components, ship-size groups, call-size bands, and provenance. The module is designed to complement the existing PROVIDER port ontology."@en ;
+    dct:license <https://opensource.org/license/mit> ;
+    dct:modified "2026-10-13"^^xsd:date ;
+    dct:source <https://thedocs.worldbank.org/en/doc/855fe5e7123d85b05d4e84c95b8fd1e2-0400012026/original/Methodology-Note.pdf>,
+        <https://www.worldbank.org/en/topic/transport/publication/cppi> ;
+    dct:title "PROVIDER ontology module for the Container Port Performance Index"@en ;
+    owl:imports provider: ;
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/source/cppi> ;
+    owl:versionInfo "0.3.0-rc1" .
+
+ns1:ArrivalHours a ns1:PortTimeComponent ;
+    skos:definition "Time from arrival at anchorage or pilot station to start of cargo operations."@en ;
+    skos:inScheme ns1:PortTimeComponentScheme ;
+    skos:prefLabel "arrival hours"@en .
+
+ns1:BerthHours a ns1:PortTimeComponent ;
+    skos:definition "Time from start of cargo operations to departure from berth."@en ;
+    skos:inScheme ns1:PortTimeComponentScheme ;
+    skos:prefLabel "berth hours"@en .
+
+ns1:CPPIIncludedPortHours a ns1:PortTimeComponent ;
+    skos:definition "Arrival hours plus berth hours."@en ;
+    skos:inScheme ns1:PortTimeComponentScheme ;
+    skos:prefLabel "CPPI included port hours"@en .
+
+ns1:CPPIStratifiedPortTimeObservation a owl:Class ;
+    rdfs:label "CPPI stratified port-time observation"@en ;
+    rdfs:comment "An optional detailed observation for one port, year, ship-size group, and call-size band. It can represent call counts and average arrival, berth, departure, or total port hours used as inputs to CPPI calculation."@en ;
+    rdfs:subClassOf prov:Entity,
+        sosa:Observation .
+
+ns1:CallSize1000To1500 a ns1:CallSizeBand ;
+    skos:inScheme ns1:CPPICallSizeScheme ;
+    skos:prefLabel "1,000 to 1,500 moves"@en ;
+    ns1:maximumContainerMoves 1500 ;
+    ns1:minimumContainerMoves 1000 .
+
+ns1:CallSize1500To2000 a ns1:CallSizeBand ;
+    skos:inScheme ns1:CPPICallSizeScheme ;
+    skos:prefLabel "1,500 to 2,000 moves"@en ;
+    ns1:maximumContainerMoves 2000 ;
+    ns1:minimumContainerMoves 1500 .
+
+ns1:CallSize2000To2500 a ns1:CallSizeBand ;
+    skos:inScheme ns1:CPPICallSizeScheme ;
+    skos:prefLabel "2,000 to 2,500 moves"@en ;
+    ns1:maximumContainerMoves 2500 ;
+    ns1:minimumContainerMoves 2000 .
+
+ns1:CallSize2500To3000 a ns1:CallSizeBand ;
+    skos:inScheme ns1:CPPICallSizeScheme ;
+    skos:prefLabel "2,500 to 3,000 moves"@en ;
+    ns1:maximumContainerMoves 3000 ;
+    ns1:minimumContainerMoves 2500 .
+
+ns1:CallSize250To500 a ns1:CallSizeBand ;
+    skos:inScheme ns1:CPPICallSizeScheme ;
+    skos:prefLabel "250 to 500 moves"@en ;
+    ns1:maximumContainerMoves 500 ;
+    ns1:minimumContainerMoves 250 .
+
+ns1:CallSize3000To4000 a ns1:CallSizeBand ;
+    skos:inScheme ns1:CPPICallSizeScheme ;
+    skos:prefLabel "3,000 to 4,000 moves"@en ;
+    ns1:maximumContainerMoves 4000 ;
+    ns1:minimumContainerMoves 3000 .
+
+ns1:CallSize4000To6000 a ns1:CallSizeBand ;
+    skos:inScheme ns1:CPPICallSizeScheme ;
+    skos:prefLabel "4,000 to 6,000 moves"@en ;
+    ns1:maximumContainerMoves 6000 ;
+    ns1:minimumContainerMoves 4000 .
+
+ns1:CallSize500To1000 a ns1:CallSizeBand ;
+    skos:inScheme ns1:CPPICallSizeScheme ;
+    skos:prefLabel "500 to 1,000 moves"@en ;
+    ns1:maximumContainerMoves 1000 ;
+    ns1:minimumContainerMoves 500 .
+
+ns1:CallSizeGT6000 a ns1:CallSizeBand ;
+    skos:inScheme ns1:CPPICallSizeScheme ;
+    skos:prefLabel "greater than 6,000 moves"@en ;
+    ns1:minimumContainerMoves 6001 .
+
+ns1:CallSizeLT250 a ns1:CallSizeBand ;
+    skos:inScheme ns1:CPPICallSizeScheme ;
+    skos:prefLabel "less than 250 moves"@en ;
+    ns1:maximumContainerMoves 249 .
+
+ns1:ContainerPort a owl:Class ;
+    rdfs:label "Container port"@en ;
+    rdfs:comment "A port that handles container vessels. CPPI results are reported at port level, not at individual terminal level."@en ;
+    rdfs:subClassOf ns1:Port .
+
+ns1:DepartureHours a ns1:PortTimeComponent ;
+    skos:definition "Time from departure from berth to exit from port limits; recorded but excluded from CPPI calculation."@en ;
+    skos:inScheme ns1:PortTimeComponentScheme ;
+    skos:prefLabel "departure hours"@en .
+
+ns1:administrativeRank a owl:DatatypeProperty ;
+    rdfs:label "administrative CPPI rank"@en ;
+    rdfs:domain ns1:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:integer .
+
+ns1:administrativeScore a owl:DatatypeProperty ;
+    rdfs:label "administrative CPPI score"@en ;
+    rdfs:domain ns1:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:decimal .
+
+ns1:averageArrivalHours a owl:DatatypeProperty ;
+    rdfs:label "average arrival hours"@en ;
+    rdfs:comment "Average elapsed hours from arrival at anchorage or pilot station to start of cargo operations."@en ;
+    rdfs:range xsd:decimal .
+
+ns1:averageBerthHours a owl:DatatypeProperty ;
+    rdfs:label "average berth hours"@en ;
+    rdfs:comment "Average elapsed hours from start of cargo operations to departure from berth."@en ;
+    rdfs:range xsd:decimal .
+
+ns1:averageDepartureHours a owl:DatatypeProperty ;
+    rdfs:label "average departure hours"@en ;
+    rdfs:comment "Average elapsed hours from departure from berth to exit from port limits. This time is recorded but excluded from CPPI calculation."@en ;
+    rdfs:range xsd:decimal .
+
+ns1:averagePortHours a owl:DatatypeProperty ;
+    rdfs:label "average port hours"@en ;
+    rdfs:comment "Average arrival plus berth hours used by CPPI."@en ;
+    rdfs:range xsd:decimal .
+
+ns1:berthTimeShare a owl:DatatypeProperty ;
+    rdfs:label "berth-time share"@en ;
+    rdfs:range xsd:decimal .
+
+ns1:countryName a owl:DatatypeProperty ;
+    rdfs:label "country name"@en ;
+    rdfs:domain ns1:Country ;
+    rdfs:range xsd:string .
+
+ns1:cppiScore a owl:DatatypeProperty ;
+    rdfs:label "CPPI combined score"@en ;
+    rdfs:comment "Arithmetic average of the administrative and statistical CPPI component indices. Positive values indicate above-reference performance and negative values below-reference performance relative to the fixed reference distribution."@en ;
+    rdfs:domain ns1:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:decimal .
+
+ns1:editionYear a owl:DatatypeProperty ;
+    rdfs:label "edition year"@en ;
+    rdfs:range xsd:gYear .
+
+ns1:excludesDepartureHours a owl:DatatypeProperty ;
+    rdfs:label "excludes departure hours"@en ;
+    rdfs:range xsd:boolean .
+
+ns1:forPort a owl:ObjectProperty ;
+    rdfs:label "for port"@en ;
+    rdfs:range ns1:Port ;
+    rdfs:subPropertyOf sosa:hasFeatureOfInterest .
+
+ns1:fuelConsumptionIndexWeight a owl:DatatypeProperty ;
+    rdfs:label "fuel-consumption index weight"@en ;
+    rdfs:domain ns1:ShipSizeGroup ;
+    rdfs:range xsd:decimal .
+
+ns1:globalRank a owl:DatatypeProperty ;
+    rdfs:label "CPPI global rank"@en ;
+    rdfs:comment "Overall rank obtained by sorting combined CPPI scores in descending order."@en ;
+    rdfs:domain ns1:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:integer .
+
+ns1:hasCallSizeBand a owl:ObjectProperty ;
+    rdfs:label "has call-size band"@en ;
+    rdfs:range ns1:CallSizeBand .
+
+ns1:hasGeometry a owl:ObjectProperty ;
+    rdfs:label "has geometry"@en ;
+    rdfs:subPropertyOf geo:hasGeometry .
+
+ns1:hasQualityRule a owl:ObjectProperty ;
+    rdfs:label "has quality rule"@en ;
+    rdfs:domain ns1:ContainerPortPerformanceIndexEdition ;
+    rdfs:range ns1:CPPIQualityRule .
+
+ns1:hasShipSizeGroup a owl:ObjectProperty ;
+    rdfs:label "has ship-size group"@en ;
+    rdfs:range ns1:ShipSizeGroup .
+
+ns1:inCPPIEdition a owl:ObjectProperty ;
+    rdfs:label "in CPPI edition"@en ;
+    rdfs:domain ns1:ContainerPortPerformanceObservation ;
+    rdfs:range ns1:ContainerPortPerformanceIndexEdition .
+
+ns1:iso2 a owl:DatatypeProperty ;
+    rdfs:label "ISO 3166-1 alpha-2 code"@en ;
+    rdfs:domain ns1:Country ;
+    rdfs:range xsd:string .
+
+ns1:iso3 a owl:DatatypeProperty ;
+    rdfs:label "ISO 3166-1 alpha-3 code"@en ;
+    rdfs:domain ns1:Country ;
+    rdfs:range xsd:string .
+
+ns1:locatedInCountry a owl:ObjectProperty ;
+    rdfs:label "located in country"@en ;
+    rdfs:domain ns1:Port ;
+    rdfs:range ns1:Country .
+
+ns1:maximumBerthMovesPerHour a owl:DatatypeProperty ;
+    rdfs:label "maximum berth moves per hour"@en ;
+    rdfs:range xsd:decimal .
+
+ns1:maximumContainerMoves a owl:DatatypeProperty ;
+    rdfs:label "maximum container moves"@en ;
+    rdfs:domain ns1:CallSizeBand ;
+    rdfs:range xsd:nonNegativeInteger .
+
+ns1:maximumTEUCapacity a owl:DatatypeProperty ;
+    rdfs:label "maximum TEU capacity"@en ;
+    rdfs:domain ns1:ShipSizeGroup ;
+    rdfs:range xsd:nonNegativeInteger .
+
+ns1:minimumAnnualCallCount a owl:DatatypeProperty ;
+    rdfs:label "minimum annual call count"@en ;
+    rdfs:range xsd:nonNegativeInteger .
+
+ns1:minimumBerthMovesPerHour a owl:DatatypeProperty ;
+    rdfs:label "minimum berth moves per hour"@en ;
+    rdfs:range xsd:decimal .
+
+ns1:minimumCellShare a owl:DatatypeProperty ;
+    rdfs:label "minimum cell share"@en ;
+    rdfs:comment "Minimum share of observations within a ship-size group required for a call-size group to be retained."@en ;
+    rdfs:range xsd:decimal .
+
+ns1:minimumContainerMoves a owl:DatatypeProperty ;
+    rdfs:label "minimum container moves"@en ;
+    rdfs:domain ns1:CallSizeBand ;
+    rdfs:range xsd:nonNegativeInteger .
+
+ns1:minimumTEUCapacity a owl:DatatypeProperty ;
+    rdfs:label "minimum TEU capacity"@en ;
+    rdfs:domain ns1:ShipSizeGroup ;
+    rdfs:range xsd:nonNegativeInteger .
+
+ns1:numberOfPortCalls a owl:DatatypeProperty ;
+    rdfs:label "number of port calls"@en ;
+    rdfs:range xsd:nonNegativeInteger .
+
+ns1:portName a owl:DatatypeProperty ;
+    rdfs:label "port name"@en ;
+    rdfs:domain ns1:Port ;
+    rdfs:range xsd:string .
+
+ns1:rankChange a owl:DatatypeProperty ;
+    rdfs:label "rank change"@en ;
+    rdfs:comment "Change in rank relative to a comparison year, when explicitly supplied by the source. The source's sign convention is retained."@en ;
+    rdfs:domain ns1:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:integer .
+
+ns1:referenceDistributionYear a owl:DatatypeProperty ;
+    rdfs:label "reference-distribution year"@en ;
+    rdfs:comment "The fixed year whose distribution is used to standardize the comparable time series."@en ;
+    rdfs:range xsd:gYear .
+
+ns1:referenceYear a owl:DatatypeProperty ;
+    rdfs:label "reference year"@en ;
+    rdfs:comment "The calendar year whose port calls and performance are represented by an observation."@en ;
+    rdfs:range xsd:gYear .
+
+ns1:regionName a owl:DatatypeProperty ;
+    rdfs:label "region name"@en ;
+    rdfs:range xsd:string .
+
+ns1:scoreChange a owl:DatatypeProperty ;
+    rdfs:label "score change"@en ;
+    rdfs:comment "Change in CPPI score relative to a comparison year, when explicitly supplied by the source."@en ;
+    rdfs:domain ns1:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:decimal .
+
+ns1:sourceFileName a owl:DatatypeProperty ;
+    rdfs:label "source file name"@en ;
+    rdfs:range xsd:string .
+
+ns1:sourceRowNumber a owl:DatatypeProperty ;
+    rdfs:label "source row number"@en ;
+    rdfs:range xsd:positiveInteger .
+
+ns1:sourceSheet a owl:DatatypeProperty ;
+    rdfs:label "source worksheet"@en ;
+    rdfs:range xsd:string .
+
+ns1:statisticalRank a owl:DatatypeProperty ;
+    rdfs:label "statistical CPPI rank"@en ;
+    rdfs:domain ns1:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:integer .
+
+ns1:statisticalScore a owl:DatatypeProperty ;
+    rdfs:label "statistical CPPI score"@en ;
+    rdfs:domain ns1:ContainerPortPerformanceObservation ;
+    rdfs:range xsd:decimal .
+
+ns1:unLocode a owl:DatatypeProperty ;
+    rdfs:label "UN/LOCODE"@en ;
+    rdfs:domain ns1:Port ;
+    rdfs:range xsd:string .
+
+ns1:usesCPPIApproach a owl:ObjectProperty ;
+    rdfs:label "uses CPPI approach"@en ;
+    rdfs:domain ns1:ContainerPortPerformanceIndexEdition ;
+    rdfs:range ns1:CPPIApproach .
+
+<https://provider.example.org/resource/dataset/cppi-2025> a ns1:ContainerPortPerformanceIndexEdition ;
+    dct:description "Sixth CPPI edition, providing a standardized comparable series for reference years 2020–2025 and detailed results for 2025."@en ;
+    dct:issued "2026-06-10"^^xsd:date ;
+    dct:publisher <https://provider.example.org/resource/organization/sp-global-market-intelligence>,
+        <https://provider.example.org/resource/organization/world-bank-group> ;
+    dct:source <https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099060826180010325>,
+        <https://www.worldbank.org/en/topic/transport/publication/cppi> ;
+    dct:temporal <https://provider.example.org/resource/period/cppi-2020-2025> ;
+    dct:title "The Container Port Performance Index 2025"@en ;
+    ns1:editionYear "2025"^^xsd:gYear ;
+    ns1:hasQualityRule ns1:BerthProductivityRangeRule,
+        ns1:DepartureHoursExclusionRule,
+        ns1:MinimumAnnualCallsRule,
+        ns1:MinimumCellShareRule ;
+    ns1:hasShipSizeGroup ns1:ShipSizeFeeder,
+        ns1:ShipSizeIntermediate,
+        ns1:ShipSizeIntraRegional,
+        ns1:ShipSizeNeoPanamax,
+        ns1:ShipSizeUltraLarge ;
+    ns1:referenceDistributionYear "2024"^^xsd:gYear ;
+    ns1:usesCPPIApproach ns1:AdministrativeApproach,
+        ns1:CombinedCPPIApproach,
+        ns1:StatisticalApproach .
+
+ns1:AdministrativeApproach a ns1:CPPIApproach ;
+    skos:definition "Direct comparison of mean port hours within ship-size and call-size strata, followed by call-share and fuel-consumption weighting."@en ;
+    skos:inScheme ns1:CPPIApproachScheme ;
+    skos:prefLabel "administrative approach"@en .
+
+ns1:BerthProductivityRangeRule a ns1:CPPIQualityRule ;
+    rdfs:label "berth productivity data-quality range"@en ;
+    ns1:maximumBerthMovesPerHour 650 ;
+    ns1:minimumBerthMovesPerHour 10 .
+
+ns1:CombinedCPPIApproach a ns1:CPPIApproach ;
+    skos:definition "Arithmetic average of the independently calculated administrative and statistical indices."@en ;
+    skos:inScheme ns1:CPPIApproachScheme ;
+    skos:prefLabel "combined CPPI approach"@en .
+
+ns1:Dataset a owl:Class ;
+    rdfs:label "Dataset"@en .
+
+ns1:DepartureHoursExclusionRule a ns1:CPPIQualityRule ;
+    rdfs:label "departure-hours exclusion rule"@en ;
+    ns1:excludesDepartureHours true .
+
+ns1:MinimumAnnualCallsRule a ns1:CPPIQualityRule ;
+    rdfs:label "minimum annual calls rule"@en ;
+    ns1:minimumAnnualCallCount 24 .
+
+ns1:MinimumCellShareRule a ns1:CPPIQualityRule ;
+    rdfs:label "minimum call-size-cell share rule"@en ;
+    ns1:minimumCellShare 0.005 .
+
+ns1:PortSnapshotObservation a owl:Class ;
+    rdfs:label "Port snapshot observation"@en .
+
+ns1:ShipSizeFeeder a ns1:ShipSizeGroup ;
+    skos:inScheme ns1:CPPIShipSizeScheme ;
+    skos:prefLabel "Feeder: less than 1,500 TEU"@en ;
+    ns1:fuelConsumptionIndexWeight 0.46 ;
+    ns1:maximumTEUCapacity 1499 .
+
+ns1:ShipSizeIntermediate a ns1:ShipSizeGroup ;
+    skos:inScheme ns1:CPPIShipSizeScheme ;
+    skos:prefLabel "Intermediate: 5,000 to 8,500 TEU"@en ;
+    ns1:fuelConsumptionIndexWeight 1.54 ;
+    ns1:maximumTEUCapacity 8500 ;
+    ns1:minimumTEUCapacity 5000 .
+
+ns1:ShipSizeIntraRegional a ns1:ShipSizeGroup ;
+    skos:inScheme ns1:CPPIShipSizeScheme ;
+    skos:prefLabel "Intra-regional: 1,500 to 5,000 TEU"@en ;
+    ns1:fuelConsumptionIndexWeight 1.00 ;
+    ns1:maximumTEUCapacity 5000 ;
+    ns1:minimumTEUCapacity 1500 .
+
+ns1:ShipSizeNeoPanamax a ns1:ShipSizeGroup ;
+    skos:inScheme ns1:CPPIShipSizeScheme ;
+    skos:prefLabel "Neo-Panamax: 8,500 to 13,500 TEU"@en ;
+    ns1:fuelConsumptionIndexWeight 1.97 ;
+    ns1:maximumTEUCapacity 13500 ;
+    ns1:minimumTEUCapacity 8500 .
+
+ns1:ShipSizeUltraLarge a ns1:ShipSizeGroup ;
+    skos:inScheme ns1:CPPIShipSizeScheme ;
+    skos:prefLabel "Ultra-large: greater than 13,500 TEU"@en ;
+    ns1:fuelConsumptionIndexWeight 2.57 ;
+    ns1:minimumTEUCapacity 13501 .
+
+ns1:StatisticalApproach a ns1:CPPIApproach ;
+    skos:definition "Approach using expectation-maximization imputation and non-negative matrix factorization before applying the common ship-size weighting."@en ;
+    skos:inScheme ns1:CPPIApproachScheme ;
+    skos:prefLabel "statistical approach"@en .
+
+<https://provider.example.org/resource/organization/sp-global-market-intelligence> a prov:Agent ;
+    rdfs:label "S&P Global Market Intelligence"@en .
+
+<https://provider.example.org/resource/organization/world-bank-group> a prov:Agent ;
+    rdfs:label "World Bank Group"@en .
+
+<https://provider.example.org/resource/period/cppi-2020-2025> a time:ProperInterval ;
+    rdfs:label "CPPI reference years 2020–2025"@en .
+
+ns1:CPPIApproachScheme a skos:ConceptScheme ;
+    skos:prefLabel "CPPI calculation approaches"@en .
+
+ns1:CPPIApproach a owl:Class ;
+    rdfs:label "CPPI calculation approach"@en ;
+    rdfs:subClassOf skos:Concept .
+
+ns1:ContainerPortPerformanceIndexEdition a owl:Class ;
+    rdfs:label "Container Port Performance Index edition"@en ;
+    rdfs:comment "A published edition of the Container Port Performance Index, including its temporal coverage, methodology, and distributions."@en ;
+    rdfs:subClassOf dcat:Dataset,
+        ns1:Dataset .
+
+ns1:Country a owl:Class ;
+    rdfs:label "Country"@en .
+
+ns1:PortTimeComponent a owl:Class ;
+    rdfs:label "port-time component"@en ;
+    rdfs:subClassOf skos:Concept .
+
+ns1:PortTimeComponentScheme a skos:ConceptScheme ;
+    skos:prefLabel "CPPI port-time components"@en .
+
+ns1:CPPIQualityRule a owl:Class ;
+    rdfs:label "CPPI quality or eligibility rule"@en ;
+    rdfs:subClassOf prov:Entity .
+
+ns1:CPPIShipSizeScheme a skos:ConceptScheme ;
+    skos:prefLabel "CPPI ship-size groups"@en .
+
+ns1:Port a owl:Class ;
+    rdfs:label "Port"@en .
+
+ns1:ContainerPortPerformanceObservation a owl:Class ;
+    rdfs:label "container port performance observation"@en ;
+    rdfs:comment "A port-level CPPI result for one reference year. It may contain the combined score and rank and, when available, the administrative and statistical component scores and ranks."@en ;
+    rdfs:subClassOf prov:Entity,
+        sosa:Observation,
+        ns1:PortSnapshotObservation .
+
+ns1:ShipSizeGroup a owl:Class ;
+    rdfs:label "CPPI ship-size group"@en ;
+    rdfs:comment "A CPPI vessel-capacity stratum expressed in nominal TEU capacity."@en ;
+    rdfs:subClassOf skos:Concept .
+
+ns1:CPPICallSizeScheme a skos:ConceptScheme ;
+    skos:prefLabel "CPPI call-size bands"@en .
+
+ns1:CallSizeBand a owl:Class ;
+    rdfs:label "CPPI call-size band"@en ;
+    rdfs:comment "A CPPI stratum based on the number of container moves in a port call. Call size is load plus discharge plus restow moves."@en ;
+    rdfs:subClassOf skos:Concept .
+

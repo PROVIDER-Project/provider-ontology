@@ -1,0 +1,6 @@
+{
+  "scope": "OWL RL smoke check over local modules and synthetic fixture; no external imports or complete OWL2DL proof",
+  "triples_before": 4557,
+  "triples_after": 13477,
+  "explicit_disjointness_conflicts": []
+}

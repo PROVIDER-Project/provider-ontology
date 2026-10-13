@@ -1,0 +1,83 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix ns1: <https://projekt-provider.de/ontology/cppi#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ports: <https://projekt-provider.de/ontology/ports#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+provider:cppi a owl:Ontology ;
+    rdfs:label "PROVIDER cppi"@en ;
+    dct:license <https://opensource.org/license/mit> ;
+    dct:modified "2026-10-13"^^xsd:date ;
+    owl:imports provider:,
+        provider:ports,
+        <https://projekt-provider.de/ontology/source/cppi> ;
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/cppi> ;
+    owl:versionInfo "0.3.0-rc1" .
+
+ns1:AdministrativeIndexScore ns1:sourcePredicate <https://projekt-provider.de/ontology/source/cppi#administrativeScore> ;
+    ns1:unit ns1:DimensionlessIndex .
+
+ns1:AnnualObservation a owl:Class ;
+    rdfs:label "Annual Observation"@en ;
+    rdfs:comment "Annual information result, distinct from the observation activity. CPPI edition and reference year retained; not a daily traffic observation."@en ;
+    rdfs:subClassOf provider:Observation .
+
+ns1:BerthTimeShare ns1:sourcePredicate <https://projekt-provider.de/ontology/source/cppi#berthTimeShare> ;
+    ns1:unit ns1:Fraction .
+
+ns1:CPPIIndexScore ns1:sourcePredicate <https://projekt-provider.de/ontology/source/cppi#cppiScore> ;
+    ns1:unit ns1:DimensionlessIndex .
+
+ns1:GlobalRank ns1:sourcePredicate <https://projekt-provider.de/ontology/source/cppi#globalRank> ;
+    ns1:unit ns1:OrdinalRank .
+
+ns1:ObservationActivity a owl:Class ;
+    rdfs:label "Observation Activity"@en ;
+    rdfs:subClassOf sosa:Observation .
+
+ns1:PortAlignment a owl:Class ;
+    rdfs:label "Port Alignment"@en ;
+    rdfs:comment "Explicit source-based review of a CPPI port against an accepted operational-port/trade-location anchor. Not owl:sameAs or certification of geographic equality."@en .
+
+ns1:SamplePortCalls ns1:sourcePredicate <https://projekt-provider.de/ontology/source/cppi#numberOfPortCalls> ;
+    ns1:unit ns1:PortCallCount .
+
+ns1:StatisticalIndexScore ns1:sourcePredicate <https://projekt-provider.de/ontology/source/cppi#statisticalScore> ;
+    ns1:unit ns1:DimensionlessIndex .
+
+ns1:hasMeasurement a owl:ObjectProperty ;
+    rdfs:range ns1:Measurement .
+
+ns1:metric a owl:ObjectProperty .
+
+ns1:observedFeature a owl:ObjectProperty ;
+    rdfs:range ports:OperationalPort .
+
+ns1:referenceYear a owl:DatatypeProperty ;
+    rdfs:range xsd:gYear .
+
+ns1:sourceObservation a owl:ObjectProperty ;
+    rdfs:range <https://projekt-provider.de/ontology/source/cppi#ContainerPortPerformanceObservation> .
+
+ns1:unit a owl:ObjectProperty ;
+    rdfs:subPropertyOf provider:hasUnit .
+
+ns1:value a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:subPropertyOf provider:measurementValue .
+
+ns1:Fraction rdfs:comment "Proportion on [0,1], retained from the CPPI annex; not rescaled to percent."@en .
+
+ns1:Measurement a owl:Class ;
+    rdfs:label "Measurement"@en ;
+    rdfs:subClassOf provider:Measurement .
+
+ns1:OrdinalRank rdfs:comment "Positive integral position in the edition's reported ranking. Do not derive historical ranks from current-year rankings."@en .
+
+<https://projekt-provider.de/ontology/source/cppi#ContainerPortPerformanceObservation> rdfs:subClassOf ports:SourceObservation .
+
+ns1:DimensionlessIndex rdfs:comment "Dimensionless standardized CPPI index. Negative and zero scores are valid; this value is not hours or tonnes."@en .
+
