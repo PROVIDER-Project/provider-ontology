@@ -1,0 +1,118 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://purl.obolibrary.org/obo/BFO_0000001> a owl:Class .
+
+<http://purl.obolibrary.org/obo/BFO_0000004> a owl:Class .
+
+<http://purl.obolibrary.org/obo/BFO_0000015> a owl:Class .
+
+<http://purl.obolibrary.org/obo/BFO_0000016> a owl:Class .
+
+<http://purl.obolibrary.org/obo/BFO_0000020> a owl:Class .
+
+<http://purl.obolibrary.org/obo/BFO_0000023> a owl:Class .
+
+<http://purl.obolibrary.org/obo/BFO_0000027> a owl:Class .
+
+<http://purl.obolibrary.org/obo/BFO_0000030> a owl:Class .
+
+<http://purl.obolibrary.org/obo/BFO_0000031> a owl:Class .
+
+<http://purl.obolibrary.org/obo/BFO_0000040> a owl:Class .
+
+<http://purl.obolibrary.org/obo/BFO_0000141> a owl:Class .
+
+dcterms:created a owl:AnnotationProperty .
+
+dcterms:creator a owl:AnnotationProperty .
+
+dcterms:description a owl:AnnotationProperty .
+
+dcterms:issued a owl:AnnotationProperty .
+
+dcterms:license a owl:AnnotationProperty .
+
+dcterms:modified a owl:AnnotationProperty .
+
+dcterms:publisher a owl:AnnotationProperty .
+
+dcterms:source a owl:AnnotationProperty .
+
+dcterms:temporal a owl:AnnotationProperty .
+
+dcterms:title a owl:AnnotationProperty .
+
+geo:Feature a owl:Class .
+
+geo:Geometry a owl:Class .
+
+geo:hasGeometry a owl:ObjectProperty .
+
+xsd:date a rdfs:Datatype .
+
+xsd:gYear a rdfs:Datatype .
+
+xsd:gYearMonth a rdfs:Datatype .
+
+skos:Concept a owl:Class .
+
+skos:ConceptScheme a owl:Class .
+
+skos:broader a owl:AnnotationProperty .
+
+skos:definition a owl:AnnotationProperty .
+
+skos:exactMatch a owl:AnnotationProperty .
+
+skos:inScheme a owl:AnnotationProperty .
+
+skos:note a owl:AnnotationProperty .
+
+skos:prefLabel a owl:AnnotationProperty .
+
+skos:scopeNote a owl:AnnotationProperty .
+
+time:ProperInterval a owl:Class .
+
+time:TemporalEntity a owl:Class .
+
+dcat:Dataset a owl:Class .
+
+prov:Activity a owl:Class .
+
+prov:Agent a owl:Class .
+
+prov:Entity a owl:Class .
+
+sosa:Observation a owl:Class .
+
+<https://portwatch.imf.org/ontology/ChokepointTransitObservation> a owl:Class .
+
+<https://portwatch.imf.org/ontology/Port> a owl:Class .
+
+<https://portwatch.imf.org/ontology/PortTrafficObservation> a owl:Class .
+
+<https://projekt-provider.de/ontology/cppi#sourcePredicate> a owl:AnnotationProperty .
+
+<https://projekt-provider.de/ontology/external-declarations> a owl:Ontology ;
+    rdfs:label "Declarations of existing external references; no external axioms imported"@en ;
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/external-declarations> .
+
+<https://provider-project.org/ontology/pdl#Event> a owl:Class .
+
+<https://provider-project.org/ontology/pdl#Infrastructure> a owl:Class .
+
+schema:Organization a owl:Class .
+
+schema:Place a owl:Class .
+

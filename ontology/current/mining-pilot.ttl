@@ -30,3 +30,5 @@ provider:mining-pilot a owl:Ontology ;
     owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/mining-pilot> ;
     owl:versionInfo "0.3.0-rc2" .
 
+
+mining:AlignmentRelation a owl:Class ; rdfs:label "Qualified alignment relation kind"@en ; rdfs:comment "Controlled relation kind used in review assertions, not an automatic identity assertion."@en .

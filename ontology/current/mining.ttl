@@ -329,7 +329,7 @@ mining:qualityNote a owl:DatatypeProperty ;
 mining:rawRecordJson a owl:DatatypeProperty ;
     rdfs:label "raw source record as JSON"@en ;
     rdfs:domain provider:SourceRecord ;
-    rdfs:range rdf:JSON .
+    rdfs:range rdfs:Literal .
 
 mining:recoveryRate a owl:DatatypeProperty ;
     rdfs:label "recovery rate"@en ;
@@ -380,7 +380,7 @@ mining:surfaceAreaSquareKilometres a owl:DatatypeProperty ;
 mining:transportDestination a owl:ObjectProperty ;
     rdfs:label "transport destination"@en ;
     rdfs:domain mining:MaterialTransportRelation ;
-    rdfs:range rdfs:Resource .
+    rdfs:range owl:Thing .
 
 mining:transportMode a owl:DatatypeProperty ;
     rdfs:label "transport mode"@en ;

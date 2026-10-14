@@ -1,0 +1,37 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix ns1: <https://projekt-provider.de/ontology/source/cppi#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Unmodified source-edition example moved out of the schema. Not a data clearance.
+<https://provider.example.org/resource/dataset/cppi-2025> a ns1:ContainerPortPerformanceIndexEdition ;
+    dct:description "Sixth CPPI edition, providing a standardized comparable series for reference years 2020–2025 and detailed results for 2025."@en ;
+    dct:issued "2026-06-10"^^xsd:date ;
+    dct:publisher <https://provider.example.org/resource/organization/sp-global-market-intelligence>,
+        <https://provider.example.org/resource/organization/world-bank-group> ;
+    dct:source <https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099060826180010325>,
+        <https://www.worldbank.org/en/topic/transport/publication/cppi> ;
+    dct:temporal <https://provider.example.org/resource/period/cppi-2020-2025> ;
+    dct:title "The Container Port Performance Index 2025"@en ;
+    ns1:editionYear "2025"^^xsd:gYear ;
+    ns1:hasQualityRule ns1:BerthProductivityRangeRule,
+        ns1:DepartureHoursExclusionRule,
+        ns1:MinimumAnnualCallsRule,
+        ns1:MinimumCellShareRule ;
+    ns1:hasShipSizeGroup ns1:ShipSizeFeeder,
+        ns1:ShipSizeIntermediate,
+        ns1:ShipSizeIntraRegional,
+        ns1:ShipSizeNeoPanamax,
+        ns1:ShipSizeUltraLarge ;
+    ns1:referenceDistributionYear "2024"^^xsd:gYear ;
+    ns1:usesCPPIApproach ns1:AdministrativeApproach,
+        ns1:CombinedCPPIApproach,
+        ns1:StatisticalApproach .

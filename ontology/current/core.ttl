@@ -843,3 +843,5 @@ provider:productionScope a owl:DatatypeProperty ; rdfs:label "production scope"@
 provider:quantityBasis a owl:DatatypeProperty ; rdfs:label "quantity basis"@en ; rdfs:range xsd:string ; rdfs:comment "What the numeric quantity counts or weighs, for example contained nitrogen rather than product mass."@en .
 provider:sourceValue a owl:DatatypeProperty ; rdfs:label "original source value"@en ; rdfs:range xsd:string .
 provider:adjustment a owl:DatatypeProperty ; rdfs:label "statistical adjustment"@en ; rdfs:range xsd:string .
+
+provider: owl:imports <https://projekt-provider.de/ontology/external-declarations> .

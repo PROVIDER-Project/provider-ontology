@@ -217,7 +217,7 @@ ns1:assessedAt a owl:DatatypeProperty ;
 ns1:assessesAsset a owl:ObjectProperty ;
     rdfs:label "assesses asset"@en ;
     rdfs:domain owl:Thing ;
-    rdfs:range infra:InfrastructureAsset ;
+    rdfs:range provider:InfrastructureAsset ;
     rdfs:subPropertyOf ns1:assessesEntity .
 
 ns1:assessesImpactOf a owl:ObjectProperty ;
@@ -234,13 +234,13 @@ ns1:assessesRegion a owl:ObjectProperty ;
 ns1:assessesRoute a owl:ObjectProperty ;
     rdfs:label "assesses route"@en ;
     rdfs:domain owl:Thing ;
-    rdfs:range provider:TransportRoute ;
+    rdfs:range provider:Route ;
     rdfs:subPropertyOf ns1:assessesEntity .
 
 ns1:assessesSupplyChainNode a owl:ObjectProperty ;
     rdfs:label "assesses supply chain node"@en ;
     rdfs:domain owl:Thing ;
-    rdfs:range provider:SupplyChainNode ;
+    rdfs:range owl:Thing ;
     rdfs:subPropertyOf ns1:assessesEntity .
 
 ns1:assessmentMethod a owl:DatatypeProperty ;

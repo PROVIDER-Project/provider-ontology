@@ -597,7 +597,9 @@ infra:icaoCode a owl:DatatypeProperty ;
 infra:isConnectedTo a owl:ObjectProperty ;
     rdfs:label "is connected to"@en ;
     rdfs:comment "Symmetric property indicating mutual connection."@en ;
-    owl:propertyChainAxiom ( infra:connectsTo ) .
+    rdfs:comment "Connections asserted through connectsTo also entail isConnectedTo."@en .
+
+infra:connectsTo rdfs:subPropertyOf infra:isConnectedTo .
 
 infra:isPartOf a owl:ObjectProperty ;
     rdfs:label "is part of"@en ;

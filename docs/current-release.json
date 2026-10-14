@@ -12,7 +12,7 @@
       "source_path": "ontology/provider-main.ttl",
       "source_sha256": "f918fabee13ad6c1a0be8d495c86752ef2e381f032e32c30d803766a01868c19",
       "status": "active-review-candidate",
-      "sha256": "3268e1354501bb4063fc24c247baa374af42a7d061e05c703fe44c1a928d12da"
+      "sha256": "25378749e1d58c7a97cd20d1ae3676d893f2eb13f03c817569cd4afd38eb2063"
     },
     {
       "path": "ontology/current/bfo-alignment.ttl",
@@ -21,7 +21,7 @@
       "source_path": "ontology/provider-bfo-alignment.ttl",
       "source_sha256": "1fb914cf96fd36af007b19d2b70c3446229b2607d9ca18198df68882b08bc60f",
       "status": "active-review-candidate",
-      "sha256": "f9e3687fa3d3d59ab6f37c316eb0526927d2378aaf913c918a99625deeefad55"
+      "sha256": "8f345e1a569a043ab479b1680ffc9145a4c8199067c7373b5825e4aa05270c56"
     },
     {
       "path": "ontology/current/supply-chain.ttl",
@@ -39,7 +39,7 @@
       "source_path": "ontology/infrastructure.ttl",
       "source_sha256": "7526a533986b516efe1c05a4811f58ec059797f41d0671d80263fb07f2feec17",
       "status": "active-review-candidate",
-      "sha256": "b91f16e56451764250a0abef1374803bb5742abd6a14c68fbbac9e6d39ee2702"
+      "sha256": "dadf05394d5ddeed85f4665a9b59f75f6ca7337b7c184af417250d2dd25bc50f"
     },
     {
       "path": "ontology/current/network.ttl",
@@ -57,7 +57,7 @@
       "source_path": "ontology/ap2-pilot-profile.ttl",
       "source_sha256": "34db939286ea3fd7a363f185beff6b619190cb0c56e1ba6f63c161a3fcaf1021",
       "status": "active-review-candidate",
-      "sha256": "aecf8a675a5fda68d1558e0bc7622b0c7ecbfe4f79e4e563aa3d0508208e7986"
+      "sha256": "6297641530580d9c86b2cadce7aae077edf83dafd1b8b15f322b47c035b405a5"
     },
     {
       "path": "ontology/current/source-alignment.ttl",
@@ -66,7 +66,7 @@
       "source_path": "ontology/ap2-source-alignment.ttl",
       "source_sha256": "b1ebd05f6cf6925e1a31bf932098dfb46593808c8624f4fd122f2e28046ee467",
       "status": "active-review-candidate",
-      "sha256": "6f9de1a6d07b1820070a1b5b07ecc01fc3181539c29b1f41fc46a970db960229"
+      "sha256": "b7e8111552dd63e3498d4c4a52e1979097c801e1cd48234ae54a4beb05d3d989"
     },
     {
       "path": "ontology/current/cppi-source.ttl",
@@ -75,7 +75,7 @@
       "source_path": "ontology/source-cppi.ttl",
       "source_sha256": "e6d2e88d0e1489e005bce596ac6f32ab122afb369aeb07618a626f1272e20f31",
       "status": "active-review-candidate",
-      "sha256": "5601ff3cf081fa1415f20251baa898386db54f2bae158ba76746616858b8dc95"
+      "sha256": "d0e0f144fdf22eab71ae707a490ee9752d1b04b4ef6a7ae496e2124e731ff6be"
     },
     {
       "path": "ontology/current/cppi.ttl",
@@ -93,7 +93,7 @@
       "source_path": "ontology/mining/provider-mining.ttl",
       "source_sha256": "22ce94fd4b74072ad4a90f5de2863f915f034f6082005bb1d9e1189e17797c90",
       "status": "active-review-candidate",
-      "sha256": "0402023f96932d5d50aa344292bf073c8f738e5d7abcae6b4064e4528a6e78cf"
+      "sha256": "eaed9d44e14ce71df61c6329a915f8010614042a14703a732093c81e06e2aac7"
     },
     {
       "path": "ontology/current/mining-alignments.ttl",
@@ -120,7 +120,7 @@
       "source_path": "ontology/mining/provider-mining-pilot.ttl",
       "source_sha256": "6fa802a7757c3a60843a1c14a28411c0cb24defad40687a1f07f1d61ec48cbd8",
       "status": "active-review-candidate",
-      "sha256": "9addb64dbd87dd096514a9933987ae60a697bfd4fddf8e7bdf069620de1fb76a"
+      "sha256": "e2cee39724a6e26779d2cd5e51eafea56b39a9bbd6bd52388afe4d9f12451a94"
     },
     {
       "path": "ontology/current/event.ttl",
@@ -129,14 +129,28 @@
       "source_path": "docs/review/2026-10-13/inputs/provider-event-draft.ttl",
       "source_sha256": "9ecc7bfd294027519827f94f3b9210c42592bf8bae2e60036f07de07612376f1",
       "status": "active-review-candidate",
-      "sha256": "29ad927f0d282a83bf389e06f910ba50e064dc1f3ddadc701e65a46276861f7a"
+      "sha256": "226ad880ef98af01ff77360fb5a1a66f07cab6260f4f5b134ca57e075debbe2f"
     },
     {
       "path": "ontology/current/statistics.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/statistics",
       "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/statistics",
       "status": "active-review-candidate",
-      "sha256": "34848c133b04ce9cb4616f2a421b9e0588977a0ead2d6d89839574f465d8058e"
+      "sha256": "6b37e5f252057b1ea7db2726c71927750531588d6fa37cba6bac0e04edbd4f08"
+    },
+    {
+      "path": "ontology/current/external-declarations.ttl",
+      "ontology_iri": "https://projekt-provider.de/ontology/external-declarations",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/external-declarations",
+      "status": "declarations-only; not complete external semantics",
+      "sha256": "c6bca48bc5ca25cbf0c26d33c91bcab11a989683106ad46ae7485de9898d513b"
+    },
+    {
+      "path": "ontology/vendor/bfo-2020-core.ttl",
+      "ontology_iri": "http://purl.obolibrary.org/obo/bfo.owl",
+      "version_iri": "http://purl.obolibrary.org/obo/bfo/2020/bfo-core.ttl",
+      "status": "optional official BFO 2020 core; CC BY4.0",
+      "sha256": "a7f0385eb859e707fa81bad532ff252427dc3490e3896a929332016fc53d9ece"
     }
   ],
   "shapes": {

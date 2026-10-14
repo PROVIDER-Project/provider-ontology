@@ -253,3 +253,5 @@ provider:Product rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000001> ;
 
 <http://purl.obolibrary.org/obo/BFO_0000015> rdfs:label "process"@en .
 
+
+provider:bfo-alignment owl:imports <http://purl.obolibrary.org/obo/bfo.owl> .

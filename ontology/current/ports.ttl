@@ -95,7 +95,7 @@ ports:observedFeature a owl:ObjectProperty ;
 
 ports:relation a owl:ObjectProperty ;
     rdfs:domain ports:MatchAssertion ;
-    rdfs:range rdf:Property .
+    rdfs:range owl:Thing .
 
 ports:representsEvent a owl:ObjectProperty ;
     rdfs:domain <https://provider-project.org/ontology/pdl#Event> ;

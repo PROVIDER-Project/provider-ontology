@@ -281,6 +281,6 @@ p:StatisticalCell a owl:Class ;
 p:NitrogenProductionMass p:quantityBasis "contained nitrogen mass" ; rdfs:comment "Mass of nitrogen content, not mass of urea or another final product; no automatic conversion to commodity tonnes."@en .
 p:ProductionMass p:quantityBasis "reported product mass" .
 p:ProductionCount p:quantityBasis "reported product units" .
-p:ProductionCapacity p:quantityBasis "reported annual nameplate capacity; commodity and operating conditions must be specified by source" .
+p:ProductionCapacity p:quantityBasis "reported annual production capacity; nameplate basis, commodity and operating conditions require explicit source evidence" .
 <https://projekt-provider.de/ontology/unit/TonneNitrogen> rdfs:comment "One metric tonne of contained nitrogen; differs in quantity basis from a metric tonne of commodity."@en .
 <https://projekt-provider.de/ontology/unit/IndexPoint> rdfs:comment "Points in an index with a separately stated base. No physical-mass conversion."@en .

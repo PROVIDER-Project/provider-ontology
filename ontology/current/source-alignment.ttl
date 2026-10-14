@@ -13,7 +13,7 @@
 
 provider:Port rdfs:subClassOf ports:SourcePortFeature .
 
-provider:SourceRecord rdfs:subClassOf ports:SourceRecord .
+
 
 provider:TradeLocation rdfs:subClassOf ports:TradeLocation .
 
@@ -26,3 +26,6 @@ provider:source-alignment a owl:Ontology ;
     owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/source-alignment> ;
     owl:versionInfo "0.3.0-rc2" .
 
+
+provider:Port a owl:Class ; rdfs:label "Legacy source port feature"@en .
+provider:TradeLocation a owl:Class ; rdfs:label "Legacy trade location compatibility class"@en .
