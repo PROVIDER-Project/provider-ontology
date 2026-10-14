@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "verified_file_hashes": 136,
+  "extracted_offline_check": {
+    "modules": 17,
+    "competency_questions": 31,
+    "passed": true
+  },
+  "pdf": {
+    "pages": 3,
+    "all_pages_visually_reviewed": true
+  },
+  "package_sha256": "dd1c10a9c4dd5d861e8f9e0e871d5f8304a79768f964b0e54a71fb39e851f86a",
+  "scope": "Local extracted package and rendering; no remote CI or second physical machine"
+}

@@ -1,3 +1,5 @@
+> Historischer Erstreview des Kandidaten rc1 (13.10.2026). Aktueller Stand: [Konsolidierung rc2](ontology-consolidation.md). Die damaligen Modelldateien sind unter `review/2026-10-14/rc1/` gesichert.
+
 # PROVIDER: Ontologie-Review und konsolidiertes Modell
 
 Stand 13.10.2026. Reviewkandidat **0.3.0-rc1**, Zielnamensraum **https://projekt-provider.de/ontology/**.

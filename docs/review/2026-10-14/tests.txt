@@ -1,0 +1,6 @@
+/home/user/work/projects/PROVIDER/code/dagster-gdacs/.venv/lib/python3.13/site-packages/rdflib/plugins/sparql/operators.py:257: DeprecationWarning: 'count' is passed as positional argument
+  re.sub(str(pattern), replacement, text, cFlag),
+----------------------------------------------------------------------
+Ran 42 tests in 75.781s
+
+OK

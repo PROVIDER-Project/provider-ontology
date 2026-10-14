@@ -4,9 +4,9 @@
 
 **Zielnamensraum: `https://projekt-provider.de/ontology/`.**
 
-Der lokale Reviewkandidat **0.3.0-rc1** liegt ausschließlich unter [`ontology/current/`](ontology/current/). Einstieg: [`provider.ttl`](ontology/current/provider.ttl). Das [Release-Manifest](docs/current-release.json) bindet 15 Module, Imports und Validierungsprofile an konkrete Dateihashes. Der lokale XML-Katalog neben den Modulen ordnet Ontologie- und Versions-IRIs den Dateien zu. Die Website muss dafür nicht veröffentlicht sein; unsere Prüftools laden die Manifestdateien offline.
+Der lokale Reviewkandidat **0.3.0-rc2** liegt ausschließlich unter [`ontology/current/`](ontology/current/). Schlanke Einstiege: [`Fachprofile`](docs/model-profiles.md); vollständige Gesamtprüfung: [`provider.ttl`](ontology/current/provider.ttl). Das [Release-Manifest](docs/current-release.json) bindet 17 Module, Imports und Validierungsprofile an konkrete Dateihashes. Der lokale XML-Katalog neben den Modulen ordnet Ontologie- und Versions-IRIs den Dateien zu. Die Website muss dafür nicht veröffentlicht sein; unsere Prüftools laden die Manifestdateien offline.
 
-[Review mit Befunden und Migrationsgrenzen](docs/ontology-review.md) · [Kompetenzfragen](docs/competency-questions.md) · [Abdeckung aller 34 Registereinträge](docs/dataset-coverage.json)
+[Aktuelle Konsolidierung und Echtdatenabnahme](docs/ontology-consolidation.md) · [Fachprofile](docs/model-profiles.md) · [Vorheriger Review](docs/ontology-review.md) · [Kompetenzfragen](docs/competency-questions.md) · [Abdeckung aller 34 Registereinträge](docs/dataset-coverage.json)
 
 | Modul | Zweck |
 |---|---|

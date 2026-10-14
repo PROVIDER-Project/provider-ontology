@@ -4,6 +4,7 @@ import hashlib,json,zipfile
 ROOT=Path(__file__).resolve().parents[1]
 def main():
  r=ROOT;folder=r/'reports/ontology-review/2026-10-13';manifest=json.loads((r/'docs/current-release.json').read_text())
+ if manifest['version']!='0.3.0-rc1':raise ValueError('Historical rc1 package is preserved. Use package_consolidation.py for rc2.')
  names=[m['path'] for m in manifest['modules']]+[manifest['entry_point'],'ontology/current/catalog-v001.xml']+list(manifest['shape_hashes'])
  names += ['docs/current-release.json','docs/ontology-review.md','docs/dataset-coverage.json','docs/competency-questions.json','docs/competency-questions.md','examples/current/ap2-example.ttl','requirements-validation.txt','LICENSE','tools/review_current.py','tools/project_comext.py','tools/update_current_manifest.py','tools/build_ontology_review_report.py']
  names += [str(p.relative_to(r)) for p in (r/'queries/competency').glob('*.rq')]

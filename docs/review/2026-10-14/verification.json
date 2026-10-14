@@ -1,0 +1,87 @@
+{
+  "passed": true,
+  "version": "0.3.0-rc2",
+  "model_manifest_sha256": "8c4eaef08d9ce8c7b635254b053b5b9e9001cdadb38a8181a709ee2b10f0493a",
+  "local_tests": {
+    "count": 42,
+    "passed": true,
+    "log": "docs/review/2026-10-14/tests.txt"
+  },
+  "competency_questions": {
+    "count": 31,
+    "all_passed": true
+  },
+  "real_data": {
+    "genesis": {
+      "numeric": 1102,
+      "cells": 1680,
+      "missing": 578,
+      "marker_": 24,
+      "marker_.": 206,
+      "marker_-": 348
+    },
+    "cppi": {
+      "scores": 2212,
+      "negative_scores": 806
+    },
+    "gem": {
+      "row_limit": 20,
+      "capacity_results": 10,
+      "rights_open": true
+    },
+    "comext": {
+      "cells": 3960,
+      "missing": 1124,
+      "full_shacl": true
+    }
+  },
+  "common_query": {
+    "path": "queries/common-measurements.rq",
+    "results": [
+      [
+        "https://projekt-provider.de/ontology/CPPIIndexScore",
+        "https://projekt-provider.de/ontology/unit/DimensionlessIndex",
+        "2212"
+      ],
+      [
+        "https://projekt-provider.de/ontology/NitrogenProductionMass",
+        "https://projekt-provider.de/ontology/unit/TonneNitrogen",
+        "97"
+      ],
+      [
+        "https://projekt-provider.de/ontology/PriceIndex",
+        "https://projekt-provider.de/ontology/unit/IndexPoint",
+        "456"
+      ],
+      [
+        "https://projekt-provider.de/ontology/ProductionCapacity",
+        "https://projekt-provider.de/ontology/unit/TonnePerYear",
+        "10"
+      ],
+      [
+        "https://projekt-provider.de/ontology/ProductionCount",
+        "https://projekt-provider.de/ontology/unit/Piece",
+        "69"
+      ],
+      [
+        "https://projekt-provider.de/ontology/ProductionIndex",
+        "https://projekt-provider.de/ontology/unit/IndexPoint",
+        "480"
+      ],
+      [
+        "https://projekt-provider.de/ontology/TradeMass",
+        "https://projekt-provider.de/ontology/unit/Kilogram",
+        "1418"
+      ],
+      [
+        "https://projekt-provider.de/ontology/TradeValue",
+        "https://projekt-provider.de/ontology/unit/Euro",
+        "1418"
+      ]
+    ],
+    "data_triples": 135548
+  },
+  "remote_ci_run": false,
+  "production_cutover": false,
+  "partner_acceptance": false
+}

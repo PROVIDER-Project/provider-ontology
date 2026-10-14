@@ -11,7 +11,9 @@ from reportlab.pdfbase.ttfonts import TTFont
 ROOT=Path(__file__).resolve().parents[1]
 
 def main():
- r=ROOT;folder=r/'reports/ontology-review/2026-10-13';folder.mkdir(parents=True,exist_ok=True)
+ r=ROOT
+ if json.loads((r/'docs/current-release.json').read_text())['version']!='0.3.0-rc1':raise ValueError('Historical rc1 report is preserved. Use build_consolidation_report.py for rc2.')
+ folder=r/'reports/ontology-review/2026-10-13';folder.mkdir(parents=True,exist_ok=True)
  load=lambda p:json.loads((r/p).read_text())
  findings=load('docs/review/2026-10-13/findings.json')['findings'];coverage=load('docs/dataset-coverage.json')['sources'];questions=load('docs/competency-questions.json')['questions'];verification=load('docs/review/2026-10-13/verification.json')
  font=Path('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf');bold=font.with_name('DejaVuSans-Bold.ttf')
