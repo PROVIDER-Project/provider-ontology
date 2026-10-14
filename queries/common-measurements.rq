@@ -1,0 +1,8 @@
+PREFIX p: <https://projekt-provider.de/ontology/>
+SELECT ?kind ?unit (COUNT(?measurement) AS ?measurements)
+WHERE {
+  ?result p:hasMeasurement ?measurement .
+  ?measurement p:measurementKind ?kind ; p:hasUnit ?unit ; p:measurementValue ?value .
+}
+GROUP BY ?kind ?unit
+ORDER BY ?kind ?unit

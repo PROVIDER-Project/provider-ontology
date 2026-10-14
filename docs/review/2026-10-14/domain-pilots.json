@@ -1,0 +1,32 @@
+{
+  "cppi": {
+    "source_sha256": "ea648e81b5d406c0a43ce79c0b306551dc1067c25d78717463e761545b328385",
+    "source_observations": 2212,
+    "projected_scores": 2212,
+    "negative_scores": 806,
+    "scope": "Full actual combined score series only; ranks/components/operational metrics remain in source payload and are outside this projection. No automatic canonical port linking.",
+    "passed": true,
+    "triples": 33606,
+    "rdf_sha256": "1d1cdef421056d7da6e4455ac0308e8c6a73462c0f6073ab2f1448207830cf7d"
+  },
+  "mining": {
+    "source_sha256": "8a51bb5b82c73ef9745696e58d9c53f9aa1c92b6f5e6f8fcfe3781bc4213a80a",
+    "raw_rdf_sha256": "88c517992161c5ac5306d59373cc9b89984ddd905a28d0ecd31e4867fb86cb69",
+    "selected_sheet": "Non-closed mines",
+    "row_limit": 20,
+    "rights_status": "local workbook reuse not cleared; no license asserted",
+    "capacity_results": 10,
+    "capacity_without_value": 0,
+    "scope": "First selected source rows only. Converter scales Mtpa to tonnes/year. Capacity is not realized production; no missing-value imputation, ICMM/GEM identity links or operator approval.",
+    "passed": true,
+    "triples": 116,
+    "rdf_sha256": "f4bc9f0d9543fcd95c40422afdb242ca94ebb33ec61614d716953d3eeb1532e9"
+  },
+  "passed": true,
+  "common_query_counts": {
+    "https://projekt-provider.de/ontology/CPPIIndexScore": 2212,
+    "https://projekt-provider.de/ontology/ProductionCapacity": 10
+  },
+  "adapter_sha256": "57360aa2e55e784b5fd688eef6f3b4c91ed7954f40168d4abba556b5e1cc9049",
+  "model_manifest_sha256": "8c4eaef08d9ce8c7b635254b053b5b9e9001cdadb38a8181a709ee2b10f0493a"
+}

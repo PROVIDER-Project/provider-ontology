@@ -1,0 +1,2 @@
+2026-10-14 11:25:34,488 ERROR org.obolibrary.robot.ReasonerHelper - There are 1 unsatisfiable classes in the ontology.
+2026-10-14 11:25:34,492 ERROR org.obolibrary.robot.ReasonerHelper -     unsatisfiable: urn:provider:ImpossibleContinuantProcess

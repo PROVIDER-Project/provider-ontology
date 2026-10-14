@@ -1,0 +1,59 @@
+{
+  "sources": [
+    {
+      "path": "catalog/ap21/genesis/price-observations.csv",
+      "sha256": "50a53191ac0c7c964cbdbe2cd8a4fdc8ddc971e62e2d0316f105de9425fddc62",
+      "manifest": "catalog/ap21/genesis/capture-manifest.json",
+      "manifest_sha256": "a142a4315b214b95073b7237ff0ec97f61768d72cd1fcf797e044ba0eb4f6826",
+      "table": "61241-0006",
+      "counts": {
+        "numeric": 456,
+        "cells": 480,
+        "missing": 24,
+        "marker_": 24
+      },
+      "source_hash_scope": "versioned derived capture; original publisher hash retained in original manifest, if available"
+    },
+    {
+      "path": "catalog/ap21/genesis/production-observations.csv",
+      "sha256": "72b47e7fb6d03c5583d00acf46150c87ae792644184df5c8e9057c49d612325b",
+      "manifest": "catalog/ap21/genesis/production-capture-manifest.json",
+      "manifest_sha256": "83ac2d4d3b5250cbb913aa42ff3aef2da83ae47b5e7e2e9745d140c19e72ac7e",
+      "table": "42153-0003",
+      "counts": {
+        "numeric": 480,
+        "cells": 480
+      },
+      "source_hash_scope": "versioned derived capture; original publisher hash retained in original manifest, if available"
+    },
+    {
+      "path": "catalog/ap21/genesis/gp9-publisher-observations.csv",
+      "sha256": "c9d9853f1b3e665203e3ab471664ccb0cf51f294cee889d974bdf5775191d9ce",
+      "manifest": "catalog/ap21/genesis/gp9-publisher-manifest.json",
+      "manifest_sha256": "64b23c7e346a3bb30576ee39914395cff9dcfee10f237f5452962710e73e644d",
+      "table": "42131-0002",
+      "counts": {
+        "missing": 554,
+        "marker_.": 206,
+        "cells": 720,
+        "marker_-": 348,
+        "numeric": 166
+      },
+      "source_hash_scope": "versioned derived capture; original publisher hash retained in original manifest, if available"
+    }
+  ],
+  "counts": {
+    "numeric": 1102,
+    "cells": 1680,
+    "missing": 578,
+    "marker_": 24,
+    "marker_.": 206,
+    "marker_-": 348
+  },
+  "scope": "Bounded reviewed captures. No imputation, annual aggregation, plant-output inference, scheduled download, vintage reconstruction or production pipeline cutover.",
+  "passed": true,
+  "triples": 24587,
+  "rdf_sha256": "ee98f7d6db5576775bf27aa649716396fe431c29668ccd4dca7798e5dcc69f75",
+  "adapter_sha256": "8b946f0d8a2ffb0172dbadf62f59dc1c6d8aca71c00b54b682ecb13d24dc5860",
+  "model_manifest_sha256": "8c4eaef08d9ce8c7b635254b053b5b9e9001cdadb38a8181a709ee2b10f0493a"
+}
