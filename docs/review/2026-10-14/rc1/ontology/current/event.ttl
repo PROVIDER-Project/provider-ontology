@@ -1,0 +1,1028 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix infra: <https://projekt-provider.de/ontology/infrastructure#> .
+@prefix ns1: <https://projekt-provider.de/ontology/event#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://projekt-provider.de/ontology/conflict#CivilianGroup> a owl:Class ;
+    rdfs:label "Civilian Group"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/conflict#ConflictActor> .
+
+<https://projekt-provider.de/ontology/conflict#ConflictEventImpactAssessment> a owl:Class ;
+    rdfs:label "Conflict Event Impact Assessment"@en ;
+    rdfs:comment "An event impact assessment based on an actual conflict, protest, riot, battle, explosion, remote violence, or strategic development event."@en ;
+    rdfs:subClassOf ns1:EventImpactAssessment .
+
+<https://projekt-provider.de/ontology/conflict#ExternalOtherForce> a owl:Class ;
+    rdfs:label "External or Other Force"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/conflict#ConflictActor> .
+
+<https://projekt-provider.de/ontology/conflict#IdentityMilitia> a owl:Class ;
+    rdfs:label "Identity Militia"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/conflict#ConflictActor> .
+
+<https://projekt-provider.de/ontology/conflict#NonStateArmedGroup> a owl:Class ;
+    rdfs:label "Non-State Armed Group"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/conflict#ConflictActor> .
+
+<https://projekt-provider.de/ontology/conflict#PoliticalMilitia> a owl:Class ;
+    rdfs:label "Political Militia"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/conflict#ConflictActor> .
+
+<https://projekt-provider.de/ontology/conflict#ProtesterGroup> a owl:Class ;
+    rdfs:label "Protester Group"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/conflict#ConflictActor> .
+
+<https://projekt-provider.de/ontology/conflict#StateForce> a owl:Class ;
+    rdfs:label "State Force"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/conflict#ConflictActor> .
+
+<https://projekt-provider.de/ontology/conflict#acledEventId> a owl:DatatypeProperty ;
+    rdfs:label "ACLED event identifier"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/conflict#acledEventType> a owl:ObjectProperty ;
+    rdfs:label "ACLED event type"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range skos:Concept .
+
+<https://projekt-provider.de/ontology/conflict#acledGeoPrecision> a owl:DatatypeProperty ;
+    rdfs:label "ACLED geographic precision"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range xsd:integer .
+
+<https://projekt-provider.de/ontology/conflict#acledInteractionCode> a owl:DatatypeProperty ;
+    rdfs:label "ACLED interaction code"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/conflict#acledSubEventType> a owl:ObjectProperty ;
+    rdfs:label "ACLED sub-event type"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range skos:Concept .
+
+<https://projekt-provider.de/ontology/conflict#acledTimePrecision> a owl:DatatypeProperty ;
+    rdfs:label "ACLED time precision"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range xsd:integer .
+
+<https://projekt-provider.de/ontology/conflict#admin1Name> a owl:DatatypeProperty ;
+    rdfs:label "first-level administrative unit name"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/conflict#admin2Name> a owl:DatatypeProperty ;
+    rdfs:label "second-level administrative unit name"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/conflict#admin3Name> a owl:DatatypeProperty ;
+    rdfs:label "third-level administrative unit name"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/conflict#civilianTargeting> a owl:DatatypeProperty ;
+    rdfs:label "civilian targeting"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range xsd:boolean .
+
+<https://projekt-provider.de/ontology/conflict#conflictExposureClass> a owl:DatatypeProperty ;
+    rdfs:label "conflict exposure class"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictExposureAssessment> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/conflict#conflictExposureScore> a owl:DatatypeProperty ;
+    rdfs:label "conflict exposure score"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictExposureAssessment> ;
+    rdfs:range xsd:decimal .
+
+<https://projekt-provider.de/ontology/conflict#eventCount> a owl:DatatypeProperty ;
+    rdfs:label "event count"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictExposureAssessment> ;
+    rdfs:range xsd:integer .
+
+<https://projekt-provider.de/ontology/conflict#fatalities> a owl:DatatypeProperty ;
+    rdfs:label "fatalities"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range xsd:integer .
+
+<https://projekt-provider.de/ontology/conflict#fatalityCount> a owl:DatatypeProperty ;
+    rdfs:label "fatality count"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictExposureAssessment> ;
+    rdfs:range xsd:integer .
+
+<https://projekt-provider.de/ontology/conflict#hasPrimaryActor> a owl:ObjectProperty ;
+    rdfs:label "has primary actor"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range <https://projekt-provider.de/ontology/conflict#ConflictActor> ;
+    rdfs:subPropertyOf <https://projekt-provider.de/ontology/conflict#hasActor> .
+
+<https://projekt-provider.de/ontology/conflict#hasSecondaryActor> a owl:ObjectProperty ;
+    rdfs:label "has secondary actor"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range <https://projekt-provider.de/ontology/conflict#ConflictActor> ;
+    rdfs:subPropertyOf <https://projekt-provider.de/ontology/conflict#hasActor> .
+
+<https://projekt-provider.de/ontology/conflict#lookbackPeriodDays> a owl:DatatypeProperty ;
+    rdfs:label "lookback period in days"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictExposureAssessment> ;
+    rdfs:range xsd:integer .
+
+<https://projekt-provider.de/ontology/conflict#notes> a owl:DatatypeProperty ;
+    rdfs:label "notes"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/conflict#sourceScale> a owl:DatatypeProperty ;
+    rdfs:label "source scale"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range xsd:string .
+
+provider:event a owl:Ontology ;
+    rdfs:label "PROVIDER event"@en ;
+    dct:created "2026-06-09"^^xsd:date ;
+    dct:creator "PROVIDER project"@en ;
+    dct:description "Ontology module for modeling disruption-relevant events in the PROVIDER knowledge graph, including generic disruption events, natural hazard events and alerts such as GDACS, baseline hazard layers such as flood and seismic hazard maps, asset-level hazard exposure assessments, conflict/security events such as ACLED records, and event impact assessments for supply-chain resilience analysis."@en ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:modified "2026-10-13"^^xsd:date ;
+    dct:title "PROVIDER Event, Hazard, Conflict, and Exposure Ontology"@en ;
+    rdfs:seeAlso <http://www.opengis.net/ont/geosparql>,
+        <http://www.w3.org/2006/time>,
+        <http://www.w3.org/ns/dcat>,
+        <http://www.w3.org/ns/prov>,
+        schema: ;
+    owl:imports provider:,
+        provider:infrastructure ;
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/event> ;
+    owl:versionInfo "0.3.0-rc1" .
+
+ns1:AirportDisruptionEvent a owl:Class ;
+    rdfs:label "Airport Disruption Event"@en ;
+    rdfs:subClassOf ns1:TransportDisruptionEvent .
+
+ns1:BorderClosureEvent a owl:Class ;
+    rdfs:label "Border Closure Event"@en ;
+    rdfs:subClassOf ns1:RegulatoryDisruptionEvent .
+
+ns1:CyberIncidentEvent a owl:Class ;
+    rdfs:label "Cyber Incident Event"@en ;
+    rdfs:subClassOf ns1:DisruptionEvent .
+
+ns1:ExportRestrictionEvent a owl:Class ;
+    rdfs:label "Export Restriction Event"@en ;
+    rdfs:subClassOf ns1:RegulatoryDisruptionEvent .
+
+ns1:ImportBanEvent a owl:Class ;
+    rdfs:label "Import Ban Event"@en ;
+    rdfs:subClassOf ns1:RegulatoryDisruptionEvent .
+
+ns1:PipelineDisruptionEvent a owl:Class ;
+    rdfs:label "Pipeline Disruption Event"@en ;
+    rdfs:subClassOf ns1:InfrastructureDisruptionEvent .
+
+ns1:PortClosureEvent a owl:Class ;
+    rdfs:label "Port Closure Event"@en ;
+    rdfs:subClassOf ns1:TransportDisruptionEvent .
+
+ns1:PowerOutageEvent a owl:Class ;
+    rdfs:label "Power Outage Event"@en ;
+    rdfs:subClassOf ns1:InfrastructureDisruptionEvent .
+
+ns1:RailDisruptionEvent a owl:Class ;
+    rdfs:label "Rail Disruption Event"@en ;
+    rdfs:subClassOf ns1:TransportDisruptionEvent .
+
+ns1:RoadClosureEvent a owl:Class ;
+    rdfs:label "Road Closure Event"@en ;
+    rdfs:subClassOf ns1:TransportDisruptionEvent .
+
+ns1:SanctionEvent a owl:Class ;
+    rdfs:label "Sanction Event"@en ;
+    rdfs:subClassOf ns1:RegulatoryDisruptionEvent .
+
+ns1:assessedAt a owl:DatatypeProperty ;
+    rdfs:label "assessed at"@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:dateTime .
+
+ns1:assessesAsset a owl:ObjectProperty ;
+    rdfs:label "assesses asset"@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range infra:InfrastructureAsset ;
+    rdfs:subPropertyOf ns1:assessesEntity .
+
+ns1:assessesImpactOf a owl:ObjectProperty ;
+    rdfs:label "assesses impact of"@en ;
+    rdfs:domain ns1:EventImpactAssessment ;
+    rdfs:range ns1:DisruptionEvent .
+
+ns1:assessesRegion a owl:ObjectProperty ;
+    rdfs:label "assesses region"@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range geo:Feature ;
+    rdfs:subPropertyOf ns1:assessesEntity .
+
+ns1:assessesRoute a owl:ObjectProperty ;
+    rdfs:label "assesses route"@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range provider:TransportRoute ;
+    rdfs:subPropertyOf ns1:assessesEntity .
+
+ns1:assessesSupplyChainNode a owl:ObjectProperty ;
+    rdfs:label "assesses supply chain node"@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range provider:SupplyChainNode ;
+    rdfs:subPropertyOf ns1:assessesEntity .
+
+ns1:assessmentMethod a owl:DatatypeProperty ;
+    rdfs:label "assessment method"@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string .
+
+ns1:confidence a owl:DatatypeProperty ;
+    rdfs:label "confidence"@en ;
+    rdfs:comment "Confidence score in the range 0 to 1 where applicable."@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:decimal .
+
+ns1:coverageFraction a owl:DatatypeProperty ;
+    rdfs:label "coverage fraction"@en ;
+    rdfs:comment "Fraction of the assessed geometry covered by a hazard layer, event footprint, conflict buffer, or affected area."@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:decimal .
+
+ns1:dataVersion a owl:DatatypeProperty ;
+    rdfs:label "data version"@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string .
+
+ns1:distanceMeters a owl:DatatypeProperty ;
+    rdfs:label "distance in meters"@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:decimal .
+
+ns1:endedAt a owl:DatatypeProperty ;
+    rdfs:label "ended at"@en ;
+    rdfs:domain ns1:Event ;
+    rdfs:range xsd:dateTime .
+
+ns1:hasAffectedArea a owl:ObjectProperty ;
+    rdfs:label "has affected area"@en ;
+    rdfs:comment "Links a disruption event to a footprint, alert area, buffer, administrative region, or modeled affected area."@en ;
+    rdfs:domain ns1:DisruptionEvent ;
+    rdfs:range geo:Feature .
+
+ns1:hasEventTime a owl:ObjectProperty ;
+    rdfs:label "has event time"@en ;
+    rdfs:domain ns1:Event ;
+    rdfs:range time:TemporalEntity .
+
+ns1:hasLocation a owl:ObjectProperty ;
+    rdfs:label "has location"@en ;
+    rdfs:comment "Links an event to a spatial feature representing its location, epicenter, centroid, reported place, or source-specific location."@en ;
+    rdfs:domain ns1:Event ;
+    rdfs:range geo:Feature .
+
+ns1:hasSeverity a owl:DatatypeProperty ;
+    rdfs:label "has severity"@en ;
+    rdfs:domain ns1:DisruptionEvent ;
+    rdfs:range xsd:decimal .
+
+ns1:impactClass a owl:DatatypeProperty ;
+    rdfs:label "impact class"@en ;
+    rdfs:domain ns1:EventImpactAssessment ;
+    rdfs:range xsd:string .
+
+ns1:impactScore a owl:DatatypeProperty ;
+    rdfs:label "impact score"@en ;
+    rdfs:domain ns1:EventImpactAssessment ;
+    rdfs:range xsd:decimal .
+
+ns1:ingestedAt a owl:DatatypeProperty ;
+    rdfs:label "ingested at"@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:dateTime .
+
+ns1:locatedInCountry a owl:ObjectProperty ;
+    rdfs:label "located in country"@en ;
+    rdfs:domain ns1:Event ;
+    rdfs:range provider:Country .
+
+ns1:locatedInRegion a owl:ObjectProperty ;
+    rdfs:label "located in region"@en ;
+    rdfs:domain ns1:Event ;
+    rdfs:range geo:Feature .
+
+ns1:modelingNote a owl:AnnotationProperty ;
+    rdfs:label "modeling note"@en ;
+    rdfs:comment "A modeling note intended for ontology maintainers and data engineers."@en .
+
+ns1:occurredOn a owl:DatatypeProperty ;
+    rdfs:label "occurred on"@en ;
+    rdfs:domain ns1:Event ;
+    rdfs:range xsd:date .
+
+ns1:recommendedMapping a owl:AnnotationProperty ;
+    rdfs:label "recommended mapping"@en ;
+    rdfs:comment "Human-readable implementation guidance for ETL mappings into this ontology."@en .
+
+ns1:severityClass a owl:DatatypeProperty ;
+    rdfs:label "severity class"@en ;
+    rdfs:comment "Categorical severity, preferably normalized to a PROVIDER-controlled vocabulary while preserving the source value separately."@en ;
+    rdfs:domain ns1:DisruptionEvent ;
+    rdfs:range xsd:string .
+
+ns1:sourceDataset a owl:ObjectProperty ;
+    rdfs:label "source dataset"@en ;
+    rdfs:domain ns1:Event ;
+    rdfs:range dcat:Dataset .
+
+ns1:sourceProvider a owl:DatatypeProperty ;
+    rdfs:label "source provider"@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string .
+
+ns1:sourceRecordId a owl:DatatypeProperty ;
+    rdfs:label "source record identifier"@en ;
+    rdfs:comment "Identifier of the source-system record from which the event was created, for example a GDACS event id or ACLED event id."@en ;
+    rdfs:domain ns1:Event ;
+    rdfs:range xsd:string .
+
+ns1:sourceUrl a owl:DatatypeProperty ;
+    rdfs:label "source URL"@en ;
+    rdfs:domain ns1:Event ;
+    rdfs:range xsd:anyURI .
+
+ns1:startedAt a owl:DatatypeProperty ;
+    rdfs:label "started at"@en ;
+    rdfs:domain ns1:Event ;
+    rdfs:range xsd:dateTime .
+
+<https://projekt-provider.de/ontology/hazard#AssetExposureAssessment> a owl:Class ;
+    rdfs:label "Asset Exposure Assessment"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> .
+
+<https://projekt-provider.de/ontology/hazard#BaselineHazardDataset> a owl:Class ;
+    rdfs:label "Baseline Hazard Dataset"@en ;
+    rdfs:comment "A dataset describing estimated, modeled, or probabilistic hazard intensity over space, for example flood depth by return period or seismic peak ground acceleration."@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardDataset> .
+
+<https://projekt-provider.de/ontology/hazard#CycloneWindHazardLayer> a owl:Class ;
+    rdfs:label "Cyclone Wind Hazard Layer"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#RasterHazardLayer> .
+
+<https://projekt-provider.de/ontology/hazard#DroughtEvent> a owl:Class ;
+    rdfs:label "Drought Event"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardEvent> .
+
+<https://projekt-provider.de/ontology/hazard#DroughtHazardLayer> a owl:Class ;
+    rdfs:label "Drought Hazard Layer"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#RasterHazardLayer> .
+
+<https://projekt-provider.de/ontology/hazard#EarlyWarningAlert> a owl:Class ;
+    rdfs:label "Early Warning Alert"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardAlert> .
+
+<https://projekt-provider.de/ontology/hazard#EventDataset> a owl:Class ;
+    rdfs:label "Event Dataset"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardDataset> .
+
+<https://projekt-provider.de/ontology/hazard#FaultZoneLayer> a owl:Class ;
+    rdfs:label "Fault Zone Layer"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#VectorHazardLayer> .
+
+<https://projekt-provider.de/ontology/hazard#FloodEvent> a owl:Class ;
+    rdfs:label "Flood Event"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardEvent> .
+
+<https://projekt-provider.de/ontology/hazard#FloodHazardLayer> a owl:Class ;
+    rdfs:label "Flood Hazard Layer"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#RasterHazardLayer> .
+
+<https://projekt-provider.de/ontology/hazard#FloodObservation> a owl:Class ;
+    rdfs:label "Flood Observation"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardObservation> .
+
+<https://projekt-provider.de/ontology/hazard#GDACSAlert> a owl:Class ;
+    rdfs:label "GDACS Alert"@en ;
+    rdfs:comment "An alert record issued by the Global Disaster Alert and Coordination System."@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardAlert> ;
+    ns1:recommendedMapping "Map GDACS alert-level records to provhaz:GDACSAlert and link them to the corresponding provhaz:HazardEvent using provhaz:alertsAbout and provhaz:hasAlert."@en .
+
+<https://projekt-provider.de/ontology/hazard#HazardEventImpactAssessment> a owl:Class ;
+    rdfs:label "Hazard Event Impact Assessment"@en ;
+    rdfs:comment "An event impact assessment based on an actual hazard event such as a GDACS flood, earthquake, cyclone, or wildfire event."@en ;
+    rdfs:subClassOf ns1:EventImpactAssessment .
+
+<https://projekt-provider.de/ontology/hazard#HazardZoneLayer> a owl:Class ;
+    rdfs:label "Hazard Zone Layer"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#VectorHazardLayer> .
+
+<https://projekt-provider.de/ontology/hazard#HistoricalHazardDataset> a owl:Class ;
+    rdfs:label "Historical Hazard Dataset"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardDataset> .
+
+<https://projekt-provider.de/ontology/hazard#LandslideEvent> a owl:Class ;
+    rdfs:label "Landslide Event"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardEvent> .
+
+<https://projekt-provider.de/ontology/hazard#ObservationAlert> a owl:Class ;
+    rdfs:label "Observation Alert"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardAlert> .
+
+<https://projekt-provider.de/ontology/hazard#ObservationDataset> a owl:Class ;
+    rdfs:label "Observation Dataset"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardDataset> .
+
+<https://projekt-provider.de/ontology/hazard#RegionalExposureAssessment> a owl:Class ;
+    rdfs:label "Regional Exposure Assessment"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> .
+
+<https://projekt-provider.de/ontology/hazard#SeismicHazardLayer> a owl:Class ;
+    rdfs:label "Seismic Hazard Layer"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#RasterHazardLayer> .
+
+<https://projekt-provider.de/ontology/hazard#SeismicObservation> a owl:Class ;
+    rdfs:label "Seismic Observation"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardObservation> .
+
+<https://projekt-provider.de/ontology/hazard#SupplyChainNodeExposureAssessment> a owl:Class ;
+    rdfs:label "Supply Chain Node Exposure Assessment"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> .
+
+<https://projekt-provider.de/ontology/hazard#TransportCorridorExposureAssessment> a owl:Class ;
+    rdfs:label "Transport Corridor Exposure Assessment"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> .
+
+<https://projekt-provider.de/ontology/hazard#TsunamiEvent> a owl:Class ;
+    rdfs:label "Tsunami Event"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardEvent> .
+
+<https://projekt-provider.de/ontology/hazard#VolcanicEvent> a owl:Class ;
+    rdfs:label "Volcanic Event"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardEvent> .
+
+<https://projekt-provider.de/ontology/hazard#VolcanoInventoryLayer> a owl:Class ;
+    rdfs:label "Volcano Inventory Layer"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#VectorHazardLayer> .
+
+<https://projekt-provider.de/ontology/hazard#WeatherObservation> a owl:Class ;
+    rdfs:label "Weather Observation"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardObservation> .
+
+<https://projekt-provider.de/ontology/hazard#WildfireEvent> a owl:Class ;
+    rdfs:label "Wildfire Event"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardEvent> .
+
+<https://projekt-provider.de/ontology/hazard#WildfireHazardLayer> a owl:Class ;
+    rdfs:label "Wildfire Hazard Layer"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#RasterHazardLayer> .
+
+<https://projekt-provider.de/ontology/hazard#affectedPopulation> a owl:DatatypeProperty ;
+    rdfs:label "affected population"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardEvent> ;
+    rdfs:range xsd:decimal .
+
+<https://projekt-provider.de/ontology/hazard#alertLevel> a owl:DatatypeProperty ;
+    rdfs:label "alert level"@en ;
+    rdfs:comment "Alert severity level as provided by the source system, for example Green, Orange, or Red in GDACS."@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardAlert> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/hazard#alertsAbout> a owl:ObjectProperty ;
+    rdfs:label "alerts about"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardAlert> ;
+    rdfs:range <https://projekt-provider.de/ontology/hazard#HazardEvent> .
+
+<https://projekt-provider.de/ontology/hazard#basedOnHazardDataset> a owl:ObjectProperty ;
+    rdfs:label "based on hazard dataset"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range <https://projekt-provider.de/ontology/hazard#HazardDataset> .
+
+<https://projekt-provider.de/ontology/hazard#basedOnHazardLayer> a owl:ObjectProperty ;
+    rdfs:label "based on hazard layer"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range <https://projekt-provider.de/ontology/hazard#HazardLayer> .
+
+<https://projekt-provider.de/ontology/hazard#belongsToDataset> a owl:ObjectProperty ;
+    rdfs:label "belongs to dataset"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardLayer> ;
+    rdfs:range <https://projekt-provider.de/ontology/hazard#HazardDataset> .
+
+<https://projekt-provider.de/ontology/hazard#bufferDistanceMeters> a owl:DatatypeProperty ;
+    rdfs:label "buffer distance in meters"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:decimal .
+
+<https://projekt-provider.de/ontology/hazard#coastalFlood> a <https://projekt-provider.de/ontology/hazard#HydrologicalHazard> ;
+    skos:broader <https://projekt-provider.de/ontology/hazard#flood> ;
+    skos:prefLabel "Coastal flood"@en .
+
+<https://projekt-provider.de/ontology/hazard#depthKilometers> a owl:DatatypeProperty ;
+    rdfs:label "depth in kilometers"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#EarthquakeEvent> ;
+    rdfs:range xsd:decimal .
+
+<https://projekt-provider.de/ontology/hazard#diseaseOutbreak> a <https://projekt-provider.de/ontology/hazard#BiologicalHazard> ;
+    skos:prefLabel "Disease outbreak"@en .
+
+<https://projekt-provider.de/ontology/hazard#drought> a <https://projekt-provider.de/ontology/hazard#HydrologicalHazard> ;
+    skos:prefLabel "Drought"@en .
+
+<https://projekt-provider.de/ontology/hazard#droughtIndexType> a owl:DatatypeProperty ;
+    rdfs:label "drought index type"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/hazard#droughtIndexValue> a owl:DatatypeProperty ;
+    rdfs:label "drought index value"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:decimal ;
+    rdfs:subPropertyOf <https://projekt-provider.de/ontology/hazard#exposureValue> .
+
+<https://projekt-provider.de/ontology/hazard#earthquake> a <https://projekt-provider.de/ontology/hazard#GeophysicalHazard> ;
+    skos:prefLabel "Earthquake"@en .
+
+<https://projekt-provider.de/ontology/hazard#exceedanceProbability> a owl:DatatypeProperty ;
+    rdfs:label "exceedance probability"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardLayer> ;
+    rdfs:range xsd:decimal .
+
+<https://projekt-provider.de/ontology/hazard#expiresAt> a owl:DatatypeProperty ;
+    rdfs:label "expires at"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardAlert> ;
+    rdfs:range xsd:dateTime .
+
+<https://projekt-provider.de/ontology/hazard#exposureClass> a owl:DatatypeProperty ;
+    rdfs:label "exposure class"@en ;
+    rdfs:comment "Categorical exposure level such as none, low, medium, high, or very high."@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/hazard#exposureDurationYears> a owl:DatatypeProperty ;
+    rdfs:label "exposure duration in years"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardLayer> ;
+    rdfs:range xsd:decimal .
+
+<https://projekt-provider.de/ontology/hazard#exposureScore> a owl:DatatypeProperty ;
+    rdfs:label "exposure score"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:decimal .
+
+<https://projekt-provider.de/ontology/hazard#exposureUnit> a owl:DatatypeProperty ;
+    rdfs:label "exposure unit"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/hazard#extremeCold> a <https://projekt-provider.de/ontology/hazard#ClimatologicalHazard> ;
+    skos:prefLabel "Extreme cold"@en .
+
+<https://projekt-provider.de/ontology/hazard#extremeHeat> a <https://projekt-provider.de/ontology/hazard#ClimatologicalHazard> ;
+    skos:prefLabel "Extreme heat"@en .
+
+<https://projekt-provider.de/ontology/hazard#extremeRainfall> a <https://projekt-provider.de/ontology/hazard#MeteorologicalHazard> ;
+    skos:prefLabel "Extreme rainfall"@en .
+
+<https://projekt-provider.de/ontology/hazard#extremeWind> a <https://projekt-provider.de/ontology/hazard#MeteorologicalHazard> ;
+    skos:prefLabel "Extreme wind"@en .
+
+<https://projekt-provider.de/ontology/hazard#fireRadiativePowerMW> a owl:DatatypeProperty ;
+    rdfs:label "fire radiative power in MW"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#SatelliteFireObservation> ;
+    rdfs:range xsd:decimal .
+
+<https://projekt-provider.de/ontology/hazard#flashFlood> a <https://projekt-provider.de/ontology/hazard#HydrologicalHazard> ;
+    skos:broader <https://projekt-provider.de/ontology/hazard#flood> ;
+    skos:prefLabel "Flash flood"@en .
+
+<https://projekt-provider.de/ontology/hazard#floodDepthMeters> a owl:DatatypeProperty ;
+    rdfs:label "flood depth in meters"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:decimal ;
+    rdfs:subPropertyOf <https://projekt-provider.de/ontology/hazard#exposureValue> .
+
+<https://projekt-provider.de/ontology/hazard#floodReturnPeriodYears> a owl:DatatypeProperty ;
+    rdfs:label "flood return period in years"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:decimal ;
+    rdfs:subPropertyOf <https://projekt-provider.de/ontology/hazard#returnPeriodYears> .
+
+<https://projekt-provider.de/ontology/hazard#hasAlert> a owl:ObjectProperty ;
+    rdfs:label "has alert"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardEvent> ;
+    rdfs:range <https://projekt-provider.de/ontology/hazard#HazardAlert> .
+
+<https://projekt-provider.de/ontology/hazard#hasHazardType> a owl:ObjectProperty ;
+    rdfs:label "has hazard type"@en ;
+    rdfs:comment "Links a hazard event, alert, layer, observation, or assessment to a hazard phenomenon such as river flood, seismic shaking, tropical cyclone, wildfire, or drought."@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range <https://projekt-provider.de/ontology/hazard#HazardPhenomenon> .
+
+<https://projekt-provider.de/ontology/hazard#hasLayer> a owl:ObjectProperty ;
+    rdfs:label "has layer"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardDataset> ;
+    rdfs:range <https://projekt-provider.de/ontology/hazard#HazardLayer> .
+
+<https://projekt-provider.de/ontology/hazard#hazardMetric> a owl:DatatypeProperty ;
+    rdfs:label "hazard metric"@en ;
+    rdfs:comment "Name of the represented metric, for example flood depth, peak ground acceleration, wind speed, SPEI, or fire danger index."@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardLayer> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/hazard#issuedAt> a owl:DatatypeProperty ;
+    rdfs:label "issued at"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardAlert> ;
+    rdfs:range xsd:dateTime .
+
+<https://projekt-provider.de/ontology/hazard#landslide> a <https://projekt-provider.de/ontology/hazard#GeophysicalHazard> ;
+    skos:prefLabel "Landslide"@en .
+
+<https://projekt-provider.de/ontology/hazard#magnitude> a owl:DatatypeProperty ;
+    rdfs:label "magnitude"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#EarthquakeEvent> ;
+    rdfs:range xsd:decimal .
+
+<https://projekt-provider.de/ontology/hazard#maximumValue> a owl:DatatypeProperty ;
+    rdfs:label "maximum value"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:decimal .
+
+<https://projekt-provider.de/ontology/hazard#maximumWindSpeed> a owl:DatatypeProperty ;
+    rdfs:label "maximum wind speed"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#TropicalCycloneEvent> ;
+    rdfs:range xsd:decimal .
+
+<https://projekt-provider.de/ontology/hazard#meanValue> a owl:DatatypeProperty ;
+    rdfs:label "mean value"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:decimal .
+
+<https://projekt-provider.de/ontology/hazard#minimumValue> a owl:DatatypeProperty ;
+    rdfs:label "minimum value"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:decimal .
+
+<https://projekt-provider.de/ontology/hazard#observationUnit> a owl:DatatypeProperty ;
+    rdfs:label "observation unit"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardObservation> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/hazard#observationValue> a owl:DatatypeProperty ;
+    rdfs:label "observation value"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardObservation> ;
+    rdfs:range xsd:decimal .
+
+<https://projekt-provider.de/ontology/hazard#observedAt> a owl:DatatypeProperty ;
+    rdfs:label "observed at"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardObservation> ;
+    rdfs:range xsd:dateTime .
+
+<https://projekt-provider.de/ontology/hazard#observesEvent> a owl:ObjectProperty ;
+    rdfs:label "observes event"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardObservation> ;
+    rdfs:range <https://projekt-provider.de/ontology/hazard#HazardEvent> .
+
+<https://projekt-provider.de/ontology/hazard#peakGroundAccelerationG> a owl:DatatypeProperty ;
+    rdfs:label "peak ground acceleration in g"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:decimal ;
+    rdfs:subPropertyOf <https://projekt-provider.de/ontology/hazard#exposureValue> .
+
+<https://projekt-provider.de/ontology/hazard#pestOutbreak> a <https://projekt-provider.de/ontology/hazard#BiologicalHazard> ;
+    skos:prefLabel "Pest outbreak"@en .
+
+<https://projekt-provider.de/ontology/hazard#rasterPath> a owl:DatatypeProperty ;
+    rdfs:label "raster path"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#RasterHazardLayer> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/hazard#riverFlood> a <https://projekt-provider.de/ontology/hazard#HydrologicalHazard> ;
+    skos:broader <https://projekt-provider.de/ontology/hazard#flood> ;
+    skos:prefLabel "River flood"@en .
+
+<https://projekt-provider.de/ontology/hazard#seismicIntensityClass> a owl:DatatypeProperty ;
+    rdfs:label "seismic intensity class"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/hazard#seismicShaking> a <https://projekt-provider.de/ontology/hazard#GeophysicalHazard> ;
+    skos:prefLabel "Seismic shaking"@en .
+
+<https://projekt-provider.de/ontology/hazard#spatialResolution> a owl:DatatypeProperty ;
+    rdfs:label "spatial resolution"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardLayer> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/hazard#storm> a <https://projekt-provider.de/ontology/hazard#MeteorologicalHazard> ;
+    skos:prefLabel "Storm"@en .
+
+<https://projekt-provider.de/ontology/hazard#tropicalCyclone> a <https://projekt-provider.de/ontology/hazard#MeteorologicalHazard> ;
+    skos:prefLabel "Tropical cyclone"@en .
+
+<https://projekt-provider.de/ontology/hazard#tsunami> a <https://projekt-provider.de/ontology/hazard#GeophysicalHazard> ;
+    skos:prefLabel "Tsunami"@en .
+
+<https://projekt-provider.de/ontology/hazard#unit> a owl:DatatypeProperty ;
+    rdfs:label "unit"@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/hazard#vectorPath> a owl:DatatypeProperty ;
+    rdfs:label "vector path"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#VectorHazardLayer> ;
+    rdfs:range xsd:string .
+
+<https://projekt-provider.de/ontology/hazard#volcanicActivity> a <https://projekt-provider.de/ontology/hazard#GeophysicalHazard> ;
+    skos:prefLabel "Volcanic activity"@en .
+
+<https://projekt-provider.de/ontology/hazard#wildfire> a <https://projekt-provider.de/ontology/hazard#ClimatologicalHazard> ;
+    skos:prefLabel "Wildfire"@en .
+
+<https://projekt-provider.de/ontology/hazard#wildfireRiskIndex> a owl:DatatypeProperty ;
+    rdfs:label "wildfire risk index"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:decimal ;
+    rdfs:subPropertyOf <https://projekt-provider.de/ontology/hazard#exposureValue> .
+
+<https://projekt-provider.de/ontology/hazard#windReturnPeriodYears> a owl:DatatypeProperty ;
+    rdfs:label "wind return period in years"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:decimal ;
+    rdfs:subPropertyOf <https://projekt-provider.de/ontology/hazard#returnPeriodYears> .
+
+<https://projekt-provider.de/ontology/hazard#windSpeedMetersPerSecond> a owl:DatatypeProperty ;
+    rdfs:label "wind speed in meters per second"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:decimal ;
+    rdfs:subPropertyOf <https://projekt-provider.de/ontology/hazard#exposureValue> .
+
+<https://projekt-provider.de/ontology/source/acled#AirDroneStrike> a skos:Concept ;
+    skos:broader <https://projekt-provider.de/ontology/source/acled#ExplosionsRemoteViolence> ;
+    skos:inScheme <https://projekt-provider.de/ontology/source/acled#SubEventTypeScheme> ;
+    skos:prefLabel "Air/drone strike"@en .
+
+<https://projekt-provider.de/ontology/source/acled#ArmedClash> a skos:Concept ;
+    skos:broader <https://projekt-provider.de/ontology/source/acled#Battles> ;
+    skos:inScheme <https://projekt-provider.de/ontology/source/acled#SubEventTypeScheme> ;
+    skos:prefLabel "Armed clash"@en .
+
+<https://projekt-provider.de/ontology/source/acled#Attack> a skos:Concept ;
+    skos:broader <https://projekt-provider.de/ontology/source/acled#ViolenceAgainstCivilians> ;
+    skos:inScheme <https://projekt-provider.de/ontology/source/acled#SubEventTypeScheme> ;
+    skos:prefLabel "Attack"@en .
+
+<https://projekt-provider.de/ontology/source/acled#LootingPropertyDestruction> a skos:Concept ;
+    skos:broader <https://projekt-provider.de/ontology/source/acled#StrategicDevelopments> ;
+    skos:inScheme <https://projekt-provider.de/ontology/source/acled#SubEventTypeScheme> ;
+    skos:prefLabel "Looting/property destruction"@en .
+
+<https://projekt-provider.de/ontology/source/acled#MobViolence> a skos:Concept ;
+    skos:broader <https://projekt-provider.de/ontology/source/acled#Riots> ;
+    skos:inScheme <https://projekt-provider.de/ontology/source/acled#SubEventTypeScheme> ;
+    skos:prefLabel "Mob violence"@en .
+
+<https://projekt-provider.de/ontology/source/acled#PeacefulProtest> a skos:Concept ;
+    skos:broader <https://projekt-provider.de/ontology/source/acled#Protests> ;
+    skos:inScheme <https://projekt-provider.de/ontology/source/acled#SubEventTypeScheme> ;
+    skos:prefLabel "Peaceful protest"@en .
+
+<https://projekt-provider.de/ontology/conflict#BattleEvent> a owl:Class ;
+    rdfs:label "Battle Event"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    ns1:recommendedMapping "Map ACLED event_type Battles to this class."@en .
+
+<https://projekt-provider.de/ontology/conflict#ExplosionRemoteViolenceEvent> a owl:Class ;
+    rdfs:label "Explosion or Remote Violence Event"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    ns1:recommendedMapping "Map ACLED event_type Explosions/Remote violence to this class."@en .
+
+<https://projekt-provider.de/ontology/conflict#ProtestEvent> a owl:Class ;
+    rdfs:label "Protest Event"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    ns1:recommendedMapping "Map ACLED event_type Protests to this class."@en .
+
+<https://projekt-provider.de/ontology/conflict#RiotEvent> a owl:Class ;
+    rdfs:label "Riot Event"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    ns1:recommendedMapping "Map ACLED event_type Riots to this class."@en .
+
+<https://projekt-provider.de/ontology/conflict#StrategicDevelopmentEvent> a owl:Class ;
+    rdfs:label "Strategic Development Event"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    ns1:recommendedMapping "Map ACLED event_type Strategic developments to this class."@en .
+
+<https://projekt-provider.de/ontology/conflict#ViolenceAgainstCiviliansEvent> a owl:Class ;
+    rdfs:label "Violence Against Civilians Event"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    ns1:recommendedMapping "Map ACLED event_type Violence against civilians to this class."@en .
+
+<https://projekt-provider.de/ontology/hazard#SatelliteFireObservation> a owl:Class ;
+    rdfs:label "Satellite Fire Observation"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardObservation> .
+
+<https://projekt-provider.de/ontology/hazard#TropicalCycloneEvent> a owl:Class ;
+    rdfs:label "Tropical Cyclone Event"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardEvent> .
+
+<https://projekt-provider.de/ontology/source/acled#Battles> a skos:Concept ;
+    skos:exactMatch <https://projekt-provider.de/ontology/conflict#BattleEvent> ;
+    skos:inScheme <https://projekt-provider.de/ontology/source/acled#EventTypeScheme> ;
+    skos:prefLabel "Battles"@en .
+
+<https://projekt-provider.de/ontology/source/acled#ExplosionsRemoteViolence> a skos:Concept ;
+    skos:exactMatch <https://projekt-provider.de/ontology/conflict#ExplosionRemoteViolenceEvent> ;
+    skos:inScheme <https://projekt-provider.de/ontology/source/acled#EventTypeScheme> ;
+    skos:prefLabel "Explosions/Remote violence"@en .
+
+<https://projekt-provider.de/ontology/source/acled#Protests> a skos:Concept ;
+    skos:exactMatch <https://projekt-provider.de/ontology/conflict#ProtestEvent> ;
+    skos:inScheme <https://projekt-provider.de/ontology/source/acled#EventTypeScheme> ;
+    skos:prefLabel "Protests"@en .
+
+<https://projekt-provider.de/ontology/source/acled#Riots> a skos:Concept ;
+    skos:exactMatch <https://projekt-provider.de/ontology/conflict#RiotEvent> ;
+    skos:inScheme <https://projekt-provider.de/ontology/source/acled#EventTypeScheme> ;
+    skos:prefLabel "Riots"@en .
+
+<https://projekt-provider.de/ontology/source/acled#StrategicDevelopments> a skos:Concept ;
+    skos:exactMatch <https://projekt-provider.de/ontology/conflict#StrategicDevelopmentEvent> ;
+    skos:inScheme <https://projekt-provider.de/ontology/source/acled#EventTypeScheme> ;
+    skos:prefLabel "Strategic developments"@en .
+
+<https://projekt-provider.de/ontology/source/acled#ViolenceAgainstCivilians> a skos:Concept ;
+    skos:exactMatch <https://projekt-provider.de/ontology/conflict#ViolenceAgainstCiviliansEvent> ;
+    skos:inScheme <https://projekt-provider.de/ontology/source/acled#EventTypeScheme> ;
+    skos:prefLabel "Violence against civilians"@en .
+
+<https://projekt-provider.de/ontology/conflict#hasActor> a owl:ObjectProperty ;
+    rdfs:label "has actor"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    rdfs:range <https://projekt-provider.de/ontology/conflict#ConflictActor> .
+
+<https://projekt-provider.de/ontology/hazard#BiologicalHazard> a owl:Class ;
+    rdfs:label "Biological Hazard"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardPhenomenon> .
+
+<https://projekt-provider.de/ontology/hazard#EarthquakeEvent> a owl:Class ;
+    rdfs:label "Earthquake Event"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardEvent> .
+
+<https://projekt-provider.de/ontology/hazard#returnPeriodYears> a owl:DatatypeProperty ;
+    rdfs:label "return period in years"@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:decimal .
+
+ns1:InfrastructureDisruptionEvent a owl:Class ;
+    rdfs:label "Infrastructure Disruption Event"@en ;
+    rdfs:comment "A disruption event directly affecting infrastructure availability or operation, such as a port closure, road closure, railway outage, power outage, or pipeline outage."@en ;
+    rdfs:subClassOf ns1:DisruptionEvent .
+
+<https://projekt-provider.de/ontology/hazard#ClimatologicalHazard> a owl:Class ;
+    rdfs:label "Climatological Hazard"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardPhenomenon> .
+
+<https://projekt-provider.de/ontology/hazard#flood> a <https://projekt-provider.de/ontology/hazard#HydrologicalHazard> ;
+    skos:prefLabel "Flood"@en .
+
+ns1:RegulatoryDisruptionEvent a owl:Class ;
+    rdfs:label "Regulatory Disruption Event"@en ;
+    rdfs:subClassOf ns1:DisruptionEvent .
+
+ns1:TransportDisruptionEvent a owl:Class ;
+    rdfs:label "Transport Disruption Event"@en ;
+    rdfs:subClassOf ns1:InfrastructureDisruptionEvent .
+
+ns1:assessesEntity a owl:ObjectProperty ;
+    rdfs:label "assesses entity"@en ;
+    rdfs:comment "The entity being assessed, for example an infrastructure asset, supplier, facility, route, shipment, organization, administrative region, or supply-chain node."@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+<https://projekt-provider.de/ontology/hazard#MeteorologicalHazard> a owl:Class ;
+    rdfs:label "Meteorological Hazard"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardPhenomenon> .
+
+<https://projekt-provider.de/ontology/hazard#VectorHazardLayer> a owl:Class ;
+    rdfs:label "Vector Hazard Layer"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardLayer> .
+
+<https://projekt-provider.de/ontology/conflict#ConflictExposureAssessment> a owl:Class ;
+    rdfs:label "Conflict Exposure Assessment"@en ;
+    rdfs:comment "An assessment of an asset, route, region, or supply-chain node based on historical or recent conflict event density, fatalities, actor activity, disorder type, or related conflict/security indicators."@en ;
+    rdfs:subClassOf prov:Activity .
+
+<https://projekt-provider.de/ontology/hazard#GeophysicalHazard> a owl:Class ;
+    rdfs:label "Geophysical Hazard"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardPhenomenon> .
+
+<https://projekt-provider.de/ontology/hazard#HydrologicalHazard> a owl:Class ;
+    rdfs:label "Hydrological Hazard"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardPhenomenon> .
+
+<https://projekt-provider.de/ontology/hazard#exposureValue> a owl:DatatypeProperty ;
+    rdfs:label "exposure value"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> ;
+    rdfs:range xsd:decimal .
+
+ns1:EventImpactAssessment a owl:Class ;
+    rdfs:label "Event Impact Assessment"@en ;
+    rdfs:comment "An assessment relating a disruption event to a potentially affected asset, route, supply-chain node, region, shipment, organization, or other entity."@en ;
+    rdfs:subClassOf prov:Activity .
+
+<https://projekt-provider.de/ontology/hazard#HazardPhenomenon> a owl:Class ;
+    rdfs:label "Hazard Phenomenon"@en ;
+    rdfs:comment "A category of potentially disruptive natural, environmental, biological, or compound hazard."@en ;
+    rdfs:subClassOf skos:Concept .
+
+<https://projekt-provider.de/ontology/hazard#RasterHazardLayer> a owl:Class ;
+    rdfs:label "Raster Hazard Layer"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/hazard#HazardLayer> .
+
+<https://projekt-provider.de/ontology/source/acled#EventTypeScheme> a skos:ConceptScheme ;
+    dct:description "SKOS representation of broad ACLED event types used by PROVIDER mappings."@en ;
+    skos:prefLabel "ACLED event type scheme"@en .
+
+<https://projekt-provider.de/ontology/source/acled#SubEventTypeScheme> a skos:ConceptScheme ;
+    skos:prefLabel "ACLED sub-event type scheme"@en .
+
+<https://projekt-provider.de/ontology/hazard#HazardDataset> a owl:Class ;
+    rdfs:label "Hazard Dataset"@en ;
+    rdfs:comment "A dataset containing hazard events, observations, alerts, baseline hazard layers, historical records, or derived exposure indicators."@en ;
+    rdfs:subClassOf dcat:Dataset .
+
+ns1:DisruptionEvent a owl:Class ;
+    rdfs:label "Disruption Event"@en ;
+    rdfs:comment "An event that may disrupt, damage, delay, constrain, or otherwise affect supply chains, infrastructure, logistics, production, procurement, or demand."@en ;
+    rdfs:subClassOf provider:DisruptionEvent,
+        ns1:Event ;
+    ns1:modelingNote "Use this as the common superclass for hazard events, conflict events, infrastructure disruption events, cyber incidents, regulatory disruption events, and similar supply-chain-relevant events. Do not use HazardEvent as the superclass for conflict events."@en .
+
+<https://projekt-provider.de/ontology/hazard#HazardAlert> a owl:Class ;
+    rdfs:label "Hazard Alert"@en ;
+    rdfs:comment "A warning, alert, bulletin, or source-provider status record issued for a hazard event or observation."@en ;
+    rdfs:subClassOf prov:Entity .
+
+<https://projekt-provider.de/ontology/hazard#HazardObservation> a owl:Class ;
+    rdfs:label "Hazard Observation"@en ;
+    rdfs:comment "An observation of a hazard-related phenomenon, such as satellite fire detection, rainfall observation, seismic measurement, or flood extent observation. Observations may support event detection but are not necessarily events themselves."@en ;
+    rdfs:subClassOf prov:Entity,
+        provider:Observation .
+
+<https://projekt-provider.de/ontology/conflict#ConflictActor> a owl:Class ;
+    rdfs:label "Conflict Actor"@en ;
+    rdfs:comment "An actor participating in or associated with a conflict event, such as a state force, rebel group, militia, political group, protest group, or civilian group."@en .
+
+<https://projekt-provider.de/ontology/hazard#HazardLayer> a owl:Class ;
+    rdfs:label "Hazard Layer"@en ;
+    rdfs:comment "A spatial layer representing hazard intensity, probability, return period, susceptibility, forecast state, or hazard zones. Baseline hazard layers are not events."@en ;
+    rdfs:subClassOf geo:Feature ;
+    ns1:modelingNote "Use HazardLayer for flood, seismic, drought, cyclone wind, wildfire-risk, and similar spatial hazard surfaces. Do not model such baseline layers as HazardEvent."@en .
+
+ns1:Event a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "A temporally situated occurrence that may have a location, spatial extent, source record, participants, observations, and possible impacts."@en ;
+    rdfs:subClassOf provider:Event .
+
+<https://projekt-provider.de/ontology/hazard#HazardEvent> a owl:Class ;
+    rdfs:label "Hazard Event"@en ;
+    rdfs:comment "A hazard occurrence does not by itself establish realized supply-chain disruption or causal impact."@en,
+        "A temporally situated natural, environmental, biological, or compound hazard occurrence, such as an earthquake, flood, cyclone, wildfire, drought, volcanic eruption, or landslide."@en ;
+    rdfs:subClassOf ns1:Event .
+
+<https://projekt-provider.de/ontology/conflict#ConflictEvent> a owl:Class ;
+    rdfs:label "Conflict Event"@en ;
+    rdfs:comment "A conflict, political violence, protest, riot, strategic development, or related security event that may affect supply chains, infrastructure, logistics, production, or procurement."@en ;
+    rdfs:subClassOf ns1:DisruptionEvent .
+
+<https://projekt-provider.de/ontology/hazard#HazardExposureAssessment> a owl:Class ;
+    rdfs:label "Hazard Exposure Assessment"@en ;
+    rdfs:comment "An assessment that relates an asset, route, supply-chain node, region, shipment, or organization to a baseline hazard layer or hazard dataset. This is used for potential/modelled hazard exposure, not for actual events."@en ;
+    rdfs:subClassOf prov:Activity .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdfs:comment ;
+    owl:annotatedSource <https://projekt-provider.de/ontology/hazard#HazardLayer> ;
+    owl:annotatedTarget "A spatial layer representing hazard intensity, probability, return period, susceptibility, forecast state, or hazard zones. Baseline hazard layers are not events."@en ;
+    ns1:modelingNote "Examples: JRC Global River Flood Hazard return-period raster, World Bank/GFDRR flood depth layer, GEM seismic PGA layer, cyclone wind return-period raster, drought index raster. Materialize full rasters outside RDF and store only metadata plus derived exposure assessments in the KG."@en .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdfs:comment ;
+    owl:annotatedSource <https://projekt-provider.de/ontology/conflict#ConflictEvent> ;
+    owl:annotatedTarget "A conflict, political violence, protest, riot, strategic development, or related security event that may affect supply chains, infrastructure, logistics, production, or procurement."@en ;
+    ns1:modelingNote "ACLED records should be modeled as provconf:ConflictEvent subclasses, not as provhaz:HazardEvent. The shared superclass is provevent:DisruptionEvent."@en .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdfs:comment ;
+    owl:annotatedSource ns1:EventImpactAssessment ;
+    owl:annotatedTarget "An assessment relating a disruption event to a potentially affected asset, route, supply-chain node, region, shipment, organization, or other entity."@en ;
+    ns1:modelingNote "Use EventImpactAssessment for actual events such as GDACS events and ACLED events. Use HazardExposureAssessment for baseline hazard layers, and ConflictExposureAssessment for aggregate exposure to historical/recent conflict patterns."@en .
+

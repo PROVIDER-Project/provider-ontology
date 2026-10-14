@@ -196,10 +196,10 @@ p:seasonStart a owl:DatatypeProperty ;
 p:statistics a owl:Ontology ;
     rdfs:label "PROVIDER statistical results and evidence profile"@en ;
     dct:license <https://opensource.org/license/mit> ;
-    dct:modified "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-14"^^xsd:date ;
     owl:imports p: ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/statistics> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/statistics> ;
+    owl:versionInfo "0.3.0-rc2" .
 
 p:usesMask a owl:ObjectProperty ;
     rdfs:label "uses versioned spatial mask"@en ;
@@ -277,3 +277,10 @@ p:StatisticalCell a owl:Class ;
     rdfs:comment "An expected series/period position, including missing positions; missingness alone is not an observation result or a physical disruption."@en ;
     rdfs:subClassOf prov:Entity .
 
+
+p:NitrogenProductionMass p:quantityBasis "contained nitrogen mass" ; rdfs:comment "Mass of nitrogen content, not mass of urea or another final product; no automatic conversion to commodity tonnes."@en .
+p:ProductionMass p:quantityBasis "reported product mass" .
+p:ProductionCount p:quantityBasis "reported product units" .
+p:ProductionCapacity p:quantityBasis "reported annual nameplate capacity; commodity and operating conditions must be specified by source" .
+<https://projekt-provider.de/ontology/unit/TonneNitrogen> rdfs:comment "One metric tonne of contained nitrogen; differs in quantity basis from a metric tonne of commodity."@en .
+<https://projekt-provider.de/ontology/unit/IndexPoint> rdfs:comment "Points in an index with a separately stated base. No physical-mass conversion."@en .

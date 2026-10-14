@@ -15,11 +15,11 @@ provider:mining a owl:Ontology ;
     dct:created "2026-06-20"^^xsd:date ;
     dct:description "Ontology extension for mines, mineral deposits, processing facilities, ownership, material flows and mining observations used in supply-chain resilience analysis."@en ;
     dct:license <https://opensource.org/license/mit> ;
-    dct:modified "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-14"^^xsd:date ;
     dct:title "PROVIDER Mining Ontology"@en ;
     owl:imports provider: ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/mining> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/mining> ;
+    owl:versionInfo "0.3.0-rc2" .
 
 mining:BeneficiationPlant a owl:Class ;
     rdfs:label "beneficiation plant"@en ;

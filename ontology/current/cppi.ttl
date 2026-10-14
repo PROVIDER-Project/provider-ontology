@@ -10,12 +10,12 @@
 provider:cppi a owl:Ontology ;
     rdfs:label "PROVIDER cppi"@en ;
     dct:license <https://opensource.org/license/mit> ;
-    dct:modified "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-14"^^xsd:date ;
     owl:imports provider:,
         provider:ports,
         <https://projekt-provider.de/ontology/source/cppi> ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/cppi> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/cppi> ;
+    owl:versionInfo "0.3.0-rc2" .
 
 ns1:AdministrativeIndexScore ns1:sourcePredicate <https://projekt-provider.de/ontology/source/cppi#administrativeScore> ;
     ns1:unit ns1:DimensionlessIndex .
@@ -49,18 +49,21 @@ ns1:StatisticalIndexScore ns1:sourcePredicate <https://projekt-provider.de/ontol
     ns1:unit ns1:DimensionlessIndex .
 
 ns1:hasMeasurement a owl:ObjectProperty ;
-    rdfs:range ns1:Measurement .
+    rdfs:range ns1:Measurement ;
+    rdfs:subPropertyOf provider:hasMeasurement .
 
 ns1:metric a owl:ObjectProperty .
 
 ns1:observedFeature a owl:ObjectProperty ;
-    rdfs:range ports:OperationalPort .
+    rdfs:range ports:OperationalPort ;
+    rdfs:subPropertyOf provider:observedFor .
 
 ns1:referenceYear a owl:DatatypeProperty ;
     rdfs:range xsd:gYear .
 
 ns1:sourceObservation a owl:ObjectProperty ;
-    rdfs:range <https://projekt-provider.de/ontology/source/cppi#ContainerPortPerformanceObservation> .
+    rdfs:range <https://projekt-provider.de/ontology/source/cppi#ContainerPortPerformanceObservation> ;
+    rdfs:subPropertyOf provider:sourceRecord .
 
 ns1:unit a owl:ObjectProperty ;
     rdfs:subPropertyOf provider:hasUnit .

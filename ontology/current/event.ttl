@@ -153,7 +153,7 @@ provider:event a owl:Ontology ;
     dct:creator "PROVIDER project"@en ;
     dct:description "Ontology module for modeling disruption-relevant events in the PROVIDER knowledge graph, including generic disruption events, natural hazard events and alerts such as GDACS, baseline hazard layers such as flood and seismic hazard maps, asset-level hazard exposure assessments, conflict/security events such as ACLED records, and event impact assessments for supply-chain resilience analysis."@en ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
-    dct:modified "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-14"^^xsd:date ;
     dct:title "PROVIDER Event, Hazard, Conflict, and Exposure Ontology"@en ;
     rdfs:seeAlso <http://www.opengis.net/ont/geosparql>,
         <http://www.w3.org/2006/time>,
@@ -162,8 +162,8 @@ provider:event a owl:Ontology ;
         schema: ;
     owl:imports provider:,
         provider:infrastructure ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/event> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/event> ;
+    owl:versionInfo "0.3.0-rc2" .
 
 ns1:AirportDisruptionEvent a owl:Class ;
     rdfs:label "Airport Disruption Event"@en ;

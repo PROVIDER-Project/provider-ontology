@@ -16,13 +16,13 @@
     dct:created "2026-06-13"^^xsd:date ;
     dct:description "Models CPPI editions, annual port-level observations, scores, ranks, methodology components, ship-size groups, call-size bands, and provenance. The module is designed to complement the existing PROVIDER port ontology."@en ;
     dct:license <https://opensource.org/license/mit> ;
-    dct:modified "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-14"^^xsd:date ;
     dct:source <https://thedocs.worldbank.org/en/doc/855fe5e7123d85b05d4e84c95b8fd1e2-0400012026/original/Methodology-Note.pdf>,
         <https://www.worldbank.org/en/topic/transport/publication/cppi> ;
     dct:title "PROVIDER ontology module for the Container Port Performance Index"@en ;
     owl:imports provider: ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/source/cppi> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/source/cppi> ;
+    owl:versionInfo "0.3.0-rc2" .
 
 ns1:ArrivalHours a ns1:PortTimeComponent ;
     skos:definition "Time from arrival at anchorage or pilot station to start of cargo operations."@en ;

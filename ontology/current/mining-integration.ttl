@@ -143,11 +143,11 @@ provider:mining-integration a owl:Ontology ;
     dct:created "2026-06-27"^^xsd:date ;
     dct:description "Terms for GEM material normalization, evidence-bearing facility alignment and canonical PROVIDER entities."@en ;
     dct:license <https://opensource.org/license/mit> ;
-    dct:modified "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-14"^^xsd:date ;
     dct:title "PROVIDER mining integration ontology"@en ;
     owl:imports provider:mining ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/mining-integration> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/mining-integration> ;
+    owl:versionInfo "0.3.0-rc2" .
 
 mining:AlignmentRun a owl:Class ;
     rdfs:label "alignment run"@en ;

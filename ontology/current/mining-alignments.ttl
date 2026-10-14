@@ -30,8 +30,8 @@ mining:observedFacility rdfs:subPropertyOf provider:observedFor .
 provider:mining-alignments a owl:Ontology ;
     rdfs:label "PROVIDER mining-alignments"@en ;
     dct:license <https://opensource.org/license/mit> ;
-    dct:modified "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-14"^^xsd:date ;
     owl:imports provider:mining ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/mining-alignments> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/mining-alignments> ;
+    owl:versionInfo "0.3.0-rc2" .
 

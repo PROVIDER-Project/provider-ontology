@@ -9,7 +9,7 @@
 provider:supply-chain a owl:Ontology ;
     rdfs:label "PROVIDER Supply Chain Operations Ontology"@en ;
     dct:license <https://opensource.org/license/mit> ;
-    dct:modified "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-14"^^xsd:date ;
     rdfs:comment """
         Supply-chain operations module for representing organizations,
         facilities, products, inventory, orders, shipments, documents,
@@ -18,8 +18,8 @@ provider:supply-chain a owl:Ontology ;
         separate top-level model.
     """@en ;
     owl:imports provider: ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/supply-chain> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/supply-chain> ;
+    owl:versionInfo "0.3.0-rc2" .
 
 <https://projekt-provider.de/ontology/supply-chain#CarrierRole> a owl:Class ;
     rdfs:label "carrier role"@en ;

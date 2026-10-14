@@ -10,10 +10,10 @@
 provider:network a owl:Ontology ;
     rdfs:label "PROVIDER network"@en ;
     dct:license <https://opensource.org/license/mit> ;
-    dct:modified "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-14"^^xsd:date ;
     owl:imports provider:infrastructure ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/network> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/network> ;
+    owl:versionInfo "0.3.0-rc2" .
 
 network:Circuit a owl:Class ;
     rdfs:label "Circuit"@en ;

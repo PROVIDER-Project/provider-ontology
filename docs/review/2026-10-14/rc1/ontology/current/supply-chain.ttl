@@ -1,0 +1,417 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+provider:supply-chain a owl:Ontology ;
+    rdfs:label "PROVIDER Supply Chain Operations Ontology"@en ;
+    dct:license <https://opensource.org/license/mit> ;
+    dct:modified "2026-10-13"^^xsd:date ;
+    rdfs:comment """
+        Supply-chain operations module for representing organizations,
+        facilities, products, inventory, orders, shipments, documents,
+        operational qualities, and supply-chain processes. Upper concepts are
+        aligned to the PROVIDER core ontology instead of duplicated as a
+        separate top-level model.
+    """@en ;
+    owl:imports provider: ;
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/supply-chain> ;
+    owl:versionInfo "0.3.0-rc1" .
+
+<https://projekt-provider.de/ontology/supply-chain#CarrierRole> a owl:Class ;
+    rdfs:label "carrier role"@en ;
+    rdfs:subClassOf provider:CarrierRole,
+        <https://projekt-provider.de/ontology/supply-chain#SupplyChainRole> .
+
+<https://projekt-provider.de/ontology/supply-chain#CustomerRole> a owl:Class ;
+    rdfs:label "customer role"@en ;
+    rdfs:subClassOf provider:CustomerRole,
+        <https://projekt-provider.de/ontology/supply-chain#SupplyChainRole> .
+
+<https://projekt-provider.de/ontology/supply-chain#DeliveryProcess> a owl:Class ;
+    rdfs:label "delivery process"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#TransportationProcess> .
+
+<https://projekt-provider.de/ontology/supply-chain#DistributionCenter> a owl:Class ;
+    rdfs:label "distribution center"@en ;
+    rdfs:subClassOf provider:TransferFacility,
+        <https://projekt-provider.de/ontology/supply-chain#Facility> .
+
+<https://projekt-provider.de/ontology/supply-chain#FarmerRole> a owl:Class ;
+    rdfs:label "farmer role"@en ;
+    rdfs:subClassOf provider:FarmerRole,
+        <https://projekt-provider.de/ontology/supply-chain#ProducerRole> .
+
+<https://projekt-provider.de/ontology/supply-chain#FulfillmentProcess> a owl:Class ;
+    rdfs:label "fulfillment process"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> .
+
+<https://projekt-provider.de/ontology/supply-chain#InspectionProcess> a owl:Class ;
+    rdfs:label "inspection process"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> .
+
+<https://projekt-provider.de/ontology/supply-chain#InventoryStatus> a owl:Class ;
+    rdfs:label "inventory status"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainQuality> .
+
+<https://projekt-provider.de/ontology/supply-chain#Invoice> a owl:Class ;
+    rdfs:label "invoice"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainInformationEntity> .
+
+<https://projekt-provider.de/ontology/supply-chain#LeadTime> a owl:Class ;
+    rdfs:label "lead time"@en ;
+    rdfs:comment "A temporal measure associated with a supply-chain process or commitment."@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainQuality> .
+
+<https://projekt-provider.de/ontology/supply-chain#ManufacturingPlant> a owl:Class ;
+    rdfs:label "manufacturing plant"@en ;
+    rdfs:subClassOf provider:ProcessingFacility,
+        <https://projekt-provider.de/ontology/supply-chain#Facility> .
+
+<https://projekt-provider.de/ontology/supply-chain#ProcessorRole> a owl:Class ;
+    rdfs:label "processor role"@en ;
+    rdfs:subClassOf provider:ProcessorRole,
+        <https://projekt-provider.de/ontology/supply-chain#ManufacturerRole> .
+
+<https://projekt-provider.de/ontology/supply-chain#ProcurementProcess> a owl:Class ;
+    rdfs:label "procurement process"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> .
+
+<https://projekt-provider.de/ontology/supply-chain#PurchaseOrder> a owl:Class ;
+    rdfs:label "purchase order"@en ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <https://projekt-provider.de/ontology/supply-chain#hasSupplier> ;
+            owl:someValuesFrom <https://projekt-provider.de/ontology/supply-chain#Organization> ],
+        [ a owl:Restriction ;
+            owl:onProperty <https://projekt-provider.de/ontology/supply-chain#ordersProduct> ;
+            owl:someValuesFrom <https://projekt-provider.de/ontology/supply-chain#Product> ],
+        <https://projekt-provider.de/ontology/supply-chain#Order> .
+
+<https://projekt-provider.de/ontology/supply-chain#Quantity> a owl:Class ;
+    rdfs:label "quantity"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainQuality> .
+
+<https://projekt-provider.de/ontology/supply-chain#RegulatorRole> a owl:Class ;
+    rdfs:label "regulator role"@en ;
+    rdfs:subClassOf provider:RegulatorRole,
+        <https://projekt-provider.de/ontology/supply-chain#SupplyChainRole> .
+
+<https://projekt-provider.de/ontology/supply-chain#SalesOrder> a owl:Class ;
+    rdfs:label "sales order"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#Order> .
+
+<https://projekt-provider.de/ontology/supply-chain#ShipmentDocument> a owl:Class ;
+    rdfs:label "shipment document"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainInformationEntity> .
+
+<https://projekt-provider.de/ontology/supply-chain#StorageProcess> a owl:Class ;
+    rdfs:label "storage process"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> .
+
+<https://projekt-provider.de/ontology/supply-chain#Temperature> a owl:Class ;
+    rdfs:label "temperature"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainQuality> .
+
+<https://projekt-provider.de/ontology/supply-chain#TraderRole> a owl:Class ;
+    rdfs:label "trader role"@en ;
+    rdfs:subClassOf provider:TraderRole,
+        <https://projekt-provider.de/ontology/supply-chain#SupplyChainRole> .
+
+<https://projekt-provider.de/ontology/supply-chain#Warehouse> a owl:Class ;
+    rdfs:label "warehouse"@en ;
+    rdfs:subClassOf provider:StorageFacility,
+        <https://projekt-provider.de/ontology/supply-chain#Facility> .
+
+<https://projekt-provider.de/ontology/supply-chain#WarehouseOperatorRole> a owl:Class ;
+    rdfs:label "warehouse operator role"@en ;
+    rdfs:subClassOf provider:WarehouseOperatorRole,
+        <https://projekt-provider.de/ontology/supply-chain#SupplyChainRole> .
+
+<https://projekt-provider.de/ontology/supply-chain#Weight> a owl:Class ;
+    rdfs:label "weight"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainQuality> .
+
+<https://projekt-provider.de/ontology/supply-chain#actualEndDate> a owl:DatatypeProperty ;
+    rdfs:label "actual end date"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> ;
+    rdfs:range xsd:dateTime ;
+    rdfs:subPropertyOf provider:endTime .
+
+<https://projekt-provider.de/ontology/supply-chain#actualStartDate> a owl:DatatypeProperty ;
+    rdfs:label "actual start date"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> ;
+    rdfs:range xsd:dateTime ;
+    rdfs:subPropertyOf provider:startTime .
+
+<https://projekt-provider.de/ontology/supply-chain#consumesItem> a owl:ObjectProperty ;
+    rdfs:label "consumes item"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#ManufacturingProcess> ;
+    rdfs:range <https://projekt-provider.de/ontology/supply-chain#MaterialItem> ;
+    rdfs:subPropertyOf provider:hasInput .
+
+<https://projekt-provider.de/ontology/supply-chain#containsItem> a owl:ObjectProperty ;
+    rdfs:label "contains item"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#Inventory> ;
+    rdfs:range <https://projekt-provider.de/ontology/supply-chain#MaterialItem> .
+
+<https://projekt-provider.de/ontology/supply-chain#hasBatch> a owl:ObjectProperty ;
+    rdfs:label "has batch"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#Product> ;
+    rdfs:range <https://projekt-provider.de/ontology/supply-chain#Batch> .
+
+<https://projekt-provider.de/ontology/supply-chain#hasCustomer> a owl:ObjectProperty ;
+    rdfs:label "has customer"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#Order> ;
+    rdfs:range <https://projekt-provider.de/ontology/supply-chain#Organization> .
+
+<https://projekt-provider.de/ontology/supply-chain#hasDocument> a owl:ObjectProperty ;
+    rdfs:label "has document"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> ;
+    rdfs:range <https://projekt-provider.de/ontology/supply-chain#SupplyChainInformationEntity> .
+
+<https://projekt-provider.de/ontology/supply-chain#hasParticipant> a owl:ObjectProperty ;
+    rdfs:label "has participant"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> ;
+    owl:inverseOf <https://projekt-provider.de/ontology/supply-chain#participatesIn> .
+
+<https://projekt-provider.de/ontology/supply-chain#hasQuality> a owl:ObjectProperty ;
+    rdfs:label "has quality"@en ;
+    rdfs:range <https://projekt-provider.de/ontology/supply-chain#SupplyChainQuality> .
+
+<https://projekt-provider.de/ontology/supply-chain#identifierValue> a owl:DatatypeProperty ;
+    rdfs:label "identifier value"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#Identifier> ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf provider:identifier .
+
+<https://projekt-provider.de/ontology/supply-chain#instanceOfProduct> a owl:ObjectProperty ;
+    rdfs:label "instance of product"@en ;
+    rdfs:comment "Relates a physical material item or batch to the product type it instantiates."@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#MaterialItem> ;
+    rdfs:range <https://projekt-provider.de/ontology/supply-chain#Product> .
+
+<https://projekt-provider.de/ontology/supply-chain#orderNumber> a owl:DatatypeProperty ;
+    rdfs:label "order number"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#Order> ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf provider:identifier .
+
+<https://projekt-provider.de/ontology/supply-chain#plannedEndDate> a owl:DatatypeProperty ;
+    rdfs:label "planned end date"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> ;
+    rdfs:range xsd:dateTime .
+
+<https://projekt-provider.de/ontology/supply-chain#plannedStartDate> a owl:DatatypeProperty ;
+    rdfs:label "planned start date"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> ;
+    rdfs:range xsd:dateTime .
+
+<https://projekt-provider.de/ontology/supply-chain#quantityValue> a owl:DatatypeProperty ;
+    rdfs:label "quantity value"@en ;
+    rdfs:range xsd:decimal ;
+    rdfs:subPropertyOf provider:value .
+
+<https://projekt-provider.de/ontology/supply-chain#realizesOrder> a owl:ObjectProperty ;
+    rdfs:label "realizes order"@en ;
+    rdfs:comment "Relates a fulfillment, procurement, or delivery process to the order it realizes."@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> ;
+    rdfs:range <https://projekt-provider.de/ontology/supply-chain#Order> .
+
+<https://projekt-provider.de/ontology/supply-chain#roleOf> a owl:ObjectProperty ;
+    rdfs:label "role of"@en ;
+    rdfs:subPropertyOf provider:roleOf ;
+    owl:inverseOf <https://projekt-provider.de/ontology/supply-chain#hasRole> .
+
+<https://projekt-provider.de/ontology/supply-chain#skuCode> a owl:DatatypeProperty ;
+    rdfs:label "SKU code"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#SKU> ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf provider:identifier .
+
+<https://projekt-provider.de/ontology/supply-chain#statusValue> a owl:DatatypeProperty ;
+    rdfs:label "status value"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#SupplyChainQuality> ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf provider:value .
+
+<https://projekt-provider.de/ontology/supply-chain#unitOfMeasure> a owl:DatatypeProperty ;
+    rdfs:label "unit of measure"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#SupplyChainQuality> ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf provider:unit .
+
+<https://projekt-provider.de/ontology/supply-chain#Batch> a owl:Class ;
+    rdfs:label "batch"@en ;
+    rdfs:comment "A collection of material items produced, received, stored, or shipped together."@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#MaterialItem> .
+
+<https://projekt-provider.de/ontology/supply-chain#ManufacturerRole> a owl:Class ;
+    rdfs:label "manufacturer role"@en ;
+    rdfs:subClassOf provider:ManufacturerRole,
+        <https://projekt-provider.de/ontology/supply-chain#SupplyChainRole> .
+
+<https://projekt-provider.de/ontology/supply-chain#ProducerRole> a owl:Class ;
+    rdfs:label "producer role"@en ;
+    rdfs:subClassOf provider:ProducerRole,
+        <https://projekt-provider.de/ontology/supply-chain#SupplierRole> .
+
+<https://projekt-provider.de/ontology/supply-chain#SKU> a owl:Class ;
+    rdfs:label "SKU"@en ;
+    rdfs:comment "A stock keeping unit identifier."@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#Identifier> .
+
+<https://projekt-provider.de/ontology/supply-chain#SupplierRole> a owl:Class ;
+    rdfs:label "supplier role"@en ;
+    rdfs:subClassOf provider:SupplierRole,
+        <https://projekt-provider.de/ontology/supply-chain#SupplyChainRole> .
+
+<https://projekt-provider.de/ontology/supply-chain#hasDestination> a owl:ObjectProperty ;
+    rdfs:label "has destination"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#TransportationProcess> ;
+    rdfs:range [ owl:unionOf ( <https://projekt-provider.de/ontology/supply-chain#Location> <https://projekt-provider.de/ontology/supply-chain#Facility> provider:Region ) ] ;
+    rdfs:subPropertyOf provider:terminatesAt .
+
+<https://projekt-provider.de/ontology/supply-chain#hasOrigin> a owl:ObjectProperty ;
+    rdfs:label "has origin"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#TransportationProcess> ;
+    rdfs:range [ owl:unionOf ( <https://projekt-provider.de/ontology/supply-chain#Location> <https://projekt-provider.de/ontology/supply-chain#Facility> provider:Region ) ] ;
+    rdfs:subPropertyOf provider:originatesAt .
+
+<https://projekt-provider.de/ontology/supply-chain#hasRole> a owl:ObjectProperty ;
+    rdfs:label "has role"@en ;
+    rdfs:range <https://projekt-provider.de/ontology/supply-chain#SupplyChainRole> ;
+    rdfs:subPropertyOf provider:hasRole .
+
+<https://projekt-provider.de/ontology/supply-chain#hasSupplier> a owl:ObjectProperty ;
+    rdfs:label "has supplier"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#Order> ;
+    rdfs:range <https://projekt-provider.de/ontology/supply-chain#Organization> .
+
+<https://projekt-provider.de/ontology/supply-chain#ordersProduct> a owl:ObjectProperty ;
+    rdfs:label "orders product"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#Order> ;
+    rdfs:range <https://projekt-provider.de/ontology/supply-chain#Product> ;
+    rdfs:subPropertyOf provider:handlesProduct .
+
+<https://projekt-provider.de/ontology/supply-chain#participatesIn> a owl:ObjectProperty ;
+    rdfs:label "participates in"@en ;
+    rdfs:range <https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> ;
+    rdfs:subPropertyOf provider:participatesIn .
+
+<https://projekt-provider.de/ontology/supply-chain#producesItem> a owl:ObjectProperty ;
+    rdfs:label "produces item"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#ManufacturingProcess> ;
+    rdfs:range <https://projekt-provider.de/ontology/supply-chain#MaterialItem> ;
+    rdfs:subPropertyOf provider:hasOutput .
+
+<https://projekt-provider.de/ontology/supply-chain#shipsItem> a owl:ObjectProperty ;
+    rdfs:label "ships item"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#TransportationProcess> ;
+    rdfs:range <https://projekt-provider.de/ontology/supply-chain#MaterialItem> ;
+    rdfs:subPropertyOf provider:handlesProduct .
+
+<https://projekt-provider.de/ontology/supply-chain#storedAt> a owl:ObjectProperty ;
+    rdfs:label "stored at"@en ;
+    rdfs:domain <https://projekt-provider.de/ontology/supply-chain#Inventory> ;
+    rdfs:range [ owl:unionOf ( <https://projekt-provider.de/ontology/supply-chain#Facility> <https://projekt-provider.de/ontology/supply-chain#Location> provider:Region ) ] ;
+    rdfs:subPropertyOf provider:storedAt .
+
+<https://projekt-provider.de/ontology/supply-chain#Identifier> a owl:Class ;
+    rdfs:label "identifier"@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainInformationEntity> .
+
+<https://projekt-provider.de/ontology/supply-chain#Inventory> a owl:Class ;
+    rdfs:label "inventory"@en ;
+    rdfs:comment "A stock of material items held at a facility or location."@en ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <https://projekt-provider.de/ontology/supply-chain#storedAt> ;
+            owl:someValuesFrom [ owl:unionOf ( <https://projekt-provider.de/ontology/supply-chain#Facility> <https://projekt-provider.de/ontology/supply-chain#Location> provider:Region ) ] ],
+        <https://projekt-provider.de/ontology/supply-chain#SupplyChainEntity> .
+
+<https://projekt-provider.de/ontology/supply-chain#ManufacturingProcess> a owl:Class ;
+    rdfs:label "manufacturing process"@en ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <https://projekt-provider.de/ontology/supply-chain#producesItem> ;
+            owl:someValuesFrom <https://projekt-provider.de/ontology/supply-chain#MaterialItem> ],
+        <https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> .
+
+<https://projekt-provider.de/ontology/supply-chain#Organization> a owl:Class ;
+    rdfs:label "organization"@en ;
+    rdfs:comment "Alias for provider:Organization in the supply-chain module namespace."@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainEntity> ;
+    owl:equivalentClass provider:Organization ;
+    skos:scopeNote "Use provider:Organization as the canonical class in new core-level data. The sc: alias is retained for supply-chain datasets."@en .
+
+<https://projekt-provider.de/ontology/supply-chain#Product> a owl:Class ;
+    rdfs:label "product"@en ;
+    rdfs:comment "Alias for provider:Product in the supply-chain module namespace."@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainEntity> ;
+    owl:equivalentClass provider:Product ;
+    skos:scopeNote "Use provider:Product as the canonical class in new core-level data. The sc: alias is retained for supply-chain datasets."@en .
+
+<https://projekt-provider.de/ontology/supply-chain#TransportationProcess> a owl:Class ;
+    rdfs:label "transportation process"@en ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <https://projekt-provider.de/ontology/supply-chain#hasOrigin> ;
+            owl:someValuesFrom [ owl:unionOf ( <https://projekt-provider.de/ontology/supply-chain#Location> <https://projekt-provider.de/ontology/supply-chain#Facility> provider:Region ) ] ],
+        [ a owl:Restriction ;
+            owl:onProperty <https://projekt-provider.de/ontology/supply-chain#hasDestination> ;
+            owl:someValuesFrom [ owl:unionOf ( <https://projekt-provider.de/ontology/supply-chain#Location> <https://projekt-provider.de/ontology/supply-chain#Facility> provider:Region ) ] ],
+        [ a owl:Restriction ;
+            owl:onProperty <https://projekt-provider.de/ontology/supply-chain#shipsItem> ;
+            owl:someValuesFrom <https://projekt-provider.de/ontology/supply-chain#MaterialItem> ],
+        provider:Flow,
+        <https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> .
+
+<https://projekt-provider.de/ontology/supply-chain#SupplyChainInformationEntity> a owl:Class ;
+    rdfs:label "supply chain information entity"@en ;
+    rdfs:comment "An information artifact used in supply-chain coordination or documentation."@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainEntity> .
+
+<https://projekt-provider.de/ontology/supply-chain#Location> a owl:Class ;
+    rdfs:label "location"@en ;
+    rdfs:comment "A geographic or operational place relevant to supply-chain activity."@en ;
+    rdfs:subClassOf provider:Region,
+        <https://projekt-provider.de/ontology/supply-chain#SupplyChainEntity> .
+
+<https://projekt-provider.de/ontology/supply-chain#Order> a owl:Class ;
+    rdfs:label "order"@en ;
+    rdfs:comment "An information entity representing a request for goods or services."@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainInformationEntity> .
+
+<https://projekt-provider.de/ontology/supply-chain#SupplyChainEntity> a owl:Class ;
+    rdfs:label "supply chain entity"@en ;
+    rdfs:comment "A material, organizational, informational, operational, or locational entity relevant to a supply chain."@en .
+
+<https://projekt-provider.de/ontology/supply-chain#MaterialItem> a owl:Class ;
+    rdfs:label "material item"@en ;
+    rdfs:comment "A physical item or batch instance in the supply chain."@en ;
+    rdfs:subClassOf <https://projekt-provider.de/ontology/supply-chain#SupplyChainEntity> .
+
+<https://projekt-provider.de/ontology/supply-chain#SupplyChainQuality> a owl:Class ;
+    rdfs:label "supply chain quality"@en ;
+    rdfs:comment "A dependent quality relevant to supply-chain management, such as quantity, weight, temperature, lead time, or status."@en .
+
+<https://projekt-provider.de/ontology/supply-chain#SupplyChainRole> a owl:Class ;
+    rdfs:label "supply chain role"@en ;
+    rdfs:comment "Alias for provider:SupplyChainRole in the supply-chain module namespace."@en ;
+    owl:equivalentClass provider:SupplyChainRole .
+
+<https://projekt-provider.de/ontology/supply-chain#Facility> a owl:Class ;
+    rdfs:label "facility"@en ;
+    rdfs:comment "Alias for provider:Facility in the supply-chain module namespace."@en ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty provider:locatedIn ;
+            owl:someValuesFrom provider:Region ],
+        <https://projekt-provider.de/ontology/supply-chain#SupplyChainEntity> ;
+    owl:equivalentClass provider:Facility ;
+    skos:scopeNote "Use provider:Facility as the canonical class in new core-level data. The sc: alias is retained for supply-chain datasets."@en .
+
+<https://projekt-provider.de/ontology/supply-chain#SupplyChainProcess> a owl:Class ;
+    rdfs:label "supply chain process"@en ;
+    rdfs:comment "A process in which supply-chain entities participate."@en ;
+    rdfs:subClassOf provider:Process .
+

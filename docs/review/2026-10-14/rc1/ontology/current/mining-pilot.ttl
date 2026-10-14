@@ -1,0 +1,32 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix mining: <https://projekt-provider.de/ontology/mining#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+mining:AssetPartOfComplex a mining:AlignmentRelation ;
+    rdfs:comment "A source asset belongs to a target complex; this does not assert identity."@en .
+
+mining:ComplexContainsAsset a mining:AlignmentRelation ;
+    rdfs:comment "A source complex contains a target asset; this does not assert identity."@en .
+
+mining:MiningComplex a owl:Class ;
+    rdfs:label "mining complex"@en ;
+    rdfs:subClassOf provider:InfrastructureAsset .
+
+mining:MiningObservation rdfs:subClassOf provider:Observation .
+
+mining:observedFacility rdfs:subPropertyOf provider:observedFor .
+
+mining:reviewEvidence a owl:DatatypeProperty ;
+    rdfs:label "review evidence reference"@en .
+
+provider:mining-pilot a owl:Ontology ;
+    rdfs:label "Reviewed bounded mining integration pilot"@en ;
+    dct:license <https://opensource.org/license/mit> ;
+    dct:modified "2026-10-13"^^xsd:date ;
+    owl:imports provider:mining-integration ;
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/mining-pilot> ;
+    owl:versionInfo "0.3.0-rc1" .
+

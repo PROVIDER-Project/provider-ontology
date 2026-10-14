@@ -25,7 +25,7 @@ def member(root,name):
     return path
 
 
-def load(root=ROOT):
+def load(root=ROOT, profile="all"):
     root=Path(root);manifest=json.loads((root/'docs/current-release.json').read_text())
     if manifest['namespace']!=BASE:raise ValueError('Unexpected active namespace')
     graph=Graph()
@@ -41,6 +41,27 @@ def load(root=ROOT):
     if sha(entry)!=manifest['entry_sha256']:raise ValueError('Changed entry point')
     for path,expected in manifest['shape_hashes'].items():
         if sha(member(root,path))!=expected:raise ValueError('Changed shape: '+path)
+    for descriptor in manifest['profiles'].values():
+        if sha(member(root,descriptor['entry_point']))!=descriptor['sha256']:
+            raise ValueError('Changed profile entry point')
+    if profile not in manifest['profiles']:
+        raise ValueError('Unknown model profile: '+profile)
+    descriptor=manifest['profiles'][profile]
+    entry_graph=Graph().parse(member(root,descriptor['entry_point']),format='turtle')
+    if sha(member(root,descriptor['entry_point']))!=descriptor['sha256']:
+        raise ValueError('Changed profile entry point: '+profile)
+    modules={item['ontology_iri']:item for item in manifest['modules']}
+    pending=[str(iri) for iri in entry_graph.objects(None,OWL.imports)];selected=set()
+    while pending:
+        iri=pending.pop()
+        if iri in selected:continue
+        if iri not in modules:raise ValueError('Unresolved profile import: '+iri)
+        selected.add(iri)
+        module=Graph().parse(member(root,modules[iri]['path']),format='turtle')
+        pending.extend(str(v) for v in module.objects(None,OWL.imports))
+    if profile!='all':
+        graph=Graph()
+        for iri in sorted(selected):graph.parse(member(root,modules[iri]['path']),format='turtle')
     return manifest,graph
 
 

@@ -217,7 +217,7 @@ provider:bfo-alignment a owl:Ontology ;
     rdfs:label "PROVIDER BFO Alignment"@en ;
     dct:created "2026-05-26"^^xsd:date ;
     dct:license <https://opensource.org/license/mit> ;
-    dct:modified "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-14"^^xsd:date ;
     rdfs:comment """
         Alignment module that places PROVIDER core classes under Basic Formal
         Ontology (BFO) categories. The mappings are intentionally conservative:
@@ -225,8 +225,8 @@ provider:bfo-alignment a owl:Ontology ;
         equivalence axioms.
     """@en ;
     owl:imports provider: ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/bfo-alignment> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/bfo-alignment> ;
+    owl:versionInfo "0.3.0-rc2" .
 
 <http://purl.obolibrary.org/obo/BFO_0000004> rdfs:label "independent continuant"@en .
 

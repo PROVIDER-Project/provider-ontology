@@ -14,12 +14,12 @@ provider:ports a owl:Ontology ;
     rdfs:label "PROVIDER ports"@en ;
     dct:description "Local review candidate; not a partner-approved ontology release or production data approval."@en ;
     dct:license <https://opensource.org/license/mit> ;
-    dct:modified "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-14"^^xsd:date ;
     dct:title "PROVIDER AP2 pilot model profile"@en ;
     owl:imports provider:,
         provider:infrastructure ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/ports> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/ports> ;
+    owl:versionInfo "0.3.0-rc2" .
 
 ports:Accepted a prov:Entity .
 
@@ -74,7 +74,8 @@ ports:evidence a owl:ObjectProperty ;
 
 ports:hasMeasurement a owl:ObjectProperty ;
     rdfs:domain ports:Observation ;
-    rdfs:range ports:Measurement .
+    rdfs:range ports:Measurement ;
+    rdfs:subPropertyOf provider:hasMeasurement .
 
 ports:metric a owl:ObjectProperty ;
     rdfs:domain ports:Measurement ;
@@ -89,7 +90,8 @@ ports:observedDay a owl:DatatypeProperty ;
 
 ports:observedFeature a owl:ObjectProperty ;
     rdfs:domain ports:Observation ;
-    rdfs:range geo:Feature .
+    rdfs:range geo:Feature ;
+    rdfs:subPropertyOf provider:observedFor .
 
 ports:relation a owl:ObjectProperty ;
     rdfs:domain ports:MatchAssertion ;
@@ -118,7 +120,8 @@ ports:servesTradeLocation a owl:ObjectProperty ;
 
 ports:sourceObservation a owl:ObjectProperty ;
     rdfs:domain ports:Observation ;
-    rdfs:range ports:SourceObservation .
+    rdfs:range ports:SourceObservation ;
+    rdfs:subPropertyOf provider:sourceRecord .
 
 ports:sourceRowHash a owl:DatatypeProperty ;
     rdfs:range xsd:string .
@@ -153,7 +156,8 @@ ports:PortCallCount a ports:Unit ;
 
 ports:SourceObservation a owl:Class ;
     rdfs:label "Source Observation"@en ;
-    rdfs:comment "Source-specific observation representation; source SOSA typing is preserved without globally retyping it as a PROVIDER result."@en .
+    rdfs:comment "Source-specific observation representation; source SOSA typing is preserved without globally retyping it as a PROVIDER result."@en ;
+    rdfs:subClassOf provider:SourceRecord .
 
 ports:SourcePortFeature a owl:Class ;
     rdfs:label "Source Port Feature"@en ;
@@ -171,7 +175,8 @@ ports:PortArea a owl:Class ;
 ports:SourceRecord a owl:Class ;
     rdfs:label "Source Record"@en ;
     rdfs:comment "Release/artifact-bound source row or feature representation, not its described physical facility."@en ;
-    rdfs:subClassOf prov:Entity .
+    rdfs:subClassOf prov:Entity,
+        provider:SourceRecord .
 
 ports:Terminal a owl:Class ;
     rdfs:label "Terminal"@en ;

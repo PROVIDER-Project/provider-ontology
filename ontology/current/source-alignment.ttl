@@ -20,9 +20,9 @@ provider:TradeLocation rdfs:subClassOf ports:TradeLocation .
 provider:source-alignment a owl:Ontology ;
     rdfs:label "PROVIDER source-alignment"@en ;
     dct:license <https://opensource.org/license/mit> ;
-    dct:modified "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-14"^^xsd:date ;
     rdfs:comment "Explicit opt-in source compatibility layer. No wholesale HTTP/HTTPS equivalence or URI replacement."@en ;
     owl:imports provider:ports ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/source-alignment> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/source-alignment> ;
+    owl:versionInfo "0.3.0-rc2" .
 

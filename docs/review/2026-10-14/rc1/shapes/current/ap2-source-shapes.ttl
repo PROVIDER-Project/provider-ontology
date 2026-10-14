@@ -1,0 +1,136 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix ports: <https://projekt-provider.de/ontology/ports#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://projekt-provider.de/ontology/shapes/ports#GeometryLinkShape> a sh:NodeShape ;
+    sh:property [ sh:class geo:Geometry ;
+            sh:nodeKind sh:IRI ;
+            sh:path geo:hasGeometry ] ;
+    sh:targetSubjectsOf geo:hasGeometry .
+
+<https://projekt-provider.de/ontology/shapes/ports#GeometryShape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:datatype geo:wktLiteral ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path geo:asWKT ] ;
+    sh:targetSubjectsOf geo:asWKT .
+
+<https://projekt-provider.de/ontology/shapes/ports#PointBoundsShape> a sh:NodeShape ;
+    sh:sparql [ sh:message "POINT must have exactly two finite CRS84 coordinates within longitude/latitude bounds." ;
+            sh:select """
+    PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT $this WHERE {
+      $this geo:asWKT ?wkt . FILTER(STRSTARTS(UCASE(STR(?wkt)), "POINT"))
+      BIND(REPLACE(STR(?wkt), "^[Pp][Oo][Ii][Nn][Tt] *[(](.*)[)]$", "$1") AS ?coords)
+      BIND(xsd:double(STRBEFORE(?coords, " ")) AS ?lon)
+      BIND(xsd:double(STRAFTER(?coords, " ")) AS ?lat)
+      FILTER(!REGEX(STR(?wkt), "^[Pp][Oo][Ii][Nn][Tt] *[(][-+]?[0-9]+([.][0-9]+)?([eE][-+]?[0-9]+)? [-+]?[0-9]+([.][0-9]+)?([eE][-+]?[0-9]+)?[)]$")
+        || !BOUND(?lon) || !BOUND(?lat) || ?lon < -180 || ?lon > 180 || ?lat < -90 || ?lat > 90)
+    }
+  """ ] ;
+    sh:targetSubjectsOf geo:asWKT .
+
+<https://projekt-provider.de/ontology/shapes/ports#PortTrafficShape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "^https?://[^ ]+$" ;
+    sh:property [ sh:class <https://portwatch.imf.org/ontology/Port> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://portwatch.imf.org/ontology/observedPort> ],
+        [ sh:equals <https://portwatch.imf.org/ontology/observedPort> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path sosa:hasFeatureOfInterest ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://portwatch.imf.org/ontology/observationDate> ;
+            sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minInclusive 0 ;
+            sh:path <https://portwatch.imf.org/ontology/portCallsTotal> ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minInclusive 0 ;
+            sh:path <https://portwatch.imf.org/ontology/importVolumeTotalTons> ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minInclusive 0 ;
+            sh:path <https://portwatch.imf.org/ontology/exportVolumeTotalTons> ] ;
+    sh:targetClass <https://portwatch.imf.org/ontology/PortTrafficObservation> .
+
+<https://projekt-provider.de/ontology/shapes/ports#SourcePortShape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "^https?://[^ ]+$" ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path <https://portwatch.imf.org/ontology/portName> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://portwatch.imf.org/ontology/unlocode> ;
+            sh:pattern "^[A-Z]{2} ?[A-Z0-9]{3}$" ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path <https://portwatch.imf.org/ontology/locatedInCountry> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path ( <https://portwatch.imf.org/ontology/locatedInCountry> <https://portwatch.imf.org/ontology/iso3> ) ;
+            sh:pattern "^[A-Z]{3}$" ] ;
+    sh:targetClass <https://portwatch.imf.org/ontology/Port> .
+
+<https://projekt-provider.de/ontology/shapes/ports#SourceRecordShape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:or ( [ sh:property [ sh:minCount 1 ;
+                        sh:path ports:sourceRowHash ] ] [ sh:property [ sh:minCount 1 ;
+                        sh:path provider:sourceRow ] ] ) ;
+    sh:pattern "^https?://[^ ]+$" ;
+    sh:property [ sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path dct:isPartOf ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path ports:sourceRowHash ;
+            sh:pattern "^[0-9a-f]{64}$" ],
+        [ sh:datatype rdf:JSON ;
+            sh:maxCount 1 ;
+            sh:path provider:sourceRow ] ;
+    sh:targetClass ports:SourceRecord .
+
+<https://projekt-provider.de/ontology/shapes/ports#TradeLocationShape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "^https?://[^ ]+$" ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dct:identifier ;
+            sh:pattern "^[A-Z]{2}[A-Z0-9]{3}$" ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path provider:countryCode ;
+            sh:pattern "^[A-Z]{2}$" ] ;
+    sh:sparql [ sh:message "UN/LOCODE identifier and country code disagree." ;
+            sh:select """
+    PREFIX dct: <http://purl.org/dc/terms/>
+    PREFIX src: <https://projekt-provider.de/ontology/>
+    SELECT $this WHERE { $this dct:identifier ?code; src:countryCode ?country .
+      FILTER(SUBSTR(STR(?code),1,2) != STR(?country)) }
+  """ ] ;
+    sh:targetClass provider:TradeLocation .
+

@@ -8,6 +8,7 @@ def main():
  def sha(name):return hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
  for m in j['modules']:m['sha256']=sha(m['path'])
  j['entry_sha256']=sha(j['entry_point'])
+ for profile in j.get('profiles',{}).values():profile['sha256']=sha(profile['entry_point'])
  j['shape_hashes']={name:sha(name) for name in j['shape_hashes']}
  path.write_text(json.dumps(j,indent=2)+'\n')
 if __name__=='__main__':main()

@@ -12,15 +12,15 @@ provider:infrastructure a owl:Ontology ;
     rdfs:label "OpenStreetMap based Infrastructure Ontology"@en ;
     dct:created "2026-03-09"^^xsd:date ;
     dct:license <https://opensource.org/license/mit> ;
-    dct:modified "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-14"^^xsd:date ;
     rdfs:comment """
         An OWL ontology for modeling infrastructure data derived from 
         OpenStreetMap. Covers transportation (airports, ports, railways, roads),
         energy (pipelines, power networks), and telecommunications infrastructure.
     """@en ;
     owl:imports provider: ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/infrastructure> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/infrastructure> ;
+    owl:versionInfo "0.3.0-rc2" .
 
 infra:Antenna a owl:Class ;
     rdfs:label "Antenna"@en ;

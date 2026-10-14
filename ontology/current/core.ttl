@@ -12,15 +12,15 @@ provider: a owl:Ontology ;
     rdfs:label "PROVIDER Core Ontology"@en ;
     dct:created "2026-05-26"^^xsd:date ;
     dct:license <https://opensource.org/license/mit> ;
-    dct:modified "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-14"^^xsd:date ;
     rdfs:comment """
         Core ontology for modelling cross-sector supply chains, disruptions,
         resilience capabilities, monitoring signals, impacts, and mitigation
         actions. Infrastructure and supply-chain modules specialize these
         concepts without duplicating the core upper vocabulary.
     """@en ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc1/core> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/core> ;
+    owl:versionInfo "0.3.0-rc2" .
 
 provider:AgriculturalSector a owl:Class ;
     rdfs:label "Landwirtschaftssektor"@de,
@@ -837,3 +837,9 @@ provider:SupplyChainRole a owl:Class ;
     rdfs:comment "A role borne in a supply-chain context."@en ;
     rdfs:subClassOf provider:Role .
 
+
+provider:sourceCheckedOn a owl:DatatypeProperty ; rdfs:label "source checked on"@en ; rdfs:range xsd:date ; rdfs:comment "Documented day of checking/capture when no exact acquisition timestamp is known. Never infer an exact time from this date."@en .
+provider:productionScope a owl:DatatypeProperty ; rdfs:label "production scope"@en ; rdfs:range xsd:string ; rdfs:comment "Publisher distinction such as total versus sold production; do not aggregate overlapping scopes."@en .
+provider:quantityBasis a owl:DatatypeProperty ; rdfs:label "quantity basis"@en ; rdfs:range xsd:string ; rdfs:comment "What the numeric quantity counts or weighs, for example contained nitrogen rather than product mass."@en .
+provider:sourceValue a owl:DatatypeProperty ; rdfs:label "original source value"@en ; rdfs:range xsd:string .
+provider:adjustment a owl:DatatypeProperty ; rdfs:label "statistical adjustment"@en ; rdfs:range xsd:string .

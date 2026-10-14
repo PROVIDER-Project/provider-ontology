@@ -1,6 +1,6 @@
 {
   "id": "provider-ontology",
-  "version": "0.3.0-rc1",
+  "version": "0.3.0-rc2",
   "status": "local-reviewed-candidate; not published or partner approved",
   "namespace": "https://projekt-provider.de/ontology/",
   "entry_point": "ontology/current/provider.ttl",
@@ -8,135 +8,135 @@
     {
       "path": "ontology/current/core.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/core",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/core",
       "source_path": "ontology/provider-main.ttl",
       "source_sha256": "f918fabee13ad6c1a0be8d495c86752ef2e381f032e32c30d803766a01868c19",
       "status": "active-review-candidate",
-      "sha256": "b644248470211821e3670dc692814f5092ced20ae8d6dcde631ee4e7b6fb54ab"
+      "sha256": "3268e1354501bb4063fc24c247baa374af42a7d061e05c703fe44c1a928d12da"
     },
     {
       "path": "ontology/current/bfo-alignment.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/bfo-alignment",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/bfo-alignment",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/bfo-alignment",
       "source_path": "ontology/provider-bfo-alignment.ttl",
       "source_sha256": "1fb914cf96fd36af007b19d2b70c3446229b2607d9ca18198df68882b08bc60f",
       "status": "active-review-candidate",
-      "sha256": "de26cbe83d4d52be1f51734d002d59886e68e63626c66f22c65ff458c112cd7f"
+      "sha256": "f9e3687fa3d3d59ab6f37c316eb0526927d2378aaf913c918a99625deeefad55"
     },
     {
       "path": "ontology/current/supply-chain.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/supply-chain",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/supply-chain",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/supply-chain",
       "source_path": "ontology/supply_chain_ontology.ttl",
       "source_sha256": "9c1a77ce3ce08d04abfe3d1c45247da69e3a6e95b7a79c9f5a75532215124eaa",
       "status": "active-review-candidate",
-      "sha256": "55af747cac25babb5adf8f10e16989f02cb9d867488cfc5b9b6b92307019e589"
+      "sha256": "630709352ab50993ce8f6b572596ac919bad10ef738a1f2f9656da18066cddd5"
     },
     {
       "path": "ontology/current/infrastructure.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/infrastructure",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/infrastructure",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/infrastructure",
       "source_path": "ontology/infrastructure.ttl",
       "source_sha256": "7526a533986b516efe1c05a4811f58ec059797f41d0671d80263fb07f2feec17",
       "status": "active-review-candidate",
-      "sha256": "249c9a088c33e730bf055fbaf84b8a0dcc021f70635e6bcd171c09412d586579"
+      "sha256": "b91f16e56451764250a0abef1374803bb5742abd6a14c68fbbac9e6d39ee2702"
     },
     {
       "path": "ontology/current/network.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/network",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/network",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/network",
       "source_path": "ontology/infrastructure_network.ttl",
       "source_sha256": "c85528fe9dc97330f8933f1393fdbcab8f810ce5c91f0ce6904cf0e480f640ff",
       "status": "active-review-candidate",
-      "sha256": "d000c39525383eb22a22259db2907d78f300901ab9855f907ef5f16642b021b0"
+      "sha256": "22a55404a2a05d8858019285046b8cc1a6f0f615dc9736158b4df1bc6f3ec131"
     },
     {
       "path": "ontology/current/ports.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/ports",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/ports",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/ports",
       "source_path": "ontology/ap2-pilot-profile.ttl",
       "source_sha256": "34db939286ea3fd7a363f185beff6b619190cb0c56e1ba6f63c161a3fcaf1021",
       "status": "active-review-candidate",
-      "sha256": "9c7f12a1f07d7f252ecffa88a6780d05b12e5c882b4de02cb52ed7b6748bfa4d"
+      "sha256": "aecf8a675a5fda68d1558e0bc7622b0c7ecbfe4f79e4e563aa3d0508208e7986"
     },
     {
       "path": "ontology/current/source-alignment.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/source-alignment",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/source-alignment",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/source-alignment",
       "source_path": "ontology/ap2-source-alignment.ttl",
       "source_sha256": "b1ebd05f6cf6925e1a31bf932098dfb46593808c8624f4fd122f2e28046ee467",
       "status": "active-review-candidate",
-      "sha256": "cc5eb9d3bbe5abc2050154a37198500def9061b018c87b843e72dd53f66e33a7"
+      "sha256": "6f9de1a6d07b1820070a1b5b07ecc01fc3181539c29b1f41fc46a970db960229"
     },
     {
       "path": "ontology/current/cppi-source.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/source/cppi",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/source/cppi",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/source/cppi",
       "source_path": "ontology/source-cppi.ttl",
       "source_sha256": "e6d2e88d0e1489e005bce596ac6f32ab122afb369aeb07618a626f1272e20f31",
       "status": "active-review-candidate",
-      "sha256": "d703d867bd1118a0520c58569e03d1c3aabd8adf316548e05300eb932db409f6"
+      "sha256": "5601ff3cf081fa1415f20251baa898386db54f2bae158ba76746616858b8dc95"
     },
     {
       "path": "ontology/current/cppi.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/cppi",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/cppi",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/cppi",
       "source_path": "ontology/ap2-cppi-profile.ttl",
       "source_sha256": "d5079e70bfe7b161f51fa5e23d9aa0438a05b71cae96591bcd0cb0d928eb1e7c",
       "status": "active-review-candidate",
-      "sha256": "3507342c1b2d81ff16bcfa4a705ca92b3a806bb717bbf447102d266c804ed872"
+      "sha256": "18b7947320b6dcd153caea1890050dee5a809b4f4e8ea48822ab47eac7962c19"
     },
     {
       "path": "ontology/current/mining.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/mining",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/mining",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/mining",
       "source_path": "ontology/mining/provider-mining.ttl",
       "source_sha256": "22ce94fd4b74072ad4a90f5de2863f915f034f6082005bb1d9e1189e17797c90",
       "status": "active-review-candidate",
-      "sha256": "a9ec0908cb8a84610091b3360bc892d096cabed5c703750359365eaefd4710e0"
+      "sha256": "0402023f96932d5d50aa344292bf073c8f738e5d7abcae6b4064e4528a6e78cf"
     },
     {
       "path": "ontology/current/mining-alignments.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/mining-alignments",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/mining-alignments",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/mining-alignments",
       "source_path": "ontology/mining/provider-mining-alignments.ttl",
       "source_sha256": "37cd08deecf987cea89d2b23d045a476720d6f4613074b1b726f08ccda5a2c6b",
       "status": "active-review-candidate",
-      "sha256": "5c99b4ad46956b5c0e8d69506eb878f4a5d3cc2815529b293709e00470f262f5"
+      "sha256": "c7ea1a095260807aa151c44c1c14b61c9b31e0bf0721a09e1176940662d739d1"
     },
     {
       "path": "ontology/current/mining-integration.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/mining-integration",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/mining-integration",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/mining-integration",
       "source_path": "ontology/mining/provider-mining-integration.ttl",
       "source_sha256": "a459d13e1bbf66a7886b682c2388985237e34af02c7056db36493ec93cf71417",
       "status": "active-review-candidate",
-      "sha256": "70b9a16d9879bf789635fd436e92b7498c8b11c0b7d110c60416c64d35b2e380"
+      "sha256": "7a9c6f87e335c2b64954b1a4cebe3f08ea340caf6cafb286ade9a4b3b684c023"
     },
     {
       "path": "ontology/current/mining-pilot.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/mining-pilot",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/mining-pilot",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/mining-pilot",
       "source_path": "ontology/mining/provider-mining-pilot.ttl",
       "source_sha256": "6fa802a7757c3a60843a1c14a28411c0cb24defad40687a1f07f1d61ec48cbd8",
       "status": "active-review-candidate",
-      "sha256": "98ab667bc3cabb1643bde1930d1990e79bdcae1c77b6245c5259e9a7d1e84280"
+      "sha256": "9addb64dbd87dd096514a9933987ae60a697bfd4fddf8e7bdf069620de1fb76a"
     },
     {
       "path": "ontology/current/event.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/event",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/event",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/event",
       "source_path": "docs/review/2026-10-13/inputs/provider-event-draft.ttl",
       "source_sha256": "9ecc7bfd294027519827f94f3b9210c42592bf8bae2e60036f07de07612376f1",
       "status": "active-review-candidate",
-      "sha256": "07ed7fa3ddc260810559e166956869c858bef354568827c52a4392c87cc66bc4"
+      "sha256": "29ad927f0d282a83bf389e06f910ba50e064dc1f3ddadc701e65a46276861f7a"
     },
     {
       "path": "ontology/current/statistics.ttl",
       "ontology_iri": "https://projekt-provider.de/ontology/statistics",
-      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc1/statistics",
+      "version_iri": "https://projekt-provider.de/ontology/releases/0.3.0-rc2/statistics",
       "status": "active-review-candidate",
-      "sha256": "c6718705c743699c4edca645fcefbc509934e2bcbca642991e5c4453bd29994e"
+      "sha256": "34848c133b04ce9cb4616f2a421b9e0588977a0ead2d6d89839574f465d8058e"
     }
   ],
   "shapes": {
@@ -160,8 +160,8 @@
       "shapes/current/provider-mining-reviewed-shacl.ttl"
     ]
   },
-  "legacy_policy": "Original pinned files remain unchanged and explicitly historical. No network owl:imports resolution. Load only modules in this manifest.",
-  "entry_sha256": "2cb78e06224e42f62f4fc51975a942a8d9122bcf2611c774d7088ae4653f207e",
+  "legacy_policy": "Original legacy pins and rc1 snapshot preserved. Explicit local profile closures; BFO alignment is optional. No implicit network imports.",
+  "entry_sha256": "0efd111f3abb93a237ccdaf8ec4348ed453167088430d6196c46c9e9765ef484",
   "shape_hashes": {
     "shapes/current/ap2-canonical-shapes.ttl": "43310ecfb4ca8507a7f778709d0f04d753c45535e018da37830001560d3b4e66",
     "shapes/current/ap2-review-shapes.ttl": "c3e6e1b5e1e290b56dd368dc1b9c6d31e75caae221b58ef20c44d00edaa5c65a",
@@ -172,6 +172,91 @@
     "shapes/current/provider-mining-integration-shacl.ttl": "fa75255f0a2f1bbfcfa45644f358ef22385f6c7c86c16318ca1c735267868791",
     "shapes/current/provider-mining-reviewed-shacl.ttl": "ea3d8f8ac0d91eba4ef1deb175e13a77dc303a05569324b5a50d3562be2b6e47",
     "shapes/current/provider-mining-shacl.ttl": "daeee7ca605632742cfc9afe841104b340b8b4961e4d314454787e40d1330318",
-    "shapes/current/statistics.ttl": "fab267cd969b1a0395d5a83703c575cd3abe02d50eb1db66eec8db66ededd648"
+    "shapes/current/statistics.ttl": "14d136acb88c020acd7314710dab679c718d6cdfdb8a723873654df034bf3dd0"
+  },
+  "profiles": {
+    "core": {
+      "entry_point": "ontology/current/profiles/core.ttl",
+      "ontology_iri": "https://projekt-provider.de/ontology/profiles/core",
+      "seeds": [
+        "core"
+      ],
+      "sha256": "5b3f90d4aa35a087dcac14d769094e0fd361b2ee94c447e22cf36a8a7b79d604"
+    },
+    "statistics": {
+      "entry_point": "ontology/current/profiles/statistics.ttl",
+      "ontology_iri": "https://projekt-provider.de/ontology/profiles/statistics",
+      "seeds": [
+        "statistics"
+      ],
+      "sha256": "b8bce84db2b09c2934c31324e8c89adda00c309c51beabfede86d518e0367ca1"
+    },
+    "maritime": {
+      "entry_point": "ontology/current/profiles/maritime.ttl",
+      "ontology_iri": "https://projekt-provider.de/ontology/profiles/maritime",
+      "seeds": [
+        "ports",
+        "cppi",
+        "network",
+        "statistics"
+      ],
+      "sha256": "9f5aed0475f8dc85ac7b6357b1da697e013eb8d568b0f6b7fbb8c28df33f03f8"
+    },
+    "mining": {
+      "entry_point": "ontology/current/profiles/mining.ttl",
+      "ontology_iri": "https://projekt-provider.de/ontology/profiles/mining",
+      "seeds": [
+        "mining",
+        "mining-integration",
+        "statistics"
+      ],
+      "sha256": "6fd1e24fdca1cb8b977cb6a9cbea21b0dfd63a65ec160974f883d07d9759fead"
+    },
+    "events": {
+      "entry_point": "ontology/current/profiles/events.ttl",
+      "ontology_iri": "https://projekt-provider.de/ontology/profiles/events",
+      "seeds": [
+        "event"
+      ],
+      "sha256": "fb068e6c841f0f0c8883d2f724c26a65d082e3aca3161564d76aeff96a2248c4"
+    },
+    "supply-chain": {
+      "entry_point": "ontology/current/profiles/supply-chain.ttl",
+      "ontology_iri": "https://projekt-provider.de/ontology/profiles/supply-chain",
+      "seeds": [
+        "supply-chain"
+      ],
+      "sha256": "bb925eccac62541de8fc8a78ee95f11f09fa7db8e06fb737fc1bd530c9977e93"
+    },
+    "bfo": {
+      "entry_point": "ontology/current/profiles/bfo.ttl",
+      "ontology_iri": "https://projekt-provider.de/ontology/profiles/bfo",
+      "seeds": [
+        "bfo-alignment"
+      ],
+      "sha256": "56bef020616c6704a467b1c52911252fc805310ce6b4e7848850454314cf2d16"
+    },
+    "all": {
+      "entry_point": "ontology/current/profiles/all.ttl",
+      "ontology_iri": "https://projekt-provider.de/ontology/profiles/all",
+      "seeds": [
+        "core",
+        "bfo-alignment",
+        "supply-chain",
+        "infrastructure",
+        "network",
+        "ports",
+        "source-alignment",
+        "cppi-source",
+        "cppi",
+        "mining",
+        "mining-alignments",
+        "mining-integration",
+        "mining-pilot",
+        "event",
+        "statistics"
+      ],
+      "sha256": "1464794f487ddc5459ed40d8f41fa012a291278bfd13ec46665ba330884fb638"
+    }
   }
 }

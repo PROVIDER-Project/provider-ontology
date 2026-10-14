@@ -18,5 +18,5 @@
         <https://projekt-provider.de/ontology/source/cppi>,
         <https://projekt-provider.de/ontology/statistics>,
         <https://projekt-provider.de/ontology/supply-chain> ;
-    owl:versionInfo "0.3.0-rc1" .
+    owl:versionInfo "0.3.0-rc2" .
 
