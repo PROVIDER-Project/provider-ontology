@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "version": "0.3.0-rc3",
+  "ontology_tests": {
+    "existing_passed": 42,
+    "additional_transport_passed": 3
+  },
+  "competency_questions": {
+    "passed": true,
+    "count": 34
+  },
+  "model_manifest_sha256": "59758d6ad0e91037a4ce1e343c1343b2741d6d61673a7930a369b4cc30aea750",
+  "real_pilot": {
+    "artifact_id": "5d46d3c5ea606749162b14cc5a50658217479b43470e003548abb8eeaac3173d",
+    "segments": 627,
+    "traversals": 1183,
+    "modes": {
+      "road": 482,
+      "rail": 145
+    },
+    "shacl_conforms": true
+  },
+  "limits": [
+    "Bounded reference-node pilot, no confirmed real facility/terminal access assignments.",
+    "Modelled candidate routes and hypothetical closures, not observed trips or failures.",
+    "No full operational road/rail vehicle profile, no automatic KG publication."
+  ]
+}

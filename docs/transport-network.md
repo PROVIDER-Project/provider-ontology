@@ -13,3 +13,7 @@ Eine `network:Route` ist eine informationelle Route im Kernmodell und nicht län
 Echtdatenpilot: begrenzter OSM-Ausschnitt Duisburg-Logport. Konverter, geprüfte Netzberechnung und Quellenbedingungen sind in provider-datasets/docs/transport-network.md dokumentiert. Die Workflow-Anbindung liegt in provider-workflow/docs/transport-network.md. Es gibt keine automatische Identitätsbestätigung von Werk, Terminal oder Hafen und kein vollständiges Lkw-/Zugprofil.
 
 rc2 bleibt unter docs/review/2026-10-15/rc2/ gesichert. Die Berichte vom14.10. gelten unverändert für diesen Vorgängerstand; rc3 ergänzt den begrenzten Transportpiloten.
+
+## Abnahme
+
+34 Kompetenzfragen erfolgreich; 42 bestehende Tests plus drei Transport-Profiltests. OWL2-DL/HermiT mit dem gepinnten BFO-Kern erfolgreich. Synthetische Referenzanbindung, längerer Umweg bei hypothetischer Brückensperrung und gerichtete Straßen-/Bahnschritte werden durch CQ32–CQ34 geprüft; geometrische Kreuzungen, Zugangs-/Abbiegebeschränkungen und Richtungen zusätzlich im Datasets- und Workflow-Repository. Maschinenlesbare Nachweise: docs/review/2026-10-15/.

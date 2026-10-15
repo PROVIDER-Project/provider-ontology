@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-10-14",
+  "checked_on": "2026-10-15",
   "registry_commit": "bd31c364499ba643302ab397c97d5ad8ae5a242f",
   "registry_sha256": "3265f23f1dbedd3ef948621b5187705fdd0338d06696482d301110b62d763eba",
   "registry_ids": [
@@ -294,13 +294,25 @@
       ],
       "competency_questions": [
         "CQ15",
-        "CQ22"
+        "CQ22",
+        "CQ32",
+        "CQ33",
+        "CQ34"
       ],
       "integration_status": "legacy-profile-kept; adapter-pending",
       "limit": "Coverage is model-level expressibility. No new acquisition, rights clearance, canonical identity acceptance or production adapter is inferred.",
       "working_requirements": [
         "maritime-reference"
-      ]
+      ],
+      "canonical_model_pilot": {
+        "model_version": "0.3.0-rc3",
+        "production_cutover": false,
+        "source_scope": "Duisburg-Logport bounded OSM reference-node corridor",
+        "segments": 627,
+        "traversals": 1183,
+        "evidence": "docs/review/2026-10-15/verification.json",
+        "limits": "No confirmed plant/terminal identities or operational route authorization"
+      }
     },
     {
       "source_id": "gdelt",

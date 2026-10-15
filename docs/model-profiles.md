@@ -23,3 +23,5 @@ Informationsergebnis → `hasMeasurement` → Messwert mit `measurementValue`, `
 Eine dokumentierte Quelle benötigt einen SHA256 und entweder einen tatsächlich bekannten `acquiredAt`-Zeitpunkt mit Zeitzone oder `sourceCheckedOn` mit Tagesgenauigkeit. Ein Prüfdatum ist kein erfundener Abrufzeitpunkt. Produktionsumfang (`total`/`sold`), Mengenbasis (`t-N`), Indexbasis, Originalwert und Qualitätsmarker bleiben getrennt. Unterdrückte Werte und nicht verfügbare Werte erhalten keine Messwertknoten.
 
 Die Module ändern weder die Bestandskonverter noch historische produktive Pins automatisch. Die rc1-Modelldateien sind unter `docs/review/2026-10-14/rc1/` gesichert; ältere Prüfberichte gelten für diesen eingefrorenen Kandidaten.
+
+rc3-Transportergänzung und Nachweise: `docs/transport-network.md`; gesicherter rc2-Vorgänger unter `docs/review/2026-10-15/rc2/`.
