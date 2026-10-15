@@ -1,0 +1,22 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://projekt-provider.de/ontology/ap2> a owl:Ontology ;
+    rdfs:label "PROVIDER integrated AP2 review candidate"@en ;
+    owl:imports <https://projekt-provider.de/ontology/>,
+        <https://projekt-provider.de/ontology/bfo-alignment>,
+        <https://projekt-provider.de/ontology/cppi>,
+        <https://projekt-provider.de/ontology/event>,
+        <https://projekt-provider.de/ontology/infrastructure>,
+        <https://projekt-provider.de/ontology/mining>,
+        <https://projekt-provider.de/ontology/mining-alignments>,
+        <https://projekt-provider.de/ontology/mining-integration>,
+        <https://projekt-provider.de/ontology/mining-pilot>,
+        <https://projekt-provider.de/ontology/network>,
+        <https://projekt-provider.de/ontology/ports>,
+        <https://projekt-provider.de/ontology/source-alignment>,
+        <https://projekt-provider.de/ontology/source/cppi>,
+        <https://projekt-provider.de/ontology/statistics>,
+        <https://projekt-provider.de/ontology/supply-chain> ;
+    owl:versionInfo "0.3.0-rc2" .
+

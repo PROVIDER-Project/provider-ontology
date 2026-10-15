@@ -19,8 +19,8 @@ provider:infrastructure a owl:Ontology ;
         energy (pipelines, power networks), and telecommunications infrastructure.
     """@en ;
     owl:imports provider: ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/infrastructure> ;
-    owl:versionInfo "0.3.0-rc2" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc3/infrastructure> ;
+    owl:versionInfo "0.3.0-rc3" .
 
 infra:Antenna a owl:Class ;
     rdfs:label "Antenna"@en ;
@@ -514,6 +514,14 @@ infra:cables a owl:DatatypeProperty ;
     rdfs:domain infra:PowerLine ;
     rdfs:range xsd:nonNegativeInteger .
 
+infra:connectsTo a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "connects to"@en ;
+    rdfs:comment "Indicates that one infrastructure feature connects to another."@en ;
+    rdfs:domain infra:InfrastructureFeature ;
+    rdfs:range infra:InfrastructureFeature ;
+    rdfs:subPropertyOf infra:isConnectedTo .
+
 infra:crossedBy a owl:ObjectProperty ;
     rdfs:label "crossed by"@en ;
     rdfs:comment "Inverse of crosses."@en ;
@@ -593,13 +601,6 @@ infra:icaoCode a owl:DatatypeProperty ;
     rdfs:comment "The ICAO airport code (4 letters). Maps to OSM icao=*."@en ;
     rdfs:domain infra:Airport ;
     rdfs:range xsd:string .
-
-infra:isConnectedTo a owl:ObjectProperty ;
-    rdfs:label "is connected to"@en ;
-    rdfs:comment "Symmetric property indicating mutual connection."@en ;
-    rdfs:comment "Connections asserted through connectsTo also entail isConnectedTo."@en .
-
-infra:connectsTo rdfs:subPropertyOf infra:isConnectedTo .
 
 infra:isPartOf a owl:ObjectProperty ;
     rdfs:label "is part of"@en ;
@@ -938,19 +939,17 @@ infra:Way a owl:Class ;
     rdfs:label "Way"@en ;
     rdfs:comment "A linear or polygon geometry representing an OSM way."@en .
 
-infra:connectsTo a owl:ObjectProperty,
-        owl:SymmetricProperty ;
-    rdfs:label "connects to"@en ;
-    rdfs:comment "Indicates that one infrastructure feature connects to another."@en ;
-    rdfs:domain infra:InfrastructureFeature ;
-    rdfs:range infra:InfrastructureFeature .
-
 infra:crosses a owl:AsymmetricProperty,
         owl:ObjectProperty ;
     rdfs:label "crosses"@en ;
     rdfs:comment "Indicates one infrastructure feature crosses another (e.g., road over railway)."@en ;
     rdfs:domain infra:TransportationInfrastructure ;
     rdfs:range infra:TransportationInfrastructure .
+
+infra:isConnectedTo a owl:ObjectProperty ;
+    rdfs:label "is connected to"@en ;
+    rdfs:comment "Connections asserted through connectsTo also entail isConnectedTo."@en,
+        "Symmetric property indicating mutual connection."@en .
 
 infra:suppliesPowerTo a owl:ObjectProperty ;
     rdfs:label "supplies power to"@en ;
@@ -1050,7 +1049,8 @@ infra:InfrastructureFeature a owl:Class ;
 infra:TransportationInfrastructure a owl:Class ;
     rdfs:label "Transportation Infrastructure"@en ;
     rdfs:comment "Infrastructure related to the movement of people and goods."@en ;
-    rdfs:subClassOf infra:InfrastructureFeature .
+    rdfs:subClassOf provider:InfrastructureAsset,
+        infra:InfrastructureFeature .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( infra:TransportationInfrastructure infra:EnergyInfrastructure infra:TelecommunicationsInfrastructure infra:UtilityInfrastructure ) .

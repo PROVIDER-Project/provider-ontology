@@ -14,8 +14,8 @@ provider:cppi a owl:Ontology ;
     owl:imports provider:,
         provider:ports,
         <https://projekt-provider.de/ontology/source/cppi> ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/cppi> ;
-    owl:versionInfo "0.3.0-rc2" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc3/cppi> ;
+    owl:versionInfo "0.3.0-rc3" .
 
 ns1:AdministrativeIndexScore ns1:sourcePredicate <https://projekt-provider.de/ontology/source/cppi#administrativeScore> ;
     ns1:unit ns1:DimensionlessIndex .

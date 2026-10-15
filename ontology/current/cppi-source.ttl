@@ -21,8 +21,8 @@
         <https://www.worldbank.org/en/topic/transport/publication/cppi> ;
     dct:title "PROVIDER ontology module for the Container Port Performance Index"@en ;
     owl:imports provider: ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/source/cppi> ;
-    owl:versionInfo "0.3.0-rc2" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc3/source/cppi> ;
+    owl:versionInfo "0.3.0-rc3" .
 
 ns1:ArrivalHours a ns1:PortTimeComponent ;
     skos:definition "Time from arrival at anchorage or pilot station to start of cargo operations."@en ;

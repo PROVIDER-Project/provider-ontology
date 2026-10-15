@@ -43,7 +43,7 @@
     },
     {
       "id": "CQ05",
-      "question_de": "Bleiben unvollständige Jahreswerte Teilsummen?",
+      "question_de": "Bleiben unvollst\u00e4ndige Jahreswerte Teilsummen?",
       "query": "queries/competency/CQ05.rq",
       "expected": true,
       "coverage": [
@@ -53,7 +53,7 @@
     },
     {
       "id": "CQ06",
-      "question_de": "Sind Preisindex, Produktionsindex und Kapazität verschieden?",
+      "question_de": "Sind Preisindex, Produktionsindex und Kapazit\u00e4t verschieden?",
       "query": "queries/competency/CQ06.rq",
       "expected": true,
       "coverage": [
@@ -83,7 +83,7 @@
     },
     {
       "id": "CQ09",
-      "question_de": "Tragen gleiche Warencodes über 2022 unterschiedliche Jahresbezüge?",
+      "question_de": "Tragen gleiche Warencodes \u00fcber 2022 unterschiedliche Jahresbez\u00fcge?",
       "query": "queries/competency/CQ09.rq",
       "expected": [
         [
@@ -122,7 +122,7 @@
     },
     {
       "id": "CQ12",
-      "question_de": "Wird Teil-von bei Mining nicht als Identität ausgegeben?",
+      "question_de": "Wird Teil-von bei Mining nicht als Identit\u00e4t ausgegeben?",
       "query": "queries/competency/CQ12.rq",
       "expected": true,
       "coverage": [
@@ -132,7 +132,7 @@
     },
     {
       "id": "CQ13",
-      "question_de": "Bleiben negative CPPI-Scores mit Jahresbezug gültig?",
+      "question_de": "Bleiben negative CPPI-Scores mit Jahresbezug g\u00fcltig?",
       "query": "queries/competency/CQ13.rq",
       "expected": true,
       "coverage": [
@@ -153,7 +153,7 @@
     },
     {
       "id": "CQ15",
-      "question_de": "Belegt eine OSM-Hafenfläche keine Anlagenkapazität?",
+      "question_de": "Belegt eine OSM-Hafenfl\u00e4che keine Anlagenkapazit\u00e4t?",
       "query": "queries/competency/CQ15.rq",
       "expected": true,
       "coverage": [
@@ -173,7 +173,7 @@
     },
     {
       "id": "CQ17",
-      "question_de": "Sind GENESIS-Quartale ohne künstliche Monatswerte darstellbar?",
+      "question_de": "Sind GENESIS-Quartale ohne k\u00fcnstliche Monatswerte darstellbar?",
       "query": "queries/competency/CQ17.rq",
       "expected": true,
       "coverage": [
@@ -203,7 +203,7 @@
     },
     {
       "id": "CQ20",
-      "question_de": "Sind gemeldete Fakten mit Quellenbelegen verknüpft?",
+      "question_de": "Sind gemeldete Fakten mit Quellenbelegen verkn\u00fcpft?",
       "query": "queries/competency/CQ20.rq",
       "expected": true,
       "coverage": [
@@ -214,7 +214,7 @@
     },
     {
       "id": "CQ21",
-      "question_de": "Bleibt eine geplante Änderung vom beobachteten Betrieb getrennt?",
+      "question_de": "Bleibt eine geplante \u00c4nderung vom beobachteten Betrieb getrennt?",
       "query": "queries/competency/CQ21.rq",
       "expected": true,
       "coverage": [
@@ -262,7 +262,7 @@
     },
     {
       "id": "CQ25",
-      "question_de": "Bleiben Mining-Ergebnis und Beobachtungsaktivität getrennt?",
+      "question_de": "Bleiben Mining-Ergebnis und Beobachtungsaktivit\u00e4t getrennt?",
       "query": "queries/competency/CQ25.rq",
       "expected": true,
       "coverage": [
@@ -282,7 +282,7 @@
     },
     {
       "id": "CQ27",
-      "question_de": "Trägt die Organisation eine Rolle statt die Anlage damit gleichzusetzen?",
+      "question_de": "Tr\u00e4gt die Organisation eine Rolle statt die Anlage damit gleichzusetzen?",
       "query": "queries/competency/CQ27.rq",
       "expected": true,
       "coverage": [
@@ -302,7 +302,7 @@
     },
     {
       "id": "CQ29",
-      "question_de": "Kann eine Maßnahme Risiko und zuständigen Akteur verbinden?",
+      "question_de": "Kann eine Ma\u00dfnahme Risiko und zust\u00e4ndigen Akteur verbinden?",
       "query": "queries/competency/CQ29.rq",
       "expected": true,
       "coverage": [
@@ -312,7 +312,7 @@
     },
     {
       "id": "CQ30",
-      "question_de": "Ist eine PDL-Repräsentation von der physischen Anlage getrennt?",
+      "question_de": "Ist eine PDL-Repr\u00e4sentation von der physischen Anlage getrennt?",
       "query": "queries/competency/CQ30.rq",
       "expected": true,
       "coverage": [
@@ -329,6 +329,39 @@
         "supply-chain"
       ],
       "evidence_scope": "Invented fixture plus active schema; no empirical or partner acceptance claim."
+    },
+    {
+      "id": "CQ32",
+      "question_de": "Sind die synthetischen Stra\u00dfenreferenzpunkte durch eine berechnete Route verbunden?",
+      "query": "queries/competency/CQ32.rq",
+      "fixture": "examples/current/transport-example.ttl",
+      "expected": true,
+      "coverage": [
+        "transport-network"
+      ],
+      "evidence_scope": "Own invented corridor fixture; no real facility or port identity claim."
+    },
+    {
+      "id": "CQ33",
+      "question_de": "Hat die hypothetische Br\u00fcckensperrung einen l\u00e4ngeren Umweg ohne gesperrtes Segment?",
+      "query": "queries/competency/CQ33.rq",
+      "fixture": "examples/current/transport-example.ttl",
+      "expected": true,
+      "coverage": [
+        "transport-network"
+      ],
+      "evidence_scope": "Own invented corridor fixture; no real facility or port identity claim."
+    },
+    {
+      "id": "CQ34",
+      "question_de": "Sind Stra\u00dfen- und Bahnrouten \u00fcber gerichtete, routenspezifische Schritte nachvollziehbar?",
+      "query": "queries/competency/CQ34.rq",
+      "fixture": "examples/current/transport-example.ttl",
+      "expected": true,
+      "coverage": [
+        "transport-network"
+      ],
+      "evidence_scope": "Own invented corridor fixture; no real facility or port identity claim."
     }
   ]
 }

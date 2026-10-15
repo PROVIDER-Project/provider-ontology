@@ -198,8 +198,8 @@ p:statistics a owl:Ontology ;
     dct:license <https://opensource.org/license/mit> ;
     dct:modified "2026-10-14"^^xsd:date ;
     owl:imports p: ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/statistics> ;
-    owl:versionInfo "0.3.0-rc2" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc3/statistics> ;
+    owl:versionInfo "0.3.0-rc3" .
 
 p:usesMask a owl:ObjectProperty ;
     rdfs:label "uses versioned spatial mask"@en ;

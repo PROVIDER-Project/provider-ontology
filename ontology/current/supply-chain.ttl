@@ -18,8 +18,8 @@ provider:supply-chain a owl:Ontology ;
         separate top-level model.
     """@en ;
     owl:imports provider: ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/supply-chain> ;
-    owl:versionInfo "0.3.0-rc2" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc3/supply-chain> ;
+    owl:versionInfo "0.3.0-rc3" .
 
 <https://projekt-provider.de/ontology/supply-chain#CarrierRole> a owl:Class ;
     rdfs:label "carrier role"@en ;

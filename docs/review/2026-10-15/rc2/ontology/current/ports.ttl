@@ -1,0 +1,219 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix infra: <https://projekt-provider.de/ontology/infrastructure#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ports: <https://projekt-provider.de/ontology/ports#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+provider:ports a owl:Ontology ;
+    rdfs:label "PROVIDER ports"@en ;
+    dct:description "Local review candidate; not a partner-approved ontology release or production data approval."@en ;
+    dct:license <https://opensource.org/license/mit> ;
+    dct:modified "2026-10-14"^^xsd:date ;
+    dct:title "PROVIDER AP2 pilot model profile"@en ;
+    owl:imports provider:,
+        provider:infrastructure ;
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/ports> ;
+    owl:versionInfo "0.3.0-rc2" .
+
+ports:Accepted a prov:Entity .
+
+ports:DailyPortCalls a ports:Metric ;
+    ports:unit ports:PortCallCount .
+
+ports:ExportShipmentEstimate a ports:Metric ;
+    ports:unit ports:MetricTonne .
+
+ports:ImportShipmentEstimate a ports:Metric ;
+    ports:unit ports:MetricTonne .
+
+ports:ObservationActivity a owl:Class ;
+    rdfs:label "Observation Activity"@en ;
+    rdfs:comment "Observation/estimation activity, distinct from the resulting information object."@en ;
+    rdfs:subClassOf sosa:Observation .
+
+ports:Pending a prov:Entity .
+
+ports:Real a prov:Entity .
+
+ports:Rejected a prov:Entity .
+
+ports:Synthetic a prov:Entity .
+
+ports:areaOfPort a owl:ObjectProperty ;
+    rdfs:domain ports:PortArea ;
+    rdfs:range ports:OperationalPort .
+
+ports:countryISO2 a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+ports:countryISO3 a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+ports:dataKind a owl:ObjectProperty .
+
+ports:describesFeature a owl:ObjectProperty ;
+    rdfs:domain ports:SourceRecord ;
+    rdfs:range geo:Feature .
+
+ports:describesOperationalPort a owl:ObjectProperty ;
+    rdfs:domain ports:SourcePortFeature ;
+    rdfs:range ports:OperationalPort .
+
+ports:episodeOf a owl:ObjectProperty ;
+    rdfs:domain ports:EventEpisode ;
+    rdfs:range ports:Event .
+
+ports:evidence a owl:ObjectProperty ;
+    rdfs:domain ports:MatchAssertion .
+
+ports:hasMeasurement a owl:ObjectProperty ;
+    rdfs:domain ports:Observation ;
+    rdfs:range ports:Measurement ;
+    rdfs:subPropertyOf provider:hasMeasurement .
+
+ports:metric a owl:ObjectProperty ;
+    rdfs:domain ports:Measurement ;
+    rdfs:range ports:Metric .
+
+ports:object a owl:ObjectProperty ;
+    rdfs:domain ports:MatchAssertion .
+
+ports:observedDay a owl:DatatypeProperty ;
+    rdfs:domain ports:Observation ;
+    rdfs:range xsd:date .
+
+ports:observedFeature a owl:ObjectProperty ;
+    rdfs:domain ports:Observation ;
+    rdfs:range geo:Feature ;
+    rdfs:subPropertyOf provider:observedFor .
+
+ports:relation a owl:ObjectProperty ;
+    rdfs:domain ports:MatchAssertion ;
+    rdfs:range owl:Thing .
+
+ports:representsEvent a owl:ObjectProperty ;
+    rdfs:domain <https://provider-project.org/ontology/pdl#Event> ;
+    rdfs:range provider:Event .
+
+ports:representsFacility a owl:ObjectProperty ;
+    rdfs:domain <https://provider-project.org/ontology/pdl#Infrastructure> ;
+    rdfs:range provider:Facility .
+
+ports:reviewStatus a owl:ObjectProperty ;
+    rdfs:domain ports:MatchAssertion .
+
+ports:reviewedAt a owl:DatatypeProperty ;
+    rdfs:range xsd:dateTime .
+
+ports:reviewer a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+ports:servesTradeLocation a owl:ObjectProperty ;
+    rdfs:domain ports:OperationalPort ;
+    rdfs:range ports:TradeLocation .
+
+ports:sourceObservation a owl:ObjectProperty ;
+    rdfs:domain ports:Observation ;
+    rdfs:range ports:SourceObservation ;
+    rdfs:subPropertyOf provider:sourceRecord .
+
+ports:sourceRowHash a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+ports:subject a owl:ObjectProperty ;
+    rdfs:domain ports:MatchAssertion .
+
+ports:terminalOfPort a owl:ObjectProperty ;
+    rdfs:domain ports:Terminal ;
+    rdfs:range ports:OperationalPort .
+
+ports:unit a owl:ObjectProperty ;
+    rdfs:range ports:Unit ;
+    rdfs:subPropertyOf provider:hasUnit .
+
+ports:value a owl:DatatypeProperty ;
+    rdfs:domain ports:Measurement ;
+    rdfs:range xsd:decimal ;
+    rdfs:subPropertyOf provider:measurementValue .
+
+ports:Event a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:subClassOf provider:Event .
+
+ports:EventEpisode a owl:Class ;
+    rdfs:label "Event Episode"@en ;
+    rdfs:comment "Source-specific episode/version within an event; scores and episode geometry stay scoped here."@en ;
+    rdfs:subClassOf prov:Entity .
+
+ports:PortCallCount a ports:Unit ;
+    rdfs:comment "Count of port calls; not a count of unique ships."@en .
+
+ports:SourceObservation a owl:Class ;
+    rdfs:label "Source Observation"@en ;
+    rdfs:comment "Source-specific observation representation; source SOSA typing is preserved without globally retyping it as a PROVIDER result."@en ;
+    rdfs:subClassOf provider:SourceRecord .
+
+ports:SourcePortFeature a owl:Class ;
+    rdfs:label "Source Port Feature"@en ;
+    rdfs:comment "Source-specific port feature; association with a canonical port requires a reviewed assertion."@en ;
+    rdfs:subClassOf geo:Feature .
+
+ports:MetricTonne a ports:Unit ;
+    rdfs:comment "1000 kilograms; PortWatch shipment estimate, not a commodity-specific measurement."@en .
+
+ports:PortArea a owl:Class ;
+    rdfs:label "Port Area"@en ;
+    rdfs:comment "Geographic representation of an area associated with a port, not the operational port identity."@en ;
+    rdfs:subClassOf geo:Feature .
+
+ports:SourceRecord a owl:Class ;
+    rdfs:label "Source Record"@en ;
+    rdfs:comment "Release/artifact-bound source row or feature representation, not its described physical facility."@en ;
+    rdfs:subClassOf prov:Entity,
+        provider:SourceRecord .
+
+ports:Terminal a owl:Class ;
+    rdfs:label "Terminal"@en ;
+    rdfs:comment "Maritime cargo/passenger terminal; not the airport class infrastructure:Terminal."@en ;
+    rdfs:subClassOf provider:Facility .
+
+ports:TradeLocation a owl:Class ;
+    rdfs:label "Trade Location"@en ;
+    rdfs:comment "Location in a trade code list; maritime function does not establish identity with a physical port."@en ;
+    rdfs:subClassOf geo:Feature .
+
+ports:Measurement a owl:Class ;
+    rdfs:label "Measurement"@en ;
+    rdfs:subClassOf provider:Measurement .
+
+ports:Unit a owl:Class ;
+    rdfs:label "Unit"@en .
+
+ports:Metric a owl:Class ;
+    rdfs:label "Metric"@en .
+
+ports:Observation a owl:Class ;
+    rdfs:label "Observation"@en ;
+    rdfs:comment "Observation information/result, following the existing PROVIDER BFO alignment. Distinct from the activity that produces it."@en ;
+    rdfs:subClassOf provider:Observation .
+
+ports:MatchAssertion a owl:Class ;
+    rdfs:label "Match Assertion"@en ;
+    rdfs:comment "Qualified directional candidate or reviewed association with evidence and a decision; never an automatic owl:sameAs."@en ;
+    rdfs:subClassOf prov:Entity .
+
+ports:OperationalPort a owl:Class ;
+    rdfs:label "Operational Port"@en ;
+    rdfs:comment "Canonical operational maritime/inland port facility, identified independently of source record and trade-location code."@en ;
+    rdfs:subClassOf provider:Facility,
+        infra:Port .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ports:OperationalPort ports:TradeLocation ports:SourceRecord ports:PortArea ports:Terminal ) .
+

@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "model_manifest_sha256": "59758d6ad0e91037a4ce1e343c1343b2741d6d61673a7930a369b4cc30aea750",
+  "lock": {
+    "robot": {
+      "version": "1.9.11",
+      "url": "https://github.com/ontodev/robot/releases/download/v1.9.11/robot.jar",
+      "sha256": "53cd275c8e4c0dad1fc2c1c34174876795cd7d6b6926e1444adcbb0cb3c7ab26",
+      "license": "BSD-3-Clause"
+    },
+    "bfo": {
+      "path": "ontology/vendor/bfo-2020-core.ttl",
+      "commit": "bd1fb61c5fa4e358fc9690f0d214b1ac63fae594",
+      "url": "https://raw.githubusercontent.com/BFO-ontology/BFO-2020/bd1fb61c5fa4e358fc9690f0d214b1ac63fae594/21838-2/owl/bfo-core.ttl",
+      "sha256": "a7f0385eb859e707fa81bad532ff252427dc3490e3896a929332016fc53d9ece",
+      "license": "CC-BY-4.0",
+      "scope": "Official BFO2020 core only; no temporal extensions or full PROV/SOSA/GeoSPARQL import closure"
+    }
+  },
+  "profile_DL_exit": 0,
+  "hermit_coherence_exit": 0,
+  "domain_range_exit": 0,
+  "entailed": {
+    "observation_domain": true,
+    "measurement_range": true
+  },
+  "negative_domain_rejected": true,
+  "negative_bfo_class_rejected": true,
+  "scope": "All current PROVIDER modules + official BFO2020 core. Other referenced external terms are declarations only; no complete external PROV/SOSA/GeoSPARQL axiom closure. SHACL handles calendar datatype lexical constraints. Does not establish data truth, adequate granularity or partner approval."
+}

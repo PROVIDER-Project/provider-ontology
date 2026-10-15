@@ -106,7 +106,7 @@ sosa:Observation a owl:Class .
 
 <https://projekt-provider.de/ontology/external-declarations> a owl:Ontology ;
     rdfs:label "Declarations of existing external references; no external axioms imported"@en ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/external-declarations> .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc3/external-declarations> .
 
 <https://provider-project.org/ontology/pdl#Event> a owl:Class .
 

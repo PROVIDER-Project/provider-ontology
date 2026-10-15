@@ -1,0 +1,4 @@
+PREFIX n: <https://projekt-provider.de/ontology/network#>
+PREFIX p: <https://projekt-provider.de/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ASK { ?road a n:TransportPath ; n:transportMode "road" . ?rail a n:TransportPath ; n:transportMode "rail" . ?s n:inRoute ?road ; n:stepTraversal ?t ; n:stepRole ?role . ?t a n:Traversal . ?r n:inRoute ?rail ; n:stepTraversal ?rt . ?rt a n:Traversal . }

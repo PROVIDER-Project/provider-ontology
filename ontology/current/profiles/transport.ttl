@@ -1,0 +1,2 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+<https://projekt-provider.de/ontology/profiles/transport> a owl:Ontology ; owl:imports <https://projekt-provider.de/ontology/network> ; owl:versionInfo "0.3.0-rc3" .

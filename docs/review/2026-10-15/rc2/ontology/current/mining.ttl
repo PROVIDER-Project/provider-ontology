@@ -1,0 +1,517 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix mining: <https://projekt-provider.de/ontology/mining#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+provider:mining a owl:Ontology ;
+    rdfs:label "PROVIDER mining"@en ;
+    dct:created "2026-06-20"^^xsd:date ;
+    dct:description "Ontology extension for mines, mineral deposits, processing facilities, ownership, material flows and mining observations used in supply-chain resilience analysis."@en ;
+    dct:license <https://opensource.org/license/mit> ;
+    dct:modified "2026-10-14"^^xsd:date ;
+    dct:title "PROVIDER Mining Ontology"@en ;
+    owl:imports provider: ;
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/mining> ;
+    owl:versionInfo "0.3.0-rc2" .
+
+mining:BeneficiationPlant a owl:Class ;
+    rdfs:label "beneficiation plant"@en ;
+    rdfs:subClassOf provider:ProcessingFacility .
+
+mining:CapacityObservation a owl:Class ;
+    rdfs:label "capacity observation"@en ;
+    rdfs:subClassOf mining:MiningObservation .
+
+mining:Concentrate a owl:Class ;
+    rdfs:label "mineral concentrate"@en ;
+    rdfs:subClassOf provider:Material .
+
+mining:Concentrator a owl:Class ;
+    rdfs:label "concentrator"@en ;
+    rdfs:subClassOf provider:ProcessingFacility .
+
+mining:EmissionObservation a owl:Class ;
+    rdfs:label "mining emission observation"@en ;
+    rdfs:subClassOf mining:MiningObservation .
+
+mining:ExtractionObservation a owl:Class ;
+    rdfs:label "extraction observation"@en ;
+    rdfs:subClassOf mining:ProductionObservation .
+
+mining:MineralOccurrence a owl:Class ;
+    rdfs:label "mineral occurrence"@en ;
+    rdfs:comment "A reported mineral occurrence whose economic viability may be unknown."@en ;
+    rdfs:subClassOf geo:Feature .
+
+mining:MiningObservationActivity a owl:Class ;
+    rdfs:label "Mining observation activity"@en ;
+    rdfs:subClassOf sosa:Observation .
+
+mining:MiningWaste a owl:Class ;
+    rdfs:label "mining waste"@en ;
+    rdfs:subClassOf provider:Material .
+
+mining:Ore a owl:Class ;
+    rdfs:label "ore"@en ;
+    rdfs:subClassOf provider:Material .
+
+mining:Prospect a owl:Class ;
+    rdfs:label "prospect"@en ;
+    rdfs:subClassOf geo:Feature .
+
+mining:Quarry a owl:Class ;
+    rdfs:label "quarry"@en ;
+    rdfs:subClassOf mining:ExtractiveFacility .
+
+mining:RefinedProduct a owl:Class ;
+    rdfs:label "refined mining product"@en ;
+    rdfs:subClassOf provider:Commodity .
+
+mining:Refinery a owl:Class ;
+    rdfs:label "refinery"@en ;
+    rdfs:subClassOf provider:ProcessingFacility .
+
+mining:ReserveObservation a owl:Class ;
+    rdfs:label "reserve observation"@en ;
+    rdfs:subClassOf mining:MiningObservation .
+
+mining:ResourceObservation a owl:Class ;
+    rdfs:label "resource observation"@en ;
+    rdfs:subClassOf mining:MiningObservation .
+
+mining:Smelter a owl:Class ;
+    rdfs:label "smelter"@en ;
+    rdfs:subClassOf provider:ProcessingFacility .
+
+mining:TailingsStorageFacility a owl:Class ;
+    rdfs:label "tailings storage facility"@en ;
+    rdfs:subClassOf geo:Feature,
+        provider:InfrastructureAsset .
+
+mining:WasteObservation a owl:Class ;
+    rdfs:label "waste observation"@en ;
+    rdfs:subClassOf mining:MiningObservation .
+
+mining:WorkforceObservation a owl:Class ;
+    rdfs:label "workforce observation"@en ;
+    rdfs:subClassOf mining:MiningObservation .
+
+mining:activityStatusText a owl:DatatypeProperty ;
+    rdfs:label "activity status text"@en ;
+    rdfs:range xsd:string .
+
+mining:administrativeAreaText a owl:DatatypeProperty ;
+    rdfs:label "administrative area text"@en ;
+    rdfs:domain geo:Feature ;
+    rdfs:range xsd:string .
+
+mining:appliesToFacility a owl:ObjectProperty ;
+    rdfs:label "applies to facility"@en ;
+    rdfs:domain mining:ClassificationAssertion ;
+    rdfs:range provider:IndustrialFacility .
+
+mining:associatedCommodity a owl:ObjectProperty ;
+    rdfs:label "associated commodity"@en ;
+    rdfs:domain geo:Feature ;
+    rdfs:range provider:CommodityConcept .
+
+mining:associatedDeposit a owl:ObjectProperty ;
+    rdfs:label "associated deposit"@en ;
+    rdfs:domain mining:Mine ;
+    rdfs:range mining:MineralDeposit .
+
+mining:concessionAreaSquareKilometres a owl:DatatypeProperty ;
+    rdfs:label "concession area in square kilometres"@en ;
+    rdfs:range xsd:decimal .
+
+mining:confidenceScore a owl:DatatypeProperty ;
+    rdfs:label "confidence score"@en ;
+    rdfs:range xsd:decimal .
+
+mining:containsCommodity a owl:ObjectProperty ;
+    rdfs:label "contains commodity"@en ;
+    rdfs:domain mining:MineralDeposit ;
+    rdfs:range provider:CommodityConcept .
+
+mining:depositTypeText a owl:DatatypeProperty ;
+    rdfs:label "deposit type text"@en ;
+    rdfs:domain mining:MineralDeposit ;
+    rdfs:range xsd:string .
+
+mining:extractsCommodity a owl:ObjectProperty ;
+    rdfs:label "extracts commodity"@en ;
+    rdfs:domain mining:ExtractiveFacility ;
+    rdfs:range provider:CommodityConcept .
+
+mining:facilityEquipment a owl:DatatypeProperty ;
+    rdfs:label "facility equipment"@en ;
+    rdfs:range xsd:string .
+
+mining:gadmIdentifier a owl:DatatypeProperty ;
+    rdfs:label "GADM identifier"@en ;
+    rdfs:range xsd:string .
+
+mining:gradePpm a owl:DatatypeProperty ;
+    rdfs:label "grade in parts per million"@en ;
+    rdfs:domain mining:MiningObservation ;
+    rdfs:range xsd:decimal .
+
+mining:hasEconomicActivity a owl:ObjectProperty ;
+    rdfs:label "has economic activity"@en ;
+    rdfs:comment "Links a facility to an activity concept in a versioned classification such as ISIC or NACE."@en ;
+    rdfs:domain provider:IndustrialFacility ;
+    rdfs:range skos:Concept .
+
+mining:hasExtractionSite a owl:ObjectProperty ;
+    rdfs:label "has extraction site"@en ;
+    rdfs:domain mining:Mine ;
+    rdfs:range mining:ExtractionSite .
+
+mining:hasMiningFootprint a owl:ObjectProperty ;
+    rdfs:label "has mining footprint"@en ;
+    rdfs:domain mining:ExtractiveFacility ;
+    rdfs:range mining:MiningFootprint .
+
+mining:hasWasteFacility a owl:ObjectProperty ;
+    rdfs:label "has waste facility"@en ;
+    rdfs:domain mining:Mine ;
+    rdfs:range mining:WasteStorageFacility .
+
+mining:inferenceMethod a owl:DatatypeProperty ;
+    rdfs:label "inference method"@en ;
+    rdfs:range xsd:string .
+
+mining:inputMaterial a owl:ObjectProperty ;
+    rdfs:label "input material"@en ;
+    rdfs:domain mining:ProcessingObservation ;
+    rdfs:range provider:Material .
+
+mining:inputValueTonnes a owl:DatatypeProperty ;
+    rdfs:label "input value in tonnes"@en ;
+    rdfs:domain mining:ProcessingObservation ;
+    rdfs:range xsd:decimal .
+
+mining:isExport a owl:DatatypeProperty ;
+    rdfs:label "is export"@en ;
+    rdfs:domain mining:MaterialTransportRelation ;
+    rdfs:range xsd:boolean .
+
+mining:locatedInCountry a owl:ObjectProperty ;
+    rdfs:label "located in country"@en ;
+    rdfs:domain geo:Feature ;
+    rdfs:range provider:Country .
+
+mining:mappedConcept a owl:ObjectProperty ;
+    rdfs:label "mapped concept"@en ;
+    rdfs:domain mining:ClassificationAssertion ;
+    rdfs:range skos:Concept .
+
+mining:mappingConfidence a owl:DatatypeProperty ;
+    rdfs:label "mapping confidence"@en ;
+    rdfs:domain mining:ClassificationAssertion ;
+    rdfs:range xsd:decimal .
+
+mining:mappingMethod a owl:DatatypeProperty ;
+    rdfs:label "mapping method"@en ;
+    rdfs:domain mining:ClassificationAssertion ;
+    rdfs:range xsd:string .
+
+mining:method a owl:DatatypeProperty ;
+    rdfs:label "method"@en ;
+    rdfs:range xsd:string .
+
+mining:numericValue a owl:DatatypeProperty ;
+    rdfs:label "numeric value"@en ;
+    rdfs:domain mining:MiningObservation ;
+    rdfs:range xsd:decimal .
+
+mining:observationYear a owl:DatatypeProperty ;
+    rdfs:label "observation year"@en ;
+    rdfs:domain mining:MiningObservation ;
+    rdfs:range xsd:gYear .
+
+mining:observedCountry a owl:ObjectProperty ;
+    rdfs:label "observed country"@en ;
+    rdfs:domain mining:MiningObservation ;
+    rdfs:range provider:Country ;
+    rdfs:subPropertyOf provider:observedFor .
+
+mining:observedFacility a owl:ObjectProperty ;
+    rdfs:label "observed facility"@en ;
+    rdfs:domain mining:MiningObservation ;
+    rdfs:range provider:InfrastructureAsset ;
+    rdfs:subPropertyOf provider:observedFor .
+
+mining:observedMaterial a owl:ObjectProperty ;
+    rdfs:label "observed material"@en ;
+    rdfs:domain mining:MiningObservation ;
+    rdfs:range skos:Concept .
+
+mining:operationFacility a owl:ObjectProperty ;
+    rdfs:label "operation facility"@en ;
+    rdfs:domain mining:OperationRelation ;
+    rdfs:range provider:InfrastructureAsset .
+
+mining:operator a owl:ObjectProperty ;
+    rdfs:label "operator"@en ;
+    rdfs:domain mining:OperationRelation ;
+    rdfs:range provider:Organization .
+
+mining:otherName a owl:DatatypeProperty ;
+    rdfs:label "other name"@en ;
+    rdfs:range xsd:string .
+
+mining:owner a owl:ObjectProperty ;
+    rdfs:label "owner"@en ;
+    rdfs:domain mining:OwnershipRelation ;
+    rdfs:range provider:Organization .
+
+mining:ownershipFacility a owl:ObjectProperty ;
+    rdfs:label "ownership facility"@en ;
+    rdfs:domain mining:OwnershipRelation ;
+    rdfs:range provider:InfrastructureAsset .
+
+mining:ownershipShare a owl:DatatypeProperty ;
+    rdfs:label "ownership share"@en ;
+    rdfs:comment "Fraction from 0 to 1."@en ;
+    rdfs:domain mining:OwnershipRelation ;
+    rdfs:range xsd:decimal .
+
+mining:parentFacility a owl:ObjectProperty ;
+    rdfs:label "parent facility"@en ;
+    rdfs:domain provider:InfrastructureAsset ;
+    rdfs:range provider:InfrastructureAsset .
+
+mining:partOfMiningProject a owl:ObjectProperty ;
+    rdfs:label "part of mining project"@en ;
+    rdfs:domain geo:Feature ;
+    rdfs:range mining:MiningProject .
+
+mining:primaryCommodity a owl:ObjectProperty ;
+    rdfs:label "primary commodity"@en ;
+    rdfs:domain provider:IndustrialFacility ;
+    rdfs:range provider:CommodityConcept .
+
+mining:processesMaterial a owl:ObjectProperty ;
+    rdfs:label "processes material"@en ;
+    rdfs:domain provider:ProcessingFacility ;
+    rdfs:range provider:Material .
+
+mining:producesMaterial a owl:ObjectProperty ;
+    rdfs:label "produces material"@en ;
+    rdfs:domain provider:IndustrialFacility ;
+    rdfs:range provider:Material .
+
+mining:productionEndYear a owl:DatatypeProperty ;
+    rdfs:label "production end year"@en ;
+    rdfs:range xsd:gYear .
+
+mining:productionSizeClass a owl:DatatypeProperty ;
+    rdfs:label "production size class"@en ;
+    rdfs:domain mining:Mine ;
+    rdfs:range xsd:string .
+
+mining:productionStartYear a owl:DatatypeProperty ;
+    rdfs:label "production start year"@en ;
+    rdfs:range xsd:gYear .
+
+mining:qualityNote a owl:DatatypeProperty ;
+    rdfs:label "quality note"@en ;
+    rdfs:range xsd:string .
+
+mining:rawRecordJson a owl:DatatypeProperty ;
+    rdfs:label "raw source record as JSON"@en ;
+    rdfs:domain provider:SourceRecord ;
+    rdfs:range rdfs:Literal .
+
+mining:recoveryRate a owl:DatatypeProperty ;
+    rdfs:label "recovery rate"@en ;
+    rdfs:domain mining:MiningObservation ;
+    rdfs:range xsd:decimal .
+
+mining:referenceText a owl:DatatypeProperty ;
+    rdfs:label "reference text"@en ;
+    rdfs:range xsd:string .
+
+mining:reportingPeriod a owl:DatatypeProperty ;
+    rdfs:label "reporting period"@en ;
+    rdfs:domain mining:MiningObservation ;
+    rdfs:range xsd:string .
+
+mining:sourceConcept a owl:ObjectProperty ;
+    rdfs:label "source concept"@en ;
+    rdfs:domain mining:ClassificationAssertion ;
+    rdfs:range skos:Concept .
+
+mining:sourceDataset a owl:ObjectProperty ;
+    rdfs:label "source dataset"@en ;
+    rdfs:range prov:Entity .
+
+mining:sourceIdentifier a owl:DatatypeProperty ;
+    rdfs:label "source identifier"@en ;
+    rdfs:range xsd:string .
+
+mining:sourceRowNumber a owl:DatatypeProperty ;
+    rdfs:label "source row number"@en ;
+    rdfs:domain provider:SourceRecord ;
+    rdfs:range xsd:positiveInteger .
+
+mining:sourceTable a owl:DatatypeProperty ;
+    rdfs:label "source table"@en ;
+    rdfs:domain provider:SourceRecord ;
+    rdfs:range xsd:string .
+
+mining:status a owl:ObjectProperty ;
+    rdfs:label "status"@en ;
+    rdfs:domain mining:StatusObservation ;
+    rdfs:range skos:Concept .
+
+mining:surfaceAreaSquareKilometres a owl:DatatypeProperty ;
+    rdfs:label "surface area in square kilometres"@en ;
+    rdfs:range xsd:decimal .
+
+mining:transportDestination a owl:ObjectProperty ;
+    rdfs:label "transport destination"@en ;
+    rdfs:domain mining:MaterialTransportRelation ;
+    rdfs:range owl:Thing .
+
+mining:transportMode a owl:DatatypeProperty ;
+    rdfs:label "transport mode"@en ;
+    rdfs:domain mining:MaterialTransportRelation ;
+    rdfs:range xsd:string .
+
+mining:transportOrigin a owl:ObjectProperty ;
+    rdfs:label "transport origin"@en ;
+    rdfs:domain mining:MaterialTransportRelation ;
+    rdfs:range provider:InfrastructureAsset .
+
+mining:transportedMaterial a owl:ObjectProperty ;
+    rdfs:label "transported material"@en ;
+    rdfs:domain mining:MaterialTransportRelation ;
+    rdfs:range provider:Material .
+
+mining:unitCode a owl:DatatypeProperty ;
+    rdfs:label "unit code"@en ;
+    rdfs:domain mining:MiningObservation ;
+    rdfs:range xsd:string .
+
+mining:validFrom a owl:DatatypeProperty ;
+    rdfs:label "valid from"@en ;
+    rdfs:range xsd:date .
+
+mining:validTo a owl:DatatypeProperty ;
+    rdfs:label "valid to"@en ;
+    rdfs:range xsd:date .
+
+mining:validYear a owl:DatatypeProperty ;
+    rdfs:label "valid year"@en ;
+    rdfs:range xsd:gYear .
+
+provider:Commodity a owl:Class ;
+    rdfs:label "commodity"@en .
+
+mining:ExtractionSite a owl:Class ;
+    rdfs:label "extraction site"@en ;
+    rdfs:comment "A spatially distinct pit, shaft, underground operation or other extraction sub-site belonging to a mine."@en ;
+    rdfs:subClassOf geo:Feature .
+
+mining:MiningFootprint a owl:Class ;
+    rdfs:label "mining footprint"@en ;
+    rdfs:comment "An observed or delineated surface area affected by mining, potentially including pits, waste rock, ponds, tailings and processing infrastructure."@en ;
+    rdfs:subClassOf geo:Feature .
+
+mining:MiningProject a owl:Class ;
+    rdfs:label "mining project"@en ;
+    rdfs:comment "A development or business project that may comprise multiple deposits, pits, shafts, plants and waste facilities."@en ;
+    rdfs:subClassOf geo:Feature .
+
+mining:StatusObservation a owl:Class ;
+    rdfs:label "facility status observation"@en ;
+    rdfs:subClassOf mining:MiningObservation .
+
+mining:WasteStorageFacility a owl:Class ;
+    rdfs:label "mining waste storage facility"@en ;
+    rdfs:subClassOf geo:Feature,
+        provider:InfrastructureAsset .
+
+provider:Country a owl:Class ;
+    rdfs:label "country"@en .
+
+provider:Organization a owl:Class ;
+    rdfs:label "organization"@en .
+
+mining:OperationRelation a owl:Class ;
+    rdfs:label "operation relation"@en ;
+    rdfs:subClassOf prov:Entity .
+
+mining:ProcessingObservation a owl:Class ;
+    rdfs:label "processing observation"@en ;
+    rdfs:subClassOf mining:ProductionObservation .
+
+mining:ProductionObservation a owl:Class ;
+    rdfs:label "production observation"@en ;
+    rdfs:subClassOf mining:MiningObservation .
+
+provider:SourceRecord a owl:Class ;
+    rdfs:label "source record"@en ;
+    rdfs:comment "A row or record from a source dataset, retained to provide record-level provenance."@en ;
+    rdfs:subClassOf prov:Entity .
+
+mining:MineralDeposit a owl:Class ;
+    rdfs:label "mineral deposit"@en ;
+    rdfs:comment "A geological concentration of mineral material, independently of whether it is currently mined."@en ;
+    rdfs:subClassOf geo:Feature .
+
+mining:OwnershipRelation a owl:Class ;
+    rdfs:label "ownership relation"@en ;
+    rdfs:comment "A time-qualified relation connecting an organization to an owned facility or project."@en ;
+    rdfs:subClassOf prov:Entity .
+
+mining:ExtractiveFacility a owl:Class ;
+    rdfs:label "extractive facility"@en ;
+    rdfs:comment "A facility whose principal role is the extraction of geological materials."@en ;
+    rdfs:subClassOf geo:Feature,
+        provider:IndustrialFacility .
+
+mining:Mine a owl:Class ;
+    rdfs:label "mine"@en ;
+    rdfs:comment "An operational, planned, suspended or closed facility at which minerals or coal are extracted. A mine is not identical to the underlying geological deposit."@en ;
+    rdfs:subClassOf mining:ExtractiveFacility .
+
+provider:ProcessingFacility a owl:Class ;
+    rdfs:label "mineral processing facility"@en ;
+    rdfs:subClassOf geo:Feature,
+        provider:IndustrialFacility .
+
+mining:ClassificationAssertion a owl:Class ;
+    rdfs:label "classification assertion"@en ;
+    rdfs:comment "A provenance-bearing assertion that maps a source concept or label to a canonical commodity, product, or economic-activity concept."@en ;
+    rdfs:subClassOf prov:Entity .
+
+mining:MaterialTransportRelation a owl:Class ;
+    rdfs:label "material transport relation"@en ;
+    rdfs:comment "A source-reported or inferred movement of mining material from a facility toward a destination."@en ;
+    rdfs:subClassOf prov:Entity .
+
+provider:IndustrialFacility a owl:Class ;
+    rdfs:label "industrial facility"@en ;
+    rdfs:subClassOf provider:InfrastructureAsset .
+
+provider:Material a owl:Class ;
+    rdfs:label "material"@en .
+
+provider:InfrastructureAsset a owl:Class ;
+    rdfs:label "infrastructure asset"@en .
+
+mining:MiningObservation a owl:Class ;
+    rdfs:label "mining observation"@en ;
+    rdfs:subClassOf prov:Entity,
+        provider:Observation .
+

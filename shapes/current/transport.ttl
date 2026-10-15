@@ -1,0 +1,17 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix n: <https://projekt-provider.de/ontology/network#> .
+@prefix p: <https://projekt-provider.de/ontology/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix s: <https://projekt-provider.de/ontology/shapes/transport#> .
+s:Segment a sh:NodeShape ; sh:targetClass n:Segment ;
+ sh:property [ sh:path n:startsAt ; sh:class n:Junction ; sh:minCount 1 ; sh:maxCount 1 ], [ sh:path n:endsAt ; sh:class n:Junction ; sh:minCount 1 ; sh:maxCount 1 ], [ sh:path n:representedAsset ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ], [ sh:path n:lengthMetres ; sh:datatype xsd:decimal ; sh:minExclusive 0 ; sh:minCount 1 ], [ sh:path n:transportMode ; sh:in ("road" "rail") ; sh:minCount 1 ; sh:maxCount 1 ] .
+s:Traversal a sh:NodeShape ; sh:targetClass n:Traversal ;
+ sh:property [ sh:path n:traverses ; sh:class n:Segment ; sh:minCount 1 ; sh:maxCount 1 ], [ sh:path n:transportMode ; sh:in ("road" "rail") ; sh:minCount 1 ; sh:maxCount 1 ], [ sh:path n:fromJunction ; sh:class n:Junction ; sh:minCount 1 ; sh:maxCount 1 ], [ sh:path n:toJunction ; sh:class n:Junction ; sh:minCount 1 ; sh:maxCount 1 ] ;
+ sh:sparql [ sh:message "Traversal endpoints must match segment endpoints in either direction; mode must agree." ; sh:select """PREFIX n: <https://projekt-provider.de/ontology/network#>
+ SELECT $this WHERE { $this n:traverses ?s ; n:fromJunction ?f ; n:toJunction ?t ; n:transportMode ?mode . ?s n:startsAt ?a ; n:endsAt ?b ; n:transportMode ?sm . FILTER((!(?f=?a && ?t=?b) && !(?f=?b && ?t=?a)) || ?mode!=?sm) }""" ] .
+s:Path a sh:NodeShape ; sh:targetClass n:TransportPath ;
+ sh:property [ sh:path n:transportMode ; sh:in ("road" "rail") ; sh:minCount 1 ; sh:maxCount 1 ], [ sh:path p:assertionMode ; sh:hasValue p:Modelled ], [ sh:path n:lengthMetres ; sh:minCount 1 ; sh:datatype xsd:decimal ; sh:minInclusive 0 ] .
+s:Step a sh:NodeShape ; sh:targetClass n:RouteStep ;
+ sh:property [ sh:path n:inRoute ; sh:class n:TransportPath ; sh:minCount 1 ; sh:maxCount 1 ], [ sh:path n:segment ; sh:class n:Segment ; sh:minCount 1 ; sh:maxCount 1 ], [ sh:path n:stepTraversal ; sh:class n:Traversal ; sh:minCount 1 ; sh:maxCount 1 ], [ sh:path n:sequenceIndex ; sh:datatype xsd:nonNegativeInteger ; sh:minCount 1 ; sh:maxCount 1 ] ;
+ sh:sparql [ sh:message "Ordered route steps must connect and cannot use a scenario-closed segment." ; sh:select """PREFIX n: <https://projekt-provider.de/ontology/network#>
+ SELECT $this WHERE { $this n:inRoute ?r ; n:sequenceIndex ?i ; n:segment ?s ; n:stepTraversal ?a . ?a n:traverses ?actual ; n:transportMode ?am . ?r n:transportMode ?rm . FILTER(?actual!=?s || ?am!=?rm || EXISTS { ?r n:underScenario/n:closedSegment ?s } || EXISTS { ?other n:inRoute ?r ; n:sequenceIndex ?j ; n:stepTraversal ?b . ?a n:toJunction ?t . ?b n:fromJunction ?f . FILTER(?j=?i+1 && ?t!=?f) }) }""" ] .

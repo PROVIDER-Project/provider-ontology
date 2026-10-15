@@ -1,10 +1,11 @@
-# Fachprofile im Kandidaten 0.3.0-rc2
+# Fachprofile im Kandidaten 0.3.0-rc3
 
 Namespace: `https://projekt-provider.de/ontology/`. Der vollständige Einstieg `ontology/current/provider.ttl` bleibt für Gesamtprüfungen verfügbar. Anwendungen wählen unter `ontology/current/profiles/`:
 
 | Profil | Verwendung |
 |---|---|
 | core | Allgemeine Anlagen, Akteure, Ergebnisse, Messwerte, Quellen und qualifizierte Aussagen |
+| transport | Straßen-/Bahnobjekte, getrennte Topologie, gerichtete Traversierungen und Sperrszenarien |
 | statistics | GENESIS, Comext, Klassifikationen, Perioden, fehlende Werte und Einheiten |
 | maritime | Häfen, CPPI, Routentopologie und gemeinsame Messwerte |
 | mining | Anlagen, Materialien, Quellenintegration und gemeinsame Messwerte; ohne Pilot/Matching-Erweiterungen |

@@ -1,0 +1,43 @@
+@prefix mining: <https://projekt-provider.de/ontology/mining#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+mining:EntityAlignmentAssertionShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mining:sourceEntity ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mining:targetEntity ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mining:alignmentRelation ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 1 ;
+            sh:minCount 1 ;
+            sh:minInclusive 0 ;
+            sh:path mining:alignmentConfidence ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mining:reviewStatus ] ;
+    sh:targetClass mining:EntityAlignmentAssertion .
+
+mining:MaterialMappingAssertionShape a sh:NodeShape ;
+    sh:property [ sh:minCount 1 ;
+            sh:path mining:appliesToFacility ],
+        [ sh:minCount 1 ;
+            sh:path mining:mappedConcept ],
+        [ sh:minCount 1 ;
+            sh:path mining:sourceValue ],
+        [ sh:datatype xsd:decimal ;
+            sh:minCount 1 ;
+            sh:path mining:mappingConfidence ] ;
+    sh:targetClass mining:MaterialMappingAssertion .
+
+mining:MiningObservation rdfs:subClassOf provider:Observation .
+
+mining:observedFacility rdfs:subPropertyOf provider:observedFor .
+

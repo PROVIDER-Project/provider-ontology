@@ -18,8 +18,8 @@ provider:ports a owl:Ontology ;
     dct:title "PROVIDER AP2 pilot model profile"@en ;
     owl:imports provider:,
         provider:infrastructure ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/ports> ;
-    owl:versionInfo "0.3.0-rc2" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc3/ports> ;
+    owl:versionInfo "0.3.0-rc3" .
 
 ports:Accepted a prov:Entity .
 

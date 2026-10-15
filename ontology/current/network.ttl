@@ -2,7 +2,9 @@
 @prefix infra: <https://projekt-provider.de/ontology/infrastructure#> .
 @prefix network: <https://projekt-provider.de/ontology/network#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -12,8 +14,8 @@ provider:network a owl:Ontology ;
     dct:license <https://opensource.org/license/mit> ;
     dct:modified "2026-10-14"^^xsd:date ;
     owl:imports provider:infrastructure ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/network> ;
-    owl:versionInfo "0.3.0-rc2" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc3/network> ;
+    owl:versionInfo "0.3.0-rc3" .
 
 network:Circuit a owl:Class ;
     rdfs:label "Circuit"@en ;
@@ -95,8 +97,13 @@ network:RoadSegment a owl:Class ;
     rdfs:subClassOf network:Segment ;
     skos:note "OSM mapping: highway=* ways"@en .
 
-network:RouteStep a owl:Class ;
-    rdfs:label "Route-specific ordered segment occurrence"@en .
+network:TurnRestriction a owl:Class ;
+    rdfs:label "Captured turn restriction"@en .
+
+network:closedSegment a owl:ObjectProperty ;
+    rdfs:label "Segment excluded by hypothetical closure"@en ;
+    rdfs:domain network:ClosureScenario ;
+    rdfs:range network:Segment .
 
 network:endsAt a owl:ObjectProperty ;
     rdfs:label "ends at"@en ;
@@ -104,13 +111,33 @@ network:endsAt a owl:ObjectProperty ;
     rdfs:domain network:Segment ;
     rdfs:range network:Junction .
 
+network:fromJunction a owl:ObjectProperty ;
+    rdfs:label "Traversal departure junction"@en ;
+    rdfs:domain network:Traversal ;
+    rdfs:range network:Junction .
+
 network:inRoute a owl:ObjectProperty ;
     rdfs:label "inRoute"@en ;
     rdfs:range network:Route .
 
+network:lengthMetres a owl:DatatypeProperty ;
+    rdfs:label "Geometric length in metres"@en ;
+    rdfs:range xsd:decimal .
+
+network:originalTags a owl:DatatypeProperty ;
+    rdfs:label "Original OSM tags as JSON text"@en ;
+    rdfs:range xsd:string .
+
 network:previousSegment a owl:ObjectProperty ;
     rdfs:label "previous segment"@en ;
+    rdfs:comment "Compatibility adjacency only; use directed Traversal and route-specific occurrences for routing."@en ;
+    owl:deprecated true ;
     owl:inverseOf network:nextSegment .
+
+network:representedAsset a owl:ObjectProperty ;
+    rdfs:label "Physical infrastructure represented by a segment"@en ;
+    rdfs:domain network:Segment ;
+    rdfs:range infra:TransportationInfrastructure .
 
 network:routeRole a owl:DatatypeProperty ;
     rdfs:label "route role"@en ;
@@ -118,7 +145,8 @@ network:routeRole a owl:DatatypeProperty ;
         The role of a segment in a route relation. Maps to OSM 'role' in relations.
     """@en ;
     rdfs:domain network:Segment ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:string ;
+    owl:deprecated true .
 
 network:routeSequence a owl:DatatypeProperty ;
     rdfs:label "route sequence"@en ;
@@ -142,16 +170,58 @@ network:sequenceIndex a owl:DatatypeProperty ;
     rdfs:label "route step index"@en ;
     rdfs:range xsd:nonNegativeInteger .
 
+network:sourceNodeId a owl:DatatypeProperty ;
+    rdfs:label "Original OSM node identifier"@en ;
+    rdfs:range xsd:integer .
+
+network:sourceWayId a owl:DatatypeProperty ;
+    rdfs:label "Original OSM way identifier"@en ;
+    rdfs:range xsd:integer .
+
 network:startsAt a owl:ObjectProperty ;
     rdfs:label "starts at"@en ;
     rdfs:comment "The junction/node where this segment begins."@en ;
     rdfs:domain network:Segment ;
     rdfs:range network:Junction .
 
+network:stepRole a owl:DatatypeProperty ;
+    rdfs:label "Route occurrence direction or role"@en ;
+    rdfs:domain network:RouteStep ;
+    rdfs:range xsd:string .
+
+network:stepTraversal a owl:ObjectProperty ;
+    rdfs:label "Directed traversal used by route step"@en ;
+    rdfs:domain network:RouteStep ;
+    rdfs:range network:Traversal .
+
+network:toJunction a owl:ObjectProperty ;
+    rdfs:label "Traversal arrival junction"@en ;
+    rdfs:domain network:Traversal ;
+    rdfs:range network:Junction .
+
+network:transportMode a owl:DatatypeProperty ;
+    rdfs:label "Transport mode road or rail"@en ;
+    rdfs:range xsd:string .
+
+network:traverses a owl:ObjectProperty ;
+    rdfs:label "Segment of a directed traversal"@en ;
+    rdfs:domain network:Traversal ;
+    rdfs:range network:Segment .
+
+network:underScenario a owl:ObjectProperty ;
+    rdfs:label "Closure scenario used for a modeled path"@en ;
+    rdfs:domain network:TransportPath ;
+    rdfs:range network:ClosureScenario .
+
+network:TransportPath a owl:Class ;
+    rdfs:label "Computed transport path"@en ;
+    rdfs:subClassOf provider:RouteEstimate,
+        network:Route .
+
 network:hasSegment a owl:ObjectProperty ;
     rdfs:label "has segment"@en ;
     rdfs:comment "Links a network or route to its constituent segments."@en ;
-    rdfs:domain network:Network ;
+    rdfs:domain [ owl:unionOf ( network:Network network:Route ) ] ;
     rdfs:range network:Segment .
 
 network:nextSegment a owl:ObjectProperty ;
@@ -159,9 +229,20 @@ network:nextSegment a owl:ObjectProperty ;
     rdfs:comment """
         Links a segment to the next segment in the network traversal direction.
         Enables path-finding and network analysis.
-    """@en ;
+    """@en,
+        "Compatibility adjacency only; use directed Traversal and route-specific occurrences for routing."@en ;
     rdfs:domain network:Segment ;
-    rdfs:range network:Segment .
+    rdfs:range network:Segment ;
+    owl:deprecated true .
+
+network:ClosureScenario a owl:Class ;
+    rdfs:label "Explicitly hypothetical segment closure"@en .
+
+network:RouteStep a owl:Class ;
+    rdfs:label "Route-specific ordered segment occurrence"@en .
+
+network:Traversal a owl:Class ;
+    rdfs:label "Directed permissible traversal candidate"@en .
 
 network:Junction a owl:Class ;
     rdfs:label "Junction"@en ;
@@ -171,15 +252,6 @@ network:Junction a owl:Class ;
     """@en ;
     rdfs:subClassOf infra:InfrastructureFeature .
 
-network:Route a owl:Class ;
-    rdfs:label "Route"@en ;
-    rdfs:comment """
-        A named path through a network, composed of ordered segments. Maps to 
-        OSM relations with type=route. Examples: 'Interstate 95', 'EuroVelo 6', 
-        'Pipeline XYZ'.
-    """@en ;
-    rdfs:subClassOf network:Network .
-
 network:Network a owl:Class ;
     rdfs:label "Network"@en ;
     rdfs:comment """
@@ -187,7 +259,16 @@ network:Network a owl:Class ;
         entity (e.g., 'the German Autobahn network', 'the UK National Grid', 
         'the Trans-Siberian Railway').
     """@en ;
-    rdfs:subClassOf infra:InfrastructureFeature .
+    rdfs:subClassOf prov:Entity .
+
+network:Route a owl:Class ;
+    rdfs:label "Route"@en ;
+    rdfs:comment """
+        A named path through a network, composed of ordered segments. Maps to 
+        OSM relations with type=route. Examples: 'Interstate 95', 'EuroVelo 6', 
+        'Pipeline XYZ'.
+    """@en ;
+    rdfs:subClassOf provider:Route .
 
 network:Segment a owl:Class ;
     rdfs:label "Segment"@en ;

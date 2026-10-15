@@ -27,8 +27,8 @@ provider:mining-pilot a owl:Ontology ;
     dct:license <https://opensource.org/license/mit> ;
     dct:modified "2026-10-14"^^xsd:date ;
     owl:imports provider:mining-integration ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/mining-pilot> ;
-    owl:versionInfo "0.3.0-rc2" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc3/mining-pilot> ;
+    owl:versionInfo "0.3.0-rc3" .
 
 
 mining:AlignmentRelation a owl:Class ; rdfs:label "Qualified alignment relation kind"@en ; rdfs:comment "Controlled relation kind used in review assertions, not an automatic identity assertion."@en .

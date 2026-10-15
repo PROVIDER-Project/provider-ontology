@@ -114,7 +114,9 @@ def competency_questions(root=ROOT):
     root=Path(root);_,schema=load(root);data=Graph().parse(root/'examples/current/ap2-example.ttl')
     graph=schema+data;results=[]
     for cq in json.loads((root/'docs/competency-questions.json').read_text())['questions']:
-        query=member(root,cq['query']).read_text();result=graph.query(query)
+        query=member(root,cq['query']).read_text()
+        question_graph=graph+Graph().parse(member(root,cq['fixture'])) if cq.get('fixture') else graph
+        result=question_graph.query(query)
         if result.type=='ASK':actual=bool(result.askAnswer)
         else:actual=sorted([['' if v is None else str(v) for v in row] for row in result])
         results.append({'id':cq['id'],'passed':actual==cq['expected'],'actual':actual,'expected':cq['expected']})

@@ -1,0 +1,96 @@
+@prefix mining: <https://projekt-provider.de/ontology/mining#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+mining:ClassificationAssertionShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mining:appliesToFacility ],
+        [ sh:class skos:Concept ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mining:sourceConcept ],
+        [ sh:class skos:Concept ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mining:mappedConcept ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 1 ;
+            sh:minCount 1 ;
+            sh:minInclusive 0 ;
+            sh:path mining:mappingConfidence ] ;
+    sh:targetClass mining:ClassificationAssertion .
+
+mining:MineShape a sh:NodeShape ;
+    sh:property [ sh:datatype rdf:langString ;
+            sh:message "A mine must have at least one language-tagged label."@en ;
+            sh:minCount 1 ;
+            sh:path rdfs:label ],
+        [ sh:datatype xsd:string ;
+            sh:minCount 1 ;
+            sh:path mining:sourceIdentifier ] ;
+    sh:targetClass mining:Mine .
+
+mining:MiningObservationShape a sh:NodeShape ;
+    sh:or ( [ sh:property [ sh:class provider:InfrastructureAsset ;
+                        sh:maxCount 1 ;
+                        sh:minCount 1 ;
+                        sh:path mining:observedFacility ] ] [ sh:property [ sh:class provider:Country ;
+                        sh:maxCount 1 ;
+                        sh:minCount 1 ;
+                        sh:path mining:observedCountry ] ] ) ;
+    sh:property [ sh:datatype xsd:gYear ;
+            sh:maxCount 1 ;
+            sh:path mining:observationYear ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:path mining:numericValue ] ;
+    sh:targetClass mining:MiningObservation .
+
+mining:OwnershipRelationShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mining:ownershipFacility ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mining:owner ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxInclusive 1 ;
+            sh:minInclusive 0 ;
+            sh:path mining:ownershipShare ] ;
+    sh:targetClass mining:OwnershipRelation .
+
+mining:ProcessingFacilityShape a sh:NodeShape ;
+    sh:property [ sh:minCount 1 ;
+            sh:path rdfs:label ] ;
+    sh:targetClass provider:ProcessingFacility .
+
+mining:ProductionObservationShape a sh:NodeShape ;
+    sh:or ( [ sh:property [ sh:minCount 1 ;
+                        sh:path mining:numericValue ] ] [ sh:property [ sh:minCount 1 ;
+                        sh:path sosa:hasSimpleResult ] ] ) ;
+    sh:property [ sh:class skos:Concept ;
+            sh:minCount 1 ;
+            sh:path mining:observedMaterial ] ;
+    sh:targetClass mining:ProductionObservation .
+
+mining:SourceRecordShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mining:sourceDataset ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mining:sourceTable ] ;
+    sh:targetClass provider:SourceRecord .
+
+mining:MiningObservation rdfs:subClassOf provider:Observation .
+
+mining:observedFacility rdfs:subPropertyOf provider:observedFor .
+

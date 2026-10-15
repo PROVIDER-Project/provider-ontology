@@ -1,0 +1,4 @@
+PREFIX n: <https://projekt-provider.de/ontology/network#>
+PREFIX p: <https://projekt-provider.de/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ASK { ?a rdfs:label "Synthetic plant to port reference points" ; n:lengthMetres ?x . ?b rdfs:label "Hypothetical bridge closure, alternative road" ; n:lengthMetres ?y ; n:underScenario ?scenario . FILTER(?y>?x) FILTER NOT EXISTS { ?step n:inRoute ?b ; n:segment ?closed . ?scenario n:closedSegment ?closed } }

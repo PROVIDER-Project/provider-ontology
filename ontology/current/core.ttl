@@ -19,8 +19,8 @@ provider: a owl:Ontology ;
         actions. Infrastructure and supply-chain modules specialize these
         concepts without duplicating the core upper vocabulary.
     """@en ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/core> ;
-    owl:versionInfo "0.3.0-rc2" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc3/core> ;
+    owl:versionInfo "0.3.0-rc3" .
 
 provider:AgriculturalSector a owl:Class ;
     rdfs:label "Landwirtschaftssektor"@de,

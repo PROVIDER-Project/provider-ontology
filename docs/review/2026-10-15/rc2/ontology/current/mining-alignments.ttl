@@ -1,0 +1,37 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix mining: <https://projekt-provider.de/ontology/mining#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix provider: <https://projekt-provider.de/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+provider:Organization rdfs:subClassOf prov:Agent,
+        schema:Organization .
+
+provider:ProcessingFacility rdfs:subClassOf geo:Feature,
+        schema:Place .
+
+provider:SourceRecord rdfs:subClassOf prov:Entity .
+
+mining:ExtractiveFacility rdfs:subClassOf geo:Feature,
+        schema:Place .
+
+mining:MineralDeposit rdfs:subClassOf geo:Feature,
+        schema:Place .
+
+mining:MiningObservation rdfs:subClassOf prov:Entity,
+        provider:Observation .
+
+mining:observedFacility rdfs:subPropertyOf provider:observedFor .
+
+provider:mining-alignments a owl:Ontology ;
+    rdfs:label "PROVIDER mining-alignments"@en ;
+    dct:license <https://opensource.org/license/mit> ;
+    dct:modified "2026-10-14"^^xsd:date ;
+    owl:imports provider:mining ;
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/mining-alignments> ;
+    owl:versionInfo "0.3.0-rc2" .
+

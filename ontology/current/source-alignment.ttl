@@ -23,8 +23,8 @@ provider:source-alignment a owl:Ontology ;
     dct:modified "2026-10-14"^^xsd:date ;
     rdfs:comment "Explicit opt-in source compatibility layer. No wholesale HTTP/HTTPS equivalence or URI replacement."@en ;
     owl:imports provider:ports ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/source-alignment> ;
-    owl:versionInfo "0.3.0-rc2" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc3/source-alignment> ;
+    owl:versionInfo "0.3.0-rc3" .
 
 
 provider:Port a owl:Class ; rdfs:label "Legacy source port feature"@en .

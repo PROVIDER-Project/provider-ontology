@@ -4,9 +4,9 @@
 
 **Zielnamensraum: `https://projekt-provider.de/ontology/`.**
 
-Der lokale Reviewkandidat **0.3.0-rc2** liegt ausschließlich unter [`ontology/current/`](ontology/current/). Schlanke Einstiege: [`Fachprofile`](docs/model-profiles.md); vollständige Gesamtprüfung: [`provider.ttl`](ontology/current/provider.ttl). Das [Release-Manifest](docs/current-release.json) bindet 17 Module, Imports und Validierungsprofile an konkrete Dateihashes. Der lokale XML-Katalog neben den Modulen ordnet Ontologie- und Versions-IRIs den Dateien zu. Die Website muss dafür nicht veröffentlicht sein; unsere Prüftools laden die Manifestdateien offline.
+Der lokale Reviewkandidat **0.3.0-rc3** liegt ausschließlich unter [`ontology/current/`](ontology/current/). Schlanke Einstiege: [`Fachprofile`](docs/model-profiles.md); vollständige Gesamtprüfung: [`provider.ttl`](ontology/current/provider.ttl). Das [Release-Manifest](docs/current-release.json) bindet 17 Module, Imports und Validierungsprofile an konkrete Dateihashes. Der lokale XML-Katalog neben den Modulen ordnet Ontologie- und Versions-IRIs den Dateien zu. Die Website muss dafür nicht veröffentlicht sein; unsere Prüftools laden die Manifestdateien offline.
 
-[Aktuelle Konsolidierung und Echtdatenabnahme](docs/ontology-consolidation.md) · [Fachprofile](docs/model-profiles.md) · [Vorheriger Review](docs/ontology-review.md) · [Kompetenzfragen](docs/competency-questions.md) · [Abdeckung aller 34 Registereinträge](docs/dataset-coverage.json)
+[Konsolidierungsbasis rc2 und Echtdatenabnahme](docs/ontology-consolidation.md) · [Fachprofile](docs/model-profiles.md) · [Vorheriger Review](docs/ontology-review.md) · [Kompetenzfragen](docs/competency-questions.md) · [Abdeckung aller 34 Registereinträge](docs/dataset-coverage.json)
 
 | Modul | Zweck |
 |---|---|
@@ -18,6 +18,8 @@ Der lokale Reviewkandidat **0.3.0-rc2** liegt ausschließlich unter [`ontology/c
 | `event.ttl` | Ereignisse, Gefahren, Konflikte und Exposition; kein automatischer Ausfallnachweis |
 | `supply-chain.ttl`, `source-alignment.ttl` | Lieferkettenoperationen und begrenzte Quellenausrichtungen |
 
+Aktuelle Ergänzung: [Transportprofil rc3](docs/transport-network.md), mit getrennter physischer Infrastruktur, Topologie und berechneten Sperrszenarien.
+
 ## Prüfen
 
 Validierungsumgebung mit `requirements-validation.txt` einrichten. Dann:
@@ -27,7 +29,7 @@ python -m unittest discover -s tests -v
 python tools/review_current.py --data examples/current/ap2-example.ttl --output output/current-review.json
 ```
 
-Das synthetische Gesamtbeispiel und 31 SPARQL-Kompetenzfragen prüfen Modellierbarkeit und semantische Grenzen. Das ist keine Bestätigung empirischer Vollständigkeit oder Partnerabnahme. OWL beschreibt Bedeutung; SHACL prüft die angegebenen Datenprofile ohne Domain-/Range-Inferenz und ohne Netzwerkimports.
+Das synthetische Gesamtbeispiel und 34 SPARQL-Kompetenzfragen prüfen Modellierbarkeit und semantische Grenzen. Das ist keine Bestätigung empirischer Vollständigkeit oder Partnerabnahme. OWL beschreibt Bedeutung; SHACL prüft die angegebenen Datenprofile ohne Domain-/Range-Inferenz und ohne Netzwerkimports.
 
 ## Comext gegen das gemeinsame Modell prüfen
 

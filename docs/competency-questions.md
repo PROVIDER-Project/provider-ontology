@@ -35,3 +35,11 @@ Stand 13.10.2026. Ausführbare Modelltests gegen ausdrücklich erfundene Daten; 
 | [CQ29](../queries/competency/CQ29.rq) | Kann eine Maßnahme Risiko und zuständigen Akteur verbinden? | True |
 | [CQ30](../queries/competency/CQ30.rq) | Ist eine PDL-Repräsentation von der physischen Anlage getrennt? | True |
 | [CQ31](../queries/competency/CQ31.rq) | Bleiben Transportprozess und Versanddokument verschieden? | True |
+
+## Transportnetz-Ergänzung rc3
+
+Die ausdrücklich erfundene Datei `examples/current/transport-example.ttl` ergänzt die bisherigen Beispiele.
+
+- CQ32: Sind die synthetischen Straßenreferenzpunkte durch eine berechnete Route verbunden?
+- CQ33: Hat die hypothetische Brückensperrung einen längeren Umweg ohne gesperrtes Segment?
+- CQ34: Sind Straßen- und Bahnrouten über gerichtete, routenspezifische Schritte nachvollziehbar?

@@ -1,0 +1,11 @@
+@prefix ports: <https://projekt-provider.de/ontology/ports#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+<https://projekt-provider.de/ontology/shapes/ports#SourceBoundary> a sh:NodeShape ;
+    sh:sparql [ sh:message "Canonical entities require the canonical validation profile." ;
+            sh:select "SELECT $this WHERE { FILTER(BOUND($this)) }" ] ;
+    sh:targetClass ports:Measurement,
+        ports:Observation,
+        ports:ObservationActivity,
+        ports:OperationalPort .
+

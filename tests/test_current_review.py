@@ -15,7 +15,7 @@ class CurrentReviewTests(unittest.TestCase):
     def test_structural_review_and_all_competency_questions(self):
         self.assertTrue(review.audit(ROOT)['passed'])
         questions=review.competency_questions(ROOT)
-        self.assertEqual(len(questions),31);self.assertTrue(all(q['passed'] for q in questions))
+        self.assertEqual(len(questions),34);self.assertTrue(all(q['passed'] for q in questions))
     def test_positive_shacl_without_mutating_data(self):
         data=self.fixture();before=set(data)
         self.assertTrue(review.validate_data(data)[0]);self.assertEqual(set(data),before)

@@ -1,0 +1,286 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix p: <https://projekt-provider.de/ontology/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+p:AnnualCoverage a owl:Class ;
+    rdfs:label "Annual coverage summary"@en ;
+    rdfs:subClassOf prov:Entity .
+
+p:CNSelection a owl:Class ;
+    rdfs:label "CNSelection"@en ;
+    rdfs:subClassOf p:ClassificationSelection .
+
+p:CPPIIndexScore a p:MeasurementKind ;
+    rdfs:label "CPPIIndexScore"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/DimensionlessIndex> .
+
+p:DroughtAreaShare a p:MeasurementKind ;
+    rdfs:label "DroughtAreaShare"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/Fraction> .
+
+p:EconomicActivityConcept a owl:Class ;
+    rdfs:label "EconomicActivityConcept"@en ;
+    rdfs:subClassOf p:ClassificationConcept .
+
+p:MissingCell a owl:Class ;
+    rdfs:label "Missing statistical cell"@en ;
+    rdfs:subClassOf p:StatisticalCell ;
+    owl:disjointWith p:Observation .
+
+p:NitrogenProductionMass a p:MeasurementKind ;
+    rdfs:label "NitrogenProductionMass"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/TonneNitrogen> .
+
+p:PortCallCount a p:MeasurementKind ;
+    rdfs:label "PortCallCount"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/Count> .
+
+p:PriceIndex a p:MeasurementKind ;
+    rdfs:label "PriceIndex"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/IndexPoint> .
+
+p:ProductionCapacity a p:MeasurementKind ;
+    rdfs:label "ProductionCapacity"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/TonnePerYear> .
+
+p:ProductionCount a p:MeasurementKind ;
+    rdfs:label "ProductionCount"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/Piece> .
+
+p:ProductionIndex a p:MeasurementKind ;
+    rdfs:label "ProductionIndex"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/IndexPoint> .
+
+p:ProductionMass a p:MeasurementKind ;
+    rdfs:label "ProductionMass"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/Tonne> .
+
+p:RasterObservation a owl:Class ;
+    rdfs:label "Spatially aggregated raster result"@en ;
+    rdfs:subClassOf p:Observation .
+
+p:RouteCalculation a owl:Class ;
+    rdfs:label "Route calculation activity"@en ;
+    rdfs:subClassOf prov:Activity .
+
+p:RouteDistance a p:MeasurementKind ;
+    rdfs:label "RouteDistance"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/NauticalMile> .
+
+p:SPI3 a p:MeasurementKind ;
+    rdfs:label "SPI3"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/DimensionlessIndex> .
+
+p:SourceDataset rdfs:subClassOf dcat:Dataset .
+
+p:SoyYield a p:MeasurementKind ;
+    rdfs:label "SoyYield"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/TonnePerHectare> .
+
+p:StatisticalObservation a owl:Class ;
+    rdfs:label "Statistical observation result"@en ;
+    rdfs:subClassOf p:Observation,
+        p:StatisticalCell .
+
+p:TradeCell a owl:Class ;
+    rdfs:label "TradeCell"@en ;
+    rdfs:subClassOf p:StatisticalCell .
+
+p:TradeMass a p:MeasurementKind ;
+    rdfs:label "TradeMass"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/Kilogram> .
+
+p:TradeValue a p:MeasurementKind ;
+    rdfs:label "TradeValue"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/Euro> .
+
+p:VegetationHealthIndex a p:MeasurementKind ;
+    rdfs:label "VegetationHealthIndex"@en ;
+    p:expectedUnit <https://projekt-provider.de/ontology/unit/VHIIndexPoint> .
+
+p:annualTotal a owl:ObjectProperty ;
+    rdfs:label "total over twelve observed months"@en ;
+    rdfs:range p:StatisticalMeasurement .
+
+p:boundaryQualification a owl:DatatypeProperty ;
+    rdfs:label "HS boundary qualification"@en ;
+    rdfs:range xsd:string .
+
+p:classificationScheme a owl:ObjectProperty ;
+    rdfs:label "official annual classification scheme"@en .
+
+p:classificationYear a owl:DatatypeProperty ;
+    rdfs:label "classification year"@en ;
+    rdfs:range xsd:integer .
+
+p:comparisonPolicy a owl:DatatypeProperty ;
+    rdfs:label "cross-year comparison policy"@en ;
+    rdfs:range xsd:string .
+
+p:complete a owl:DatatypeProperty ;
+    rdfs:label "complete calendar-year numeric coverage"@en ;
+    rdfs:range xsd:boolean .
+
+p:flowCode a owl:DatatypeProperty ;
+    rdfs:label "source trade flow code"@en ;
+    rdfs:range xsd:string .
+
+p:hsEdition a owl:DatatypeProperty ;
+    rdfs:label "HS edition"@en ;
+    rdfs:range xsd:string .
+
+p:maskReason a owl:DatatypeProperty ;
+    rdfs:label "mask selection/fallback reason"@en ;
+    rdfs:range xsd:string .
+
+p:maskYear a owl:DatatypeProperty ;
+    rdfs:label "mask reference year"@en ;
+    rdfs:range xsd:gYear .
+
+p:memberCode a owl:DatatypeProperty ;
+    rdfs:label "CN8 member code"@en ;
+    rdfs:range xsd:string .
+
+p:observedMonths a owl:DatatypeProperty ;
+    rdfs:label "months with values"@en ;
+    rdfs:range xsd:integer .
+
+p:observedSum a owl:ObjectProperty ;
+    rdfs:label "sum over observed months"@en ;
+    rdfs:range p:StatisticalMeasurement .
+
+p:partner a owl:DatatypeProperty ;
+    rdfs:label "reported partner code"@en ;
+    rdfs:range xsd:string .
+
+p:partnerBasis a owl:DatatypeProperty ;
+    rdfs:label "partner interpretation"@en ;
+    rdfs:range xsd:string .
+
+p:presence a owl:DatatypeProperty ;
+    rdfs:label "cell presence"@en ;
+    rdfs:range xsd:string .
+
+p:productCode a owl:DatatypeProperty ;
+    rdfs:label "selected product code"@en ;
+    rdfs:range xsd:string .
+
+p:providerStatus a owl:DatatypeProperty ;
+    rdfs:label "provider status marker"@en ;
+    rdfs:range xsd:string .
+
+p:quarterDefinition a owl:DatatypeProperty ;
+    rdfs:label "quarter definition"@en .
+
+p:referenceSeason a owl:ObjectProperty ;
+    rdfs:label "crop season"@en ;
+    rdfs:range p:CropSeason .
+
+p:reporter a owl:DatatypeProperty ;
+    rdfs:label "declaring statistical territory"@en ;
+    rdfs:range xsd:string .
+
+p:seasonEnd a owl:DatatypeProperty ;
+    rdfs:label "season end"@en ;
+    rdfs:range xsd:date .
+
+p:seasonStart a owl:DatatypeProperty ;
+    rdfs:label "season start"@en ;
+    rdfs:range xsd:date .
+
+p:statistics a owl:Ontology ;
+    rdfs:label "PROVIDER statistical results and evidence profile"@en ;
+    dct:license <https://opensource.org/license/mit> ;
+    dct:modified "2026-10-14"^^xsd:date ;
+    owl:imports p: ;
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/statistics> ;
+    owl:versionInfo "0.3.0-rc2" .
+
+p:usesMask a owl:ObjectProperty ;
+    rdfs:label "uses versioned spatial mask"@en ;
+    rdfs:range p:SpatialMask .
+
+p:ClassificationSelection a owl:Class ;
+    rdfs:label "Year-specific product selection"@en ;
+    rdfs:comment "PROVIDER selection group tied to an official annual scheme and member codes; no automatic identity with a global HS concept."@en ;
+    rdfs:subClassOf p:CommodityConcept,
+        p:ProductClassificationConcept .
+
+p:CropSeason a owl:Class ;
+    rdfs:label "Crop-season reference period"@en ;
+    rdfs:comment "Season start and end must be explicit; not automatically identical with a calendar year."@en .
+
+p:ProductClassificationConcept a owl:Class ;
+    rdfs:label "ProductClassificationConcept"@en ;
+    rdfs:subClassOf p:CommodityConcept .
+
+p:SpatialMask a owl:Class ;
+    rdfs:label "Versioned spatial aggregation mask"@en ;
+    rdfs:subClassOf prov:Entity .
+
+<https://projekt-provider.de/ontology/unit/Count> a p:Unit ;
+    rdfs:label "Count"@en .
+
+<https://projekt-provider.de/ontology/unit/Euro> a p:Unit ;
+    rdfs:label "Euro"@en .
+
+<https://projekt-provider.de/ontology/unit/Fraction> a p:Unit ;
+    rdfs:label "Fraction"@en .
+
+<https://projekt-provider.de/ontology/unit/Kilogram> a p:Unit ;
+    rdfs:label "Kilogram"@en .
+
+<https://projekt-provider.de/ontology/unit/NauticalMile> a p:Unit ;
+    rdfs:label "NauticalMile"@en .
+
+<https://projekt-provider.de/ontology/unit/Piece> a p:Unit ;
+    rdfs:label "Piece"@en .
+
+<https://projekt-provider.de/ontology/unit/Tonne> a p:Unit ;
+    rdfs:label "Tonne"@en .
+
+<https://projekt-provider.de/ontology/unit/TonneNitrogen> a p:Unit ;
+    rdfs:label "TonneNitrogen"@en .
+
+<https://projekt-provider.de/ontology/unit/TonnePerHectare> a p:Unit ;
+    rdfs:label "TonnePerHectare"@en .
+
+<https://projekt-provider.de/ontology/unit/TonnePerYear> a p:Unit ;
+    rdfs:label "TonnePerYear"@en .
+
+<https://projekt-provider.de/ontology/unit/VHIIndexPoint> a p:Unit ;
+    rdfs:label "VHIIndexPoint"@en .
+
+p:ClassificationConcept a owl:Class ;
+    rdfs:label "ClassificationConcept"@en ;
+    rdfs:subClassOf skos:Concept .
+
+p:CommodityConcept rdfs:subClassOf p:ClassificationConcept .
+
+p:StatisticalMeasurement a owl:Class ;
+    rdfs:label "Statistical numeric measurement"@en ;
+    rdfs:subClassOf p:Measurement .
+
+<https://projekt-provider.de/ontology/unit/DimensionlessIndex> a p:Unit ;
+    rdfs:label "DimensionlessIndex"@en .
+
+<https://projekt-provider.de/ontology/unit/IndexPoint> a p:Unit ;
+    rdfs:label "IndexPoint"@en .
+
+p:StatisticalCell a owl:Class ;
+    rdfs:label "Requested statistical cell"@en ;
+    rdfs:comment "An expected series/period position, including missing positions; missingness alone is not an observation result or a physical disruption."@en ;
+    rdfs:subClassOf prov:Entity .
+
+
+p:NitrogenProductionMass p:quantityBasis "contained nitrogen mass" ; rdfs:comment "Mass of nitrogen content, not mass of urea or another final product; no automatic conversion to commodity tonnes."@en .
+p:ProductionMass p:quantityBasis "reported product mass" .
+p:ProductionCount p:quantityBasis "reported product units" .
+p:ProductionCapacity p:quantityBasis "reported annual production capacity; nameplate basis, commodity and operating conditions require explicit source evidence" .
+<https://projekt-provider.de/ontology/unit/TonneNitrogen> rdfs:comment "One metric tonne of contained nitrogen; differs in quantity basis from a metric tonne of commodity."@en .
+<https://projekt-provider.de/ontology/unit/IndexPoint> rdfs:comment "Points in an index with a separately stated base. No physical-mass conversion."@en .

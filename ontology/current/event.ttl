@@ -162,8 +162,8 @@ provider:event a owl:Ontology ;
         schema: ;
     owl:imports provider:,
         provider:infrastructure ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/event> ;
-    owl:versionInfo "0.3.0-rc2" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc3/event> ;
+    owl:versionInfo "0.3.0-rc3" .
 
 ns1:AirportDisruptionEvent a owl:Class ;
     rdfs:label "Airport Disruption Event"@en ;

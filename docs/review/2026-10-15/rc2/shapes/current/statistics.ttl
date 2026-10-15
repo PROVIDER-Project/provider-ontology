@@ -1,0 +1,231 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix p: <https://projekt-provider.de/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix shape: <https://projekt-provider.de/ontology/shapes/statistics#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+shape:Annual a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:gYear ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path p:referenceYear ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 12 ;
+            sh:minCount 1 ;
+            sh:minInclusive 0 ;
+            sh:path p:observedMonths ],
+        [ sh:datatype xsd:boolean ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path p:complete ],
+        [ sh:class p:StatisticalMeasurement ;
+            sh:maxCount 1 ;
+            sh:path p:annualTotal ] ;
+    sh:sparql [ sh:message "Only twelve observed months permit an annual total; partial sums are separate." ;
+            sh:select """
+ PREFIX p: <https://projekt-provider.de/ontology/>
+ SELECT $this WHERE { $this p:observedMonths ?n ; p:complete ?complete .
+ FILTER((?n != 12 && (?complete || EXISTS {$this p:annualTotal ?v})) ||
+ (?n = 12 && (!?complete || !EXISTS {$this p:annualTotal ?v}))) }
+ """ ] ;
+    sh:targetClass p:AnnualCoverage .
+
+shape:Cell a sh:NodeShape ;
+    sh:property [ sh:class p:StatisticalMeasurement ;
+            sh:maxCount 1 ;
+            sh:path p:hasMeasurement ],
+        [ sh:class p:SourceRecord ;
+            sh:minCount 1 ;
+            sh:path p:sourceRecord ],
+        [ sh:class p:ClassificationConcept ;
+            sh:maxCount 1 ;
+            sh:path p:classificationConcept ],
+        [ sh:in ( "real" "synthetic" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path p:dataKind ],
+        [ sh:in ( "present" "explicit-zero" "missing" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path p:presence ] ;
+    sh:sparql [ sh:message "Missingness, zero and observed-result typing must agree; no SOSA activity typing." ;
+            sh:select """
+ PREFIX p: <https://projekt-provider.de/ontology/>
+ PREFIX sosa: <http://www.w3.org/ns/sosa/>
+ SELECT $this WHERE {
+ $this p:presence ?presence .
+ FILTER((?presence="missing" && (EXISTS {$this p:hasMeasurement ?v} || EXISTS {$this a p:StatisticalObservation})) ||
+ (?presence!="missing" && (!EXISTS {$this p:hasMeasurement ?v} || !EXISTS {$this a p:StatisticalObservation})) ||
+ (?presence="explicit-zero" && EXISTS {$this p:hasMeasurement/p:measurementValue ?v . FILTER(?v != 0)}) ||
+ EXISTS {$this a sosa:Observation}) }
+ """ ],
+        [ sh:message "Classification year must agree with the observation month." ;
+            sh:select """
+ PREFIX p: <https://projekt-provider.de/ontology/>
+ SELECT $this WHERE { $this p:referenceMonth ?m ; p:classificationConcept ?selection . ?selection a p:CNSelection; p:classificationYear ?y .
+ FILTER(SUBSTR(STR(?m),1,4) != STR(?y)) }
+ """ ] ;
+    sh:targetClass p:StatisticalCell ;
+    sh:xone ( [ sh:property [ sh:datatype xsd:gYearMonth ;
+                        sh:maxCount 1 ;
+                        sh:minCount 1 ;
+                        sh:path p:referenceMonth ] ] [ sh:property [ sh:datatype xsd:gYear ;
+                        sh:maxCount 1 ;
+                        sh:minCount 1 ;
+                        sh:path p:referenceYear ] ] [ sh:property [ sh:datatype xsd:string ;
+                        sh:maxCount 1 ;
+                        sh:minCount 1 ;
+                        sh:path p:referenceQuarter ;
+                        sh:pattern "^[0-9]{4}-Q[1-4]$" ] ] [ sh:property [ sh:class p:CropSeason ;
+                        sh:maxCount 1 ;
+                        sh:minCount 1 ;
+                        sh:path p:referenceSeason ] ] ) .
+
+shape:Claim a sh:NodeShape ;
+    sh:property [ sh:in ( p:Observed p:Reported p:Modelled p:Planned p:ScenarioAssumption ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path p:assertionMode ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path p:claimSubject ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path p:claimPredicate ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path p:claimObject ] ;
+    sh:sparql [ sh:message "Scenario/planned claim must not be materialized as an empirical fact." ;
+            sh:select """PREFIX p: <https://projekt-provider.de/ontology/>
+SELECT $this WHERE {$this p:assertionMode ?mode; p:claimSubject ?s; p:claimPredicate ?p; p:claimObject ?o . FILTER(?mode IN (p:ScenarioAssumption,p:Planned)) FILTER EXISTS {?s ?p ?o}}""" ],
+        [ sh:message "Empirical claims need source evidence; scenario assumptions need an explicit assumption note." ;
+            sh:select """
+ PREFIX p: <https://projekt-provider.de/ontology/>
+ SELECT $this WHERE { $this p:assertionMode ?mode .
+ FILTER((?mode=p:ScenarioAssumption && !EXISTS {$this p:assumptionNote ?n . FILTER(STRLEN(STR(?n))>0)}) ||
+ (?mode!=p:ScenarioAssumption && !EXISTS {$this p:sourceRecord ?s})) }
+ """ ] ;
+    sh:targetClass p:EvidenceAssertion .
+
+shape:Measurement a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path p:measurementValue ],
+        [ sh:class p:MeasurementKind ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path p:measurementKind ],
+        [ sh:class p:Unit ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path p:hasUnit ] ;
+    sh:sparql [ sh:message "Mass/capacity/count must be nonnegative; counts integral; fractions within0-1. Negative CPPI and SPI remain valid." ;
+            sh:select """PREFIX p: <https://projekt-provider.de/ontology/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT $this WHERE {$this p:measurementKind ?k; p:measurementValue ?v .
+FILTER((?k IN(p:TradeValue,p:TradeMass,p:ProductionMass,p:NitrogenProductionMass,p:ProductionCount,p:ProductionCapacity,p:PortCallCount,p:SoyYield,p:RouteDistance) && ?v<0) ||
+(?k IN(p:ProductionCount,p:PortCallCount) && ?v!=xsd:integer(?v)) || (?k=p:DroughtAreaShare && (?v<0 || ?v>1))) }""" ],
+        [ sh:message "Quantity kind and controlled unit must agree; index needs an explicit base." ;
+            sh:select """
+ PREFIX p: <https://projekt-provider.de/ontology/>
+ SELECT $this WHERE { $this p:measurementKind ?k ; p:hasUnit ?u .
+ FILTER(!EXISTS {?k p:expectedUnit ?u} ||
+ ((?k=p:PriceIndex || ?k=p:ProductionIndex) && !EXISTS {$this p:indexBase ?base . FILTER(STRLEN(STR(?base))>0)})) }
+ """ ] ;
+    sh:targetClass p:StatisticalMeasurement .
+
+shape:ModeledRoute a sh:NodeShape ;
+    sh:not [ sh:class p:ObservedVoyage ] ;
+    sh:targetClass p:RouteEstimate .
+
+shape:PhysicalCommodity a sh:NodeShape ;
+    sh:not [ sh:class p:CommodityConcept ] ;
+    sh:targetClass p:Commodity .
+
+shape:Result a sh:NodeShape ;
+    sh:not [ sh:class sosa:Observation ] ;
+    sh:targetClass p:Observation .
+
+shape:Season a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path p:seasonEnd ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path p:seasonStart ] ;
+    sh:sparql [ sh:message "Crop season end cannot precede its start." ;
+            sh:select "PREFIX p: <https://projekt-provider.de/ontology/> SELECT $this WHERE {$this p:seasonStart ?s; p:seasonEnd ?e . FILTER(?e < ?s)}" ] ;
+    sh:targetClass p:CropSeason .
+
+shape:Selection a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path p:classificationYear ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path p:productCode ;
+            sh:pattern "^[0-9]{4}([0-9]{2})?$" ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path p:classificationScheme ],
+        [ sh:minCount 1 ;
+            sh:path p:memberCode ;
+            sh:pattern "^[0-9]{8}$" ],
+        [ sh:datatype xsd:string ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path p:comparisonPolicy ],
+        [ sh:maxCount 0 ;
+            sh:path owl:sameAs ] ;
+    sh:targetClass p:CNSelection .
+
+shape:Source a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path p:sourceHash ;
+            sh:pattern "^[0-9a-f]{64}$" ],
+        [ sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:path p:acquiredAt ;
+            sh:pattern "(Z|[+-][0-9]{2}:[0-9]{2})$" ] ;
+    sh:property [ sh:path p:sourceCheckedOn ; sh:datatype xsd:date ; sh:maxCount 1 ] ;
+    sh:or ( [ sh:property [ sh:path p:acquiredAt ; sh:minCount 1 ] ] [ sh:property [ sh:path p:sourceCheckedOn ; sh:minCount 1 ] ] ) ;
+    sh:targetClass p:SourceRecord .
+
+shape:Step a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path <https://projekt-provider.de/ontology/network#inRoute> ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path <https://projekt-provider.de/ontology/network#segment> ],
+        [ sh:datatype xsd:nonNegativeInteger ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://projekt-provider.de/ontology/network#sequenceIndex> ] ;
+    sh:sparql [ sh:message "Route-step positions must be unique within a route." ;
+            sh:select """
+ PREFIX n: <https://projekt-provider.de/ontology/network#>
+ SELECT $this WHERE { $this n:inRoute ?r; n:sequenceIndex ?i . ?other n:inRoute ?r; n:sequenceIndex ?i . FILTER($this != ?other) }
+ """ ] ;
+    sh:targetClass <https://projekt-provider.de/ontology/network#RouteStep> .
+
+[] sh:datatype xsd:gYearMonth ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path p:referenceMonth .
+

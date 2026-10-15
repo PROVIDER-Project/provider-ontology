@@ -225,8 +225,8 @@ provider:bfo-alignment a owl:Ontology ;
         equivalence axioms.
     """@en ;
     owl:imports provider: ;
-    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc2/bfo-alignment> ;
-    owl:versionInfo "0.3.0-rc2" .
+    owl:versionIRI <https://projekt-provider.de/ontology/releases/0.3.0-rc3/bfo-alignment> ;
+    owl:versionInfo "0.3.0-rc3" .
 
 <http://purl.obolibrary.org/obo/BFO_0000004> rdfs:label "independent continuant"@en .
 
