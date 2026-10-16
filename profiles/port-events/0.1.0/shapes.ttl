@@ -1,0 +1,49 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix p: <https://projekt-provider.de/ontology/> .
+@prefix pe: <https://projekt-provider.de/ontology/profiles/port-events#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+pe:EventShape a sh:NodeShape ; sh:targetClass p:Event ;
+ sh:property [ sh:path p:sourceRecord ; sh:class p:SourceRecord ; sh:minCount 1 ],
+ [ sh:path dct:temporal ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ],
+ [ sh:path dct:type ; sh:in (pe:ExactWindow pe:TextOnly pe:ConflictingEnd) ; sh:minCount 1 ; sh:maxCount 1 ],
+ [ sh:path p:description ; sh:datatype xsd:string ; sh:minCount 1 ],
+ [ sh:path p:startTime ; sh:datatype xsd:dateTime ; sh:pattern "(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:maxCount 1 ],
+ [ sh:path p:endTime ; sh:datatype xsd:dateTime ; sh:pattern "(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:maxCount 1 ],
+ [ sh:path p:affects ; sh:maxCount 0 ; sh:message "This profile keeps scoped effects qualified; no direct event-to-target shortcut." ],
+ [ sh:path p:causes ; sh:maxCount 0 ; sh:message "No automatic causal impact assertion." ] ;
+ sh:sparql [ sh:message "Time text must not become invented exact times; exact windows require both ends, conflicting ends stay unresolved." ;
+ sh:select """PREFIX p: <https://projekt-provider.de/ontology/> PREFIX pe: <https://projekt-provider.de/ontology/profiles/port-events#> PREFIX dct: <http://purl.org/dc/terms/>
+ SELECT $this WHERE { $this dct:type ?quality . FILTER((?quality=pe:TextOnly && (EXISTS {$this p:startTime ?s} || EXISTS {$this p:endTime ?e})) || (?quality=pe:ConflictingEnd && EXISTS {$this p:endTime ?e}) || (?quality=pe:ExactWindow && (!EXISTS {$this p:startTime ?s} || !EXISTS {$this p:endTime ?e})) || EXISTS {$this p:startTime ?s; p:endTime ?e . FILTER(?e < ?s)}) }""" ] .
+pe:ClaimShape a sh:NodeShape ; sh:targetClass p:EvidenceAssertion ;
+ sh:property [ sh:path rdf:subject ; sh:class p:Event ; sh:minCount 1 ; sh:maxCount 1 ],
+ [ sh:path rdf:predicate ; sh:hasValue p:affects ; sh:minCount 1 ; sh:maxCount 1 ],
+ [ sh:path rdf:object ; sh:node pe:TargetShape ; sh:minCount 1 ; sh:maxCount 1 ],
+ [ sh:path dct:type ; sh:in (pe:ContextOnly pe:SpatialExposure pe:OperationalRestriction pe:PossibleImpact) ; sh:minCount 1 ; sh:maxCount 1 ],
+ [ sh:path dct:extent ; sh:in (pe:FullTarget pe:PartialTarget pe:UnspecifiedExtent) ; sh:minCount 1 ; sh:maxCount 1 ],
+ [ sh:path dct:subject ; sh:in (pe:Handling pe:Storage pe:WaterAccess pe:RoadAccess pe:RailAccess pe:PortOperations pe:Unspecified) ; sh:minCount 1 ],
+ [ sh:path p:assertionMode ; sh:in (p:Reported p:Planned p:Modelled) ; sh:minCount 1 ; sh:maxCount 1 ],
+ [ sh:path p:sourceRecord ; sh:class p:SourceRecord ; sh:minCount 1 ],
+ [ sh:path p:description ; sh:datatype xsd:string ; sh:minCount 1 ],
+ [ sh:path prov:wasDerivedFrom ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ],
+ [ sh:path dct:valid ; sh:hasValue "historical-source-assertion; current-operating-status-not-assessed" ] ;
+ sh:sparql [ sh:message "Exposure/possible impact requires an explicit method/assumption and Modelled; operational restriction needs Reported/Planned and a stated function." ;
+ sh:select """PREFIX p: <https://projekt-provider.de/ontology/> PREFIX pe: <https://projekt-provider.de/ontology/profiles/port-events#> PREFIX dct: <http://purl.org/dc/terms/>
+ SELECT $this WHERE {$this dct:type ?level ; p:assertionMode ?mode . FILTER((?level IN (pe:SpatialExposure,pe:PossibleImpact) && (?mode!=p:Modelled || !EXISTS {$this p:assumptionNote ?method})) || (?level=pe:OperationalRestriction && (?mode=p:Modelled || EXISTS {$this dct:subject pe:Unspecified}))) }""" ] ;
+ sh:sparql [ sh:message "A claim cannot also materialize its unqualified affects triple." ;
+ sh:select """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT $this WHERE {$this rdf:subject ?s; rdf:predicate ?p; rdf:object ?o . ?s ?p ?o .}""" ] .
+pe:TargetShape a sh:NodeShape ;
+ sh:property [ sh:path dct:type ; sh:in (pe:Port pe:Terminal pe:Component pe:Corridor pe:Region pe:Organization) ; sh:minCount 1 ; sh:maxCount 1 ] .
+pe:SourceShape a sh:NodeShape ; sh:targetClass p:SourceRecord ;
+ sh:property [ sh:path dct:source ; sh:nodeKind sh:IRI ; sh:minCount 1 ],
+ [ sh:path p:sourceHash ; sh:datatype xsd:string ; sh:pattern "^[a-f0-9]{64}$" ; sh:minCount 1 ; sh:maxCount 1 ],
+ [ sh:path p:acquiredAt ; sh:datatype xsd:dateTime ; sh:pattern "(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:minCount 1 ],
+ [ sh:path p:publicationDate ; sh:datatype xsd:date ; sh:maxCount 1 ],
+ [ sh:path dct:rights ; sh:datatype xsd:string ; sh:minCount 1 ] .
+
+pe:ClaimShape sh:sparql [ sh:message "Qualification must retain reviewed source scope, extent, evidence level, mode and supported functions. No promotion from exposure/context or component to whole port." ;
+ sh:select """PREFIX p: <https://projekt-provider.de/ontology/> PREFIX dct: <http://purl.org/dc/terms/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX prov: <http://www.w3.org/ns/prov#>
+ SELECT $this WHERE {$this rdf:object ?target; dct:extent ?extent; dct:type ?level; p:assertionMode ?mode; dct:subject ?function; prov:wasDerivedFrom ?basis .
+ FILTER(!EXISTS {?basis dct:spatial ?target; dct:extent ?extent; dct:type ?level; p:assertionMode ?mode; dct:subject ?function}) }""" ] .

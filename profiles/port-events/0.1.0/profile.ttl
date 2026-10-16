@@ -1,0 +1,37 @@
+@prefix p: <https://projekt-provider.de/ontology/> .
+@prefix pe: <https://projekt-provider.de/ontology/profiles/port-events#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+<https://projekt-provider.de/ontology/profiles/port-events/0.1.0> a owl:Ontology ;
+ owl:imports p:event, p:ports ; owl:versionInfo "0.1.0" ;
+ dct:description "Optional coarse event application profile on candidate 0.3.0-rc3. Reuses Event, EvidenceAssertion and source/time properties; no new event/impact classes or automatic disruption inference."@en ;
+ dct:license <https://opensource.org/license/mit> .
+pe:EvidenceLevel a skos:ConceptScheme .
+pe:ContextOnly a skos:Concept ; skos:inScheme pe:EvidenceLevel ; skos:prefLabel "Kontext ohne belegte standortspezifische Einschränkung"@de .
+pe:SpatialExposure a skos:Concept ; skos:inScheme pe:EvidenceLevel ; skos:prefLabel "Räumliche Exposition"@de .
+pe:OperationalRestriction a skos:Concept ; skos:inScheme pe:EvidenceLevel ; skos:prefLabel "Berichtete oder angekündigte betriebliche Einschränkung"@de .
+pe:PossibleImpact a skos:Concept ; skos:inScheme pe:EvidenceLevel ; skos:prefLabel "Abgeleitete mögliche Wirkung"@de .
+pe:Function a skos:ConceptScheme .
+pe:Handling a skos:Concept ; skos:inScheme pe:Function ; skos:prefLabel "Umschlag"@de .
+pe:Storage a skos:Concept ; skos:inScheme pe:Function ; skos:prefLabel "Lagerung"@de .
+pe:WaterAccess a skos:Concept ; skos:inScheme pe:Function ; skos:prefLabel "Wasserseitige Erreichbarkeit"@de .
+pe:RoadAccess a skos:Concept ; skos:inScheme pe:Function ; skos:prefLabel "Straßenseitige Erreichbarkeit"@de .
+pe:RailAccess a skos:Concept ; skos:inScheme pe:Function ; skos:prefLabel "Schienenseitige Erreichbarkeit"@de .
+pe:PortOperations a skos:Concept ; skos:inScheme pe:Function ; skos:prefLabel "Hafenbetrieb ohne feinere Funktionsangabe"@de .
+pe:Unspecified a skos:Concept ; skos:inScheme pe:Function ; skos:prefLabel "Keine belegte Funktionsangabe"@de .
+pe:Scope a skos:ConceptScheme .
+pe:Port a skos:Concept ; skos:inScheme pe:Scope .
+pe:Terminal a skos:Concept ; skos:inScheme pe:Scope .
+pe:Component a skos:Concept ; skos:inScheme pe:Scope .
+pe:Corridor a skos:Concept ; skos:inScheme pe:Scope .
+pe:Region a skos:Concept ; skos:inScheme pe:Scope .
+pe:Organization a skos:Concept ; skos:inScheme pe:Scope .
+pe:Extent a skos:ConceptScheme .
+pe:FullTarget a skos:Concept ; skos:inScheme pe:Extent ; skos:prefLabel "Gesamtes ausdrücklich genanntes Zielobjekt"@de .
+pe:PartialTarget a skos:Concept ; skos:inScheme pe:Extent ; skos:prefLabel "Teilweise Einschränkung des Zielobjekts"@de .
+pe:UnspecifiedExtent a skos:Concept ; skos:inScheme pe:Extent ; skos:prefLabel "Ausmaß nicht belegt"@de .
+pe:TimeQuality a skos:ConceptScheme .
+pe:ExactWindow a skos:Concept ; skos:inScheme pe:TimeQuality .
+pe:TextOnly a skos:Concept ; skos:inScheme pe:TimeQuality .
+pe:ConflictingEnd a skos:Concept ; skos:inScheme pe:TimeQuality .

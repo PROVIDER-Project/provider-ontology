@@ -1,0 +1,18 @@
+{
+  "id": "provider-port-events",
+  "version": "0.1.0",
+  "status": "local-application-profile; no source/public KG/partner approval",
+  "base_version": "0.3.0-rc3",
+  "base_manifest_sha256": "59758d6ad0e91037a4ce1e343c1343b2741d6d61673a7930a369b4cc30aea750",
+  "base_files": {
+    "ontology/current/ports.ttl": "10ff11243c4a74f723281b9e7702df9e7fd109010c89f18dec505f0886e1711d",
+    "ontology/current/infrastructure.ttl": "d3b90116f927a608ab77150bffc419a67ea4b575cec859c5e991b23292a58ab4",
+    "ontology/current/core.ttl": "0600108a384f372f64819ef8ea039b4df2614a2c9b96b9d93146f890ecfe39b7",
+    "ontology/current/external-declarations.ttl": "aaa603b96326800f114aa55c7e1d7a547ccbe03568a19934896c69e4a3101b6c",
+    "ontology/current/event.ttl": "4e0f12f29532d6b54ddc571ca1ee9db9e190050272f324e6937f5df7be8fe04e"
+  },
+  "files": {
+    "profile.ttl": "3102cc16a022a2ca087fd1985a0c59b1fc613e85c31b0c586602f759a3849120",
+    "shapes.ttl": "2b030cd5e4c0c40c08ead59beda3e6105f22c96efd8be490164bedff2039344a"
+  }
+}

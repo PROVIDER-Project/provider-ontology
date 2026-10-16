@@ -1,0 +1,22 @@
+{
+  "checked_on": "2026-10-16",
+  "profile": "provider-port-events/0.1.0",
+  "base_candidate": "0.3.0-rc3",
+  "base_manifest_sha256": "59758d6ad0e91037a4ce1e343c1343b2741d6d61673a7930a369b4cc30aea750",
+  "base_manifest_unchanged": true,
+  "ontology_suite": {
+    "passed": 51,
+    "subtests_passed": 41
+  },
+  "profile_tests": {
+    "tests": 6,
+    "negative_subtests": 10
+  },
+  "source_cases": {
+    "events": 4,
+    "qualified_claims": 5,
+    "publisher_captures": 3,
+    "datasets_suite_passed": 322
+  },
+  "scope": "Optional application profile and curated historical real cases only; no matching or live workflow claimed."
+}

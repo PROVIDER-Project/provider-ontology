@@ -1,0 +1,200 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix ex: <https://example.org/provider/port-event-fixture/> .
+@prefix p: <https://projekt-provider.de/ontology/> .
+@prefix pe: <https://projekt-provider.de/ontology/profiles/port-events#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:conflicting-claim a rdf:Statement,
+        p:EvidenceAssertion ;
+    dct:extent pe:FullTarget ;
+    dct:subject pe:RoadAccess ;
+    dct:type pe:OperationalRestriction ;
+    dct:valid "historical-source-assertion; current-operating-status-not-assessed" ;
+    rdf:object ex:passage ;
+    rdf:predicate p:affects ;
+    rdf:subject ex:conflicting ;
+    prov:wasDerivedFrom ex:conflicting-basis ;
+    p:assertionMode p:Planned ;
+    p:description "Own invented qualified claim" ;
+    p:sourceRecord ex:source .
+
+ex:exposure-claim a rdf:Statement,
+        p:EvidenceAssertion ;
+    dct:extent pe:UnspecifiedExtent ;
+    dct:subject pe:Unspecified ;
+    dct:type pe:SpatialExposure ;
+    dct:valid "historical-source-assertion; current-operating-status-not-assessed" ;
+    rdf:object ex:port ;
+    rdf:predicate p:affects ;
+    rdf:subject ex:exposure ;
+    prov:wasDerivedFrom ex:exposure-basis ;
+    p:assertionMode p:Modelled ;
+    p:assumptionNote "Invented demonstration of exposure/possible impact; not observed operations" ;
+    p:description "Own invented qualified claim" ;
+    p:sourceRecord ex:source .
+
+ex:group-context-claim a rdf:Statement,
+        p:EvidenceAssertion ;
+    dct:extent pe:UnspecifiedExtent ;
+    dct:subject pe:Unspecified ;
+    dct:type pe:ContextOnly ;
+    dct:valid "historical-source-assertion; current-operating-status-not-assessed" ;
+    rdf:object ex:organization ;
+    rdf:predicate p:affects ;
+    rdf:subject ex:group-context ;
+    prov:wasDerivedFrom ex:group-context-basis ;
+    p:assertionMode p:Reported ;
+    p:description "Own invented qualified claim" ;
+    p:sourceRecord ex:source .
+
+ex:partial-port-claim a rdf:Statement,
+        p:EvidenceAssertion ;
+    dct:extent pe:PartialTarget ;
+    dct:subject pe:PortOperations ;
+    dct:type pe:OperationalRestriction ;
+    dct:valid "historical-source-assertion; current-operating-status-not-assessed" ;
+    rdf:object ex:port ;
+    rdf:predicate p:affects ;
+    rdf:subject ex:partial-port ;
+    prov:wasDerivedFrom ex:partial-port-basis ;
+    p:assertionMode p:Reported ;
+    p:description "Own invented qualified claim" ;
+    p:sourceRecord ex:source .
+
+ex:planned-passage-claim a rdf:Statement,
+        p:EvidenceAssertion ;
+    dct:extent pe:FullTarget ;
+    dct:subject pe:WaterAccess ;
+    dct:type pe:OperationalRestriction ;
+    dct:valid "historical-source-assertion; current-operating-status-not-assessed" ;
+    rdf:object ex:passage ;
+    rdf:predicate p:affects ;
+    rdf:subject ex:planned-passage ;
+    prov:wasDerivedFrom ex:planned-passage-basis ;
+    p:assertionMode p:Planned ;
+    p:description "Own invented qualified claim" ;
+    p:sourceRecord ex:source .
+
+ex:possible-impact-claim a rdf:Statement,
+        p:EvidenceAssertion ;
+    dct:extent pe:UnspecifiedExtent ;
+    dct:subject pe:Handling ;
+    dct:type pe:PossibleImpact ;
+    dct:valid "historical-source-assertion; current-operating-status-not-assessed" ;
+    rdf:object ex:port ;
+    rdf:predicate p:affects ;
+    rdf:subject ex:possible-impact ;
+    prov:wasDerivedFrom ex:possible-impact-basis ;
+    p:assertionMode p:Modelled ;
+    p:assumptionNote "Invented demonstration of exposure/possible impact; not observed operations" ;
+    p:description "Own invented qualified claim" ;
+    p:sourceRecord ex:source .
+
+ex:conflicting a p:Event ;
+    rdfs:label "Own invented conflicting" ;
+    dct:temporal "Invented January 2026 period; no exact dates unless explicitly supplied" ;
+    dct:type pe:ConflictingEnd ;
+    p:dataKind "synthetic" ;
+    p:description "Invented fixture, no empirical port disruption claim" ;
+    p:sourceRecord ex:source ;
+    p:startTime "2026-01-02T08:00:00+00:00"^^xsd:dateTime .
+
+ex:conflicting-basis dct:extent pe:FullTarget ;
+    dct:spatial ex:passage ;
+    dct:subject pe:RoadAccess ;
+    dct:type pe:OperationalRestriction ;
+    p:assertionMode p:Planned .
+
+ex:exposure a p:Event ;
+    rdfs:label "Own invented exposure" ;
+    dct:temporal "Invented January 2026 period; no exact dates unless explicitly supplied" ;
+    dct:type pe:TextOnly ;
+    p:dataKind "synthetic" ;
+    p:description "Invented fixture, no empirical port disruption claim" ;
+    p:sourceRecord ex:source .
+
+ex:exposure-basis dct:extent pe:UnspecifiedExtent ;
+    dct:spatial ex:port ;
+    dct:subject pe:Unspecified ;
+    dct:type pe:SpatialExposure ;
+    p:assertionMode p:Modelled .
+
+ex:group-context a p:Event ;
+    rdfs:label "Own invented group-context" ;
+    dct:temporal "Invented January 2026 period; no exact dates unless explicitly supplied" ;
+    dct:type pe:TextOnly ;
+    p:dataKind "synthetic" ;
+    p:description "Invented fixture, no empirical port disruption claim" ;
+    p:sourceRecord ex:source .
+
+ex:group-context-basis dct:extent pe:UnspecifiedExtent ;
+    dct:spatial ex:organization ;
+    dct:subject pe:Unspecified ;
+    dct:type pe:ContextOnly ;
+    p:assertionMode p:Reported .
+
+ex:partial-port a p:Event ;
+    rdfs:label "Own invented partial-port" ;
+    dct:temporal "Invented January 2026 period; no exact dates unless explicitly supplied" ;
+    dct:type pe:TextOnly ;
+    p:dataKind "synthetic" ;
+    p:description "Invented fixture, no empirical port disruption claim" ;
+    p:sourceRecord ex:source .
+
+ex:partial-port-basis dct:extent pe:PartialTarget ;
+    dct:spatial ex:port ;
+    dct:subject pe:PortOperations ;
+    dct:type pe:OperationalRestriction ;
+    p:assertionMode p:Reported .
+
+ex:planned-passage a p:Event ;
+    rdfs:label "Own invented planned-passage" ;
+    dct:temporal "Invented January 2026 period; no exact dates unless explicitly supplied" ;
+    dct:type pe:ExactWindow ;
+    p:dataKind "synthetic" ;
+    p:description "Invented fixture, no empirical port disruption claim" ;
+    p:endTime "2026-01-02T15:00:00+00:00"^^xsd:dateTime ;
+    p:sourceRecord ex:source ;
+    p:startTime "2026-01-02T08:00:00+00:00"^^xsd:dateTime .
+
+ex:planned-passage-basis dct:extent pe:FullTarget ;
+    dct:spatial ex:passage ;
+    dct:subject pe:WaterAccess ;
+    dct:type pe:OperationalRestriction ;
+    p:assertionMode p:Planned .
+
+ex:possible-impact a p:Event ;
+    rdfs:label "Own invented possible-impact" ;
+    dct:temporal "Invented January 2026 period; no exact dates unless explicitly supplied" ;
+    dct:type pe:TextOnly ;
+    p:dataKind "synthetic" ;
+    p:description "Invented fixture, no empirical port disruption claim" ;
+    p:sourceRecord ex:source .
+
+ex:possible-impact-basis dct:extent pe:UnspecifiedExtent ;
+    dct:spatial ex:port ;
+    dct:subject pe:Handling ;
+    dct:type pe:PossibleImpact ;
+    p:assertionMode p:Modelled .
+
+ex:organization rdfs:label "Invented organization" ;
+    dct:type pe:Organization .
+
+ex:passage rdfs:label "Invented passage" ;
+    dct:isPartOf ex:port ;
+    dct:type pe:Component .
+
+ex:port rdfs:label "Invented port" ;
+    dct:type pe:Port .
+
+ex:source a p:SourceRecord ;
+    dct:rights "Own invented test source; MIT; no real event evidence" ;
+    dct:source <https://example.org/own-invented-source> ;
+    p:acquiredAt "2026-01-03T10:00:00+00:00"^^xsd:dateTime ;
+    p:dataKind "synthetic" ;
+    p:publicationDate "2026-01-03"^^xsd:date ;
+    p:sourceHash "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" .
+
