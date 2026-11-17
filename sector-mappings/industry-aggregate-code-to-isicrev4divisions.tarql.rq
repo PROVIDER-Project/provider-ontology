@@ -1,0 +1,41 @@
+# Input: industry-aggregate-code-to-isicrev4divisions.csv
+# Run: tarql industry-aggregate-code-to-isicrev4divisions.tarql.rq industry-aggregate-code-to-isicrev4divisions.csv
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX tivao: <https://schema.projekt-provider.de/tiva#>
+PREFIX isic4r: <https://data.projekt-provider.de/codes/isic-rev-4/>
+
+CONSTRUCT {
+  ?activity
+    a skos:Concept ;
+    skos:inScheme <https://data.projekt-provider.de/tiva/scheme/activity> ;
+    skos:notation ?activityCode ;
+    tivao:isicRev4Division ?isicDivision .
+
+  <https://data.projekt-provider.de/tiva/scheme/activity> a skos:ConceptScheme .
+
+  ?isicDivision
+    a skos:Concept ;
+    skos:inScheme isic4r:scheme ;
+    skos:notation ?divisionCode .
+
+  isic4r:scheme
+    a skos:ConceptScheme ;
+    dct:title "ISIC Revision 4"@en .
+}
+WHERE {
+  BIND(STR(?code) AS ?activityCode)
+  BIND(STR(?isic_rev4_division) AS ?divisionCode)
+  BIND(
+    IRI(CONCAT(
+      "https://data.projekt-provider.de/tiva/activity/",
+      ENCODE_FOR_URI(?activityCode)
+    )) AS ?activity
+  )
+  BIND(
+    IRI(CONCAT(
+      "https://data.projekt-provider.de/codes/isic-rev-4/",
+      ENCODE_FOR_URI(?divisionCode)
+    )) AS ?isicDivision
+  )
+}

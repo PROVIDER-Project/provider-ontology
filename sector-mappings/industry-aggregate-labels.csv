@@ -1,0 +1,31 @@
+code,label
+A,"Agriculture, forestry and fishing"
+A01T02,"Crop and animal production, hunting and related service activities; Forestry and logging"
+B,Mining and quarrying
+B05T06,Mining and extraction of energy producing products
+B07T08,Mining and quarrying of non-energy producing products
+C,Manufacturing
+C16T18,"Manufacture of wood and of products of wood and cork, except furniture; manufacture of articles of straw and plaiting materials; manufacture of paper and paper products; printing and reproduction of recorded media"
+C19T23,Manufacture of chemicals and non-metallic mineral products
+C20_21,Manufacture of chemicals and pharmaceuticals
+C24_25,"Manufacture of basic metals and fabricated metal products, except machinery and equipment"
+C24,Manufacture of basic metals
+C26_27,"Manufacture of computer, electronic and optical products; manufacture of electrical equipment"
+C29_30,"Manufacture of motor vehicles, trailers, semi-trailers and of other transport equipment"
+C30,Manufacture of other transport equipment
+D_E,"Electricity, gas, steam and air conditioning supply; Water supply; sewerage, waste management and remediation activities"
+GTN,Services of the business economy - sections G to N
+GTI,Wholesale and retail trade; repair of motor vehicles and motorcycles; transportation and storage; accommodation and food service activities
+H,Transportation and storage
+J,Information and communication
+M_N,"Professional, scientific and technical activities; administrative and support service activities"
+OTT,"Public administration, defence, education, human health and social work activities"
+OTQ,Public administration and defence; compulsory social security
+RTT,"Arts, entertainment and recreation; Other service activities; Activities of households as employers"
+R_S,"Arts, entertainment and recreation; Other service activities"
+BTE,"Industry (Mining, Manufactures and Utilities)"
+GTT,Total Services (excl. construction)
+JTN,"Information, Finance, Real Estate and other business services"
+FTT,Total Services (incl. construction)
+INFO,Information industries
+_T,TOTAL

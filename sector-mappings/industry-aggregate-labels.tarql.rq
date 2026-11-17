@@ -1,0 +1,23 @@
+# Input: industry-aggregate-labels.csv
+# Run: tarql industry-aggregate-labels.tarql.rq industry-aggregate-labels.csv
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+CONSTRUCT {
+  ?activity
+    a skos:Concept ;
+    skos:inScheme <https://data.projekt-provider.de/tiva/scheme/activity> ;
+    skos:notation ?activityCode ;
+    skos:prefLabel ?activityLabel .
+
+  <https://data.projekt-provider.de/tiva/scheme/activity> a skos:ConceptScheme .
+}
+WHERE {
+  BIND(STR(?code) AS ?activityCode)
+  BIND(STRLANG(STR(?label), "en") AS ?activityLabel)
+  BIND(
+    IRI(CONCAT(
+      "https://data.projekt-provider.de/tiva/activity/",
+      ENCODE_FOR_URI(?activityCode)
+    )) AS ?activity
+  )
+}

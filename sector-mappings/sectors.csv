@@ -1,0 +1,51 @@
+code,economic_activity,isic_rev4_section
+A01,"Crop and animal production, hunting and related service activities",A
+A02,Forestry and logging,A
+A03,Fishing and aquaculture,A
+B05,Mining of coal and lignite,B
+B06,Extraction of crude petroleum and natural gas,B
+B07,Mining of metal ores,B
+B08,Other mining and quarrying,B
+B09,Mining support service activities,B
+C10T12,Manufacture of food products; beverages and tobacco products,C
+C13T15,"Manufacture of textiles, wearing apparel, leather and related products",C
+C16,"Manufacture of wood and of products of wood and cork, except furniture; manufacture of articles of straw and plaiting materials",C
+C17_18,Manufacture of paper and paper products; printing and reproduction of recorded media,C
+C19,Manufacture of coke and refined petroleum products,C
+C20,Manufacture of chemicals and chemical products,C
+C21,Manufacture of basic pharmaceutical products and pharmaceutical preparations,C
+C22,Manufacture of rubber and plastics products,C
+C23,Manufacture of other non-metallic mineral products,C
+C24A,"Manufacture of basic iron and steel and of ferro-alloys; of tubes, pipes, hollow profiles, related fittings and other products of first processing of steel; casting of iron and steel",C
+C24B,Manufacture of basic precious and other non-ferrous metals; casting of light metals and other non-ferrous metals,C
+C25,"Manufacture of fabricated metal products, except machinery and equipment",C
+C26,"Manufacture of computer, electronic and optical products",C
+C27,Manufacture of electrical equipment,C
+C28,Manufacture of machinery and equipment n.e.c.,C
+C29,"Manufacture of motor vehicles, trailers and semi-trailers",C
+C301,Building of ships and boats,C
+C302T309,"Manufacture of Railroad equipment, aircrafts, military fighting vehicles and other transport equipment n.e.c",C
+C31T33,"Manufacture of furniture; jewellery, musical instruments, toys, etc.; repair and installation of machinery and equipment",C
+D,"Electricity, gas, steam and air conditioning supply",D
+E,"Water supply; sewerage, waste management and remediation activities",E
+F,Construction,F
+G,Wholesale and retail trade; repair of motor vehicles and motorcycles,G
+H49,Land transport and transport via pipelines,H
+H50,Water transport,H
+H51,Air transport,H
+H52,Warehousing and support activities for transportation,H
+H53,Postal and courier activities,H
+I,Accommodation and food service activities,I
+J58T60,"Publishing, motion picture, video, television programme production; sound recording, programming and broadcasting activities",J
+J61,Telecommunications,J
+J62_63,"Computer programming, consultancy, and information service activities",J
+K,Financial and insurance activities,K
+L,Real estate activities,L
+M,"Professional, scientific and technical activities",M
+N,Administrative and support services,N
+O,Public administration and defence; compulsory social security,O
+P,Education,P
+Q,Human health and social work activities,Q
+R,"Arts, entertainment and recreation",R
+S,Other service activities,S
+T,Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use,T
