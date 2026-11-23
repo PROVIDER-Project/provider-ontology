@@ -1,0 +1,13 @@
+# Input: isic4-cpc21.csv (codes must remain strings, including leading zeroes)
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+CONSTRUCT {
+  ?source skos:closeMatch ?target .
+}
+WHERE {
+  BIND(STR(?isic_rev4) AS ?sourceCode)
+  BIND(REPLACE(STR(?cpc21), "[.]", "") AS ?targetCode)
+  FILTER(?sourceCode != "" && ?targetCode != "" && ?sourceCode != "n/a" && ?targetCode != "n/a")
+  BIND(IRI(CONCAT("https://data.projekt-provider.de/codes/isic-rev-4/", ENCODE_FOR_URI(?sourceCode))) AS ?source)
+  BIND(IRI(CONCAT("https://data.projekt-provider.de/codes/cpc-2.1/", ENCODE_FOR_URI(?targetCode))) AS ?target)
+}

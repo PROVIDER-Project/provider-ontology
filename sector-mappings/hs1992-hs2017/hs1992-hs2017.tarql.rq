@@ -1,0 +1,10 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+# Preserve all correlations; these are not allocation weights or exact equivalences.
+CONSTRUCT { ?source skos:closeMatch ?target . }
+WHERE {
+  BIND(REPLACE(STR(?hs1992), "[.]", "") AS ?sourceCode)
+  BIND(REPLACE(STR(?hs2017), "[.]", "") AS ?targetCode)
+  FILTER(REGEX(?sourceCode, "^[0-9]{6}$") && REGEX(?targetCode, "^[0-9]{6}$"))
+  BIND(IRI(CONCAT("https://data.projekt-provider.de/codes/hs-1992/", ?sourceCode)) AS ?source)
+  BIND(IRI(CONCAT("https://data.projekt-provider.de/codes/hs-2017/", ?targetCode)) AS ?target)
+}
