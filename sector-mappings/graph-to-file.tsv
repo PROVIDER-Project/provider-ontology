@@ -1,0 +1,13 @@
+https://data.projekt-provider.de/isic4-cpc21/	./isic4-cpc21/target/isic4-cpc21.ttl
+https://data.projekt-provider.de/hs2017-cpc21/	./hs2017-cpc21/target/hs2017-cpc21.ttl
+https://data.projekt-provider.de/cpc21-hs2021/	./cpc21-hs2012/target/cpc21-hs2012.ttl
+https://data.projekt-provider.de/hs1992-hs2017/	./hs1992-hs2017/target/hs1992-hs2017.ttl
+
+#./tiva/target/code-to-isicrev4.ttl
+#./tiva/target/store.conf.ttl
+#./tiva/target/industry-aggregate-code-to-isicrev4divisions.ttl
+#./tiva/target/industry-aggregate-labels.ttl
+#./tiva/target/sectors.ttl
+#./tiva/target/test.ttl
+#./hs1992-hs2017/target/hs1992-hs2017.ttl
+
