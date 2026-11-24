@@ -12,17 +12,38 @@ usage: upload-rdf-via-gsp.sh [options] <mapping-file>...
 
 Options:
   --curl-args <string>   Extra curl arguments, also as --curl-args=<string>,
-                         may be repeated. Must supply the Graph Store endpoint
-                         (and authentication), for example
-                           --curl-args "--user user:pw http://host:8080/ds/gsp"
+                         may be repeated. Must supply the Graph Store endpoint,
+                         for example
+                           --curl-args "http://host:8080/ds/gsp"
                          The string is split by the shell again, so quoting
-                         works ("--user 'u:p w'") but so does expansion of
+                         works ("--cacert 'my ca.pem'") but so does expansion of
                          $vars and backticks - quote them to keep them literal.
                          They are passed after our own curl flags: a single
                          value option (--request, --url) then uses yours, while
                          options curl repeats (--header, --url-query) are sent
                          twice rather than replaced.
+  -u, --user <name>      User name for the endpoint. The password is read once
+                         and then used for every graph; also as --user=<name>
+                         or -u<name>. Written <name>:<password>, it takes the
+                         password from the argument instead of reading it, which
+                         is convenient in cron but visible to other users for a
+                         moment. Cannot be combined with --user inside
+                         --curl-args.
   -h, --help             Show this help.
+
+The password comes from the first of these that applies:
+
+  1. the <name>:<password> written after -u
+  2. $GSP_PASSWORD, when it is set to something non-empty (set but empty means
+     unset, and a forgotten export is why)
+  3. typed at the prompt with the input hidden, or one line read from standard
+     input when that is not a terminal:
+       printf '%s\n' "$pw" | ./upload-rdf-via-gsp.sh -u bob --curl-args ... file.tsv
+
+The password reaches curl through its own standard input rather than as an
+argument, so it stays out of process listings and shell history. It shows up
+only where you ask for it: --curl-args "-v" makes curl print the Authorization
+header, and bash -x prints the variable.
 
 Each mapping file lists one target per line, tab-separated:
 
@@ -72,8 +93,46 @@ strip() { # leading and trailing whitespace
   echo "${text%"${text##*[![:space:]]}"}"
 }
 
+# host:port of the endpoint given in --curl-args, for messages only.
+endpoint_host() {
+  local arg
+  for arg in "$@"; do
+    case "$arg" in
+      *://*)
+        arg=${arg#*://} # drop the scheme
+        arg=${arg#*@}   # drop any user info
+        echo "${arg%%/*}"
+        return
+        ;;
+    esac
+  done
+}
+
+# A string as curl's config file syntax wants it inside double quotes.
+config_quote() {
+  local text=${1//\\/\\\\}
+  text=${text//\"/\\\"}
+  text=${text//$'\n'/\\n}
+  text=${text//$'\r'/\\r}
+  text=${text//$'\t'/\\t}
+  echo "$text"
+}
+
 curl_args=()
 mappings=()
+user="" # -u/--user, which may carry the password as name:password
+
+use_user() { # records the user name, refusing an empty one or a second one
+  if [[ -n $user ]]; then
+    printf 'error: --user given twice (%s and %s)\n' "$user" "$1" >&2
+    exit 2
+  fi
+  if [[ -z ${1%%:*} ]]; then
+    echo "error: --user needs a user name before any ':'" >&2
+    exit 2
+  fi
+  user=$1
+}
 
 while (($#)); do
   case "$1" in
@@ -92,6 +151,23 @@ while (($#)); do
       arg_value=${1#--curl-args=}
       shift
       eval "curl_args+=( $arg_value )"
+      ;;
+    -u | --user)
+      if [[ $# -lt 2 ]]; then
+        echo "error: $1 needs a value" >&2
+        usage >&2
+        exit 2
+      fi
+      use_user "$2"
+      shift 2
+      ;;
+    --user=*)
+      use_user "${1#--user=}"
+      shift
+      ;;
+    -u?*)
+      use_user "${1#-u}"
+      shift
       ;;
     -h | --help)
       usage
@@ -121,6 +197,21 @@ if ((${#mappings[@]} == 0)); then
 fi
 
 endpoint_note "${curl_args[@]}"
+
+# Both -u and a curl --user would authenticate, with curl's rule of the last one
+# quietly winning; refuse rather than depend on argument order. A value that
+# merely starts like such an option is refused too, which is easier to explain
+# than to trace.
+if [[ -n $user ]]; then
+  for curl_arg in "${curl_args[@]}"; do
+    case "$curl_arg" in
+      --user | --user=* | -u | -u?*)
+        echo "error: give the user name either with -u or in --curl-args, not both" >&2
+        exit 2
+        ;;
+    esac
+  done
+fi
 
 graphs=()
 files=()
@@ -193,15 +284,51 @@ if ((${#graphs[@]} == 0)); then
   exit 0
 fi
 
+# The secret is read once here - after the checks, so a run that cannot start
+# never asks for it - and it is never printed in a message.
+password=""
+if [[ -n $user ]]; then
+  login=$user
+  password=${GSP_PASSWORD-}
+  if [[ $user == *:* ]]; then # the password came with -u, nothing to read
+    login=${user%%:*}
+    password=${user#*:}
+  elif [[ -z $password ]]; then # an empty GSP_PASSWORD counts as unset
+    host=$(endpoint_host "${curl_args[@]}")
+    if [[ -t 0 ]]; then
+      printf 'Enter password for %s%s: ' "$login" "${host:+@$host}" >&2
+    fi
+    if ! IFS= read -r -s password; then
+      [[ -t 0 ]] && echo >&2 # only a prompt leaves a line unfinished
+      printf 'error: no password available for user %s\n' "$login" >&2
+      exit 2
+    fi
+    if [[ -t 0 ]]; then # the line break hidden input leaves out, and a hint
+      echo >&2        # that something was typed at all without showing it
+      printf '(%d characters)\n' "${#password}" >&2
+    fi
+  fi
+fi
+
+# One curl config line holding the credentials; empty when running anonymously.
+curl_config=""
+if [[ -n $user ]]; then
+  curl_config="user = \"$(config_quote "$login:$password")\""
+fi
+
+# The config line travels on curl's standard input and --config - comes last, so
+# it outranks a config file given in --curl-args as well. Anonymous runs feed one
+# empty line, which the config syntax ignores.
 failures=0
 for i in "${!graphs[@]}"; do
   printf 'POST %s <- %s (%s)\n' "${graphs[i]}" "${files[i]}" "${types[i]}"
-  if ! curl --fail-with-body --show-error --silent --globoff \
+  if ! printf '%s\n' "$curl_config" | curl --fail-with-body --show-error --silent --globoff \
     --request POST \
     --header "Content-Type: ${types[i]}" \
     --url-query "graph=${graphs[i]}" \
     --data-binary "@${files[i]}" \
-    "${curl_args[@]}"; then
+    "${curl_args[@]}" \
+    --config -; then
     echo "error: ${where[i]}: upload failed" >&2
     failures=$((failures + 1))
   fi

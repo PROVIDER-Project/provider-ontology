@@ -1,0 +1,25 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX codes: <https://data.projekt-provider.de/codes/hs-1992/>
+
+CONSTRUCT {
+  codes:scheme a skos:ConceptScheme ; dct:title "HS 1988/1992"@en ;
+    dct:source <https://comtradeapi.un.org/files/v1/app/reference/H0.json> .
+  ?concept a skos:Concept ; skos:inScheme codes:scheme ;
+    skos:notation ?notation ; skos:prefLabel ?prefLabel ;
+    skos:broader ?broader ; skos:topConceptOf ?topScheme .
+  ?topScheme skos:hasTopConcept ?concept .
+}
+WHERE {
+  BIND(STR(?code) AS ?notation)
+  BIND(IRI(CONCAT(STR(codes:), ENCODE_FOR_URI(?notation))) AS ?concept)
+  BIND(STRLANG(STR(?label), "en") AS ?prefLabel)
+  OPTIONAL {
+    FILTER(BOUND(?parent) && STRLEN(STR(?parent)) > 0)
+    BIND(IRI(CONCAT(STR(codes:), ENCODE_FOR_URI(STR(?parent)))) AS ?broader)
+  }
+  OPTIONAL {
+    FILTER(!BOUND(?parent) || STRLEN(STR(?parent)) = 0)
+    BIND(codes:scheme AS ?topScheme)
+  }
+}
