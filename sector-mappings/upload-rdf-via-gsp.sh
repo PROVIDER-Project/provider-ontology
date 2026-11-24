@@ -1,35 +1,43 @@
 #!/usr/bin/env bash
 #
 # Uploads RDF files to a Fuseki endpoint through the SPARQL Graph Store
-# Protocol: one POST per "graph <TAB> file" line of the given mapping files.
-# POST appends, so uploading the same graph twice adds it twice.
+# Protocol: one POST per "graph <TAB> file" line of a --mapping-file list.
+# POST appends, so uploading the same graph twice adds it twice. Every other
+# argument is handed to curl unchanged - that is where the endpoint URL and any
+# TLS, proxy or retry options go.
 
 set -uo pipefail
 
 usage() {
   cat <<'EOF'
-usage: upload-rdf-via-gsp.sh [options] <mapping-file>...
+usage: upload-rdf-via-gsp.sh [options] <curl arguments...>
 
-Options:
-  --curl-args <string>   Extra curl arguments, also as --curl-args=<string>,
-                         may be repeated. Must supply the Graph Store endpoint,
-                         for example
-                           --curl-args "http://host:8080/ds/gsp"
-                         The string is split by the shell again, so quoting
-                         works ("--cacert 'my ca.pem'") but so does expansion of
-                         $vars and backticks - quote them to keep them literal.
-                         They are passed after our own curl flags: a single
-                         value option (--request, --url) then uses yours, while
-                         options curl repeats (--header, --url-query) are sent
-                         twice rather than replaced.
-  -u, --user <name>      User name for the endpoint. The password is read once
-                         and then used for every graph; also as --user=<name>
-                         or -u<name>. Written <name>:<password>, it takes the
-                         password from the argument instead of reading it, which
-                         is convenient in cron but visible to other users for a
-                         moment. Cannot be combined with --user inside
-                         --curl-args.
-  -h, --help             Show this help.
+Options of this script; everything else goes to curl:
+  --mapping-file <path>   Lines of "<graph IRI>\t<rdf file>", may be repeated.
+                          Deliberately without a short form: -m is curl's
+                          --max-time and -f its --fail.
+  -u, --user <name>       User name for the endpoint; also as --user=<name> or
+                          -u<name>. The password is read once and then used for
+                          every graph. Written <name>:<password>, it takes the
+                          password from the argument instead of reading one,
+                          which suits cron but shows it to other users for a
+                          moment. curl never sees these forms: credentials reach
+                          it on its standard input.
+  --help                  This text; curl's own help is still reachable as -h.
+
+All remaining arguments are passed to curl exactly as given, between our flags
+and the configuration line carrying the credentials. The Graph Store endpoint
+belongs here too:
+
+  ./upload-rdf-via-gsp.sh -u bob --mapping-file graph-to-file.tsv \
+      http://host:8080/ds/gsp
+  ./upload-rdf-via-gsp.sh --mapping-file graph-to-file.tsv \
+      --cacert 'my ca.pem' --retry 2 --max-time 600 https://host:443/ds/gsp
+
+Arguments after -- are never taken by this script, which is how to pass a value
+that reads like one of its options. curl adds rather than replaces some repeated
+options (--header, --url-query), so ones given here join the ones this script
+sets; single value options such as --request and --url use yours.
 
 The password comes from the first of these that applies:
 
@@ -38,11 +46,14 @@ The password comes from the first of these that applies:
      unset, and a forgotten export is why)
   3. typed at the prompt with the input hidden, or one line read from standard
      input when that is not a terminal:
-       printf '%s\n' "$pw" | ./upload-rdf-via-gsp.sh -u bob --curl-args ... file.tsv
+       printf '%s\n' "$pw" | ./upload-rdf-via-gsp.sh -u bob \
+         --mapping-file graph-to-file.tsv http://host:8080/ds/gsp
 
-The password reaches curl through its own standard input rather than as an
-argument, so it stays out of process listings and shell history. It shows up
-only where you ask for it: --curl-args "-v" makes curl print the Authorization
+Without -u, no credentials are offered at all and curl decides: keep that path
+for anonymous writes, or arrange authentication yourself with --netrc or a config
+file given by -K. The password reaches curl through its own standard input rather
+than as an argument, so it stays out of process listings and shell history. It
+shows up only where you ask for it: passing -v makes curl print the Authorization
 header, and bash -x prints the variable.
 
 Each mapping file lists one target per line, tab-separated:
@@ -57,20 +68,6 @@ All files named by all mapping files are checked before anything is uploaded;
 a missing file or a malformed line aborts the whole run. Uploads continue when
 one of them fails, and the exit status is 1 if any failed.
 EOF
-}
-
-# The endpoint can only come from --curl-args (or curl's own config file), so
-# warn when it looks like somebody forgot it.
-endpoint_note() {
-  local arg found=0
-  for arg in "$@"; do
-    case "$arg" in
-      *://* | --url | --config | -K) found=1; break ;;
-    esac
-  done
-  if ((found == 0)); then
-    echo "warning: no endpoint URL in --curl-args, curl has to get it elsewhere" >&2
-  fi
 }
 
 # Content-Type for a file name; fails when the extension is not a known RDF one.
@@ -93,7 +90,7 @@ strip() { # leading and trailing whitespace
   echo "${text%"${text##*[![:space:]]}"}"
 }
 
-# host:port of the endpoint given in --curl-args, for messages only.
+# host:port of the endpoint among the curl arguments, for messages only.
 endpoint_host() {
   local arg
   for arg in "$@"; do
@@ -118,7 +115,7 @@ config_quote() {
   echo "$text"
 }
 
-curl_args=()
+pass_through=() # every argument that is not one of ours, in the order given
 mappings=()
 user="" # -u/--user, which may carry the password as name:password
 
@@ -134,23 +131,23 @@ use_user() { # records the user name, refusing an empty one or a second one
   user=$1
 }
 
+# Only the options above are ours. Values of curl options are not looked into, so
+# an argument that merely happens to read like one of ours is taken by us; those
+# go after -- .
 while (($#)); do
   case "$1" in
-    --curl-args)
+    --mapping-file)
       if [[ $# -lt 2 ]]; then
-        echo "error: --curl-args needs a value" >&2
+        echo "error: --mapping-file needs a value" >&2
         usage >&2
         exit 2
       fi
-      arg_value=$2
+      mappings+=("$2")
       shift 2
-      # Re-split the given string on purpose: it lets callers quote values.
-      eval "curl_args+=( $arg_value )"
       ;;
-    --curl-args=*)
-      arg_value=${1#--curl-args=}
+    --mapping-file=*)
+      mappings+=("${1#--mapping-file=}")
       shift
-      eval "curl_args+=( $arg_value )"
       ;;
     -u | --user)
       if [[ $# -lt 2 ]]; then
@@ -169,48 +166,26 @@ while (($#)); do
       use_user "${1#-u}"
       shift
       ;;
-    -h | --help)
+    --help)
       usage
       exit 0
       ;;
     --)
       shift
-      mappings+=("$@")
+      pass_through+=("$@")
       break
       ;;
-    -*)
-      echo "error: unknown option: $1" >&2
-      usage >&2
-      exit 2
-      ;;
     *)
-      mappings+=("$1")
+      pass_through+=("$1")
       shift
       ;;
   esac
 done
 
 if ((${#mappings[@]} == 0)); then
-  echo "error: no mapping file given" >&2
+  echo "error: no mapping file given, use --mapping-file" >&2
   usage >&2
   exit 2
-fi
-
-endpoint_note "${curl_args[@]}"
-
-# Both -u and a curl --user would authenticate, with curl's rule of the last one
-# quietly winning; refuse rather than depend on argument order. A value that
-# merely starts like such an option is refused too, which is easier to explain
-# than to trace.
-if [[ -n $user ]]; then
-  for curl_arg in "${curl_args[@]}"; do
-    case "$curl_arg" in
-      --user | --user=* | -u | -u?*)
-        echo "error: give the user name either with -u or in --curl-args, not both" >&2
-        exit 2
-        ;;
-    esac
-  done
 fi
 
 graphs=()
@@ -294,7 +269,7 @@ if [[ -n $user ]]; then
     login=${user%%:*}
     password=${user#*:}
   elif [[ -z $password ]]; then # an empty GSP_PASSWORD counts as unset
-    host=$(endpoint_host "${curl_args[@]}")
+    host=$(endpoint_host "${pass_through[@]}")
     if [[ -t 0 ]]; then
       printf 'Enter password for %s%s: ' "$login" "${host:+@$host}" >&2
     fi
@@ -317,8 +292,9 @@ if [[ -n $user ]]; then
 fi
 
 # The config line travels on curl's standard input and --config - comes last, so
-# it outranks a config file given in --curl-args as well. Anonymous runs feed one
-# empty line, which the config syntax ignores.
+# it outranks a config file passed along as an argument as well. Anonymous runs
+# feed one empty line, which the config syntax ignores: that leaves any
+# authentication curl finds by itself alone.
 failures=0
 for i in "${!graphs[@]}"; do
   printf 'POST %s <- %s (%s)\n' "${graphs[i]}" "${files[i]}" "${types[i]}"
@@ -327,7 +303,7 @@ for i in "${!graphs[@]}"; do
     --header "Content-Type: ${types[i]}" \
     --url-query "graph=${graphs[i]}" \
     --data-binary "@${files[i]}" \
-    "${curl_args[@]}" \
+    "${pass_through[@]}" \
     --config -; then
     echo "error: ${where[i]}: upload failed" >&2
     failures=$((failures + 1))
